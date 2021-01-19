@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const FormStyled = styled.form`
     width: ${({ width }) => { return width ? width : '100%' }};
+    margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '0px' }};
     .children{
         width: 100%;
         display: flex;
@@ -70,8 +71,9 @@ export const UploadStyled = styled.div`
         height: 140px;
         display: flex;
         justify-content: space-between;
+        text-align: center;
         .left{
-            width: 180px;
+            width: 300px;
             height: 140px;
             border: 1px dotted rgba(0,0,0,.3);
             img{
@@ -84,8 +86,11 @@ export const UploadStyled = styled.div`
             }
         }
         .right{ 
-            display: block;
+            display: flex;
+            align-items: center;
+            text-align: left;
             width: 350px;
+            height: 140px;
             color: #1F191B;
             font-size: 13px;
             font-weight: 400;

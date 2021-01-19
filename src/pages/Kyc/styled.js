@@ -6,7 +6,6 @@ export const KycStyled = styled.div`
         min-height: 528px;
         margin: 80px auto;
         background-color: #fff;
-        box-sizing: border-box;
         padding: 30px 40px;
 
         .top{
@@ -27,7 +26,7 @@ export const KycStyled = styled.div`
         }
 
         .bottom{
-            height: 420px;
+            min-height: 420px;
             display: flex;
             justify-content: space-between;
             align-items: center;
