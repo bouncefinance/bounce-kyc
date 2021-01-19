@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { LearnMoreStyle } from './styled'
 import CardHeader from '../CardHeader'
 import { Passage } from '../../components/Exhibition'
-import { Button } from '../../components/Table'
+import { TextInput, Button } from '../../components/Table'
+import Progress from '../Progress'
 
 
 export default function Index() {
+    const [isSupport, setIsSupport] = useState(false)
     const [curTab, setCurTab] = useState(0)
     const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
 
@@ -93,6 +95,20 @@ export default function Index() {
                         desc='Bounce is a decentralized auction platform, incorporating liquidity mining, decentralized governance and staking mechanisms. The first principle of Bounce is scarcity of resources, which creates a competitive swap environment.' />
 
                     <a href="http://bounceproject.com">bounceproject.com</a>
+
+                    {isSupport && <div className='support'>
+                        <div className="progress">
+                            <Progress
+                                title='Support from community:'
+                                status='success'
+                                plan={0.7}
+                                value='100 BOT'
+                                total='200 BOT'
+                            />
+                        </div>
+                        <TextInput placeholder='Enter your vote amount' width='288px' />
+                        <Button type='black' value='Support' width='180px' />
+                    </div>}
                 </div>
 
                 <div className="right">
@@ -103,10 +119,14 @@ export default function Index() {
                         title='Whitepaper' />
                     <a href="http://bounceproject.com">bounceproject.com</a>
                 </div>
+
+
             </div>
-            <div className='btn_group'>
-                <Button type='black' value='Join Auction' width='180px' />
-            </div>
+            {!isSupport && <div className='btn_group'>
+                <Button type='black' value='Join Auction' width='180px' onClick={() => {
+                    setIsSupport(true)
+                }} />
+            </div>}
 
             <div className="info_wrapper">
                 <ul className='tab_menu'>

@@ -57,7 +57,17 @@ export const CardStyled = styled.div`
 
             .left{
                 width: 480px;
-
+                span.vote{
+                    display: block;
+                    width: 100px;
+                    height: 28px;
+                    line-height: 28px;
+                    text-align: center;
+                    background-color: #2DAF4A;
+                    color: #fff;
+                    font-size: 14px;
+                    margin-top: 16px;
+                }
                 a{
                     display: block;
                     font-size: #124EEB;
@@ -65,6 +75,18 @@ export const CardStyled = styled.div`
                     margin-top: 13px;
                     &:hover{
                         text-decoration: underline;
+                    }
+                }
+
+                .support{
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 20px;
+                    flex-wrap: wrap;
+
+                    .progress{
+                        width: 100%;
+                        margin-bottom: 20px;
                     }
                 }
             }

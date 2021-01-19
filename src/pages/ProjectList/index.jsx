@@ -41,7 +41,9 @@ export default function Index() {
                         status='proList-Close'
                         claimFun={() => {
                             return true
-                        }} />
+                        }}
+                        isVote={true}
+                    />
                     <Card progress={true} status='proList-Close' />
                     <Card progress={true} status='proList-Close' />
                 </>

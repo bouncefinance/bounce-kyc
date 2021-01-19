@@ -20,6 +20,18 @@ export const LearnMoreStyle = styled.div`
                 display: block;
                 margin-top: 13px;
             }
+
+            .support{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+                flex-wrap: wrap;
+
+                .progress{
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
         }
 
         .right{

@@ -7,7 +7,7 @@ export default function Index() {
         <CsStyled>
             <Card status='Active' poolId={1} />
             <Card status='Upcoming' poolId={2} />
-            <Card status='Past' poolId={3} />
+            <Card status='Past' poolId={3} />   
             <Card />
         </CsStyled>
     )
