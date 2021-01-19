@@ -56,3 +56,41 @@ export const ButtonStyled = styled.button`
         border: 1px solid rgba(0, 0, 0, 0.2);
     }
 `
+
+export const UploadStyled = styled.div`
+    width: 100%;
+    margin-top: 22px;
+    .title{
+        font-size: 13px;
+        color: rgba(0,0,0,.4);
+        margin-bottom: 8px;
+    }
+
+    .main{
+        height: 140px;
+        display: flex;
+        justify-content: space-between;
+        .left{
+            width: 180px;
+            height: 140px;
+            border: 1px dotted rgba(0,0,0,.3);
+            img{
+                margin: 24px auto;
+            }
+            p{
+                font-size: 16px;
+                font-weight: 400;
+                text-align: center;
+            }
+        }
+        .right{ 
+            display: block;
+            width: 350px;
+            color: #1F191B;
+            font-size: 13px;
+            font-weight: 400;
+            opacity: .4;
+            margin-left: 32px;
+        }
+    }
+`

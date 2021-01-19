@@ -27,9 +27,10 @@ export const KycStyled = styled.div`
         }
 
         .bottom{
-            margin-top: 24px;
+            height: 420px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             .right{
                 width: 600px;
 
