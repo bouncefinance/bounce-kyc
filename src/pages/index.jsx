@@ -27,7 +27,6 @@ export default function Index() {
                     <Route path='/project-voting-board' exact component={ProjectList} />
                 </Switch>
             </div>
-
             <ModalGroup />
         </LayoutStyled>
     )
