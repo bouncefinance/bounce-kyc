@@ -1,15 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {useWeb3React} from "@web3-react/core";
-import {mainContext} from '../reducer'
-import {InjectedConnector} from "@web3-react/injected-connector";
-import {BOUNCE_SELECT_WEB3_CONTEXT, HANDLE_SHOW_CONNECT_MODAL} from "../const";
-import {formatAddress} from "../utils/format";
+import React, { useContext, useEffect, useState } from 'react';
+import { useWeb3React } from "@web3-react/core";
+import { InjectedConnector } from "@web3-react/injected-connector";
+import { BOUNCE_SELECT_WEB3_CONTEXT } from "../const";
+import { formatAddress } from "../utils/format";
 import MetaMask from '../assets/images/MetaMask.png'
 import MetaMask2 from '../assets/images/MetaMask@2x.png'
 import walletConnectIcon from '../assets/images/walletConnectIcon.svg'
 import ledger_icon from '../assets/images/Ledger.png'
-import {WalletConnectConnector} from "@web3-react/walletconnect-connector";
-import {LedgerConnector} from "@web3-react/ledger-connector";
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { LedgerConnector } from "@web3-react/ledger-connector";
+import { myContext } from '../redux';
 
 const injected = new InjectedConnector({
     supportedChainIds: [1, 3, 4, 5, 42, 31337]
@@ -22,7 +22,7 @@ const RPC_URLS = {
 };
 
 const walletconnect = new WalletConnectConnector({
-    rpc: {1: RPC_URLS[1]},
+    rpc: { 1: RPC_URLS[1] },
     bridge: "https://bridge.walletconnect.org",
     qrcode: true,
     pollingInterval: POLLING_INTERVAL
@@ -37,24 +37,15 @@ const ledger = new LedgerConnector({
 const wallets = {
     MetaMask: injected,
     WalletConnect: walletconnect,
-    Ledger: ledger,
-    //TrustWallet: injected,
-    //Squarelink: squarelink,
-    //Torus: torus,
-    //Aut
+    Ledger: ledger
 }
 
 export const WalletConnect = () => {
-
-    const {dispatch, state} = useContext(mainContext);
+    const { state, dispatch } = useContext(myContext);
     const [connectedName, setConnectedName] = useState()
 
-    const context = useWeb3React();
-
-    console.log('context', context)
-
     const [activatingConnector, setActivatingConnector] = useState();
-    const [currentConnector, setCurrentConnector] = useState();
+    const [currentConnector] = useState();
 
     const {
         connector,
@@ -62,7 +53,7 @@ export const WalletConnect = () => {
         account,
         activate,
         active,
-    } = context;
+    } = useWeb3React()
 
     useEffect(() => {
         if (activatingConnector && activatingConnector === connector) {
@@ -72,7 +63,7 @@ export const WalletConnect = () => {
 
     useEffect(() => {
         const localContent = window && window.localStorage.getItem(BOUNCE_SELECT_WEB3_CONTEXT)
-        console.log('wallet content', localContent)
+        // console.log('wallet content', localContent)
         if (localContent) {
             setConnectedName(localContent)
         }
@@ -80,129 +71,139 @@ export const WalletConnect = () => {
 
 
     useEffect(() => {
-        console.log(account, account, context, library)
+        // console.log(account, account, library)
         if (account && active && library) {
-            console.log('tag---->')
-            //dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: false});
+            dispatch({ type: 'CONNECT_WALLET', value: false });
         }
     }, [account]);
 
     function onConnect(currentConnector, name) {
-        console.log('onConnect:')
         setActivatingConnector(currentConnector);
         setConnectedName(name)
         window && window.localStorage.setItem(BOUNCE_SELECT_WEB3_CONTEXT, name)
-        console.log('activate')
         activate(wallets[name]);
     }
 
     return (
-            <div className="modal">
+        <div className="modal">
 
-                <div className="modal__box">
+            <div className="modal__box">
 
-                    <div className="modal__item modal__item--recieve">
+                <div className="modal__item modal__item--recieve">
 
-                        <form className="form-recieve" action="/" novalidate="novalidate">
+                    <form className="form-recieve" action="/"
+                    // novalidate="novalidate"
+                    >
 
-                            <h3 className="form-recieve__title">
-                                Please select a wallet
+                        <h3 className="form-recieve__title">
+                            Please select a wallet
                             </h3>
 
-                            <label className="form-recieve__input" click="selectWallet('metamask', $event)">
+                        <label className="form-recieve__input" click="selectWallet('metamask', $event)">
 
-                                <input
-                                    type="radio"
-                                    name="modal-form-recieve"
-                                    className="visuallyhidden"
-                                    value="MetaMask"
-                                    value="WalletConnect" checked={connectedName === 'MetaMask'}/>
+                            <input
+                                style={{ marginRight: 15 }}
+                                type="radio"
+                                name="modal-form-recieve"
+                                className="visuallyhidden"
+                                value="MetaMask"
+                                value="WalletConnect" checked={connectedName === 'MetaMask'}
+                                onChange={() => { }}
+                            />
 
-                                <span className="form-recieve__image">
+                            <span className="form-recieve__image">
                                 <img src={MetaMask}
-                                     srcSet={`${MetaMask2} 2x`} alt=""/>
+                                    srcSet={`${MetaMask2} 2x`} alt="" />
                             </span>
 
-                                {connectedName === 'MetaMask' ? (
-                                    <p className="form-recieve__label">
-                                        {account && formatAddress(account)}
-                                    </p>
-                                ) : (
+                            {connectedName === 'MetaMask' ? (
+                                <p className="form-recieve__label">
+                                    {account && formatAddress(account)}
+                                </p>
+                            ) : (
                                     <span className="form-recieve__label" onClick={() => {
                                         onConnect(currentConnector, 'MetaMask')
                                     }}>MetaMask</span>
                                 )}
 
 
-                            </label>
+                        </label>
 
-                            <hr />
+                        <hr />
 
-                            <label className="form-recieve__input" onClick={()=>{
-                                onConnect(currentConnector, 'WalletConnect')
-                            }}>
+                        <label className="form-recieve__input" onClick={() => {
+                            onConnect(currentConnector, 'WalletConnect')
+                        }}>
 
-                                <input type="radio" name="modal-form-recieve" className="visuallyhidden"
-                                       value="WalletConnect" checked={connectedName === 'WalletConnect'}/>
+                            <input
+                                style={{ marginRight: 15 }}
+                                type="radio" name="modal-form-recieve" className="visuallyhidden"
+                                value="WalletConnect" checked={connectedName === 'WalletConnect'}
+                                onChange={() => { }}
+                            />
 
-                                <span className="form-recieve__image">
+                            <span className="form-recieve__image">
 
-                                    <img src={walletConnectIcon} alt=""/>
+                                <img src={walletConnectIcon} alt="" />
 
-                                </span>
+                            </span>
 
-                                {connectedName === 'WalletConnect' ? (
-                                    <p className="form-recieve__label">
-                                        {account && formatAddress(account)}
-                                    </p>
-                                ) : (
+                            {connectedName === 'WalletConnect' ? (
+                                <p className="form-recieve__label">
+                                    {account && formatAddress(account)}
+                                </p>
+                            ) : (
                                     <span className="form-recieve__label" onClick={() => {
                                         console.log('connect to wallet')
                                         onConnect(currentConnector, 'WalletConnect')
                                     }}>WalletConnect</span>
                                 )}
 
-                            </label>
+                        </label>
 
-                            <hr />
+                        <hr />
 
-                            <label className="form-recieve__input" onClick={()=>{
-                                onConnect(currentConnector, 'Ledger')
-                            }}>
+                        <label className="form-recieve__input" onClick={() => {
+                            onConnect(currentConnector, 'Ledger')
+                        }}>
 
-                                <input type="radio" name="modal-form-recieve" className="visuallyhidden" value="Ledger"
-                                       checked={connectedName === 'Ledger'}/>
+                            <input
+                                style={{ marginRight: 15 }}
+                                type="radio" name="modal-form-recieve" className="visuallyhidden" value="Ledger"
+                                checked={connectedName === 'Ledger'}
+                                onChange={() => { }}
+                            />
 
-                                <span className="form-recieve__image">
-                                        <img src={ledger_icon} alt=""/>
-                                    </span>
+                            <span className="form-recieve__image">
+                                <img src={ledger_icon} alt="" />
+                            </span>
 
-                                {connectedName === 'Ledger' ? (
-                                    <p className="form-recieve__label">
-                                        {account && formatAddress(account)}
-                                    </p>
-                                ) : (
+                            {connectedName === 'Ledger' ? (
+                                <p className="form-recieve__label">
+                                    {account && formatAddress(account)}
+                                </p>
+                            ) : (
                                     <span className="form-recieve__label" onClick={() => {
                                         onConnect(currentConnector, 'Ledger')
                                     }}>Ledger</span>
                                 )}
 
-                            </label>
+                        </label>
 
-                        </form>
-
-                    </div>
-
-                    <button type="button" className="modal__close modal__close-btn button" aria-label="Close modal"
-                            onClick={() => {
-                                dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: false});
-                            }}>
-                        <svg width={24} height={24} viewBox="0 0 24 24">
-                            <path d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z" />
-                        </svg>
-                    </button>
+                    </form>
 
                 </div>
+
+                <button type="button" className="modal__close modal__close-btn button" aria-label="Close modal"
+                    onClick={() => {
+                        dispatch({ type: 'CONNECT_WALLET', value: false });
+                    }}>
+                    <svg width={24} height={24} viewBox="0 0 24 24">
+                        <path d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z" />
+                    </svg>
+                </button>
+
+            </div>
 
         </div>
     )

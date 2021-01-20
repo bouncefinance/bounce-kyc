@@ -7,6 +7,8 @@ import Step3 from './Step3'
 
 export default function Index() {
     const [curStep, setCurStep] = useState(1)
+    const [ReqData, setReqData] = useState({})
+
 
     return (
         <KycStyled>
@@ -20,9 +22,9 @@ export default function Index() {
                         <img src={image_kyc} alt="image_kyc" />
                     </div>
                     <div className="right">
-                        {curStep === 1 && <Step1 curStep={curStep} setCurStep={setCurStep} />}
-                        {curStep === 2 && <Step2 curStep={curStep} setCurStep={setCurStep} />}
-                        {curStep === 3 && <Step3 curStep={curStep} setCurStep={setCurStep} />}
+                        {curStep === 1 && <Step1 curStep={curStep} setCurStep={setCurStep} ReqData={ReqData} setReqData={setReqData} />}
+                        {curStep === 2 && <Step2 curStep={curStep} setCurStep={setCurStep} ReqData={ReqData} setReqData={setReqData} />}
+                        {curStep === 3 && <Step3 curStep={curStep} setCurStep={setCurStep} ReqData={ReqData} setReqData={setReqData} />}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,5 @@
 export const initState = {
-    isLogin: false,
-    account: null,
-    chainId: 1,
+    isConnectWallet: false,
     showModal: null
 }
 
@@ -11,6 +9,11 @@ export const reducer = (state, action) => {
             return {
                 ...initState,
                 showModal: action.value
+            }
+        case 'CONNECT_WALLET':
+            return {
+                ...initState,
+                isConnectWallet: action.value
             }
 
         default:

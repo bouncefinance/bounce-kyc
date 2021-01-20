@@ -4,6 +4,7 @@ export const KycStyled = styled.div`
     .container{
         width: 1100px;
         min-height: 528px;
+        box-sizing: border-box;
         margin: 80px auto;
         background-color: #fff;
         padding: 30px 40px;

@@ -1,16 +1,44 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { HeaderTabStyled } from './styled'
+import { useWeb3React } from "@web3-react/core";
 import logo_black from '../../../assets/logo/logo-black.svg'
 import { headerMenu } from './config'
 import { useHistory } from 'react-router-dom'
 import PersonalModal from './PersonalModal'
 import { myContext } from '../../../redux'
+import { Button } from '../Table'
 
 export default function Index() {
-    const { dispatch } = useContext(myContext)
+    const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname)
     const [isPerModal, setIsPerModal] = useState(false)  // show personal modal
+    const { account, active, chainId } = useWeb3React()
+
+    // useEffect(() => {
+    //     setIsPerModal(active)
+    // }, [account, state])
+
+    const renderConnectBtn = () => {
+
+        return active ? <div
+            className="personal"
+            onClick={() => { setIsPerModal(!isPerModal) }}
+        ></div> : <Button
+                type='black'
+                width='130px'
+                height='36px'
+                value='Connect Wallet'
+                style={{ fontSize: 14, marginLeft: '32px' }}
+                onClick={() => {
+                    if (active === undefined) return
+                    dispatch({
+                        type: 'CONNECT_WALLET',
+                        value: true
+                    })
+                }}
+            />
+    }
 
     return (
         <HeaderTabStyled>
@@ -46,7 +74,6 @@ export default function Index() {
                                                 }
                                             }
                                         })
-                                        // window.open(item.link)
                                     }
                                     setCurTab(item.route)
                                 }}>
@@ -54,11 +81,7 @@ export default function Index() {
                             </li>
                         })}
                     </ul>
-
-                    <div
-                        className="personal"
-                        onClick={() => { setIsPerModal(!isPerModal) }}
-                    ></div>
+                    {renderConnectBtn()}
                 </div>
                 <PersonalModal show={isPerModal} />
             </div>

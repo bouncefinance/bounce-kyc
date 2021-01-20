@@ -1,13 +1,21 @@
 import React from 'react'
 import { ButtonStyled } from './styled'
 
-export const Button = ({ name, type, value, width, onClick }) => {
+export const Button = ({ name, type, value, width, height, onClick, style, disabled }) => {
     return (
         <ButtonStyled
             name={name}
-            className={type === 'white' ? 'white' : type === 'black' ? 'black' : 'default'}
+            disabled={disabled}
+            className={`${type === 'white' ? 'white' : type === 'black' ? 'black' : 'default'}
+                ${disabled ? 'disabled' : ''}
+            `}
             width={width}
-            onClick={onClick}
+            height={height}
+            style={style}
+            onClick={(e) => {
+                e.preventDefault()
+                onClick && onClick()
+            }}
         >
             {value}
         </ButtonStyled>

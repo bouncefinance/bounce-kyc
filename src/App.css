@@ -211,3 +211,12 @@ h6 {
     font-family: 'Optima';
     font-weight: 700;
 }
+
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}

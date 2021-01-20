@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { myContext } from '../../../redux'
 import { ModalLayout } from './styled'
+import { WalletConnect } from '../../../components/WalletConnect'
 import Confirm from './Confirm'
 import Support from './Support'
 
@@ -15,8 +16,10 @@ export default function Index() {
     }
 
     const renderModal = () => {
-        const { showModal } = state
-        if (!showModal) return
+        const { showModal, isConnectWallet } = state
+        if (isConnectWallet) {
+            return <WalletConnect />
+        }
         switch (showModal.name) {
             case 'CONFIRM':
                 const { title, desc, tip, isCancel, cancel, confirm } = showModal
@@ -45,7 +48,7 @@ export default function Index() {
 
     }
 
-    return (state.showModal &&
+    return ((state.showModal || state.isConnectWallet) &&
         <ModalLayout className='layout' onClick={(e) => {
             e.stopPropagation()
             // if (String(e.target.className).indexOf('layout') !== -1) {

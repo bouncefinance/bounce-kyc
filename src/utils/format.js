@@ -18,7 +18,7 @@ export const weiPlus = (value1,  value2)=>{
 
 
 export const weiDiv = (value1, value2) => {
-    if(value1 == 0 || value2 == 0){
+    if(value1 === 0 || value2 === 0){
         return  0
     }
     console.log('weiDiv',value1, value2)

@@ -1,11 +1,11 @@
-import React, {useContext, useEffect} from 'react'
-import {WalletConnect} from "../components/WalletConnect";
-import {useWeb3React} from "@web3-react/core";
-import {mainContext} from "../reducer";
-import {BOUNCE_SELECT_WEB3_CONTEXT} from "../const";
-import {InjectedConnector} from "@web3-react/injected-connector";
-import {WalletConnectConnector} from "@web3-react/walletconnect-connector";
-import {LedgerConnector} from "@web3-react/ledger-connector";
+import React, { useContext, useEffect } from 'react'
+import { WalletConnect } from "../components/WalletConnect";
+import { useWeb3React } from "@web3-react/core";
+import { mainContext } from "../reducer";
+import { BOUNCE_SELECT_WEB3_CONTEXT } from "../const";
+import { InjectedConnector } from "@web3-react/injected-connector";
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { LedgerConnector } from "@web3-react/ledger-connector";
 
 const injected = new InjectedConnector({
     supportedChainIds: [1, 3, 4, 5, 42, 31337]
@@ -18,7 +18,7 @@ const RPC_URLS = {
 };
 
 const walletconnect = new WalletConnectConnector({
-    rpc: {1: RPC_URLS[1]},
+    rpc: { 1: RPC_URLS[1] },
     bridge: "https://bridge.walletconnect.org",
     qrcode: true,
     pollingInterval: POLLING_INTERVAL
@@ -43,7 +43,7 @@ const wallets = {
 export const InitPage = () => {
 
     const context = useWeb3React();
-    const {activate} = context;
+    const { activate } = context;
 
     const { state } = useContext(mainContext);
 
@@ -53,23 +53,25 @@ export const InitPage = () => {
 
     useEffect(() => {
         const localContent = window && window.localStorage.getItem(BOUNCE_SELECT_WEB3_CONTEXT)
-        console.log('wallet content', localContent)
+        // console.log('wallet content', localContent)
         if (localContent) {
-            console.log('activate', wallets[localContent])
+            // console.log('activate', wallets[localContent])
             activate(wallets[localContent]);
         }
     }, [])
 
-    return (
-        <>
-            {showConnectModal && (
-                <div className="modal-show">
-                    <div className="wrapper">
-                        <WalletConnect/>
-                    </div>
-                </div>
-            )}
-            </>
+    return <></>
 
-    )
+    // return (
+    //     <>
+    //         {showConnectModal && (
+    //             <div className="modal-show">
+    //                 <div className="wrapper">
+    //                     <WalletConnect/>
+    //                 </div>
+    //             </div>
+    //         )}
+    //         </>
+
+    // )
 }
