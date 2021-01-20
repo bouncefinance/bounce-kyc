@@ -5,8 +5,12 @@ export const headerMenu = [{
     name: '/ Certified Sales',
     route: '/certified-sales'
 }, {
-    name: '/Project Voting Board',
+    name: '/ Project Voting Board',
     route: '/project-voting-board'
+}, {
+    name: '/ Project Voting Board',
+    isConfirm: true,
+    link: 'http://bounce.finance'
 }]
 
 

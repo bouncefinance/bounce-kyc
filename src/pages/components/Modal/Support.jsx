@@ -1,6 +1,6 @@
 import React from 'react'
 import { SupportStyled } from './styled'
-import cancle from '../../../assets/images/cancle.svg'
+import cancel_img from '../../../assets/images/cancel.svg'
 import { Button } from '../../components/Table'
 
 export default function Support({ cancel }) {
@@ -8,7 +8,7 @@ export default function Support({ cancel }) {
         <SupportStyled>
             <div className="top">
                 <h1 className="title">Stake to support</h1>
-                <img src={cancle} alt="" onClick={cancel} />
+                <img src={cancel_img} alt="" onClick={cancel} />
             </div>
             <div className="main">
                 <h2>0,001321 BOT</h2>

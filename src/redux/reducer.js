@@ -7,7 +7,7 @@ export const initState = {
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        case 'SHOW_MODAL':
+        case 'MODAL':
             return {
                 ...initState,
                 showModal: action.value

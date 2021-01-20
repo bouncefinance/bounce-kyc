@@ -119,8 +119,10 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
                             <TextInput placeholder='Enter your vote amount' width='288px' />
                             <Button type='black' value='Support' width='180px' onClick={() => {
                                 dispatch({
-                                    type: 'SHOW_MODAL',
-                                    value: 'SUPPORT'
+                                    type: 'MODAL',
+                                    value: {
+                                        name: 'SUPPORT'
+                                    }
                                 })
                             }} />
                         </div>}

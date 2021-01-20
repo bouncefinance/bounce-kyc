@@ -1,27 +1,43 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { myContext } from '../../../redux'
 import { ModalLayout } from './styled'
+import Confirm from './Confirm'
 import Support from './Support'
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
 
-    const cancel = () => {
+    const handelCancel = () => {
         dispatch({
-            type: 'SHOW_MODAL',
+            type: 'MODAL',
             value: null
         })
     }
 
     const renderModal = () => {
         const { showModal } = state
-        switch (showModal) {
+        if (!showModal) return
+        switch (showModal.name) {
+            case 'CONFIRM':
+                const { title, desc, tip, isCancel, cancel, confirm } = showModal
+                // console.log(showModal)
+                return <Confirm
+                    title={title}
+                    desc={desc}
+                    tip={tip}
+                    isCancel={isCancel}
+                    cancel={cancel}
+                    confirm={confirm}
+                />
+
             case 'KYC':
                 console.log('kYc')
                 return <></>
 
             case 'SUPPORT':
-                return <Support cancel={cancel}/>
+                return <Support cancel={handelCancel} />
+
+
 
             default:
                 return <></>
@@ -34,7 +50,7 @@ export default function Index() {
             e.stopPropagation()
             // if (String(e.target.className).indexOf('layout') !== -1) {
             //     dispatch({
-            //         type: 'SHOW_MODAL',
+            //         type: 'MODAL',
             //         value: null
             //     })
             // }
