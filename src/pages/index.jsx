@@ -19,7 +19,6 @@ export default function Index() {
                     <Route path='/certified-sales' exact component={CertifiedSales} />
                 </Switch>
             </div>
-
             <ModalGroup />
         </LayoutStyled>
     )

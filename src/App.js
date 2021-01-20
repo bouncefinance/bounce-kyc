@@ -2,10 +2,13 @@
 import Page from './pages'
 import './Font.css'
 import './App.css'
-import { Reducer } from './redux'
-import { Web3Provider } from "@ethersproject/providers"
-import { Web3ReactProvider } from "@web3-react/core"
-import { BrowserRouter } from 'react-router-dom'
+import './assets/css/_modal.scss'
+import {Reducer} from './redux'
+import {ContextProvider} from "./reducer";
+import {Web3Provider} from "@ethersproject/providers"
+import {Web3ReactProvider} from "@web3-react/core"
+import {BrowserRouter} from 'react-router-dom'
+import {InitPage} from "./pages/InitPage";
 
 function App() {
   const getLibrary = (provider, connector) => {
@@ -15,16 +18,20 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <Reducer>
-          <BrowserRouter>
-            {/* <Test /> */}
-            <Page />
-          </BrowserRouter>
-        </Reducer>
-      </Web3ReactProvider>
-    </div>
+
+      <div className="App">
+        <ContextProvider>
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <InitPage/>
+            <Reducer>
+              <BrowserRouter>
+                {/* <Test /> */}
+                <Page/>
+              </BrowserRouter>
+            </Reducer>
+          </Web3ReactProvider>
+        </ContextProvider>
+      </div>
   );
 }
 
