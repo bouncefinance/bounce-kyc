@@ -1,11 +1,14 @@
 import React from 'react'
-import { C_S_Styled } from './styled'
+import { CsStyled } from './styled'
 import Card from './Card'
 
 export default function Index() {
     return (
-        <C_S_Styled>
+        <CsStyled>
+            <Card status='Active' poolId={1} />
+            <Card status='Upcoming' poolId={2} />
+            <Card status='Past' poolId={3} />   
             <Card />
-        </C_S_Styled>
+        </CsStyled>
     )
 }
