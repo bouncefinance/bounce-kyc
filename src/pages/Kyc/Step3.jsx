@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { TextInput, Form, Button, Upload } from '../components/Table'
 import axios from 'axios'
 import { useWeb3React } from '@web3-react/core'
+import API_HOST from '../../config/request_api'
+import { myContext } from '../../redux'
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
+    const history = useHistory()
+    const { dispatch } = useContext(myContext)
     const { active, account } = useWeb3React()
     const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
@@ -37,18 +42,50 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
 
 
     const handelSubmit = () => {
-        console.log(ReqData)
+        // console.log(ReqData)
         ReqData.bounceid = 0
         ReqData.accountaddress = account
-        axios.post('https://account.bounce.finance:16000/api/v1/updateuserinfo', ReqData).then(res => {
-            if (res.data.code === 1) {
-                alert('KYC 认证已成功提交')
+        ReqData.status = 1  // 代表提交审核，审核中状态
+        axios.post(API_HOST.KYC, ReqData).then(res => {
+            if (res.status === 200 && res.data.code === 1) {
+                dispatch({
+                    type: 'MODAL',
+                    value: {
+                        name: 'CONFIRM',
+                        title: 'Message',
+                        deputy: 'The information review has been submitted successfully. Please wait for the approval of the review',
+                        confirm: {
+                            text: 'Confirm',
+                            callback: () => {
+                                dispatch({
+                                    type: 'MODAL',
+                                    value: null
+                                })
+                            }
+                        }
+                    }
+                })
             } else {
-                alert('KYC 认证中，请勿重新提交')
+                dispatch({
+                    type: 'MODAL',
+                    value: {
+                        name: 'CONFIRM',
+                        title: 'Message',
+                        deputy: 'Your application is under review and will be reviewed within one working day. Please do not submit it twice',
+                        confirm: {
+                            text: 'Confirm',
+                            callback: () => {
+                                dispatch({
+                                    type: 'MODAL',
+                                    value: null
+                                })
+                            }
+                        }
+                    }
+                })
             }
         }).catch(err => {
             console.log(err)
-            alert('KYC 认证出现错误')
         })
     }
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { UploadStyled } from './styled'
 import upload_img from '../../../assets/images/upload-img.svg'
 import { Button } from '../Table'
+import API_HOST from '../../../config/request_api'
 
 export const Upload = ({
     title = 'Passport Photo',
@@ -20,7 +21,7 @@ export const Upload = ({
     const handelFileChange = (e) => {
         const file = e.target.files[0]
         if (!file) return
-        console.log(file)
+        // console.log(file)
         if (file.type === 'image/png' || file.type === 'image/jpeg') {
             let reader = new FileReader();  //调用FileReader
             reader.readAsDataURL(file); //将文件读取为 DataURL(base64)
@@ -42,7 +43,7 @@ export const Upload = ({
         }
 
         axios
-            .post("https://account.bounce.finance:16000/api/v1/fileupload", formData, config)
+            .post(API_HOST.upload, formData, config)
             .then(function (response) {
                 // console.log(response);
                 if (response.data.code === 200) {

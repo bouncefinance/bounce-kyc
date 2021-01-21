@@ -52,12 +52,6 @@ export default function Index() {
     return ((state.showModal || state.isConnectWallet) &&
         <ModalLayout className='layout' onClick={(e) => {
             e.stopPropagation()
-            // if (String(e.target.className).indexOf('layout') !== -1) {
-            //     dispatch({
-            //         type: 'MODAL',
-            //         value: null
-            //     })
-            // }
         }}>
             {renderModal()}
         </ModalLayout>

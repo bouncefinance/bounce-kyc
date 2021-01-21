@@ -145,3 +145,19 @@ export const UploadStyled = styled.div`
         }
     }
 `
+
+export const TextStyled = styled.div`
+    p.label{
+        font-size: 13px;
+        color: rgba(0,0,0,.4);
+        margin-bottom: 8px;
+        font-weight: 500;
+        margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
+    }
+
+    p.desc{
+        font-size: 16px;
+        color: rgba(0,0,0,1);
+        font-weight: 400;
+    }
+`

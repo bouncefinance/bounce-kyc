@@ -7,12 +7,21 @@ import { useHistory } from 'react-router-dom'
 import PersonalModal from './PersonalModal'
 import { myContext } from '../../../redux'
 import { Button } from '../Table'
+import axios from 'axios'
+import HOST_API from '../../../config/request_api'
+
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname)
-    const { active } = useWeb3React()
+    const { active, account } = useWeb3React()
+    const [userName, setUserName] = useState('undefined')
+
+    useEffect(() => {
+        if (!account) return
+        checkKYC(account)
+    }, [account])
 
     const renderConnectBtn = () => {
 
@@ -38,6 +47,26 @@ export default function Index() {
                     })
                 }}
             />
+    }
+
+    const checkKYC = (account) => {
+        const params = {
+            "accountaddress": account
+        }
+
+        axios.post(HOST_API.queryKycByAccount, params).then(res => {
+            // console.log(res)
+            if (res.status === 200 && res.data.code === 1) {
+                const { status, username } = res.data.data
+                window.localStorage.setItem('KYC_STATUS', status)
+                setUserName(username)
+            } else {
+                window.localStorage.setItem('KYC_STATUS', 0)
+            }
+        }).catch(err => {
+            console.log(err)
+            window.localStorage.setItem('KYC_STATUS', 0)
+        })
     }
 
     return (
@@ -82,7 +111,7 @@ export default function Index() {
                     </ul>
                     {renderConnectBtn()}
                 </div>
-                <PersonalModal show={state.isShowPersonal} />
+                <PersonalModal show={state.isShowPersonal} userName={userName}/>
             </div>
         </HeaderTabStyled>
     )

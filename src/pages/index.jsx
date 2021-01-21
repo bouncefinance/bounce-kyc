@@ -4,6 +4,7 @@ import { LayoutStyled } from './styled'
 import HeaderTab from './components/HeaderTab'
 import ModalGroup from './components/Modal'
 import Kyc from './Kyc'
+import PersonalInfo from './PersonalInfo'
 import Home from './Home'
 import CertifiedSales from './CertifiedSales'
 import LearnMore from './CertifiedSales/LearnMore'
@@ -28,14 +29,15 @@ export default function Index() {
 
     return (
         <LayoutStyled
-            onClick={initPerModal}
+        onClick={initPerModal}
         >
             <div className="mainView">
                 <HeaderTab />
                 <Switch>
-                    <Route path='/kyc' exact component={Kyc} />
                     <Route path='/' exact render={() => { return <Redirect to='/home' /> }} />
                     <Route path='/home' exact component={Home} />
+                    <Route path='/kyc' exact component={Kyc} />
+                    <Route path='/PersonalInfo' exact component={PersonalInfo} />
                     <Route path='/certified-sales' exact component={CertifiedSales} />
                     <Route path='/certified-sales/:poolId' exact component={Detail} />
                     <Route path='/learn-more/:poolId' exact component={LearnMore} />

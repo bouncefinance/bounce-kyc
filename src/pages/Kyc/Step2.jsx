@@ -35,7 +35,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
 
     return (
         <Form title={'Residental Address'}>
-            <TextInput label='Country / Region' defaultVal='United Kingdom' onValChange={(val) => {
+            <TextInput label='Country / Region'  onValChange={(val) => {
                 handelValChange('country', val)
             }} />
             <TextInput label='Address' placeholder='Enter your email' onValChange={(val) => {

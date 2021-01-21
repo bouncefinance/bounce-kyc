@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InputStyled } from './styled'
 
 export const TextInput = ({ defaultVal, placeholder, width, marginTop, label, onChange, onValChange }) => {
-    const [val, setVal] = useState(defaultVal || '')
+    const [val, setVal] = useState('')
+
+    useEffect(()=>{
+        if(!defaultVal) return
+        setVal(defaultVal)
+    },[defaultVal])
 
     return (
         <InputStyled
@@ -15,11 +20,11 @@ export const TextInput = ({ defaultVal, placeholder, width, marginTop, label, on
                 value={val}
                 placeholder={placeholder}
                 onChange={(e) => {
-
-                    onChange && onChange(e)
                     const val = String(e.target.value).trim()
                     setVal(val)
-                    onValChange(val)
+                    onValChange && onValChange(val)
+                    
+                    onChange && onChange(e)
                 }} />
         </InputStyled>
     )

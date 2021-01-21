@@ -64,12 +64,21 @@ export const PerModalStyled = styled.div`
     .account{
         padding: 12px 24px;
         font-family: 'Helvetica Neue';
-        h5{
-            font-weight: 700;
-            font-size: 16px;
+
+        .account_name{
+            display: flex;
+            h5{
+                font-weight: 700;
+                font-size: 16px;
+            }
+            img{
+                width: 16px;
+                height: 16px;
+                margin-left: 8px;
+            }
         }
 
-        .account{
+        .account_address{
             display: flex;
             align-items: center;
             padding: 0;
