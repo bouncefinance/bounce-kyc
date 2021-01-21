@@ -12,18 +12,18 @@ export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname)
-    const [isPerModal, setIsPerModal] = useState(false)  // show personal modal
-    const { account, active, chainId } = useWeb3React()
-
-    // useEffect(() => {
-    //     setIsPerModal(active)
-    // }, [account, state])
+    const { active } = useWeb3React()
 
     const renderConnectBtn = () => {
 
         return active ? <div
-            className="personal"
-            onClick={() => { setIsPerModal(!isPerModal) }}
+            className="personal ignore"
+            onClick={() => {
+                dispatch({
+                    type: "SHOW_PER",
+                    value: !state.isShowPersonal
+                })
+            }}
         ></div> : <Button
                 type='black'
                 width='130px'
@@ -60,11 +60,10 @@ export default function Index() {
                                             type: 'MODAL',
                                             value: {
                                                 name: 'CONFIRM',
-                                                title: 'Jump to remind',
-                                                desc: 'You will be directed to Bounce decentralized platform.',
-                                                tip: item.link,
+                                                title: 'Bounce Decentralized',
+                                                deputy: 'You will be directed to Bounce Decentralized platform',
                                                 cancel: {
-                                                    text: 'Cancel'
+                                                    text: 'Not Now'
                                                 },
                                                 confirm: {
                                                     text: 'Confirm',
@@ -83,7 +82,7 @@ export default function Index() {
                     </ul>
                     {renderConnectBtn()}
                 </div>
-                <PersonalModal show={isPerModal} />
+                <PersonalModal show={state.isShowPersonal} />
             </div>
         </HeaderTabStyled>
     )

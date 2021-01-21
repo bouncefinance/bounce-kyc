@@ -12,23 +12,26 @@ export const HomeStyled = styled.div`
 
         .main{
             width: 100%;
-            height: 340px;
+            height: 525px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .left{
-                width: 340px;
-                height: 340px;
+                width: 525px;
+                height: 525px;
+                margin-left: -100px;
             }
 
             .right{
-                width: 660px;
-                height: 100%;
-
+                width: 675px;
+                height: 340px;
+                box-sizing: border-box;
+                z-index: 1;
                 h1{
                     font-family: 'Optima';
                     font-weight: 700;
-                    font-size: 62px;
+                    font-size: 58px;
                     margin-bottom: 8px;
 
                     span{
@@ -55,6 +58,7 @@ export const HomeStyled = styled.div`
                     font-weight: 700;
                     font-size: 16px;
                     margin-top: 40px;
+                    cursor: pointer;
                 }
             }
         }

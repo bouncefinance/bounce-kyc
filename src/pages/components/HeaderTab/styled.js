@@ -59,6 +59,7 @@ export const PerModalStyled = styled.div`
     width:　220px;
     border: 1px solid #EAEAEA;
     background-color: #fff;
+    user-select: none;
 
     .account{
         padding: 12px 24px;
@@ -68,11 +69,24 @@ export const PerModalStyled = styled.div`
             font-size: 16px;
         }
 
-        p{
-            font-size: 14px;
-            font-weight: 500;
-            color: rgba(0,0,0,.4);
-            margin-top: 9px;
+        .account{
+            display: flex;
+            align-items: center;
+            padding: 0;
+            p{
+                font-size: 14px;
+                font-weight: 500;
+                color: rgba(0,0,0,.4);
+                margin-top: 9px;
+                width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            img{
+                margin-left: 8px;
+                cursor: pointer;
+            }
         }
     }
 

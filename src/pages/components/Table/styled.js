@@ -139,6 +139,7 @@ export const UploadStyled = styled.div`
                 margin-left: 32px;
                 button{
                     margin-right: 20px;
+                    cursor: pointer;
                 }
             }
         }

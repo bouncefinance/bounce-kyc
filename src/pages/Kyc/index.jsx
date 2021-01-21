@@ -1,14 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { KycStyled } from './styled'
 import image_kyc from '../../assets/images/kyc.svg'
 import Step1 from './Step1'
 import Step2 from './Step2'
 import Step3 from './Step3'
+import { useWeb3React } from '@web3-react/core'
+import { myContext } from '../../redux'
 
 export default function Index() {
+    const { active } = useWeb3React()
+    const { dispatch } = useContext(myContext)
     const [curStep, setCurStep] = useState(1)
-    const [ReqData, setReqData] = useState({})
+    const [ReqData, setReqData] = useState(null)
 
+    useEffect(() => {
+        if (!ReqData || active) {
+            return
+        }
+
+        dispatch({
+            type: 'CONNECT_WALLET',
+            value: true
+        })
+
+    }, [ReqData])
 
     return (
         <KycStyled>

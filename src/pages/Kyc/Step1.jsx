@@ -38,7 +38,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
 
     return (
         <Form title={'Basic Info'}>
-            <TextInput label='First Name' width='294px' defaultVal='John' onValChange={(val) => {
+            <TextInput label='First Name' width='294px' placeholder='Enter first name' onValChange={(val) => {
                 handelValChange('username', val)
             }} />
             <TextInput label='Middle Name (if applicable)' width='294px' placeholder='Enter middle name' onValChange={(val) => {

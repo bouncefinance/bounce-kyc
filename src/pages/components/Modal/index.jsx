@@ -22,11 +22,12 @@ export default function Index() {
         }
         switch (showModal.name) {
             case 'CONFIRM':
-                const { title, desc, tip, isCancel, cancel, confirm } = showModal
+                const { title, desc, tip, isCancel, cancel, confirm, deputy } = showModal
                 // console.log(showModal)
                 return <Confirm
                     title={title}
                     desc={desc}
+                    deputy={deputy}
                     tip={tip}
                     isCancel={isCancel}
                     cancel={cancel}

@@ -6,6 +6,6 @@ export const LayoutStyled = styled.div`
     background-color: #000;
 
     .mainView{
-        padding-bottom: 50px;
+        /* padding-bottom: 50px; */
     }
 `

@@ -17,18 +17,27 @@ import medium from '../../assets/icons/index-medium.svg'
 import twitter from '../../assets/icons/index-twitter.svg'
 import telegram from '../../assets/icons/index-telegram.svg'
 
+import video from '../../assets/video/index.mp4'
+
 export default function Index() {
     return (
         <HomeStyled>
             <div className="page_wrapper page_one">
                 <div className="main">
                     <div className="left">
-                        <img src={lattice} alt="lattice" />
+                        <video
+                            width='525px'
+                            height='525px'
+                            muted
+                            src={video}
+                            autoPlay='autoPlay'
+                            loop='loop'
+                        />
                     </div>
 
                     <div className="right">
-                        <h1>Certified crypto auction curated <span>by community</span></h1>
-                        <p>Bounce Certified is a branch of Bounce Finance decentralized platform, where high quality of listed projects in ensured by community’s right to activate or block token sales.</p>
+                        <h1>Certified crypto auction curated <span>by the community</span></h1>
+                        <p>Bounce Certified empowers the community to curate a select group of high-quality projects to conduct their public sale on the same robust and secure platform behind Bounce Finance.</p>
                         <p><span>KYC checks</span> / <span>White list sales</span> / <span>Decentralized auction managed by community DAO</span></p>
 
                         <button>Apply for certified sale</button>
@@ -195,7 +204,7 @@ export default function Index() {
                                 </a>
                             </li>
                         </ul>
-                        
+
                         <p>Forum</p>
                     </div>
 

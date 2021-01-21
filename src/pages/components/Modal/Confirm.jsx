@@ -4,7 +4,7 @@ import { ConfirmStyled } from './styled'
 import cancel_img from '../../../assets/images/cancel.svg'
 import { Button } from '../../components/Table'
 
-export default function Confirm({ title, desc, tip, cancel, confirm }) {
+export default function Confirm({ title, desc, deputy, tip, cancel, confirm, children }) {
     const { dispatch } = useContext(myContext)
 
     const handelCancel = () => {
@@ -22,11 +22,14 @@ export default function Confirm({ title, desc, tip, cancel, confirm }) {
             </div>
             <div className="main">
                 {desc && <h2>{desc}</h2>}
+                {deputy && <h5>{deputy}</h5>}
                 {tip && <p>{tip}</p>}
+                
+                {children}
             </div>
             <div className="bottom">
                 {cancel && <Button type='white' value={cancel && cancel.text} width='124px' onClick={handelCancel} />}
-                <Button type='black' value={confirm && confirm.text} width='124px' onClick={confirm && confirm.callback} />
+                {confirm && <Button type='black' value={confirm && confirm.text} width='124px' onClick={confirm && confirm.callback} />}
             </div>
         </ConfirmStyled>
     )

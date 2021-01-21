@@ -64,7 +64,7 @@ export const SupportStyled = styled.div`
 
 export const ConfirmStyled = styled.div`
     width: 520px;
-    height: 300px;
+    min-height: 300px;
     background-color: #fff;
     margin: 15% auto;
 
@@ -87,12 +87,20 @@ export const ConfirmStyled = styled.div`
     }
 
     .main{
-        height: 130px;
+        min-height: 130px;
         padding: 30px 32px 24px 52px ;
         box-sizing: border-box;
         h2{
             font-size: 24px;
         }
+
+        h5{
+           font-size: 16px;
+           font-family: 'Helvetica Neue';
+           font-weight: 400;
+           color: #1F191B; 
+        }
+
         p{
             color: rgba(0,0,0,.6);
             font-weight: 400;

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { TextInput, Form, Button, Upload } from '../components/Table'
 import axios from 'axios'
+import { useWeb3React } from '@web3-react/core'
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
+    const { active, account } = useWeb3React()
     const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
 
@@ -37,10 +39,11 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const handelSubmit = () => {
         console.log(ReqData)
         ReqData.bounceid = 0
+        ReqData.accountaddress = account
         axios.post('https://account.bounce.finance:16000/api/v1/updateuserinfo', ReqData).then(res => {
-            if(res.data.code===1){
+            if (res.data.code === 1) {
                 alert('KYC 认证已成功提交')
-            }else{
+            } else {
                 alert('KYC 认证中，请勿重新提交')
             }
         }).catch(err => {
@@ -64,7 +67,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                 <Button type='white' value='Back' width='164px' onClick={() => {
                     setCurStep(curStep - 1)
                 }} />
-                <Button type='black' value='Verify' width='164px' disabled={!isNext} onClick={handelSubmit} />
+                <Button type='black' value='Verify' width='164px' disabled={!isNext || !active} onClick={handelSubmit} />
             </div>
         </Form>
     )
