@@ -11,6 +11,7 @@ import LearnMore from './CertifiedSales/LearnMore'
 import Detail from './CertifiedSales/Detail'
 import ProjectList from './ProjectList'
 import { myContext } from '../redux'
+import {Apply} from "./CertifiedSales/Apply";
 
 
 export default function Index() {
@@ -42,6 +43,7 @@ export default function Index() {
                     <Route path='/certified-sales/:poolId' exact component={Detail} />
                     <Route path='/learn-more/:poolId' exact component={LearnMore} />
                     <Route path='/project-voting-board' exact component={ProjectList} />
+                    <Route path='/project-apply' exact component={Apply} />
                 </Switch>
             </div>
             <ModalGroup />
