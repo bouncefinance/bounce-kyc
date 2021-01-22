@@ -22,7 +22,8 @@ export default function PersonalModal({ show = false, userName }) {
                 return history.push('/kyc')
             case 'PersonalInfo':
                 return history.push('/PersonalInfo')
-
+            case 'applySale':
+                return history.push('/applySale')
             default:
                 return
         }
@@ -60,7 +61,9 @@ export default function PersonalModal({ show = false, userName }) {
                     <span>Personal Info</span>
                 </li>
 
-                <li>
+                <li
+                    onClick={() => { handelClickLi('applySale') }}
+                >
                     <i className='acs'></i>
                     <span>Apply Certified Sale</span>
                 </li>

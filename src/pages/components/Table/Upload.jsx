@@ -10,7 +10,8 @@ export const Upload = ({
     tip = 'Drop logo here or upload',
     desc = "Please upload photo where your face will be clearly visible Supports JPG, PNG, JPEG2000",
     successCallBack,
-    name
+    name,
+    width
 }) => {
 
     const [coverSrc, setCoverSrc] = useState(null)
@@ -54,7 +55,6 @@ export const Upload = ({
                 }
             })
             .catch(function (error) {
-                console.log(error);
                 setUploadRes('Error')
             }).finally(() => {
                 setIsLoading(false)
@@ -62,9 +62,9 @@ export const Upload = ({
     }
 
     return (
-        <UploadStyled>
+        <UploadStyled width={width}>
             {title && <p className='title'>{title}</p>}
-            <div className="main">
+            <div className="upload_main">
                 <div className="left">
                     <label htmlFor={'upload_img_' + name}>
                         {coverSrc && <img className='cover' src={coverSrc} alt="" />}
@@ -83,6 +83,8 @@ export const Upload = ({
                     {coverSrc && <div className="btn_grop">
                         <Button onClick={() => {
                             setCoverSrc(null)
+                            successCallBack(null)
+                            setUploadRes('')
                         }} value='Reset' type='white' width='100px' height='30px' />
                         {isLoading ?
                             <Button disabled value='uploading...' type='black' width='120px' height='30px' /> :

@@ -1,13 +1,17 @@
 import Form from './Form'
-import { TextInput } from './Input'
+import { TextInput, TextAreaInput, TimeInput } from './Input'
+import { Radio } from './Check'
 import { Button } from './Button'
 import { Upload } from './Upload'
 import { Text } from './Text'
+import { Select } from './Select'
 
 export {
     Form,
     TextInput,
     Button,
     Upload,
-    Text
+    Text, TextAreaInput, TimeInput,
+    Radio,
+    Select
 }

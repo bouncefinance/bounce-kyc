@@ -1,9 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {Button} from "../../components/common/Button";
+import React, { useContext, useEffect, useState } from 'react'
+import { Button } from "../../components/common/Button";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
 import BounceProVoting from '../../web3/abi/BounceProVoting.json'
 
-import {ApplyModal} from "./ApplyModal";
+import { ApplyModal } from "./ApplyModal";
 import {
   CreateModal,
   initStatus,
@@ -14,16 +14,16 @@ import {
   errorStatus,
   cancelStatus
 } from "./ApplyModal";
-import {getContract, useActiveWeb3React} from "../../web3";
-import {BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
-import {useVoteList} from "./hooks";
+import { getContract, useActiveWeb3React } from "../../web3";
+import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
+import { useVoteList } from "./hooks";
 
 export const Apply = () => {
 
-  const {list} = useVoteList()
+  const { list } = useVoteList()
 
   const [modalStatus, setModalStatus] = useState(initStatus)
-  const {account, library, chainId, active} = useActiveWeb3React()
+  const { account, library, chainId, active } = useActiveWeb3React()
 
   const onApply = async () => {
     console.log('onApply', active)
@@ -34,23 +34,23 @@ export const Apply = () => {
       const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
 
       const result = await tokenContract.methods.approve(
-          BOUNCE_PRO_VOTING(chainId),
-          '300000000000000000',
+        BOUNCE_PRO_VOTING(chainId),
+        '300000000000000000',
       )
-          .send({from: account});
+        .send({ from: account });
       setModalStatus(confirmStatus);
       if (result.status) {
         await bounceContract.methods.create('1')
-            .send({from: account})
-            .on('transactionHash', hash => {
-              setModalStatus(pendingStatus)
-            })
-            .on('receipt', (_, receipt) => {
-              setModalStatus(successStatus)
-            })
-            .on('error', (err, receipt) => {
-              setModalStatus(errorStatus)
-            })
+          .send({ from: account })
+          .on('transactionHash', hash => {
+            setModalStatus(pendingStatus)
+          })
+          .on('receipt', (_, receipt) => {
+            setModalStatus(successStatus)
+          })
+          .on('error', (err, receipt) => {
+            setModalStatus(errorStatus)
+          })
       } else {
         setModalStatus(errorStatus)
       }
@@ -66,14 +66,14 @@ export const Apply = () => {
 
 
   return (
-      <div>
-        <Button onClick={onApply}>Apply</Button>
-        <ApplyModal onOK={() => {
-          setModalStatus(initStatus)
-          //history.goBack()
-        }} onDismiss={() => {
-          setModalStatus(initStatus)
-        }} modalStatus={modalStatus}/>
-      </div>
+    <div>
+      <Button onClick={onApply}>Apply</Button>
+      <ApplyModal onOK={() => {
+        setModalStatus(initStatus)
+        //history.goBack()
+      }} onDismiss={() => {
+        setModalStatus(initStatus)
+      }} modalStatus={modalStatus} />
+    </div>
   )
 }
