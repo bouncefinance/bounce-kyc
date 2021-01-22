@@ -7,11 +7,69 @@ import CardHeader from './CardHeader'
 import Progress from './Progress'
 import { Passage } from '../components/Exhibition'
 import { myContext } from '../../redux'
+import {getContract, useActiveWeb3React} from "../../web3";
+import {TxModal,
+    initStatus,
+    errorStatus,
+    successStatus,
+    confirmStatus,
+    pendingStatus,
+    cancelStatus} from "../../components/common/TXModal";
+import {BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
+import bounceERC20 from '../../web3/abi/bounceERC20.json'
+import BounceProVoting from '../../web3/abi/BounceProVoting.json'
+import {numToWei} from "../../utils/numberTransform";
+import {ModalLayout} from "../components/Modal/styled";
+import Support from "../components/Modal/Support";
+
 
 export default function Card({ status, poolId = 0, progress, claimFun, isVote }) {
     const [isSupport, setIsSupport] = useState(false)
+    const [supporting, setSupporting] = useState(false)
+    const [bidStatus, setBidStatus] = useState(initStatus)
     const { dispatch } = useContext(myContext)
     const history = useHistory()
+    const {account, library, chainId, active} = useActiveWeb3React()
+    const [value, setValue] = useState()
+
+
+    const onVote = async () => {
+        setSupporting(false)
+        const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+        const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
+        const weiAmount = numToWei(value);
+        console.log('on vote---->', value, weiAmount)
+
+        setBidStatus(confirmStatus);
+        try {
+            await tokenContract.methods.approve(
+                BOUNCE_PRO_VOTING(chainId),
+                weiAmount,
+            )
+                .send({from: account});
+            bounceContract.methods.vote(poolId, weiAmount)
+                .send({from: account})
+                .on('transactionHash', hash => {
+                    setBidStatus(pendingStatus)
+                })
+                .on('receipt', (_, receipt) => {
+                    console.log('bid fixed swap receipt:', receipt)
+                    setBidStatus(successStatus)
+                })
+                .on('error', (err, receipt) => {
+                    setBidStatus(errorStatus)
+                })
+        } catch (e) {
+            console.log('bid---->', e)
+            if (e.code === 4001) {
+                setBidStatus(cancelStatus)
+            } else {
+                setBidStatus(errorStatus)
+            }
+        }
+
+    }
+
 
     const renderStatus = (status) => {
         switch (status) {
@@ -116,14 +174,12 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
                         />}
 
                         {isSupport && status !== 'proList-Close' && <div className='support'>
-                            <TextInput placeholder='Enter your vote amount' width='288px' />
+                            <TextInput onValChange={(value)=>{
+                                console.log('value', value)
+                                setValue(value)
+                            }} placeholder='Enter your vote amount' width='288px' />
                             <Button type='black' value='Support' width='180px' onClick={() => {
-                                dispatch({
-                                    type: 'MODAL',
-                                    value: {
-                                        name: 'SUPPORT'
-                                    }
-                                })
+                                setSupporting(true)
                             }} />
                         </div>}
                     </div>
@@ -147,6 +203,14 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
                     {renderButton(status)}
                 </div>}
             </div>
+            {supporting && (
+                <ModalLayout className='layout' onClick={(e) => {
+                    e.stopPropagation()
+                }}>
+                    <Support onConfirm={onVote} cancel={()=>setSupporting(false)} amount={value}/>
+                </ModalLayout>
+            )}
+
         </CardStyled>
     )
 }

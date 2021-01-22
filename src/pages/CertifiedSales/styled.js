@@ -46,7 +46,6 @@ export const CardStyled = styled.div`
 
     .main{
         width: 100%;
-        min-height: 436px;
         box-sizing: border-box;
         background-color: #fff;
         padding: 26px 40px;

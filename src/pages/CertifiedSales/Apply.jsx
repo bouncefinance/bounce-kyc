@@ -5,7 +5,6 @@ import BounceProVoting from '../../web3/abi/BounceProVoting.json'
 
 import {ApplyModal} from "./ApplyModal";
 import {
-  CreateModal,
   initStatus,
   approveStatus,
   pendingStatus,
@@ -16,11 +15,9 @@ import {
 } from "./ApplyModal";
 import {getContract, useActiveWeb3React} from "../../web3";
 import {BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
-import {useVoteList} from "./hooks";
+import Web3 from "web3";
 
 export const Apply = () => {
-
-  const {list} = useVoteList()
 
   const [modalStatus, setModalStatus] = useState(initStatus)
   const {account, library, chainId, active} = useActiveWeb3React()
@@ -64,10 +61,16 @@ export const Apply = () => {
     }
   };
 
+  const onSign = async () =>{
+    const web3 = new Web3(library.provider);
+    const sign = await web3.eth.personal.sign('0x1',account)
+    console.log('sign',sign)
+  }
+
 
   return (
       <div>
-        <Button onClick={onApply}>Apply</Button>
+        <Button onClick={onSign}>Apply</Button>
         <ApplyModal onOK={() => {
           setModalStatus(initStatus)
           //history.goBack()
