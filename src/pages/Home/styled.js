@@ -45,6 +45,7 @@ export const HomeStyled = styled.div`
                     font-size: 16px;
                     color: rgba(256,256,256,.5);
                     margin-top: 12px;
+                    line-height: 21.76px;
                 }
 
                 button{

@@ -61,6 +61,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
+                                history.push('/')
                             }
                         }
                     }
@@ -79,6 +80,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
+                                history.push('/')
                             }
                         }
                     }
