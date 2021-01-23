@@ -45,6 +45,7 @@ export const HomeStyled = styled.div`
                     font-size: 16px;
                     color: rgba(256,256,256,.5);
                     margin-top: 12px;
+                    line-height: 21.76px;
                 }
 
                 button{
@@ -135,6 +136,7 @@ export const HomeStyled = styled.div`
                     box-sizing: border-box;
                     border-color: rgba(256,256,256);
                     opacity: .2;
+                    cursor: pointer;
 
                     h4{
                         margin-top: 24px;
@@ -157,6 +159,13 @@ export const HomeStyled = styled.div`
                         margin-top: 8px;
                         color: #fff;
                     }
+                    &:hover{
+                        border-color: #1D61FF;
+                        opacity: 1;
+                        p{
+                            opacity: .6;
+                        }
+                    }
 
                     &.active{
                         border-color: #1D61FF;
@@ -165,6 +174,8 @@ export const HomeStyled = styled.div`
                             opacity: .6;
                         }
                     }
+
+                    
                 }
             }
            

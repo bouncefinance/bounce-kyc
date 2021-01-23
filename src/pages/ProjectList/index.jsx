@@ -22,7 +22,7 @@ export default function Index() {
         return <>
           {list.map(item => {
             return (
-                <Card progress={{
+                <Card pool={item} progress={{
                   value: '200 BOT',
                   total: 'Success',
                   plan: 1,

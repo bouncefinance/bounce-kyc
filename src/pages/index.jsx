@@ -11,7 +11,8 @@ import LearnMore from './CertifiedSales/LearnMore'
 import Detail from './CertifiedSales/Detail'
 import ProjectList from './ProjectList'
 import { myContext } from '../redux'
-import {Apply} from "./CertifiedSales/Apply";
+import { Apply } from "./CertifiedSales/Apply";
+import ApplySale from './ApplySale'
 
 
 export default function Index() {
@@ -30,7 +31,7 @@ export default function Index() {
 
     return (
         <LayoutStyled
-        onClick={initPerModal}
+            onClick={initPerModal}
         >
             <div className="mainView">
                 <HeaderTab />
@@ -38,6 +39,7 @@ export default function Index() {
                     <Route path='/' exact render={() => { return <Redirect to='/home' /> }} />
                     <Route path='/home' exact component={Home} />
                     <Route path='/kyc' exact component={Kyc} />
+                    <Route path='/applySale' exact component={ApplySale} />
                     <Route path='/PersonalInfo' exact component={PersonalInfo} />
                     <Route path='/certified-sales' exact component={CertifiedSales} />
                     <Route path='/certified-sales/:poolId' exact component={Detail} />

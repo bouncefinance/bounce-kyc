@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom'
 import { CardStyled } from './styled'
 import { TextInput } from '../components/Table'
@@ -18,12 +18,14 @@ import {TxModal,
 import {BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
 import BounceProVoting from '../../web3/abi/BounceProVoting.json'
-import {numToWei} from "../../utils/numberTransform";
+import {numToWei, weiToNum} from "../../utils/numberTransform";
 import {ModalLayout} from "../components/Modal/styled";
 import Support from "../components/Modal/Support";
+import BigNumber from "bignumber.js";
+import {getPoolLeftTime} from "../../utils/time";
 
 
-export default function Card({ status, poolId = 0, progress, claimFun, isVote }) {
+export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const [bidStatus, setBidStatus] = useState(initStatus)
@@ -31,6 +33,20 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
     const history = useHistory()
     const {account, library, chainId, active} = useActiveWeb3React()
     const [value, setValue] = useState()
+
+    const [left, setLeft] = useState({})
+
+    let timer
+    useEffect(() => {
+        timer = setInterval(() => {
+            const left = getPoolLeftTime(pool.closeAt)
+            setLeft(left)
+        }, 1000)
+        return () => {
+            clearInterval(timer)
+        }
+    }, [])
+
 
 
     const onVote = async () => {
@@ -47,7 +63,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
                 weiAmount,
             )
                 .send({from: account});
-            bounceContract.methods.vote(poolId, weiAmount)
+            bounceContract.methods.vote(pool.id, weiAmount)
                 .send({from: account})
                 .on('transactionHash', hash => {
                     setBidStatus(pendingStatus)
@@ -163,13 +179,13 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
 
                         <Passage
                             title='Time Left'
-                            desc='0d : 32h : 12m : 10s' />
+                            desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`} />
 
                         {progress && <Progress
                             width='480px'
-                            status={progress.status}
-                            plan={progress.plan}
-                            value={progress.value}
+                            status={pool.status}
+                            plan={new BigNumber(pool.totalVotes).dividedBy('200000000000000000000').dividedBy('100')}
+                            value={`${weiToNum(pool.totalVotes)} BOT`}
                             total={progress.total}
                         />}
 
@@ -203,6 +219,11 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote })
                     {renderButton(status)}
                 </div>}
             </div>
+
+            <TxModal modalStatus={bidStatus} onDismiss={() => {
+                setBidStatus(initStatus)
+            }}/>
+
             {supporting && (
                 <ModalLayout className='layout' onClick={(e) => {
                     e.stopPropagation()

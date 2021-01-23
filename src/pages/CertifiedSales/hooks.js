@@ -16,8 +16,17 @@ export const useVoteList = () => {
         for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then( async poolRes=>{
             const pool = poolRes
+            pool.id = i
             pool.totalVotes = await bounceContract.methods.totalVotes(i).call()
             poolRes.votePassed = await bounceContract.methods.votePassed(i).call()
+
+            if(poolRes.votePassed){
+              pool.status = 'Success'
+            }else {
+              const closeAt = new Date(poolRes.closeAt *  1000)
+              const closed = closeAt - new Date()
+              pool.status = closed > 0? 'Active' : 'Failed'
+            }
             console.log('pool',pool)
             pools = pools.concat(pool)
             setList(pools)

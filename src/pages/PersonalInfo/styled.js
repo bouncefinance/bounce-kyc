@@ -62,6 +62,24 @@ export const PerInfoStyled = styled.div`
                         margin-left: 8px;
                         cursor: pointer;
                     }
+
+                    p{
+                        font-family: 'Helvetica Neue';
+                        font-size: 16px;
+                        color: #000;
+                        font-weight: 400;
+
+                        span{
+                            color: #124EEB;
+                            margin-left:5px;
+                            cursor: pointer;
+                            text-decoration: underline;
+
+                            &:hover{
+                                font-weight: 500;
+                            }
+                        }
+                    }
                 }
 
                 .btn_group{

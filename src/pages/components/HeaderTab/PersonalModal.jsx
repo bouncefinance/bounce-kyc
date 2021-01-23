@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
+import React, {useContext, useEffect} from 'react'
 import { PerModalStyled } from './styled'
 import { useHistory } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import copy_icon from '../../../assets/icons/copy-black.svg'
 import bule_check from '../../../assets/images/bule-check.svg'
+import {mainContext} from "../../../reducer";
 
 export default function PersonalModal({ show = false, userName }) {
     const history = useHistory()
     const { account } = useWeb3React()
     const KYC_STATUS = window.localStorage.getItem('KYC_STATUS') || 0
+    const { state } = useContext(mainContext);
 
+    const { authToken } = state;
     useEffect(() => {
         // console.log(KYC_STATUS)
     }, [account])
@@ -22,7 +25,8 @@ export default function PersonalModal({ show = false, userName }) {
                 return history.push('/kyc')
             case 'PersonalInfo':
                 return history.push('/PersonalInfo')
-
+            case 'applySale':
+                return history.push('/applySale')
             default:
                 return
         }
@@ -47,7 +51,9 @@ export default function PersonalModal({ show = false, userName }) {
             </div>
             <ul>
                 {KYC_STATUS !== '1' && <li
-                    onClick={() => { handelClickLi('kyc') }}
+                    onClick={() => {
+                        handelClickLi('kyc')
+                    }}
                 >
                     <i className='kyc'></i>
                     <span>KYC</span>
@@ -60,7 +66,9 @@ export default function PersonalModal({ show = false, userName }) {
                     <span>Personal Info</span>
                 </li>
 
-                <li>
+                <li
+                    onClick={() => { handelClickLi('applySale') }}
+                >
                     <i className='acs'></i>
                     <span>Apply Certified Sale</span>
                 </li>

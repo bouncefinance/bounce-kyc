@@ -9,13 +9,14 @@ import { myContext } from '../../../redux'
 import { Button } from '../Table'
 import axios from 'axios'
 import HOST_API from '../../../config/request_api'
+import {useActiveWeb3React} from "../../../web3";
 
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname)
-    const { active, account } = useWeb3React()
+    const { active, account } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined')
 
     useEffect(() => {

@@ -5,11 +5,12 @@ import axios from 'axios'
 import { useWeb3React } from '@web3-react/core'
 import API_HOST from '../../config/request_api'
 import { myContext } from '../../redux'
+import Web3 from "web3";
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const history = useHistory()
     const { dispatch } = useContext(myContext)
-    const { active, account } = useWeb3React()
+    const { active, account, library } = useWeb3React()
     const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
 
@@ -41,11 +42,14 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     }
 
 
-    const handelSubmit = () => {
+    const handelSubmit = async () => {
         // console.log(ReqData)
         ReqData.bounceid = 0
         ReqData.accountaddress = account
         ReqData.status = 1  // 代表提交审核，审核中状态
+        const web3 = new Web3(library.provider);
+        const sign = await web3.eth.personal.sign('Welcome to Bounce!',account)
+        console.log('sign',sign)
         axios.post(API_HOST.KYC, ReqData).then(res => {
             if (res.status === 200 && res.data.code === 1) {
                 dispatch({
@@ -61,6 +65,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
+                                history.push('/')
                             }
                         }
                     }
@@ -79,6 +84,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
+                                history.push('/')
                             }
                         }
                     }

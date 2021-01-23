@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HomeStyled } from './styled'
 import lattice from '../../assets/images/lattice.svg'
 import bule_check from '../../assets/images/bule-check.svg'
@@ -19,7 +19,23 @@ import telegram from '../../assets/icons/index-telegram.svg'
 
 import video from '../../assets/video/index.mp4'
 
+const CertifiedSalesSteps = [{
+    title: 'Certified sale application',
+    desc: 'Submit project information to the voting board to apply for a certified sale'
+}, {
+    title: 'Community scanning and voting',
+    desc: 'The community reviews your project for quality and approves the start of the best token sale'
+}, {
+    title: 'Multisig governance configuration',
+    desc: 'Execution upon multisignature by parties involved'
+}, {
+    title: 'Token sale activation',
+    desc: 'Your certified token sale goes live for verified user'
+}]
+
 export default function Index() {
+    const [curCertifiedSalesSteps, setCurCertifiedSalesSteps] = useState(0)
+
     return (
         <HomeStyled>
             <div className="page_wrapper page_one">
@@ -82,37 +98,21 @@ export default function Index() {
                 <div className="block Certified">
                     <h3>Certified Sales Steps</h3>
                     <ul className="step_list">
-                        <li className='active'>
-                            <h4>
-                                <i>1</i>
-                                Certified sale application
-                            </h4>
-                            <p>Submit project information to the voting board to apply for a certified sale</p>
-                        </li>
-
-                        <li>
-                            <h4>
-                                <i>2</i>
-                                Community scanning and voting
-                            </h4>
-                            <p>The community reviews your project for quality and approves the start of the best token sale</p>
-                        </li>
-
-                        <li>
-                            <h4>
-                                <i>3</i>
-                                Multisig governance configuration
-                            </h4>
-                            <p>Execution upon multisignature by parties involved</p>
-                        </li>
-
-                        <li>
-                            <h4>
-                                <i>4</i>
-                                Token sale activation
-                            </h4>
-                            <p>Your certified token sale goes live for verified user</p>
-                        </li>
+                        {CertifiedSalesSteps.map((item, index) => {
+                            return <li
+                                key={index}
+                                className={curCertifiedSalesSteps === index ? 'active' : ''}
+                                onClick={() => {
+                                    setCurCertifiedSalesSteps(index)
+                                }}
+                            >
+                                <h4>
+                                    <i>{index + 1}</i>
+                                    {item.title}
+                                </h4>
+                                <p>{item.desc}</p>
+                            </li>
+                        })}
                     </ul>
                 </div>
 
@@ -127,18 +127,18 @@ export default function Index() {
 
                             <div>
                                 <i>3</i>
-                                Application fee
+                                BOT token holder exclusive sales
                             </div>
                         </li>
                         <li>
                             <div>
                                 <i>2</i>
-                                Application fee
+                                Project voting power
                             </div>
 
                             <div>
                                 <i>4</i>
-                                Application fee
+                                Transaction fee buy back and burn
                             </div>
                         </li>
                     </ul>

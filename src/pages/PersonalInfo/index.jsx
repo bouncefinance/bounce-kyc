@@ -43,7 +43,6 @@ export default function Index() {
             axios.post(API.KYC, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
 
-                    console.log(res)
                     dispatch({
                         type: 'MODAL',
                         value: {
@@ -52,6 +51,24 @@ export default function Index() {
                             deputy: 'Information modified successfully',
                             confirm: {
                                 text: 'Confirm',
+                                callback: () => {
+                                    window.location.reload()
+                                }
+                            }
+                        }
+                    })
+                } else {
+                    dispatch({
+                        type: 'MODAL',
+                        value: {
+                            name: 'CONFIRM',
+                            title: 'Message',
+                            deputy: 'Please verify your KYC identity first',
+                            cancel: {
+                                text: 'Not Now'
+                            },
+                            confirm: {
+                                text: 'Go',
                                 callback: () => {
                                     window.location.reload()
                                 }
@@ -118,8 +135,18 @@ export default function Index() {
                                 onCopy={() => { }}
                             >
                                 <div className='CertifiedId'>
-                                    <p>{showInfo.bounceid}</p>
-                                    <img src={copy_black} alt="" />
+                                    {showInfo.bounceid === '0' ?
+                                        <>
+                                            <p>Need to have a KYC to get an ID.
+                                                <span onClick={() => {
+                                                    history.push('/kyc')
+                                                }}>Click here to start</span>
+                                            </p>
+                                        </> :
+                                        <>
+                                            <p>{showInfo.bounceid}</p>
+                                            <img src={copy_black} alt="" />
+                                        </>}
                                 </div>
                             </CopyToClipboard>
                         </Text>
