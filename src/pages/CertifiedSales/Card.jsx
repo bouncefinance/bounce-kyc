@@ -23,11 +23,13 @@ import {ModalLayout} from "../components/Modal/styled";
 import Support from "../components/Modal/Support";
 import BigNumber from "bignumber.js";
 import {getPoolLeftTime} from "../../utils/time";
+import {useTokenBalance} from "../../hooks/useBalance";
 
 
 export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
+    const {balance} = useTokenBalance()
     const [bidStatus, setBidStatus] = useState(initStatus)
     const { dispatch } = useContext(myContext)
     const history = useHistory()
@@ -54,7 +56,6 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
         const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
         const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
         const weiAmount = numToWei(value);
-        console.log('on vote---->', value, weiAmount)
 
         setBidStatus(confirmStatus);
         try {
@@ -193,8 +194,8 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                             <TextInput onValChange={(value)=>{
                                 console.log('value', value)
                                 setValue(value)
-                            }} placeholder='Enter your vote amount' width='288px' />
-                            <Button type='black' value='Support' width='180px' onClick={() => {
+                            }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='288px' />
+                            <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black' value={new BigNumber(numToWei(value)).isGreaterThan(balance)?`Insufficient BOT`: 'Support'} width='180px' onClick={() => {
                                 setSupporting(true)
                             }} />
                         </div>}

@@ -4,7 +4,7 @@ import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import {BOUNCE_PRO_VOTING} from "../../web3/address";
 
 export const useVoteList = () => {
-  const [list, setList] = useState([])
+  const [list, setList] = useState()
   const {active, library, chainId} = useActiveWeb3React();
 
   const fetchList = () =>{

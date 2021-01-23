@@ -478,6 +478,33 @@ Pool.Description = styled.div`
   }
 `
 
+export const EmptyLayout = styled.div`
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  img{
+    width: 40px;
+    margin-bottom: 40px;
+  }
+  
+  p{
+    font-family: Helvetica Neue;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 140%;
+
+text-align: center;
+letter-spacing: 0.02em;
+width: 160px;
+color: #FFFFFF;
+  }
+`
+
 export const renderTime = (leftTime, frameStyle, isStr = false) => {
   if (isStr) return `${leftTime.days}d : ${leftTime.hours}h :${leftTime.minutes}m :${leftTime.seconds}s `
   return (<Pool.TimeFrame style={frameStyle}>
