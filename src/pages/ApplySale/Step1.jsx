@@ -61,6 +61,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 onValChange={(val) => {
                     handelInputChange('proname', val)
                 }}
+                maxLength={20}
             />
 
             <TextInput
@@ -72,6 +73,12 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 onValChange={(val) => {
                     handelInputChange('prowebsite', val)
                 }}
+
+
+                REG_rule={[{
+                    reg: `[a-zA-z]+://[^\s]*`,
+                    msg: 'Please enter a valid website address'
+                }]}
             />
 
             <TextInput

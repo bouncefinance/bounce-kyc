@@ -31,8 +31,8 @@ const getProjectInfo = async (proId) => {
 }
 
 export const useVoteList = () => {
-  const [list, setList] = useState([])
-  const { active, library, chainId } = useActiveWeb3React();
+  const [list, setList] = useState()
+  const {active, library, chainId} = useActiveWeb3React();
 
   const fetchList = () => {
     let pools = []

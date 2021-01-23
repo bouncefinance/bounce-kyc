@@ -21,6 +21,10 @@ export const InputStyled = styled.div`
         margin-bottom: 8px;
         font-weight: 500;
         margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
+        span.require{
+            color: red;
+            margin-left: 4px;
+        }
     }
 
     input{
@@ -311,6 +315,10 @@ export const SelectStyled = styled.div`
         margin-bottom: 8px;
         font-weight: 500;
         margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
+        span{
+            color: red;
+            margin-left: 4px;
+        }
     }
 
     .sel_wrapper{
@@ -338,12 +346,15 @@ export const SelectStyled = styled.div`
 
         .options{
             width: 100%;
+            max-height: 300px;
             border: 1px solid #EAEAEA;
             box-sizing: border-box;
             margin-top: 5px;
             box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             z-index: 5;
+            overflow: hidden;
+            overflow-y: scroll;
 
             li{
                 height: 42px;

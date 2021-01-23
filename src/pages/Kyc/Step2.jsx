@@ -1,52 +1,125 @@
 import React, { useState, useEffect } from 'react'
-import { TextInput, Form, Button } from '../components/Table'
+import { TextInput, Form, Button, Select } from '../components/Table'
 
-export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
+export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
 
-    const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
 
+    const requiredList = ['1_residentialaddr', '2_countryother']
+    const requiredList_json = requiredList
+        .sort((a1, a2) => {
+            return parseInt(a1) - parseInt(a2)
+        }).toString()
+    const [checkList, setCheckList] = useState([])
+
     useEffect(() => {
-        // console.log(data, isNext)
-        const requiredList = ['country', 'emailaddr', 'countryother']
-        const data_2 = requiredList.filter(item => {
-            if (!data[item]) {
-                return item
+        const checkList_json = checkList.sort((a1, a2) => {
+            return parseInt(a1) - parseInt(a2)
+        }).toString()
+
+        console.log(checkList_json, requiredList_json)
+
+        if (checkList_json === requiredList_json) {
+            setIsNext(true)
+        } else {
+            setIsNext(false)
+        }
+    }, [checkList])
+
+    const handelValChange = (key, val) => {
+        const data = { ...ReqData }
+        data[key] = val
+        setReqData(data)
+    }
+
+    const checkValue = (data) => {
+        if (!data) return
+        if (data.isRequire) {
+            const arrList = [...checkList]
+            if (!data.isError && data.value !== '') {
+                if (!arrList.includes(data.name)) {
+                    arrList.push(data.name)
+                }
+            } else {
+                if (arrList.includes(data.name)) {
+                    const index = arrList.indexOf(data.name)
+                    arrList.splice(index, 1)
+                }
             }
-        })
-
-        if (data_2.length === 0) {
-            setReqData(data)
-            return setIsNext(true)
-        } else {
-            return setIsNext(false)
+            setCheckList(arrList)
         }
-    }, [data])
-
-    const handelValChange = (key, val, required = false) => {
-        const data_2 = data
-        if (required && val === '') {
-            data_2[key] = null
-        } else {
-            data_2[key] = val || ''
-        }
-        setData({ ...ReqData, ...data_2 })
     }
 
     return (
         <Form title={'Residental Address'}>
-            <TextInput label='Country / Region'  onValChange={(val) => {
+            {/* <TextInput label='Country / Region'  onValChange={(val) => {
                 handelValChange('country', val)
-            }} />
-            <TextInput label='Address' placeholder='Enter your email' onValChange={(val) => {
-                handelValChange('emailaddr', val)
-            }} />
-            <TextInput label='Postal Code' placeholder='Enter your Postal Code' width='294px' onValChange={(val) => {
-                handelValChange('idtype', val, false)
-            }} />
-            <TextInput label='City' placeholder='Enter your city' width='294px' onValChange={(val) => {
-                handelValChange('countryother', val)
-            }} />
+            }} /> */}
+            <Select
+                label='Country / Region'
+                width='600px'
+                options={[{
+                    name: 'China'
+                }, {
+                    name: 'America'
+                }, {
+                    name: 'Japan'
+                }, {
+                    name: 'England'
+                }, {
+                    name: 'France'
+                }, {
+                    name: 'Germany'
+                }, {
+                    name: 'Italy'
+                }]}
+                isRequire={true}
+
+                onChange={(val) => {
+                    handelValChange('country', val)
+                }}
+
+            />
+
+
+            <TextInput
+                label='Address'
+                placeholder='Enter your Address'
+                name='1_residentialaddr'
+                defaultVal={ReqData && ReqData.residentialaddr}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('residentialaddr', data.value)
+                }}
+                isRequire={true}
+            // REG_rule={[{
+            //     reg: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+            //     msg: 'The residential address is incorrect'
+            // }]}
+            />
+            <TextInput
+                label='Postal Code'
+                placeholder='Enter your Postal Code'
+                width='294px'
+                name='idtype'
+                defaultVal={ReqData && ReqData.idtype}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('idtype', data.value)
+                }}
+            />
+            <TextInput
+                label='City'
+                placeholder='Enter your city'
+                width='294px'
+                isRequire={true}
+                name='2_countryother'
+                defaultVal={ReqData && ReqData.countryother}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('countryother', data.value)
+                }}
+            />
 
             <div className="btn_group">
                 <Button type='white' value='Back' width='164px' onClick={() => {

@@ -16,7 +16,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        // console.log(data, isNext)
+        console.log(data, isNext)
         const requiredList = ['idcardno', 'idcardfronturl', 'idcardbackurl']
         const data_2 = requiredList.filter(item => {
             if (!data[item]) {
@@ -49,8 +49,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
         ReqData.accountaddress = account
         ReqData.status = 1  // 代表提交审核，审核中状态
         const web3 = new Web3(library.provider);
-        const sign = await web3.eth.personal.sign('Welcome to Bounce!',account)
-        console.log('sign',sign)
+        const sign = await web3.eth.personal.sign('Welcome to Bounce!', account)
+        console.log('sign', sign)
         axios.post(API_HOST.KYC, ReqData).then(res => {
             if (res.status === 200 && res.data.code === 1) {
                 dispatch({
@@ -110,8 +110,13 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                 }}>This information is used to identity verification only, and will be kept secure by Bounce</p>
             </div>
 
-            <TextInput label='Passport Number' placeholder='Enter your email' onValChange={(val) => {
-                handelValChange('idcardno', val)
+            <TextInput
+             label='Passport Number'
+              placeholder='Enter your Idcard No'
+              isRequire={true}
+              onValueChange={(data) => {
+                handelValChange('idcardno', data.value)
+                console.log(data)
             }} />
             <Upload name='idcardfronturl' successCallBack={(path) => {
                 handelValChange('idcardfronturl', path || null)

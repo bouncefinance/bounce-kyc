@@ -11,7 +11,9 @@ export default function Index() {
     const { active } = useWeb3React()
     const { dispatch } = useContext(myContext)
     const [curStep, setCurStep] = useState(1)
-    const [ReqData, setReqData] = useState(null)
+    const [ReqData, setReqData] = useState({
+        country: 'china'
+    })
 
     useEffect(() => {
         if (!ReqData || active) {
