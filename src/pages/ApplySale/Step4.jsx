@@ -79,7 +79,6 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
                 label='Token distribution'
                 placeholder='Enter token distribution'
                 width='600px'
-                marginTop='0px'
                 defaultVal={step4Data.tokendistribution}
                 isRequire={true}
                 onValChange={(val) => {
@@ -91,7 +90,6 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
                 label='Token lockup schedule'
                 placeholder='Enter token lockup schedule'
                 width='600px'
-                marginTop='0px'
                 defaultVal={step4Data.tokenlookupschedule}
                 isRequire={true}
                 onValChange={(val) => {

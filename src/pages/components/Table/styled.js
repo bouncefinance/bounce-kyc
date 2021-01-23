@@ -26,15 +26,47 @@ export const InputStyled = styled.div`
     input{
         width: ${({ width }) => { return width ? width : '100%' }};
         height: ${({ height }) => { return height ? height : '48px' }};
-        border: 1px solid rgba(0,0,0,.4);
+        border: 1px solid rgba(0,0,0,.2);
         box-sizing: border-box;
         font-size: 16px;
         color: #000;
         text-indent: 20px;
+        font-family: 'Helvetica Neue';
+        font-weight: 400;
+
+        &.isComplete{
+            border: 1px solid rgba(0,0,0,.4);
+        }
+
+        &:hover{
+            border: 1px solid rgba(0,0,0,.4);
+        }
+
+        &:focus{
+            border: 1px solid rgba(18,76,227,.8);
+        }
+
+        &:disabled{
+            opacity: .12;
+        }
 
         &::placeholder{
             color: rgba(0,0,0,.4);
         }
+
+        &.Error{
+            border: 1px solid rgba(241,2,2,.4);
+            color: rgba(228,63,41,1);
+        }
+    }
+
+    p.error_msg{
+        font-family: 'Helvetica Neue';
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(228,63,41,1);
+        margin-top: 4px;
+        margin-bottom: 0px;
     }
 `
 

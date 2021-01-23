@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { InputStyled, InputAreaStyled, TimeInputStyled } from './styled'
 
-export const TextInput = ({ defaultVal, placeholder, width, height, marginTop, label, onChange, onValChange, isRequire = false }) => {
+export const TextInput = ({ maxLength, disabled, defaultVal, placeholder, width, height, marginTop, label, onChange, onValChange, isRequire = false }) => {
     const [val, setVal] = useState('')
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         if (!defaultVal) return
@@ -18,8 +19,11 @@ export const TextInput = ({ defaultVal, placeholder, width, height, marginTop, l
             {label && <p>{label}</p>}
             <input
                 type='text'
+                className={`${val !== '' ? 'isComplete' : ''} ${isError ? 'Error' : ''}`}
                 value={val}
                 placeholder={placeholder}
+                disabled={disabled}
+                maxLength={maxLength}
                 onChange={(e) => {
                     const val = String(e.target.value).trim()
                     setVal(val)
@@ -31,6 +35,7 @@ export const TextInput = ({ defaultVal, placeholder, width, height, marginTop, l
 
                     onChange && onChange(e)
                 }} />
+            {isError && <p className="error_msg">incorrectly filled in field.</p>}
         </InputStyled>
     )
 }
