@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {ProjectListStyle} from './styled'
+import React, { useState, useEffect } from 'react'
+import { ProjectListStyle } from './styled'
 import Card from '../CertifiedSales/Card'
 import {useVoteList} from "../CertifiedSales/hooks";
 import {EmptyLayout} from "../../components/common/Layout";
@@ -15,9 +15,13 @@ const proTabs = [{
 
 export default function Index() {
 
-  const {list} = useVoteList()
+  const { list } = useVoteList()
   const [curPro, setCurPro] = useState(0)
   console.log('list', list)
+
+  useEffect(() => {
+    console.log(list)
+  }, [list])
 
   const renderProList = (proTab) => {
     switch (proTab) {
@@ -79,25 +83,25 @@ export default function Index() {
   }
 
   return (
-      <ProjectListStyle>
-        <div className="pro_header">
-          <ul className='pro_tabs'>
-            {proTabs.map((item, index) => {
-              return <li
-                  key={index}
-                  onClick={() => {
-                    setCurPro(index)
-                  }}
-                  className={curPro === index ? `active ${item.status}` : item.status}
-              >{item.name}</li>
-            })}
-          </ul>
+    <ProjectListStyle>
+      <div className="pro_header">
+        <ul className='pro_tabs'>
+          {proTabs.map((item, index) => {
+            return <li
+              key={index}
+              onClick={() => {
+                setCurPro(index)
+              }}
+              className={curPro === index ? `active ${item.status}` : item.status}
+            >{item.name}</li>
+          })}
+        </ul>
 
           <div className="paging">
           </div>
-        </div>
+      </div>
 
-        {renderProList(proTabs[curPro] && proTabs[curPro].name)}
-      </ProjectListStyle>
+      {renderProList(proTabs[curPro] && proTabs[curPro].name)}
+    </ProjectListStyle>
   )
 }

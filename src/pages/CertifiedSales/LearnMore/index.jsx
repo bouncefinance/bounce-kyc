@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { LearnMoreStyle } from './styled'
 import CardHeader from '../CardHeader'
 import { Passage } from '../../components/Exhibition'
 import { TextInput, Button } from '../../components/Table'
 import Progress from '../Progress'
+import { useParams } from 'react-router-dom'
+import { useVoteListByPoolId } from '../hooks'
 
 
 export default function Index() {
+    const { poolId } = useParams()
+    const { proInfo } = useVoteListByPoolId(poolId)
+    // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
     const [isSupport, setIsSupport] = useState(false)
     const [curTab, setCurTab] = useState(0)
     const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
+
+    useEffect(() => {
+        console.log(proInfo)
+    }, [proInfo])
 
     const renderInfo = (tab) => {
         switch (tab) {
@@ -18,16 +27,12 @@ export default function Index() {
                     <Passage
                         width='480px'
                         title='Technical highlight'
-                        desc='Active Project Name is a blockchain project.
-                        There should be some description about this active project.
-                        4 line maximum for this section.' />
+                        desc={proInfo && proInfo.techhighlight} />
 
                     <Passage
                         width='480px'
                         title='Architecture'
-                        desc='Active Project Name is a blockchain project.
-                        There should be some description about this active project.
-                        4 line maximum for this section.' />
+                        desc={proInfo && proInfo.architecture} />
                 </>
 
 
@@ -35,9 +40,8 @@ export default function Index() {
                 return <>
                     <Passage
                         width='480px'
-                        title='Technical highlight'
-                        desc='Active Project Name is a blockchain project. There should be some description about this active project. 4 line maximum for this section. Active Project Name is a blockchain project. There should be some description about this active project. 4 line maximum for this section. Active Project Name is a blockchain project. There should be some description about this active project. 4 line maximum for this section.
-                        Active Project Name is a blockchain project. There should be some description about this active project. 4 line maximum for this section. Active Project Name is a blockchain project. There should be some description about this active project. 4 line maximum for this section. Active Project Name is a blockchain project. There should be some description about this active project. 4 line maximum for this section.' />
+                        title='Team'
+                        desc={proInfo&&proInfo.teambio} />
                 </>
 
             case 'Token Metrics':
@@ -45,34 +49,32 @@ export default function Index() {
                     <Passage
                         width='480px'
                         title='Total supply'
-                        desc='100' />
+                        desc={proInfo&&proInfo.totalsupply} />
 
                     <Passage
                         width='480px'
                         title='Initial circulating supply'
-                        desc='100' />
+                        desc={proInfo&&proInfo.circulatingsupply} />
 
                     <Passage
                         width='480px'
                         title='Token ticketer'
-                        desc='BOT' />
+                        desc={proInfo&&proInfo.tokenticketer} />
 
                     <Passage
                         width='480px'
                         title='Token contract address'
-                        desc='0x33a9b7ed8c71c6910fb4a9bc41de2391b74c2976' />
+                        desc={proInfo&&proInfo.tokencontractaddress} />
 
                     <Passage
                         width='480px'
                         title='Token distribution'
-                        desc='Bounce is a decentralized auction platform, incorporating liquidity mining, decentralized governance and staking mechanisms. The first principle of Bounce is scarcity of resources, which creates a competitive swap environment.
-                        Bounce is a decentralized auction platform, incorporating liquidity mining, decentralized governance and staking mechanisms. The first principle of Bounce is scarcity of resources, which creates a competitive swap environment.' />
+                        desc={proInfo&&proInfo.tokendistribution} />
 
                     <Passage
                         width='480px'
                         title='Token lockup schedule'
-                        desc='Bounce is a decentralized auction platform, incorporating liquidity mining, decentralized governance and staking mechanisms. The first principle of Bounce is scarcity of resources, which creates a competitive swap environment.
-                        Bounce is a decentralized auction platform, incorporating liquidity mining, decentralized governance and staking mechanisms. The first principle of Bounce is scarcity of resources, which creates a competitive swap environment.' />
+                        desc={proInfo&&proInfo.tokenlookupschedule} />
                 </>
             default:
                 return <></>
@@ -92,9 +94,9 @@ export default function Index() {
                 <div className="left">
                     <Passage
                         title='Project summary'
-                        desc='Bounce is a decentralized auction platform, incorporating liquidity mining, decentralized governance and staking mechanisms. The first principle of Bounce is scarcity of resources, which creates a competitive swap environment.' />
+                        desc={proInfo && proInfo.prosummary} />
 
-                    <a href="http://bounceproject.com">bounceproject.com</a>
+                    <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
 
                     {isSupport && <div className='support'>
                         <div className="progress">
@@ -114,10 +116,10 @@ export default function Index() {
                 <div className="right">
                     <Passage
                         title='Theme'
-                        desc='Auction theme' />
+                        desc={proInfo && proInfo.protheme} />
                     <Passage
                         title='Whitepaper' />
-                    <a href="http://bounceproject.com">bounceproject.com</a>
+                    <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
                 </div>
 
 
