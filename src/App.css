@@ -195,13 +195,15 @@ q:after {
 }
 
 html,
-body,
-p,
-span {
+body {
     font-family: 'Helvetica Neue';
     font-size: 16px;
     color: #000;
     font-weight: 500;
+}
+
+p{
+    font-family: 'Helvetica Neue';
 }
 
 h1,
