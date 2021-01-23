@@ -97,7 +97,9 @@ export default function Index() {
 
                 <div className="block Certified">
                     <h3>Certified Sales Steps</h3>
-                    <ul className="step_list">
+                    <ul className="step_list" onMouseEnter={()=>{
+                        console.log(231313)
+                    }}>
                         {CertifiedSalesSteps.map((item, index) => {
                             return <li
                                 key={index}
