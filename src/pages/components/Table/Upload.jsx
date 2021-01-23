@@ -7,8 +7,7 @@ import API_HOST from '../../../config/request_api'
 
 export const Upload = ({
     title = 'Passport Photo',
-    tip = 'Drop logo here or upload',
-    desc = "Please upload photo where your face will be clearly visible Supports JPG, PNG, JPEG2000",
+    desc = "Please upload photo of page with iD number and photo Supports JPG, PNG, JPEG2000",
     successCallBack,
     name,
     width
@@ -70,7 +69,7 @@ export const Upload = ({
                         {coverSrc && <img className='cover' src={coverSrc} alt="" />}
                         <div className="upload_select">
                             <img src={upload_img} alt={'upload_img_' + name} />
-                            <p>{tip}</p>
+                            <p>Drop logo here or <span>upload</span></p>
                         </div>
                         <input type="file" name={'upload_img_' + name} id={'upload_img_' + name} onChange={handelFileChange} />
                     </label>

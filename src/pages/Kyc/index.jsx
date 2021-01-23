@@ -10,7 +10,7 @@ import { myContext } from '../../redux'
 export default function Index() {
     const { active } = useWeb3React()
     const { dispatch } = useContext(myContext)
-    const [curStep, setCurStep] = useState(1)
+    const [curStep, setCurStep] = useState(3)
     const [ReqData, setReqData] = useState(null)
 
     useEffect(() => {
