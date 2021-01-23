@@ -112,11 +112,16 @@ export const UploadStyled = styled.div`
                     }
                     
                     p{
-                        width: 125px;
+                        width: 120px;
                         margin: 0 auto;
                         font-size: 16px;
                         font-weight: 400;
                         text-align: center;
+
+                        span{
+                            color: #124CE3;
+                            text-decoration: underline;
+                        }
                     }
                 }
 
@@ -135,6 +140,7 @@ export const UploadStyled = styled.div`
                 color: #1F191B;
                 font-size: 13px;
                 font-weight: 400;
+                line-height: 18px;
                 opacity: .4;
                 margin-left: 32px;
             }

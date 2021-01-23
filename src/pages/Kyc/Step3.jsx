@@ -6,6 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import API_HOST from '../../config/request_api'
 import { myContext } from '../../redux'
 import Web3 from "web3";
+import icon_plaint from '../../assets/images/plaint.svg'
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const history = useHistory()
@@ -97,6 +98,18 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
 
     return (
         <Form title={'ID confirmation'} marginTop='24px'>
+            <div className="tip" style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: 8
+            }}>
+                <img src={icon_plaint} alt="" />
+                <p style={{
+                    fontSize: 12,
+                    marginLeft: 6
+                }}>This information is used to identity verification only, and will be kept secure by Bounce</p>
+            </div>
+
             <TextInput label='Passport Number' placeholder='Enter your email' onValChange={(val) => {
                 handelValChange('idcardno', val)
             }} />

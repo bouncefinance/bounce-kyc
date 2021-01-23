@@ -35,6 +35,7 @@ const CertifiedSalesSteps = [{
 
 export default function Index() {
     const [curCertifiedSalesSteps, setCurCertifiedSalesSteps] = useState(0)
+    const [stepIsHover, setStepIsHover] = useState(false)
 
     return (
         <HomeStyled>
@@ -97,12 +98,12 @@ export default function Index() {
 
                 <div className="block Certified">
                     <h3>Certified Sales Steps</h3>
-                    <ul className="step_list">
+                    <ul className="step_list" >
                         {CertifiedSalesSteps.map((item, index) => {
                             return <li
                                 key={index}
-                                className={curCertifiedSalesSteps === index ? 'active' : ''}
-                                onClick={() => {
+                                className={curCertifiedSalesSteps === index && !stepIsHover ? 'active' : ''}
+                                onMouseEnter={() => {
                                     setCurCertifiedSalesSteps(index)
                                 }}
                             >

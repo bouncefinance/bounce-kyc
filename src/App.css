@@ -195,7 +195,9 @@ q:after {
 }
 
 html,
-body {
+body,
+p,
+span {
     font-family: 'Helvetica Neue';
     font-size: 16px;
     color: #000;
