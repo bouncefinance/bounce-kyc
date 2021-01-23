@@ -4,7 +4,7 @@ export const LearnMoreStyle = styled.div`
     width: 1100px;
     min-height: 680px;
     background-color: #fff;
-    margin: 78px auto;
+    margin: 0 auto;
     padding: 27px 40px;
     box-sizing: border-box;
 

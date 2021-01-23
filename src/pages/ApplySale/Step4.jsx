@@ -8,7 +8,21 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        setTitle('Token metrics')
+        setTitle({
+            title: 'Token metrics',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information'
+            }, {
+                name: 'Details'
+            }, {
+                name: 'Team'
+            }, {
+                name: 'Token metrics',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {

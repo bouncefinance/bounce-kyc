@@ -16,6 +16,7 @@ export const TextInput = ({ name, isName, REG_rule, maxLength, disabled, default
             name: name,
             value: val,
             isError: isError,
+            errMsg: errMsg,
             isRequire: isRequire ? isRequire : false
         })
 
@@ -28,27 +29,16 @@ export const TextInput = ({ name, isName, REG_rule, maxLength, disabled, default
 
     }, [val, isError])
 
-    const regMatch = (val, isRequire) => {
-        if (String(val).length === 0) {
-            if (isRequire) {
-                setErrMsg('This is a mandatory field')
-                setIsError(true)
-            } else {
-                setErrMsg('')
-                setIsError(false)
-            }
-        } else if (REG_rule) {
-            REG_rule.forEach((item, _index) => {
-                let { msg, reg: rule } = item
-                const reg = new RegExp(rule)
+    const regMatch = (val) => {
+        if (REG_rule) {
+            const reg = new RegExp(REG_rule.reg)
                 if (!reg.test(val)) {
-                    setErrMsg(msg)
+                    setErrMsg(REG_rule.msg)
                     setIsError(true)
                 } else {
                     setErrMsg('')
                     setIsError(false)
                 }
-            })
 
         } else {
             setErrMsg('')
@@ -59,7 +49,6 @@ export const TextInput = ({ name, isName, REG_rule, maxLength, disabled, default
     }
 
     const wrapperName = (str) => {
-        // let reg = /[0-9]+ |~ |! |@|#|$|￥|%|^|&|_|\)|\*|\\|\?|-|\+|=|<|>|:|"|{|}|;|'|\[|]|·|~|！|@|￥|%|…|（|）|—|《|》|？|：|“|”|【|】|、|；|‘|'|，|。|、|]/g;
         let reg = /[0-9]+/g;
         let str1 = str.replace(reg, "");
         if (str1 === '') return ''
@@ -95,7 +84,18 @@ export const TextInput = ({ name, isName, REG_rule, maxLength, disabled, default
                     regMatch(val)
                     setVal(val)
                     onChange && onChange(e)
-                }} />
+                }}
+                onBlur={(e) => {
+                    let val = String(e.target.value).trim()
+                    if (isRequire && val === '') {
+                        setIsError(true)
+                        setErrMsg('Please fill in this field')
+                    } else {
+                        setIsError(false)
+                        setErrMsg('')
+                    }
+                }}
+            />
             {isError && <p className="error_msg">{errMsg}</p>}
         </InputStyled>
     )

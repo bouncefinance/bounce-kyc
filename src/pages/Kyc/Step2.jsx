@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { TextInput, Form, Button, Select } from '../components/Table'
+import country from '../../config/country.json'
+
 
 export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
 
@@ -58,21 +60,7 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
             <Select
                 label='Country / Region'
                 width='600px'
-                options={[{
-                    name: 'China'
-                }, {
-                    name: 'America'
-                }, {
-                    name: 'Japan'
-                }, {
-                    name: 'England'
-                }, {
-                    name: 'France'
-                }, {
-                    name: 'Germany'
-                }, {
-                    name: 'Italy'
-                }]}
+                options={country}
                 isRequire={true}
 
                 onChange={(val) => {

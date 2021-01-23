@@ -6,6 +6,7 @@ import { TextInput, Button } from '../../components/Table'
 import Progress from '../Progress'
 import { useParams } from 'react-router-dom'
 import { useVoteListByPoolId } from '../hooks'
+import Crumbs from '../../components/Exhibition/Crumbs'
 
 
 export default function Index() {
@@ -41,7 +42,7 @@ export default function Index() {
                     <Passage
                         width='480px'
                         title='Team'
-                        desc={proInfo&&proInfo.teambio} />
+                        desc={proInfo && proInfo.teambio} />
                 </>
 
             case 'Token Metrics':
@@ -49,32 +50,32 @@ export default function Index() {
                     <Passage
                         width='480px'
                         title='Total supply'
-                        desc={proInfo&&proInfo.totalsupply} />
+                        desc={proInfo && proInfo.totalsupply} />
 
                     <Passage
                         width='480px'
                         title='Initial circulating supply'
-                        desc={proInfo&&proInfo.circulatingsupply} />
+                        desc={proInfo && proInfo.circulatingsupply} />
 
                     <Passage
                         width='480px'
                         title='Token ticketer'
-                        desc={proInfo&&proInfo.tokenticketer} />
+                        desc={proInfo && proInfo.tokenticketer} />
 
                     <Passage
                         width='480px'
                         title='Token contract address'
-                        desc={proInfo&&proInfo.tokencontractaddress} />
+                        desc={proInfo && proInfo.tokencontractaddress} />
 
                     <Passage
                         width='480px'
                         title='Token distribution'
-                        desc={proInfo&&proInfo.tokendistribution} />
+                        desc={proInfo && proInfo.tokendistribution} />
 
                     <Passage
                         width='480px'
                         title='Token lockup schedule'
-                        desc={proInfo&&proInfo.tokenlookupschedule} />
+                        desc={proInfo && proInfo.tokenlookupschedule} />
                 </>
             default:
                 return <></>
@@ -82,70 +83,78 @@ export default function Index() {
     }
 
     return (
-        <LearnMoreStyle>
-            <CardHeader title='Bounce Project' socialLink={[
-                { name: 'github', link: '#' },
-                { name: 'facebook', link: '#' },
-                { name: 'telegram', link: '#' },
-                { name: 'twitter', link: '#' },
-            ]} />
+        <>
+            <Crumbs list={[{
+                name: 'Active sales'
+            }, {
+                name: 'Bounce Project',
+                active: true
+            }]} />
+            <LearnMoreStyle>
+                <CardHeader title='Bounce Project' socialLink={[
+                    { name: 'github', link: '#' },
+                    { name: 'facebook', link: '#' },
+                    { name: 'telegram', link: '#' },
+                    { name: 'twitter', link: '#' },
+                ]} />
 
-            <div className="main">
-                <div className="left">
-                    <Passage
-                        title='Project summary'
-                        desc={proInfo && proInfo.prosummary} />
+                <div className="main">
+                    <div className="left">
+                        <Passage
+                            title='Project summary'
+                            desc={proInfo && proInfo.prosummary} />
 
-                    <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
+                        <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
 
-                    {isSupport && <div className='support'>
-                        <div className="progress">
-                            <Progress
-                                title='Support from community:'
-                                status='success'
-                                plan={0.7}
-                                value='100 BOT'
-                                total='200 BOT'
-                            />
-                        </div>
-                        <TextInput placeholder='Enter your vote amount' width='288px' />
-                        <Button type='black' value='Support' width='180px' />
-                    </div>}
+                        {isSupport && <div className='support'>
+                            <div className="progress">
+                                <Progress
+                                    title='Support from community:'
+                                    status='success'
+                                    plan={0.7}
+                                    value='100 BOT'
+                                    total='200 BOT'
+                                />
+                            </div>
+                            <TextInput placeholder='Enter your vote amount' width='288px' />
+                            <Button type='black' value='Support' width='180px' />
+                        </div>}
+                    </div>
+
+                    <div className="right">
+                        <Passage
+                            title='Theme'
+                            desc={proInfo && proInfo.protheme} />
+                        <Passage
+                            title='Whitepaper' />
+                        <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
+                    </div>
+
+
                 </div>
+                {!isSupport && <div className='btn_group'>
+                    <Button type='black' value='Join Auction' width='180px' onClick={() => {
+                        setIsSupport(true)
+                    }} />
+                </div>}
 
-                <div className="right">
-                    <Passage
-                        title='Theme'
-                        desc={proInfo && proInfo.protheme} />
-                    <Passage
-                        title='Whitepaper' />
-                    <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
+                <div className="info_wrapper">
+                    <ul className='tab_menu'>
+                        {tabMenu.map((item, index) => {
+                            return <li
+                                key={index}
+                                className={index === curTab ? 'active' : ''}
+                                onClick={() => {
+                                    setCurTab(index)
+                                }}
+                            >{item}</li>
+                        })}
+                    </ul>
+                    <div className="show_info">
+                        {renderInfo(tabMenu[curTab])}
+                    </div>
                 </div>
-
-
-            </div>
-            {!isSupport && <div className='btn_group'>
-                <Button type='black' value='Join Auction' width='180px' onClick={() => {
-                    setIsSupport(true)
-                }} />
-            </div>}
-
-            <div className="info_wrapper">
-                <ul className='tab_menu'>
-                    {tabMenu.map((item, index) => {
-                        return <li
-                            key={index}
-                            className={index === curTab ? 'active' : ''}
-                            onClick={() => {
-                                setCurTab(index)
-                            }}
-                        >{item}</li>
-                    })}
-                </ul>
-                <div className="show_info">
-                    {renderInfo(tabMenu[curTab])}
-                </div>
-            </div>
-        </LearnMoreStyle>
+            </LearnMoreStyle>
+        </>
     )
 }

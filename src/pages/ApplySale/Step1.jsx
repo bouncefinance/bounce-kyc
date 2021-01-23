@@ -17,7 +17,15 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
     }
 
     useEffect(() => {
-        setTitle('General information')
+        setTitle({
+            title: 'General information',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {

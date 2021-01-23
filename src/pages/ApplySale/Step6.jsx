@@ -8,7 +8,25 @@ export default function Step6({ setCurStep, setTitle, step6Data, setStep6Data, h
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        setTitle('Additional information')
+        setTitle({
+            title: 'Auction',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information'
+            }, {
+                name: 'Details'
+            }, {
+                name: 'Team'
+            }, {
+                name: 'Token metrics'
+            }, {
+                name: 'Auction'
+            }, {
+                name: 'Additional information',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {

@@ -8,7 +8,19 @@ export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data })
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        setTitle('Team')
+        setTitle({
+            title: 'Team',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information'
+            }, {
+                name: 'Details'
+            }, {
+                name: 'Team',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {

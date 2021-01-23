@@ -103,10 +103,10 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                     checkValue(data)
                     handelValChange('birthday', data.value)
                 }}
-                REG_rule={[{
+                REG_rule={{
                     reg: /^((19[2-9]\d{1})|(20((0[0-2])|(1[0-8]))))\-((0?[1-9])|(1[0-2]))\-((0?[1-9])|([1-2][0-9])|30|31)$/,
                     msg: 'Incorrect birth date format (yyyy-mm-dd) Or under the age of 18'
-                }]}
+                }}
             />
 
             <div className="btn_group">
