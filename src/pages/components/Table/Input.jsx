@@ -103,7 +103,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
                             setSHeight((height - 1) + 'px')
                         }
 
-                        let val = String(e.target.value).trim()
+                        let val = e.target.value
                         if (isName) {
                             val = wrapperName(val)
                         }
@@ -120,8 +120,8 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
                         onChange && onChange(e)
                     }}
                     onBlur={(e) => {
-                        let val = String(e.target.value).trim()
-                        if (isRequire && val === '') {
+                        let val = e.target.value
+                        if (isRequire && String(e.target.value).trim() === '') {
                             setIsError(true)
                             setErrMsg('Please fill in this field')
                         } else if (!isError) {

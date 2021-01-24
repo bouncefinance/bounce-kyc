@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {useHistory} from 'react-router-dom'
 import { LearnMoreStyle } from './styled'
 import CardHeader from '../CardHeader'
 import { Passage } from '../../components/Exhibition'
@@ -10,6 +11,7 @@ import Crumbs from '../../components/Exhibition/Crumbs'
 
 
 export default function Index() {
+    const history = useHistory()
     const { poolId } = useParams()
     const { proInfo } = useVoteListByPoolId(poolId)
     // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
@@ -85,7 +87,10 @@ export default function Index() {
     return (
         <>
             <Crumbs list={[{
-                name: 'Active sales'
+                name: 'Active sales',
+                onClick: ()=>{
+                    history.push('/certified-sales')
+                }
             }, {
                 name: 'Bounce Project',
                 active: true
