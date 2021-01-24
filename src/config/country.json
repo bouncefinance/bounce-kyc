@@ -1,729 +1,729 @@
 [
     {
       "short": "AD",
-      "name": "安道尔共和国",
-      "en": "Andorra",
+      "cn": "安道尔共和国",
+      "name": "Andorra",
       "tel": "376",
       "pinyin": "adeghg"
     },
     {
       "short": "AE",
-      "name": "阿拉伯联合酋长国",
-      "en": "UnitedArabEmirates",
+      "chinese": "阿拉伯联合酋长国",
+      "name": "UnitedArabEmirates",
       "tel": "971",
       "pinyin": "alblhqzg"
     },
     {
       "short": "AF",
-      "name": "阿富汗",
-      "en": "Afghanistan",
+      "chinese": "阿富汗",
+      "name": "Afghanistan",
       "tel": "93",
       "pinyin": "afh"
     },
     {
       "short": "AG",
-      "name": "安提瓜和巴布达",
-      "en": "AntiguaandBarbuda",
+      "chinese": "安提瓜和巴布达",
+      "name": "AntiguaandBarbuda",
       "tel": "1268",
       "pinyin": "atghbbd"
     },
     {
       "short": "AI",
-      "name": "安圭拉岛",
-      "en": "Anguilla",
+      "chinese": "安圭拉岛",
+      "name": "Anguilla",
       "tel": "1264",
       "pinyin": "agld"
     },
     {
       "short": "AL",
-      "name": "阿尔巴尼亚",
-      "en": "Albania",
+      "chinese": "阿尔巴尼亚",
+      "name": "Albania",
       "tel": "355",
       "pinyin": "aebny"
     },
     {
       "short": "AM",
-      "name": "阿美尼亚",
-      "en": "Armenia",
+      "chinese": "阿美尼亚",
+      "name": "Armenia",
       "tel": "374",
       "pinyin": "amny"
     },
     {
       "short": "",
-      "name": "阿森松",
-      "en": "Ascension",
+      "chinese": "阿森松",
+      "name": "Ascension",
       "tel": "247",
       "pinyin": "als"
   
     },
     {
       "short": "AO",
-      "name": "安哥拉",
-      "en": "Angola",
+      "chinese": "安哥拉",
+      "name": "Angola",
       "tel": "244",
       "pinyin": "agl"
   
     },
     {
       "short": "AR",
-      "name": "阿根廷",
-      "en": "Argentina",
+      "chinese": "阿根廷",
+      "name": "Argentina",
       "tel": "54",
       "pinyin": "agt"
   
     },
     {
       "short": "AT",
-      "name": "奥地利",
-      "en": "Austria",
+      "chinese": "奥地利",
+      "name": "Austria",
       "tel": "43",
       "pinyin": "adl"
   
     },
     {
       "short": "AU",
-      "name": "澳大利亚",
-      "en": "Australia",
+      "chinese": "澳大利亚",
+      "name": "Australia",
       "tel": "61",
       "pinyin": "adly"
   
     },
     {
       "short": "AZ",
-      "name": "阿塞拜疆",
-      "en": "Azerbaijan",
+      "chinese": "阿塞拜疆",
+      "name": "Azerbaijan",
       "tel": "994",
       "pinyin": "asbj"
   
     },
     {
       "short": "BB",
-      "name": "巴巴多斯",
-      "en": "Barbados",
+      "chinese": "巴巴多斯",
+      "name": "Barbados",
       "tel": "1246",
       "pinyin": "bbds"
   
     },
     {
       "short": "BD",
-      "name": "孟加拉国",
-      "en": "Bangladesh",
+      "chinese": "孟加拉国",
+      "name": "Bangladesh",
       "tel": "880",
       "pinyin": "mjlg"
   
     },
     {
       "short": "BE",
-      "name": "比利时",
-      "en": "Belgium",
+      "chinese": "比利时",
+      "name": "Belgium",
       "tel": "32",
       "pinyin": "bls"
   
     },
     {
       "short": "BF",
-      "name": "布基纳法索",
-      "en": "Burkina-faso",
+      "chinese": "布基纳法索",
+      "name": "Burkina-faso",
       "tel": "226",
       "pinyin": "bjnfs"
   
     },
     {
       "short": "BG",
-      "name": "保加利亚",
-      "en": "Bulgaria",
+      "chinese": "保加利亚",
+      "name": "Bulgaria",
       "tel": "359",
       "pinyin": "bjly"
   
     },
     {
       "short": "BH",
-      "name": "巴林",
-      "en": "Bahrain",
+      "chinese": "巴林",
+      "name": "Bahrain",
       "tel": "973",
       "pinyin": "bl"
   
     },
     {
       "short": "BI",
-      "name": "布隆迪",
-      "en": "Burundi",
+      "chinese": "布隆迪",
+      "name": "Burundi",
       "tel": "257",
       "pinyin": "bld"
   
     },
     {
       "short": "BJ",
-      "name": "贝宁",
-      "en": "Benin",
+      "chinese": "贝宁",
+      "name": "Benin",
       "tel": "229",
       "pinyin": "bl"
   
     },
     {
       "short": "BL",
-      "name": "巴勒斯坦",
-      "en": "Palestine",
+      "chinese": "巴勒斯坦",
+      "name": "Palestine",
       "tel": "970",
       "pinyin": "blst"
   
     },
     {
       "short": "BM",
-      "name": "百慕大群岛",
-      "en": "BermudaIs.",
+      "chinese": "百慕大群岛",
+      "name": "BermudaIs.",
       "tel": "1441",
       "pinyin": "bmdqd"
   
     },
     {
       "short": "BN",
-      "name": "文莱",
-      "en": "Brunei",
+      "chinese": "文莱",
+      "name": "Brunei",
       "tel": "673",
       "pinyin": "wl"
   
     },
     {
       "short": "BO",
-      "name": "玻利维亚",
-      "en": "Bolivia",
+      "chinese": "玻利维亚",
+      "name": "Bolivia",
       "tel": "591",
       "pinyin": "blwy"
   
     },
     {
       "short": "BR",
-      "name": "巴西",
-      "en": "Brazil",
+      "chinese": "巴西",
+      "name": "Brazil",
       "tel": "55",
       "pinyin": "bx"
   
     },
     {
       "short": "BS",
-      "name": "巴哈马",
-      "en": "Bahamas",
+      "chinese": "巴哈马",
+      "name": "Bahamas",
       "tel": "1242",
       "pinyin": "bhm"
   
     },
     {
       "short": "BW",
-      "name": "博茨瓦纳",
-      "en": "Botswana",
+      "chinese": "博茨瓦纳",
+      "name": "Botswana",
       "tel": "267",
       "pinyin": "bcwn"
   
     },
     {
       "short": "BY",
-      "name": "白俄罗斯",
-      "en": "Belarus",
+      "chinese": "白俄罗斯",
+      "name": "Belarus",
       "tel": "375",
       "pinyin": "bels"
   
     },
     {
       "short": "BZ",
-      "name": "伯利兹",
-      "en": "Belize",
+      "chinese": "伯利兹",
+      "name": "Belize",
       "tel": "501",
       "pinyin": "blz"
   
     },
     {
       "short": "CA",
-      "name": "加拿大",
-      "en": "Canada",
+      "chinese": "加拿大",
+      "name": "Canada",
       "tel": "1",
       "pinyin": "jnd"
   
     },
     {
       "short": "",
-      "name": "开曼群岛",
-      "en": "CaymanIs.",
+      "chinese": "开曼群岛",
+      "name": "CaymanIs.",
       "tel": "1345",
       "pinyin": "kmqd"
   
     },
     {
       "short": "CF",
-      "name": "中非共和国",
-      "en": "CentralAfricanRepublic",
+      "chinese": "中非共和国",
+      "name": "CentralAfricanRepublic",
       "tel": "236",
       "pinyin": "zfghg"
   
     },
     {
       "short": "CG",
-      "name": "刚果",
-      "en": "Congo",
+      "chinese": "刚果",
+      "name": "Congo",
       "tel": "242",
       "pinyin": "gg"
   
     },
     {
       "short": "CH",
-      "name": "瑞士",
-      "en": "Switzerland",
+      "chinese": "瑞士",
+      "name": "Switzerland",
       "tel": "41",
       "pinyin": "rs"
   
     },
     {
       "short": "CK",
-      "name": "库克群岛",
-      "en": "CookIs.",
+      "chinese": "库克群岛",
+      "name": "CookIs.",
       "tel": "682",
       "pinyin": "kkqd"
   
     },
     {
       "short": "CL",
-      "name": "智利",
-      "en": "Chile",
+      "chinese": "智利",
+      "name": "Chile",
       "tel": "56",
       "pinyin": "zl"
   
     },
     {
       "short": "CM",
-      "name": "喀麦隆",
-      "en": "Cameroon",
+      "chinese": "喀麦隆",
+      "name": "Cameroon",
       "tel": "237",
       "pinyin": "kml"
   
     },
     {
       "short": "CN",
-      "name": "中国",
-      "en": "China",
+      "chinese": "中国",
+      "name": "China",
       "tel": "86",
       "pinyin": "zg"
   
     },
     {
       "short": "CO",
-      "name": "哥伦比亚",
-      "en": "Colombia",
+      "chinese": "哥伦比亚",
+      "name": "Colombia",
       "tel": "57",
       "pinyin": "glby"
   
     },
     {
       "short": "CR",
-      "name": "哥斯达黎加",
-      "en": "CostaRica",
+      "chinese": "哥斯达黎加",
+      "name": "CostaRica",
       "tel": "506",
       "pinyin": "gsdlj"
   
     },
     {
       "short": "CS",
-      "name": "捷克",
-      "en": "Czech",
+      "chinese": "捷克",
+      "name": "Czech",
       "tel": "420",
       "pinyin": "jk"
   
     },
     {
       "short": "CU",
-      "name": "古巴",
-      "en": "Cuba",
+      "chinese": "古巴",
+      "name": "Cuba",
       "tel": "53",
       "pinyin": "gb"
   
     },
     {
       "short": "CY",
-      "name": "塞浦路斯",
-      "en": "Cyprus",
+      "chinese": "塞浦路斯",
+      "name": "Cyprus",
       "tel": "357",
       "pinyin": "spls"
   
     },
     {
       "short": "CZ",
-      "name": "捷克",
-      "en": "CzechRepublic",
+      "chinese": "捷克",
+      "name": "CzechRepublic",
       "tel": "420",
       "pinyin": "jk"
   
     },
     {
       "short": "DE",
-      "name": "德国",
-      "en": "Germany",
+      "chinese": "德国",
+      "name": "Germany",
       "tel": "49",
       "pinyin": "dg"
   
     },
     {
       "short": "DJ",
-      "name": "吉布提",
-      "en": "Djibouti",
+      "chinese": "吉布提",
+      "name": "Djibouti",
       "tel": "253",
       "pinyin": "jbt"
   
     },
     {
       "short": "DK",
-      "name": "丹麦",
-      "en": "Denmark",
+      "chinese": "丹麦",
+      "name": "Denmark",
       "tel": "45",
       "pinyin": "dm"
   
     },
     {
       "short": "DO",
-      "name": "多米尼加共和国",
-      "en": "DominicaRep.",
+      "chinese": "多米尼加共和国",
+      "name": "DominicaRep.",
       "tel": "1890",
       "pinyin": "dmnjghg"
   
     },
     {
       "short": "DZ",
-      "name": "阿尔及利亚",
-      "en": "Algeria",
+      "chinese": "阿尔及利亚",
+      "name": "Algeria",
       "tel": "213",
       "pinyin": "aejly"
   
     },
     {
       "short": "EC",
-      "name": "厄瓜多尔",
-      "en": "Ecuador",
+      "chinese": "厄瓜多尔",
+      "name": "Ecuador",
       "tel": "593",
       "pinyin": "egde"
   
     },
     {
       "short": "EE",
-      "name": "爱沙尼亚",
-      "en": "Estonia",
+      "chinese": "爱沙尼亚",
+      "name": "Estonia",
       "tel": "372",
       "pinyin": "asny"
   
     },
     {
       "short": "EG",
-      "name": "埃及",
-      "en": "Egypt",
+      "chinese": "埃及",
+      "name": "Egypt",
       "tel": "20",
       "pinyin": "ej"
   
     },
     {
       "short": "ES",
-      "name": "西班牙",
-      "en": "Spain",
+      "chinese": "西班牙",
+      "name": "Spain",
       "tel": "34",
       "pinyin": "xby"
   
     },
     {
       "short": "ET",
-      "name": "埃塞俄比亚",
-      "en": "Ethiopia",
+      "chinese": "埃塞俄比亚",
+      "name": "Ethiopia",
       "tel": "251",
       "pinyin": "aseby"
   
     },
     {
       "short": "FI",
-      "name": "芬兰",
-      "en": "Finland",
+      "chinese": "芬兰",
+      "name": "Finland",
       "tel": "358",
       "pinyin": "fl"
   
     },
     {
       "short": "FJ",
-      "name": "斐济",
-      "en": "Fiji",
+      "chinese": "斐济",
+      "name": "Fiji",
       "tel": "679",
       "pinyin": "fj"
   
     },
     {
       "short": "FR",
-      "name": "法国",
-      "en": "France",
+      "chinese": "法国",
+      "name": "France",
       "tel": "33",
       "pinyin": "fg"
   
     },
     {
       "short": "GA",
-      "name": "加蓬",
-      "en": "Gabon",
+      "chinese": "加蓬",
+      "name": "Gabon",
       "tel": "241",
       "pinyin": "jp"
   
     },
     {
       "short": "GB",
-      "name": "英国",
-      "en": "UnitedKiongdom",
+      "chinese": "英国",
+      "name": "UnitedKiongdom",
       "tel": "44",
       "pinyin": "yg"
   
     },
     {
       "short": "GD",
-      "name": "格林纳达",
-      "en": "Grenada",
+      "chinese": "格林纳达",
+      "name": "Grenada",
       "tel": "1809",
       "pinyin": "glnd"
   
     },
     {
       "short": "GE",
-      "name": "格鲁吉亚",
-      "en": "Georgia",
+      "chinese": "格鲁吉亚",
+      "name": "Georgia",
       "tel": "995",
       "pinyin": "gljy"
   
     },
     {
       "short": "GF",
-      "name": "法属圭亚那",
-      "en": "FrenchGuiana",
+      "chinese": "法属圭亚那",
+      "name": "FrenchGuiana",
       "tel": "594",
       "pinyin": "fsgyn"
   
     },
     {
       "short": "GH",
-      "name": "加纳",
-      "en": "Ghana",
+      "chinese": "加纳",
+      "name": "Ghana",
       "tel": "233",
       "pinyin": "jn"
   
     },
     {
       "short": "GI",
-      "name": "直布罗陀",
-      "en": "Gibraltar",
+      "chinese": "直布罗陀",
+      "name": "Gibraltar",
       "tel": "350",
       "pinyin": "zblt"
   
     },
     {
       "short": "GM",
-      "name": "冈比亚",
-      "en": "Gambia",
+      "chinese": "冈比亚",
+      "name": "Gambia",
       "tel": "220",
       "pinyin": "gby"
   
     },
     {
       "short": "GN",
-      "name": "几内亚",
-      "en": "Guinea",
+      "chinese": "几内亚",
+      "name": "Guinea",
       "tel": "224",
       "pinyin": "jny"
   
     },
     {
       "short": "GR",
-      "name": "希腊",
-      "en": "Greece",
+      "chinese": "希腊",
+      "name": "Greece",
       "tel": "30",
       "pinyin": "xl"
   
     },
     {
       "short": "GT",
-      "name": "危地马拉",
-      "en": "Guatemala",
+      "chinese": "危地马拉",
+      "name": "Guatemala",
       "tel": "502",
       "pinyin": "wdml"
   
     },
     {
       "short": "GU",
-      "name": "关岛",
-      "en": "Guam",
+      "chinese": "关岛",
+      "name": "Guam",
       "tel": "1671",
       "pinyin": "gd"
   
     },
     {
       "short": "GY",
-      "name": "圭亚那",
-      "en": "Guyana",
+      "chinese": "圭亚那",
+      "name": "Guyana",
       "tel": "592",
       "pinyin": "gyn"
   
     },
     {
       "short": "HK",
-      "name": "香港(中国)",
-      "en": "Hongkong",
+      "chinese": "香港(中国)",
+      "name": "Hongkong",
       "tel": "852",
       "pinyin": "xgzg"
   
     },
     {
       "short": "HN",
-      "name": "洪都拉斯",
-      "en": "Honduras",
+      "chinese": "洪都拉斯",
+      "name": "Honduras",
       "tel": "504",
       "pinyin": "hdls"
   
     },
     {
       "short": "HT",
-      "name": "海地",
-      "en": "Haiti",
+      "chinese": "海地",
+      "name": "Haiti",
       "tel": "509",
       "pinyin": "hd"
   
     },
     {
       "short": "HU",
-      "name": "匈牙利",
-      "en": "Hungary",
+      "chinese": "匈牙利",
+      "name": "Hungary",
       "tel": "36",
       "pinyin": "xyl"
   
     },
     {
       "short": "ID",
-      "name": "印度尼西亚",
-      "en": "Indonesia",
+      "chinese": "印度尼西亚",
+      "name": "Indonesia",
       "tel": "62",
       "pinyin": "ydnxy"
   
     },
     {
       "short": "IE",
-      "name": "爱尔兰",
-      "en": "Ireland",
+      "chinese": "爱尔兰",
+      "name": "Ireland",
       "tel": "353",
       "pinyin": "ael"
   
     },
     {
       "short": "IL",
-      "name": "以色列",
-      "en": "Israel",
+      "chinese": "以色列",
+      "name": "Israel",
       "tel": "972",
       "pinyin": "ysl"
   
     },
     {
       "short": "IN",
-      "name": "印度",
-      "en": "India",
+      "chinese": "印度",
+      "name": "India",
       "tel": "91",
       "pinyin": "yd"
   
     },
     {
       "short": "IQ",
-      "name": "伊拉克",
-      "en": "Iraq",
+      "chinese": "伊拉克",
+      "name": "Iraq",
       "tel": "964",
       "pinyin": "ylk"
   
     },
     {
       "short": "IR",
-      "name": "伊朗",
-      "en": "Iran",
+      "chinese": "伊朗",
+      "name": "Iran",
       "tel": "98",
       "pinyin": "yl"
   
     },
     {
       "short": "IS",
-      "name": "冰岛",
-      "en": "Iceland",
+      "chinese": "冰岛",
+      "name": "Iceland",
       "tel": "354",
       "pinyin": "bd"
   
     },
     {
       "short": "IT",
-      "name": "意大利",
-      "en": "Italy",
+      "chinese": "意大利",
+      "name": "Italy",
       "tel": "39",
       "pinyin": "ydl"
   
     },
     {
       "short": "",
-      "name": "科特迪瓦",
-      "en": "IvoryCoast",
+      "chinese": "科特迪瓦",
+      "name": "IvoryCoast",
       "tel": "225",
       "pinyin": "ktdw"
   
     },
     {
       "short": "JM",
-      "name": "牙买加",
-      "en": "Jamaica",
+      "chinese": "牙买加",
+      "name": "Jamaica",
       "tel": "1876",
       "pinyin": "ymj"
   
     },
     {
       "short": "JO",
-      "name": "约旦",
-      "en": "Jordan",
+      "chinese": "约旦",
+      "name": "Jordan",
       "tel": "962",
       "pinyin": "yd"
   
     },
     {
       "short": "JP",
-      "name": "日本",
-      "en": "Japan",
+      "chinese": "日本",
+      "name": "Japan",
       "tel": "81",
       "pinyin": "rb"
   
     },
     {
       "short": "KE",
-      "name": "肯尼亚",
-      "en": "Kenya",
+      "chinese": "肯尼亚",
+      "name": "Kenya",
       "tel": "254",
       "pinyin": "kny"
   
     },
     {
       "short": "KG",
-      "name": "吉尔吉斯坦",
-      "en": "Kyrgyzstan",
+      "chinese": "吉尔吉斯坦",
+      "name": "Kyrgyzstan",
       "tel": "331",
       "pinyin": "jejst"
   
     },
     {
       "short": "KH",
-      "name": "柬埔寨",
-      "en": "Kampuchea(Cambodia)",
+      "chinese": "柬埔寨",
+      "name": "Kampuchea(Cambodia)",
       "tel": "855",
       "pinyin": "jpz"
   
     },
     {
       "short": "KP",
-      "name": "朝鲜",
-      "en": "NorthKorea",
+      "chinese": "朝鲜",
+      "name": "NorthKorea",
       "tel": "850",
       "pinyin": "cx"
   
     },
     {
       "short": "KR",
-      "name": "韩国",
-      "en": "Korea",
+      "chinese": "韩国",
+      "name": "Korea",
       "tel": "82",
       "pinyin": "hg"
   
@@ -731,224 +731,224 @@
     },
     {
       "short": "KT",
-      "name": "科特迪瓦共和国",
-      "en": "RepublicofIvoryCoast",
+      "chinese": "科特迪瓦共和国",
+      "name": "RepublicofIvoryCoast",
       "tel": "225",
       "pinyin": "ktdwghg"
   
     },
     {
       "short": "KW",
-      "name": "科威特",
-      "en": "Kuwait",
+      "chinese": "科威特",
+      "name": "Kuwait",
       "tel": "965",
       "pinyin": "kwt"
   
     },
     {
       "short": "KZ",
-      "name": "哈萨克斯坦",
-      "en": "Kazakstan",
+      "chinese": "哈萨克斯坦",
+      "name": "Kazakstan",
       "tel": "327",
       "pinyin": "hskst"
   
     },
     {
       "short": "LA",
-      "name": "老挝",
-      "en": "Laos",
+      "chinese": "老挝",
+      "name": "Laos",
       "tel": "856",
       "pinyin": "lw"
   
     },
     {
       "short": "LB",
-      "name": "黎巴嫩",
-      "en": "Lebanon",
+      "chinese": "黎巴嫩",
+      "name": "Lebanon",
       "tel": "961",
       "pinyin": "lbn"
   
     },
     {
       "short": "LC",
-      "name": "圣卢西亚",
-      "en": "St.Lucia",
+      "chinese": "圣卢西亚",
+      "name": "St.Lucia",
       "tel": "1758",
       "pinyin": "slxy"
   
     },
     {
       "short": "LI",
-      "name": "列支敦士登",
-      "en": "Liechtenstein",
+      "chinese": "列支敦士登",
+      "name": "Liechtenstein",
       "tel": "423",
       "pinyin": "lzdsd"
   
     },
     {
       "short": "LK",
-      "name": "斯里兰卡",
-      "en": "SriLanka",
+      "chinese": "斯里兰卡",
+      "name": "SriLanka",
       "tel": "94",
       "pinyin": "sllk"
   
     },
     {
       "short": "LR",
-      "name": "利比里亚",
-      "en": "Liberia",
+      "chinese": "利比里亚",
+      "name": "Liberia",
       "tel": "231",
       "pinyin": "lbly"
   
     },
     {
       "short": "LS",
-      "name": "莱索托",
-      "en": "Lesotho",
+      "chinese": "莱索托",
+      "name": "Lesotho",
       "tel": "266",
       "pinyin": "lst"
   
     },
     {
       "short": "LT",
-      "name": "立陶宛",
-      "en": "Lithuania",
+      "chinese": "立陶宛",
+      "name": "Lithuania",
       "tel": "370",
       "pinyin": "ltw"
   
     },
     {
       "short": "LU",
-      "name": "卢森堡",
-      "en": "Luxembourg",
+      "chinese": "卢森堡",
+      "name": "Luxembourg",
       "tel": "352",
       "pinyin": "lsb"
   
     },
     {
       "short": "LV",
-      "name": "拉脱维亚",
-      "en": "Latvia",
+      "chinese": "拉脱维亚",
+      "name": "Latvia",
       "tel": "371",
       "pinyin": "ltwy"
   
     },
     {
       "short": "LY",
-      "name": "利比亚",
-      "en": "Libya",
+      "chinese": "利比亚",
+      "name": "Libya",
       "tel": "218",
       "pinyin": "lby"
   
     },
     {
       "short": "MA",
-      "name": "摩洛哥",
-      "en": "Morocco",
+      "chinese": "摩洛哥",
+      "name": "Morocco",
       "tel": "212",
       "pinyin": "mlg"
   
     },
     {
       "short": "MC",
-      "name": "摩纳哥",
-      "en": "Monaco",
+      "chinese": "摩纳哥",
+      "name": "Monaco",
       "tel": "377",
       "pinyin": "mng"
   
     },
     {
       "short": "MD",
-      "name": "摩尔多瓦",
-      "en": "Moldova,Republicof",
+      "chinese": "摩尔多瓦",
+      "name": "Moldova,Republicof",
       "tel": "373",
       "pinyin": "medw"
   
     },
     {
       "short": "MG",
-      "name": "马达加斯加",
-      "en": "Madagascar",
+      "chinese": "马达加斯加",
+      "name": "Madagascar",
       "tel": "261",
       "pinyin": "mdjsj"
   
     },
     {
       "short": "ML",
-      "name": "马里",
-      "en": "Mali",
+      "chinese": "马里",
+      "name": "Mali",
       "tel": "223",
       "pinyin": "ml"
   
     },
     {
       "short": "MM",
-      "name": "缅甸",
-      "en": "Burma",
+      "chinese": "缅甸",
+      "name": "Burma",
       "tel": "95",
       "pinyin": "md"
   
     },
     {
       "short": "MN",
-      "name": "蒙古",
-      "en": "Mongolia",
+      "chinese": "蒙古",
+      "name": "Mongolia",
       "tel": "976",
       "pinyin": "mg"
   
     },
     {
       "short": "MO",
-      "name": "澳门（中国）",
-      "en": "Macao",
+      "chinese": "澳门（中国）",
+      "name": "Macao",
       "tel": "853",
       "pinyin": "am zg"
   
     },
     {
       "short": "MS",
-      "name": "蒙特塞拉特岛",
-      "en": "MontserratIs",
+      "chinese": "蒙特塞拉特岛",
+      "name": "MontserratIs",
       "tel": "1664",
       "pinyin": "mtsstd"
   
     },
     {
       "short": "MT",
-      "name": "马耳他",
-      "en": "Malta",
+      "chinese": "马耳他",
+      "name": "Malta",
       "tel": "356",
       "pinyin": "met"
   
     },
     {
       "short": "",
-      "name": "马里亚那群岛",
-      "en": "MarianaIs",
+      "chinese": "马里亚那群岛",
+      "name": "MarianaIs",
       "tel": "1670",
       "pinyin": "mlynqd"
   
     },
     {
       "short": "",
-      "name": "马提尼克",
-      "en": "Martinique",
+      "chinese": "马提尼克",
+      "name": "Martinique",
       "tel": "596",
       "pinyin": "mtnk"
   
     },
     {
       "short": "MU",
-      "name": "毛里求斯",
-      "en": "Mauritius",
+      "chinese": "毛里求斯",
+      "name": "Mauritius",
       "tel": "230",
       "pinyin": "mlqs"
   
     },
     {
       "short": "MV",
-      "name": "马尔代夫",
-      "en": "Maldives",
+      "chinese": "马尔代夫",
+      "name": "Maldives",
       "tel": "960",
       "pinyin": "medf"
   
@@ -956,584 +956,584 @@
     },
     {
       "short": "MW",
-      "name": "马拉维",
-      "en": "Malawi",
+      "chinese": "马拉维",
+      "name": "Malawi",
       "tel": "265",
       "pinyin": "mlw"
   
     },
     {
       "short": "MX",
-      "name": "墨西哥",
-      "en": "Mexico",
+      "chinese": "墨西哥",
+      "name": "Mexico",
       "tel": "52",
       "pinyin": "mxg"
   
     },
     {
       "short": "MY",
-      "name": "马来西亚",
-      "en": "Malaysia",
+      "chinese": "马来西亚",
+      "name": "Malaysia",
       "tel": "60",
       "pinyin": "mlxy"
   
     },
     {
       "short": "MZ",
-      "name": "莫桑比克",
-      "en": "Mozambique",
+      "chinese": "莫桑比克",
+      "name": "Mozambique",
       "tel": "258",
       "pinyin": "msbk"
   
     },
     {
       "short": "NA",
-      "name": "纳米比亚",
-      "en": "Namibia",
+      "chinese": "纳米比亚",
+      "name": "Namibia",
       "tel": "264",
       "pinyin": "nmby"
   
     },
     {
       "short": "NE",
-      "name": "尼日尔",
-      "en": "Niger",
+      "chinese": "尼日尔",
+      "name": "Niger",
       "tel": "977",
       "pinyin": "nre"
   
     },
     {
       "short": "NG",
-      "name": "尼日利亚",
-      "en": "Nigeria",
+      "chinese": "尼日利亚",
+      "name": "Nigeria",
       "tel": "234",
       "pinyin": "nrly"
   
     },
     {
       "short": "NI",
-      "name": "尼加拉瓜",
-      "en": "Nicaragua",
+      "chinese": "尼加拉瓜",
+      "name": "Nicaragua",
       "tel": "505",
       "pinyin": "njlg"
   
     },
     {
       "short": "NL",
-      "name": "荷兰",
-      "en": "Netherlands",
+      "chinese": "荷兰",
+      "name": "Netherlands",
       "tel": "31",
       "pinyin": "hl"
   
     },
     {
       "short": "NO",
-      "name": "挪威",
-      "en": "Norway",
+      "chinese": "挪威",
+      "name": "Norway",
       "tel": "47",
       "pinyin": "nw"
   
     },
     {
       "short": "NP",
-      "name": "尼泊尔",
-      "en": "Nepal",
+      "chinese": "尼泊尔",
+      "name": "Nepal",
       "tel": "977",
       "pinyin": "nbe"
   
     },
     {
       "short": "",
-      "name": "荷属安的列斯",
-      "en": "NetheriandsAntilles",
+      "chinese": "荷属安的列斯",
+      "name": "NetheriandsAntilles",
       "tel": "599",
       "pinyin": "hsadls"
   
     },
     {
       "short": "NR",
-      "name": "瑙鲁",
-      "en": "Nauru",
+      "chinese": "瑙鲁",
+      "name": "Nauru",
       "tel": "674",
       "pinyin": "nl"
   
     },
     {
       "short": "NZ",
-      "name": "新西兰",
-      "en": "NewZealand",
+      "chinese": "新西兰",
+      "name": "NewZealand",
       "tel": "64",
       "pinyin": "xxl"
   
     },
     {
       "short": "OM",
-      "name": "阿曼",
-      "en": "Oman",
+      "chinese": "阿曼",
+      "name": "Oman",
       "tel": "968",
       "pinyin": "am"
   
     },
     {
       "short": "PA",
-      "name": "巴拿马",
-      "en": "Panama",
+      "chinese": "巴拿马",
+      "name": "Panama",
       "tel": "507",
       "pinyin": "bnm"
   
     },
     {
       "short": "PE",
-      "name": "秘鲁",
-      "en": "Peru",
+      "chinese": "秘鲁",
+      "name": "Peru",
       "tel": "51",
       "pinyin": "bl"
   
     },
     {
       "short": "PF",
-      "name": "法属玻利尼西亚",
-      "en": "FrenchPolynesia",
+      "chinese": "法属玻利尼西亚",
+      "name": "FrenchPolynesia",
       "tel": "689",
       "pinyin": "fsblnxy"
   
     },
     {
       "short": "PG",
-      "name": "巴布亚新几内亚",
-      "en": "PapuaNewCuinea",
+      "chinese": "巴布亚新几内亚",
+      "name": "PapuaNewCuinea",
       "tel": "675",
       "pinyin": "bbyxjny"
   
     },
     {
       "short": "PH",
-      "name": "菲律宾",
-      "en": "Philippines",
+      "chinese": "菲律宾",
+      "name": "Philippines",
       "tel": "63",
       "pinyin": "flb"
   
     },
     {
       "short": "PK",
-      "name": "巴基斯坦",
-      "en": "Pakistan",
+      "chinese": "巴基斯坦",
+      "name": "Pakistan",
       "tel": "92",
       "pinyin": "bjst"
   
     },
     {
       "short": "PL",
-      "name": "波兰",
-      "en": "Poland",
+      "chinese": "波兰",
+      "name": "Poland",
       "tel": "48",
       "pinyin": "bl"
   
     },
     {
       "short": "PR",
-      "name": "波多黎各",
-      "en": "PuertoRico",
+      "chinese": "波多黎各",
+      "name": "PuertoRico",
       "tel": "1787",
       "pinyin": "bdlg"
   
     },
     {
       "short": "PT",
-      "name": "葡萄牙",
-      "en": "Portugal",
+      "chinese": "葡萄牙",
+      "name": "Portugal",
       "tel": "351",
       "pinyin": "pty"
   
     },
     {
       "short": "PY",
-      "name": "巴拉圭",
-      "en": "Paraguay",
+      "chinese": "巴拉圭",
+      "name": "Paraguay",
       "tel": "595",
       "pinyin": "blg"
   
     },
     {
       "short": "QA",
-      "name": "卡塔尔",
-      "en": "Qatar",
+      "chinese": "卡塔尔",
+      "name": "Qatar",
       "tel": "974",
       "pinyin": "kte"
   
     },
     {
       "short": "",
-      "name": "留尼旺",
-      "en": "Reunion",
+      "chinese": "留尼旺",
+      "name": "Reunion",
       "tel": "262",
       "pinyin": "lnw"
   
     },
     {
       "short": "RO",
-      "name": "罗马尼亚",
-      "en": "Romania",
+      "chinese": "罗马尼亚",
+      "name": "Romania",
       "tel": "40",
       "pinyin": "lmny"
   
     },
     {
       "short": "RU",
-      "name": "俄罗斯",
-      "en": "Russia",
+      "chinese": "俄罗斯",
+      "name": "Russia",
       "tel": "7",
       "pinyin": "els"
   
     },
     {
       "short": "SA",
-      "name": "沙特阿拉伯",
-      "en": "SaudiArabia",
+      "chinese": "沙特阿拉伯",
+      "name": "SaudiArabia",
       "tel": "966",
       "pinyin": "stalb"
   
     },
     {
       "short": "SB",
-      "name": "所罗门群岛",
-      "en": "SolomonIs",
+      "chinese": "所罗门群岛",
+      "name": "SolomonIs",
       "tel": "677",
       "pinyin": "slmqd"
   
     },
     {
       "short": "SC",
-      "name": "塞舌尔",
-      "en": "Seychelles",
+      "chinese": "塞舌尔",
+      "name": "Seychelles",
       "tel": "248",
       "pinyin": "sse"
   
     },
     {
       "short": "SD",
-      "name": "苏丹",
-      "en": "Sudan",
+      "chinese": "苏丹",
+      "name": "Sudan",
       "tel": "249",
       "pinyin": "sd"
   
     },
     {
       "short": "SE",
-      "name": "瑞典",
-      "en": "Sweden",
+      "chinese": "瑞典",
+      "name": "Sweden",
       "tel": "46",
       "pinyin": "rd"
   
     },
     {
       "short": "SG",
-      "name": "新加坡",
-      "en": "Singapore",
+      "chinese": "新加坡",
+      "name": "Singapore",
       "tel": "65",
       "pinyin": "xjp"
   
     },
     {
       "short": "SI",
-      "name": "斯洛文尼亚",
-      "en": "Slovenia",
+      "chinese": "斯洛文尼亚",
+      "name": "Slovenia",
       "tel": "386",
       "pinyin": "slwny"
   
     },
     {
       "short": "SK",
-      "name": "斯洛伐克",
-      "en": "Slovakia",
+      "chinese": "斯洛伐克",
+      "name": "Slovakia",
       "tel": "421",
       "pinyin": "slfk"
   
     },
     {
       "short": "SL",
-      "name": "塞拉利昂",
-      "en": "SierraLeone",
+      "chinese": "塞拉利昂",
+      "name": "SierraLeone",
       "tel": "232",
       "pinyin": "slla"
   
     },
     {
       "short": "SM",
-      "name": "圣马力诺",
-      "en": "SanMarino",
+      "chinese": "圣马力诺",
+      "name": "SanMarino",
       "tel": "378",
       "pinyin": "smln"
   
     },
     {
       "short": "",
-      "name": "东萨摩亚(美)",
-      "en": "SamoaEastern",
+      "chinese": "东萨摩亚(美)",
+      "name": "SamoaEastern",
       "tel": "684",
       "pinyin": "dsmym"
   
     },
     {
       "short": "",
-      "name": "西萨摩亚",
-      "en": "SanMarino",
+      "chinese": "西萨摩亚",
+      "name": "SanMarino",
       "tel": "685",
       "pinyin": "xsmy"
   
     },
     {
       "short": "SN",
-      "name": "塞内加尔",
-      "en": "Senegal",
+      "chinese": "塞内加尔",
+      "name": "Senegal",
       "tel": "221",
       "pinyin": "snje"
   
     },
     {
       "short": "SO",
-      "name": "索马里",
-      "en": "Somali",
+      "chinese": "索马里",
+      "name": "Somali",
       "tel": "252",
       "pinyin": "sml"
   
     },
     {
       "short": "SR",
-      "name": "苏里南",
-      "en": "Suriname",
+      "chinese": "苏里南",
+      "name": "Suriname",
       "tel": "597",
       "pinyin": "sln"
   
     },
     {
       "short": "ST",
-      "name": "圣多美和普林西比",
-      "en": "SaoTomeandPrincipe",
+      "chinese": "圣多美和普林西比",
+      "name": "SaoTomeandPrincipe",
       "tel": "239",
       "pinyin": "sdmhplxb"
   
     },
     {
       "short": "SV",
-      "name": "萨尔瓦多",
-      "en": "EISalvador",
+      "chinese": "萨尔瓦多",
+      "name": "EISalvador",
       "tel": "503",
       "pinyin": "sewd"
   
     },
     {
       "short": "SY",
-      "name": "叙利亚",
-      "en": "Syria",
+      "chinese": "叙利亚",
+      "name": "Syria",
       "tel": "963",
       "pinyin": "xly"
   
     },
     {
       "short": "SZ",
-      "name": "斯威士兰",
-      "en": "Swaziland",
+      "chinese": "斯威士兰",
+      "name": "Swaziland",
       "tel": "268",
       "pinyin": "swsl"
   
     },
     {
       "short": "TD",
-      "name": "乍得",
-      "en": "Chad",
+      "chinese": "乍得",
+      "name": "Chad",
       "tel": "235",
       "pinyin": "zd"
   
     },
     {
       "short": "TG",
-      "name": "多哥",
-      "en": "Togo",
+      "chinese": "多哥",
+      "name": "Togo",
       "tel": "228",
       "pinyin": "dg"
   
     },
     {
       "short": "TH",
-      "name": "泰国",
-      "en": "Thailand",
+      "chinese": "泰国",
+      "name": "Thailand",
       "tel": "66",
       "pinyin": "tg"
   
     },
     {
       "short": "TJ",
-      "name": "塔吉克斯坦",
-      "en": "Tajikstan",
+      "chinese": "塔吉克斯坦",
+      "name": "Tajikstan",
       "tel": "992",
       "pinyin": "tjkst"
   
     },
     {
       "short": "TM",
-      "name": "土库曼斯坦",
-      "en": "Turkmenistan",
+      "chinese": "土库曼斯坦",
+      "name": "Turkmenistan",
       "tel": "993",
       "pinyin": "tkmst"
   
     },
     {
       "short": "TN",
-      "name": "突尼斯",
-      "en": "Tunisia",
+      "chinese": "突尼斯",
+      "name": "Tunisia",
       "tel": "216",
       "pinyin": "tns"
   
     },
     {
       "short": "TO",
-      "name": "汤加",
-      "en": "Tonga",
+      "chinese": "汤加",
+      "name": "Tonga",
       "tel": "676",
       "pinyin": "tj"
   
     },
     {
       "short": "TR",
-      "name": "土耳其",
-      "en": "Turkey",
+      "chinese": "土耳其",
+      "name": "Turkey",
       "tel": "90",
       "pinyin": "teq"
   
     },
     {
       "short": "TT",
-      "name": "特立尼达和多巴哥",
-      "en": "TrinidadandTobago",
+      "chinese": "特立尼达和多巴哥",
+      "name": "TrinidadandTobago",
       "tel": "1809",
       "pinyin": "tlndhdbg"
   
     },
     {
       "short": "TW",
-      "name": "台湾（中国）",
-      "en": "Taiwan",
+      "chinese": "台湾（中国）",
+      "name": "Taiwan",
       "tel": "886",
       "pinyin": "twzg"
   
     },
     {
       "short": "TZ",
-      "name": "坦桑尼亚",
-      "en": "Tanzania",
+      "chinese": "坦桑尼亚",
+      "name": "Tanzania",
       "tel": "255",
       "pinyin": "tsny"
   
     },
     {
       "short": "UA",
-      "name": "乌克兰",
-      "en": "Ukraine",
+      "chinese": "乌克兰",
+      "name": "Ukraine",
       "tel": "380",
       "pinyin": "wkl"
   
     },
     {
       "short": "UG",
-      "name": "乌干达",
-      "en": "Uganda",
+      "chinese": "乌干达",
+      "name": "Uganda",
       "tel": "256",
       "pinyin": "wgd"
   
     },
     {
       "short": "US",
-      "name": "美国",
-      "en": "UnitedStatesofAmerica",
+      "chinese": "美国",
+      "name": "UnitedStatesofAmerica",
       "tel": "1",
       "pinyin": "mg"
   
     },
     {
       "short": "UY",
-      "name": "乌拉圭",
-      "en": "Uruguay",
+      "chinese": "乌拉圭",
+      "name": "Uruguay",
       "tel": "598",
       "pinyin": "wlg"
   
     },
     {
       "short": "UZ",
-      "name": "乌兹别克斯坦",
-      "en": "Uzbekistan",
+      "chinese": "乌兹别克斯坦",
+      "name": "Uzbekistan",
       "tel": "233",
       "pinyin": "wzbkst"
   
     },
     {
       "short": "VC",
-      "name": "圣文森特岛",
-      "en": "SaintVincent",
+      "chinese": "圣文森特岛",
+      "name": "SaintVincent",
       "tel": "1784",
       "pinyin": "swstd"
   
     },
     {
       "short": "VE",
-      "name": "委内瑞拉",
-      "en": "Venezuela",
+      "chinese": "委内瑞拉",
+      "name": "Venezuela",
       "tel": "58",
       "pinyin": "wnrl"
   
     },
     {
       "short": "VN",
-      "name": "越南",
-      "en": "Vietnam",
+      "chinese": "越南",
+      "name": "Vietnam",
       "tel": "84",
       "pinyin": "yn"
   
     },
     {
       "short": "YE",
-      "name": "也门",
-      "en": "Yemen",
+      "chinese": "也门",
+      "name": "Yemen",
       "tel": "967",
       "pinyin": "ym"
   
     },
     {
       "short": "YU",
-      "name": "南斯拉夫",
-      "en": "Yugoslavia",
+      "chinese": "南斯拉夫",
+      "name": "Yugoslavia",
       "tel": "381",
       "pinyin": "nslf"
   
     },
     {
       "short": "ZA",
-      "name": "南非",
-      "en": "SouthAfrica",
+      "chinese": "南非",
+      "name": "SouthAfrica",
       "tel": "27",
       "pinyin": "nf"
   
     },
     {
       "short": "ZM",
-      "name": "赞比亚",
-      "en": "Zambia",
+      "chinese": "赞比亚",
+      "name": "Zambia",
       "tel": "260",
       "pinyin": "zby"
   
     },
     {
       "short": "ZR",
-      "name": "扎伊尔",
-      "en": "Zaire",
+      "chinese": "扎伊尔",
+      "name": "Zaire",
       "tel": "243",
       "pinyin": "zye"
   
     },
     {
       "short": "ZW",
-      "name": "津巴布韦",
-      "en": "Zimbabwe",
+      "chinese": "津巴布韦",
+      "name": "Zimbabwe",
       "tel": "263",
       "pinyin": "jbbw"
   
