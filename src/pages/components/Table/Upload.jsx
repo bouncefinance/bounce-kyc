@@ -6,7 +6,7 @@ import { Button } from '../Table'
 import API_HOST from '../../../config/request_api'
 
 export const Upload = ({
-    title = 'Passport Photo',
+    title = 'Project logo',
     desc = "Please upload photo of page with iD number and photo Supports JPG, PNG, JPEG2000",
     successCallBack,
     name,

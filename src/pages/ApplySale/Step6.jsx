@@ -77,7 +77,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
                 placeholder='Enter amount of token'
                 width='600px'
                 defaultVal={step6Data.additionalinfo}
-                isRequire={true}
+                isRequire={false}
                 maxLength={200}
                 onValueChange={(val) => {
                     handelInputChange('additionalinfo', val)

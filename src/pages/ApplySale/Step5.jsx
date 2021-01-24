@@ -105,7 +105,7 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
                 label='Allocation per wallet'
                 options={[
                     { name: 'No limits' },
-                    { name: 'ETH' },
+                    { name: 'USD' },
                 ]}
                 onChange={(val) => {
                     handelInputChange('allocationperwallet', {
@@ -131,6 +131,7 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
 
 
             <TextInput
+                maxLength={20}
                 label='Team wallet to receive auction fund'
                 placeholder='Enter team wallet address to receive fund'
                 width='600px'
