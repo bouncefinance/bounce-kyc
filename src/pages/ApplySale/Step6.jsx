@@ -38,6 +38,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
         const arr = requireList.filter(item => {
             return !step6Data[item]
         })
+        console.log('arr',arr, requireList)
         if (arr.length === 0) {
             setIsNext(true)
         } else {
@@ -77,7 +78,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
                 placeholder='Enter amount of token'
                 width='600px'
                 defaultVal={step6Data.additionalinfo}
-                isRequire={false}
+                isRequire={true}
                 maxLength={200}
                 onValueChange={(val) => {
                     handelInputChange('additionalinfo', val)

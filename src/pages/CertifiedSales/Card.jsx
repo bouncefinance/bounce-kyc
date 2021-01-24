@@ -150,7 +150,7 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
           {isVote && (
               <>
                 <Button type='white' value='Learn More' width='168px' onClick={() => {
-                  history.push(`/learn-more/${poolId}`)
+                  history.push(`/learn-more/${pool.id}`)
                 }}/>
                 <Button type='black' value='Support' width='168px' onClick={() => {
                   setIsSupport(true)
@@ -219,10 +219,11 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
           {/* <span>Active Sales</span> */}
         </div>
         <div className="main">
-          <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} socialLink={[
-            {name: 'facebook', link: '#'},
-            {name: 'telegram', link: '#'},
-            {name: 'twitter', link: '#'},
+          <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={pool.prologourl} socialLink={[
+            {name: 'facebook', link: pool.fackbook},
+            {name: 'telegram', link: pool.telegram},
+            {name: 'twitter', link: pool.twitter},
+            {name: 'github', link: pool.githublink}
           ]}/>
 
           <div className="middle">
@@ -252,11 +253,14 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
                 <TextInput onValChange={(value) => {
                   console.log('value', value)
                   setValue(value)
-                }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='288px'/>
+                }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'}/>
                 <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
                         value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
                         width='180px' onClick={() => {
                   setSupporting(true)
+                }}/>
+                <Button type='white' value='Back' width='180px' onClick={() => {
+                  setIsSupport(false)
                 }}/>
               </div>}
             </div>

@@ -8,20 +8,83 @@ import Progress from '../Progress'
 import { useParams } from 'react-router-dom'
 import { useVoteListByPoolId } from '../hooks'
 import Crumbs from '../../components/Exhibition/Crumbs'
+import BigNumber from "bignumber.js";
+import {numToWei, weiToNum} from "../../../utils/numberTransform";
+import {useTokenBalance} from "../../../hooks/useBalance";
+import {
+    cancelStatus,
+    confirmStatus,
+    errorStatus,
+    initStatus,
+    pendingStatus,
+    successStatus,
+    TxModal
+} from "../../../components/common/TXModal";
+import {ModalLayout} from "../../components/Modal/styled";
+import Support from "../../components/Modal/Support";
+import {CardStyled} from "../styled";
+import {getContract, useActiveWeb3React} from "../../../web3";
+import bounceERC20 from "../../../web3/abi/bounceERC20.json";
+import {BOT, BOUNCE_PRO_VOTING} from "../../../web3/address";
+import BounceProVoting from "../../../web3/abi/BounceProVoting.json";
 
 
 export default function Index() {
     const history = useHistory()
     const { poolId } = useParams()
-    const { proInfo } = useVoteListByPoolId(poolId)
+    const pool = useVoteListByPoolId(poolId)
+    const proInfo = pool.proInfo
+    const {balance} = useTokenBalance()
+    const [supporting, setSupporting] = useState(false)
+    const [value, setValue] = useState()
+    const [bidStatus, setBidStatus] = useState(initStatus)
+    const {account, library, chainId, active} = useActiveWeb3React()
+
     // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
     const [isSupport, setIsSupport] = useState(false)
     const [curTab, setCurTab] = useState(0)
     const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
-
+    console.log('proInfo',proInfo)
     useEffect(() => {
         console.log(proInfo)
     }, [proInfo])
+
+    const onVote = async () => {
+        setSupporting(false)
+        const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+        const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
+        const weiAmount = numToWei(value);
+
+        setBidStatus(confirmStatus);
+        try {
+            await tokenContract.methods.approve(
+                BOUNCE_PRO_VOTING(chainId),
+                weiAmount,
+            )
+                .send({from: account});
+            bounceContract.methods.vote(pool.id, weiAmount)
+                .send({from: account})
+                .on('transactionHash', hash => {
+                    setBidStatus(pendingStatus)
+                })
+                .on('receipt', (_, receipt) => {
+                    console.log('bid fixed swap receipt:', receipt)
+                    setBidStatus(successStatus)
+                })
+                .on('error', (err, receipt) => {
+                    setBidStatus(errorStatus)
+                })
+        } catch (e) {
+            console.log('bid---->', e)
+            if (e.code === 4001) {
+                setBidStatus(cancelStatus)
+            } else {
+                setBidStatus(errorStatus)
+            }
+        }
+
+    }
+
 
     const renderInfo = (tab) => {
         switch (tab) {
@@ -97,10 +160,10 @@ export default function Index() {
             }]} />
             <LearnMoreStyle>
                 <CardHeader title='Bounce Project' socialLink={[
-                    { name: 'github', link: '#' },
-                    { name: 'facebook', link: '#' },
-                    { name: 'telegram', link: '#' },
-                    { name: 'twitter', link: '#' },
+                    {name: 'facebook', link: proInfo && proInfo.fackbook},
+                    {name: 'telegram', link: proInfo && proInfo.telegram},
+                    {name: 'twitter', link: proInfo && proInfo.twitter},
+                    {name: 'github', link: proInfo && proInfo.githublink}
                 ]} />
 
                 <div className="main">
@@ -115,14 +178,25 @@ export default function Index() {
                             <div className="progress">
                                 <Progress
                                     title='Support from community:'
-                                    status='success'
-                                    plan={0.7}
-                                    value='100 BOT'
-                                    total='200 BOT'
+                                    status={pool && pool.status}
+                                    plan={pool && new BigNumber(pool.totalVotes).dividedBy('200000000000000000000').dividedBy('100')}
+                                    value={ pool && `${weiToNum(pool.totalVotes)} BOT`}
+                                    total={pool && pool.total}
                                 />
                             </div>
-                            <TextInput placeholder='Enter your vote amount' width='288px' />
-                            <Button type='black' value='Support' width='180px' />
+                            <TextInput onValChange={(value) => {
+                                console.log('value', value)
+                                setValue(value)
+                            }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`}width='100%' bottom={'10px'}/>
+                            <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
+                                    value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
+                                    width='180px' onClick={() => {
+                                setSupporting(true)
+                            }}/>
+                            <Button type='white' value='Back' width='180px' onClick={() => {
+                                setIsSupport(false)
+                            }}/>
+
                         </div>}
                     </div>
 
@@ -138,7 +212,7 @@ export default function Index() {
 
                 </div>
                 {!isSupport && <div className='btn_group'>
-                    <Button type='black' value='Join Auction' width='180px' onClick={() => {
+                    <Button type='black' value='Support' width='180px' onClick={() => {
                         setIsSupport(true)
                     }} />
                 </div>}
@@ -160,6 +234,19 @@ export default function Index() {
                     </div>
                 </div>
             </LearnMoreStyle>
+
+
+            <TxModal modalStatus={bidStatus} onDismiss={() => {
+                setBidStatus(initStatus)
+            }}/>
+
+            {supporting && (
+                <ModalLayout className='layout' onClick={(e) => {
+                    e.stopPropagation()
+                }}>
+                    <Support onConfirm={onVote} cancel={() => setSupporting(false)} amount={value}/>
+                </ModalLayout>
+            )}
         </>
     )
 }

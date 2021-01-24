@@ -131,7 +131,7 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
 
 
             <TextInput
-                maxLength={20}
+                maxLength={64}
                 label='Team wallet to receive auction fund'
                 placeholder='Enter team wallet address to receive fund'
                 width='600px'

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { InputStyled, InputAreaStyled, TimeInputStyled } from './styled'
 
-export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, maxLength, disabled, defaultVal, placeholder, width, minHeight, marginTop, label, onChange, onValChange, onValueChange, isRequire = false }) => {
+export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, maxLength, disabled, defaultVal, placeholder, width, minHeight, marginTop, label, onChange, onValChange, onValueChange, isRequire = false, bottom }) => {
     const [val, setVal] = useState('')
     const [isError, setIsError] = useState(false)
     const [errMsg, setErrMsg] = useState('')
@@ -89,7 +89,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
             <div className="input_area">
                 <textarea
                     name={name}
-                    style={{ resize: 'none', height: sHeight, minHeight: minHeight }}
+                    style={{ resize: 'none', height: sHeight, minHeight: minHeight, marginBottom: bottom }}
                     className={`${val !== '' ? 'isComplete' : ''} ${isError ? 'Error' : ''}`}
                     value={val}
                     // height

@@ -26,7 +26,7 @@ export default function Progress({ width, status, title = 'Support from communit
         <ProgressStyled width={width} color={wrapperColor(status)} plan={wrapperPlan(plan)}>
             <div className="top">
                 <p className='title'>{title}</p>
-                <p className='number'><span>{value}</span> / <span style={{color: wrapperColor(status)}}>{status}</span></p>
+                <p className='number'><span>{value}</span> / {status === 'success' ? <span style={{color: wrapperColor(status)}}>{status}</span> : '300 BOT' } </p>
             </div>
             <div className='pro_bar'>
                 <div className='bar1'></div>
