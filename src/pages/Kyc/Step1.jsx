@@ -6,7 +6,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const history = useHistory()
     const [isNext, setIsNext] = useState(false)
 
-    const requiredList = ['1_username', '2_middlename', '3_lastname', '4_birthday']
+    const requiredList = ['1_username', '3_lastname', '4_birthday']
     const requiredList_json = requiredList
         .sort((a1, a2) => {
             return parseInt(a1) - parseInt(a2)
@@ -76,7 +76,6 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                     checkValue(data)
                     handelValChange('middlename', data.value)
                 }}
-                isRequire={true}
                 isName={true}
             />
             <TextInput
@@ -119,39 +118,4 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
             </div>
         </Form>
     )
-}
-
-
-function compareArray(a, b) {
-    if (a.length !== b.length) {
-        return false;
-    }
-    const length = a.length;
-    for (let i = 0; i < length; i++) {
-        if (!compare(a[i], b[i])) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
-function compare(a, b) {
-    if (a === b) {
-        return true;
-    }
-
-    if (typeof a !== typeof b || a === null || b === null) {
-        return false;
-    }
-
-    if (Array.isArray(a)) {
-        if (!Array.isArray(b)) {
-            return false;
-        }
-        return compareArray(a, b);
-    }
-
-    return false;
 }

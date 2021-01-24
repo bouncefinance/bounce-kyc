@@ -113,7 +113,7 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
                 <Button type='white' value='Back' width='164px' onClick={() => {
                     setCurStep(curStep - 1)
                 }} />
-                <Button type='black' value='Verify' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
                     setCurStep(curStep + 1)
                 }} />
             </div>

@@ -112,7 +112,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
 
             <TextInput
              label='Passport Number'
-              placeholder='Enter your Idcard No'
+              placeholder='Enter your passport number'
               isRequire={true}
               onValueChange={(data) => {
                 handelValChange('idcardno', data.value)
