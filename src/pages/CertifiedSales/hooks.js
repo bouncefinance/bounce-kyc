@@ -3,7 +3,8 @@ import API from '../../config/request_api'
 import { useEffect, useState } from 'react';
 import { getContract, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
-import { BOUNCE_PRO_VOTING } from "../../web3/address";
+import BouncePro from "../../web3/abi/BouncePro.json";
+import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
 
 const getProjectInfo = async (proId) => {
   const params = {
@@ -73,6 +74,50 @@ export const useVoteList = () => {
 
   return { list }
 }
+
+export const usePoolList = () => {
+  const [list, setList] = useState()
+  const {active, library, chainId} = useActiveWeb3React();
+
+  const fetchList = () => {
+    let pools = []
+    try {
+      const bounceContract = getContract(library, BOUNCE_PRO.abi, BOUNCE_PRO(chainId))
+      bounceContract.methods.getPoolCount().call().then(res => {
+        for (let i = 0; i < res; i++) {
+          bounceContract.methods.pools(i).call().then(async poolRes => {
+            const pool = poolRes
+            pool.id = i
+
+            if (poolRes.votePassed) {
+              pool.status = 'Success'
+            } else {
+              const closeAt = new Date(poolRes.closeAt * 1000)
+              const closed = closeAt - new Date()
+              pool.status = closed > 0 ? 'Active' : 'Failed'
+            }
+            // console.log('pool', pool)
+            pool.proInfo = await getProjectInfo(pool.projectId)
+            console.log('pool',pool)
+            pools = pools.concat(pool)
+            setList(pools)
+          })
+        }
+      })
+    } catch (e) {
+      console.log('fetchList error', e)
+    }
+  }
+
+  useEffect(() => {
+    if (active) {
+      fetchList()
+    }
+  }, [active])
+
+  return { list }
+}
+
 
 export const useVoteListByPoolId = (poolId) => {
   const [poolInfo, setPoolInfo] = useState({})
