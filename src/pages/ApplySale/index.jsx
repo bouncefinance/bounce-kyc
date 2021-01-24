@@ -100,6 +100,7 @@ export default function Index() {
         try {
             axios.post(API.applySale, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
+                    console.log('onApply', res.data.data.id)
                     onApply(res.data.data.id)
                     // dispatch({
                     //     type: 'MODAL',

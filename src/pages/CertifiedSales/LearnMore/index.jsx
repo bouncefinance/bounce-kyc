@@ -22,7 +22,6 @@ import {
 } from "../../../components/common/TXModal";
 import {ModalLayout} from "../../components/Modal/styled";
 import Support from "../../components/Modal/Support";
-import {CardStyled} from "../styled";
 import {getContract, useActiveWeb3React} from "../../../web3";
 import bounceERC20 from "../../../web3/abi/bounceERC20.json";
 import {BOT, BOUNCE_PRO_VOTING} from "../../../web3/address";

@@ -131,7 +131,7 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
   const renderStatus = (status) => {
     switch (status) {
       case 'Active':
-        return <span className='Active'>Active Sales</span>
+        return !isVote && <span className='Active'>Active Sales</span>
 
       case 'Upcoming':
         return <span className='Upcoming'>Upcoming Sales</span>
@@ -231,11 +231,9 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
               {isVote && myVotes && new BigNumber(myVotes).isGreaterThan('0') && <span className='vote'>You Voted</span>}
               <Passage
                   title='Project details'
-                  desc='Active Project Name is a blockchain project.
-                            There should be some description about this active project.
-                            4 line maximum for this section.'/>
+                  desc={pool.proInfo.prosummary}/>
 
-              <a href="http://activeprojectname.com">activeprojectname.com</a>
+              <a href="http://activeprojectname.com">{pool.proInfo.prowebsite}</a>
 
               <Passage
                   title='Time Left'
