@@ -76,7 +76,7 @@ export const useVoteList = () => {
 }
 
 export const usePoolList = () => {
-  const [list, setList] = useState()
+  const [list, setList] = useState([])
   const {active, library, chainId} = useActiveWeb3React();
 
   const fetchList = () => {
@@ -112,7 +112,7 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      fetchList()
+      //fetchList()
     }
   }, [active])
 
