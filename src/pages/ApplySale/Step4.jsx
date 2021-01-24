@@ -4,11 +4,28 @@ import { TextInput, TextAreaInput, Button } from '../components/Table'
 
 const requireList = ['totalsupply', 'circulatingsupply', 'tokenticketer', 'tokencontractaddress', 'tokendistribution', 'tokenlookupschedule']
 
-export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) {
+export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        setTitle('Token metrics')
+        setTitle({
+            title: 'Token metrics',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information',
+                onClick: () => { return setCurStep(1) }
+            }, {
+                name: 'Details',
+                onClick: () => { return setCurStep(2) }
+            }, {
+                name: 'Team',
+                onClick: () => { return setCurStep(3) }
+            }, {
+                name: 'Token metrics',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {
@@ -22,9 +39,13 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
         }
     }, [step4Data])
 
-    const handelInputChange = (key, value) => {
+    const handelInputChange = (key, data) => {
         const obj = { ...step4Data }
-        obj[key] = value
+        if (data.isRequire && !data.isError) {
+            obj[key] = data.value
+        } else {
+            obj[key] = null
+        }
         setStep4Data(obj)
     }
 
@@ -36,7 +57,12 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
                 width='600px'
                 defaultVal={step4Data.totalsupply}
                 isRequire={true}
-                onValChange={(val) => {
+                isNumber={true}
+                REG_rule={{
+                    reg: /^[1-9]\d*|0$/,
+                    mag: 'Please enter a positive integer'
+                }}
+                onValueChange={(val) => {
                     handelInputChange('totalsupply', val)
                 }}
             />
@@ -47,7 +73,12 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
                 width='600px'
                 defaultVal={step4Data.circulatingsupply}
                 isRequire={true}
-                onValChange={(val) => {
+                isNumber={true}
+                REG_rule={{
+                    reg: /^[1-9]\d*|0$/,
+                    mag: 'Please enter a positive integer'
+                }}
+                onValueChange={(val) => {
                     handelInputChange('circulatingsupply', val)
                 }}
             />
@@ -58,7 +89,8 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
                 width='600px'
                 defaultVal={step4Data.tokenticketer}
                 isRequire={true}
-                onValChange={(val) => {
+                upperCase={true}
+                onValueChange={(val) => {
                     handelInputChange('tokenticketer', val)
                 }}
             />
@@ -67,34 +99,41 @@ export default function Step4({ setCurStep, setTitle,step4Data, setStep4Data }) 
                 label='Token contract address'
                 placeholder='Paste token contract address'
                 width='600px'
+                maxLength={42}
                 defaultVal={step4Data.tokencontractaddress}
                 isRequire={true}
-                onValChange={(val) => {
+                REG_rule={{
+                    reg: /[0x|0X][\S]{41}/,
+                    msg: 'Please enter a positive integer Please enter a valid contract address'
+                }}
+                onValueChange={(val) => {
                     handelInputChange('tokencontractaddress', val)
                 }}
             />
 
 
-            <TextAreaInput
+            <TextInput
                 label='Token distribution'
-                placeholder='Enter token distribution'
+                placeholder='describe your token distribution max 300 character'
                 width='600px'
-                marginTop='0px'
+                minHeight='80px'
+                maxLength={300}
                 defaultVal={step4Data.tokendistribution}
                 isRequire={true}
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('tokendistribution', val)
                 }}
             />
 
-            <TextAreaInput
+            <TextInput
                 label='Token lockup schedule'
-                placeholder='Enter token lockup schedule'
+                placeholder='describe your token lockup schedule max 300 character'
                 width='600px'
-                marginTop='0px'
+                minHeight='80px'
+                maxLength={300}
                 defaultVal={step4Data.tokenlookupschedule}
                 isRequire={true}
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('tokenlookupschedule', val)
                 }}
             />

@@ -82,15 +82,16 @@ export const usePoolList = () => {
   const fetchList = () => {
     let pools = []
     try {
-      const bounceContract = getContract(library, BOUNCE_PRO.abi, BOUNCE_PRO(chainId))
+      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
       bounceContract.methods.getPoolCount().call().then(res => {
         for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
+            console.log('pool--->', poolRes)
             const pool = poolRes
             pool.id = i
-
-            if (poolRes.votePassed) {
-              pool.status = 'Success'
+            const isOpen = new Date() - poolRes.openAt*1000 > 0
+            if (!isOpen) {
+              pool.status = 'Upcoming'
             } else {
               const closeAt = new Date(poolRes.closeAt * 1000)
               const closed = closeAt - new Date()
@@ -117,6 +118,37 @@ export const usePoolList = () => {
 
   return { list }
 }
+
+export const useStatus = (id) => {
+  const {active, library, chainId, account} = useActiveWeb3React();
+  const [myVotes, setMyVotes] = useState()
+  const [myVotesClaimed, setMyVotesClaimed] = useState(true)
+
+  const fetchStatus = () => {
+    try {
+      const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
+      bounceContract.methods.myVotes(account, id).call().then(res =>{
+        console.log('myVotes', res)
+        setMyVotes(res)
+      })
+      bounceContract.methods.myVotesClaimed(account, id).call().then(res =>{
+        console.log('myVotesClaimed', myVotesClaimed)
+        setMyVotesClaimed(res)
+      })
+    } catch (e) {
+      console.log('fetch vote status error', e)
+    }
+  }
+
+  useEffect(() => {
+    if (active) {
+      fetchStatus()
+    }
+  }, [active])
+
+  return { myVotes, myVotesClaimed }
+}
+
 
 
 export const useVoteListByPoolId = (poolId) => {

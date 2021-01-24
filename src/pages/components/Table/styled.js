@@ -21,20 +21,69 @@ export const InputStyled = styled.div`
         margin-bottom: 8px;
         font-weight: 500;
         margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
-    }
-
-    input{
-        width: ${({ width }) => { return width ? width : '100%' }};
-        height: ${({ height }) => { return height ? height : '48px' }};
-        border: 1px solid rgba(0,0,0,.4);
-        box-sizing: border-box;
-        font-size: 16px;
-        color: #000;
-        text-indent: 20px;
-
-        &::placeholder{
-            color: rgba(0,0,0,.4);
+        span.require{
+            color: red;
+            margin-left: 4px;
         }
+    }
+    .input_area{
+        display: flex;
+        textArea{
+            width: ${({ width }) => { return width ? width : '100%' }};
+            /* height: ${({ height }) => { return height ? height : '48px' }}; */
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,.2);
+            box-sizing: border-box;
+            font-size: 16px;
+            line-height: 19px;
+            color: #000;
+            /* text-indent: 20px; */
+            padding: 15px 20px;
+            font-family: 'Helvetica Neue';
+            font-weight: 400;
+
+            &.isComplete{
+                border: 1px solid rgba(0,0,0,.4);
+            }
+
+            &:hover{
+                border: 1px solid rgba(0,0,0,.4);
+            }
+
+            &:focus{
+                border: 1px solid rgba(18,76,227,.8);
+            }
+
+            &:disabled{
+                opacity: .12;
+            }
+
+            &::placeholder{
+                color: rgba(0,0,0,.4);
+            }
+
+            &.Error{
+                border: 1px solid rgba(241,2,2,.4);
+                color: rgba(228,63,41,1);
+            }
+        }
+        .unit{
+            font-family: 'Helvetica Neue';
+            font-weight: 500;
+            font-size: 16px;
+            margin-left: 8px;
+            color: #000;
+        }
+    }
+    
+
+    p.error_msg{
+        font-family: 'Helvetica Neue';
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(228,63,41,1);
+        margin-top: 4px;
+        margin-bottom: 0px;
     }
 `
 
@@ -244,6 +293,11 @@ export const TimeInputStyled = styled.div`
         margin-bottom: 8px;
         font-weight: 500;
         margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
+
+        span.require{
+            color: red;
+            margin-left: 4px;
+        }
     }
 
     .input_box{
@@ -266,6 +320,15 @@ export const TimeInputStyled = styled.div`
             }
         }
     }
+
+    p.error_msg{
+        font-family: 'Helvetica Neue';
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(228,63,41,1);
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
 `
 
 
@@ -279,6 +342,10 @@ export const SelectStyled = styled.div`
         margin-bottom: 8px;
         font-weight: 500;
         margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
+        span{
+            color: red;
+            margin-left: 4px;
+        }
     }
 
     .sel_wrapper{
@@ -306,12 +373,15 @@ export const SelectStyled = styled.div`
 
         .options{
             width: 100%;
+            max-height: 300px;
             border: 1px solid #EAEAEA;
             box-sizing: border-box;
             margin-top: 5px;
             box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             z-index: 5;
+            overflow: hidden;
+            overflow-y: scroll;
 
             li{
                 height: 42px;

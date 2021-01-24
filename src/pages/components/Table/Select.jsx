@@ -1,8 +1,8 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { SelectStyled } from './styled'
 import icon_down from '../../../assets/icons/down.svg'
 
-export const Select = ({ label, width, options = [], onChange }) => {
+export const Select = ({ isRequire, label, width, options = [], onChange }) => {
     const [isPull, setIsPull] = useState(false)
     const [selOption, setSelOption] = useState(0)
 
@@ -15,7 +15,9 @@ export const Select = ({ label, width, options = [], onChange }) => {
         <SelectStyled
             width={width}
         >
-            {label && <p>{label}</p>}
+            {label && <p>{label}
+                {isRequire && <span>*</span>}
+            </p>}
 
             <div className='sel_wrapper'>
                 <div className="input" onClick={() => {

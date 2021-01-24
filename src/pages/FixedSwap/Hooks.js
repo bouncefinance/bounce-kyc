@@ -2,18 +2,19 @@ import { getContract, useActivePlatform, useActiveWeb3React } from "../../web3";
 import { useContext, useEffect, useState } from "react";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import BouncePro from '../../web3/abi/BouncePro.json'
-import { myContext } from '../../reducer'
+import { mainContext } from '../../reducer'
 
 import BigNumber from "bignumber.js";
 import { BOUNCE_PRO } from "../../web3/address";
 import { isGreaterThan } from "../../utils/common";
 import { HANDLE_SHOW_CONNECT_MODAL } from "../../const";
+import {useTokenList} from "../../web3/common";
 
 
 export const usePoolDetail = (id = 0) => {
     const { active, account, library, chainId } = useActiveWeb3React();
 
-    const { state, dispatch } = useContext(myContext);
+    const { state, dispatch } = useContext(mainContext);
 
     const [joinStatus, setJoinStatus] = useState(false)
     const [name, setName] = useState(null)
@@ -35,13 +36,15 @@ export const usePoolDetail = (id = 0) => {
     const [status, setStatus] = useState('Live')
     const [onlyBOT, setOnlyBOT] = useState(false)
     const [toTokenBalance, setToTokenBalance] = useState(0)
+    const { Psymbol } = useActivePlatform()
+    const tokenOptions = useTokenList()
 
     const [claimed, setClaimed] = useState(true)
 
 
     const checkMyFSPool = async () => {
         const fsContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
-        let myPoolIndex = await fsContract.methods.myFP(account).call()
+        let myPoolIndex = await fsContract.methods.myP(account).call()
         if (myPoolIndex > 0) {
             myPoolIndex = myPoolIndex - 1
             const fromAmount = await fsContract.methods.amountTotal0FP(myPoolIndex).call()
@@ -62,7 +65,6 @@ export const usePoolDetail = (id = 0) => {
         queryTokenBalance(toAddress)
     }, [toAddress])
 
-
     const queryTokenBalance = async (toAddress) => {
         const Contract = getContract(library, bounceERC20.abi, toAddress)
         const balance = await Contract.methods.balanceOf(account).call()
@@ -74,62 +76,14 @@ export const usePoolDetail = (id = 0) => {
 
             const fsContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
 
-            fsContract.methods.myAmountSwapped1(account, id).call().then((res) => {
-                console.log('query fs myAmountSwapped1:', res)
-                setJoinStatus(isGreaterThan(res, '0'))
-            })
+            fsContract.methods.pools(id).call().then( async (res) => {
+                console.log('pool detail:', res)
 
-            fsContract.methods.passwordFP(id).call().then((res) => {
-                console.log('query fs password:', res)
-                setPassword(res)
-            })
+                setFromAmount(res.amountTotal0)
+                setToAmount(res.amountTotal1)
 
-            fsContract.methods.closeAtFP(id).call().then((res) => {
-
-                const date = new Date(res * 1000);
-                const now = new Date();
-                const leftTime = date - now;
-                console.log('query fs closeAt:', res, leftTime)
-
-                setTime(res)
-                setStatus(leftTime > 0 ? 'Live' : 'Closed')
-                fsContract.methods.amountSwap1FP(id).call().then((bidAmount) => {
-                    console.log('query fs to bid amount:', bidAmount)
-                    setToBidAmount(bidAmount)
-                    fsContract.methods.amountTotal1FP(id).call().then((total) => {
-                        console.log('query fs to total:', total)
-                        setToAmount(total)
-                        if (bidAmount === total) {
-                            setStatus('Filled')
-                        }
-                    })
-                })
-
-
-            })
-
-            fsContract.methods.creatorFP(id).call().then((res) => {
-                console.log('query fs creator:', res)
-                setIsMine((res.toLowerCase() === account.toLowerCase()))
-                if (res.toLowerCase() === account.toLowerCase()) {
-                    checkMyFSPool()
-                }
-            })
-
-            fsContract.methods.nameFP(id).call().then((res) => {
-                console.log('query fs name:', res)
-                setName(res)
-            })
-
-            fsContract.methods.onlyBotHolder(id).call().then((res) => {
-                console.log('query fs name:', res)
-                setOnlyBOT(res)
-            })
-
-            fsContract.methods.token0FP(id).call().then((res) => {
-                console.log('query fs address:', res)
-                setAddress(res)
-                const tokenContract = getContract(library, bounceERC20.abi, res)
+                //setAddress(res)
+                const tokenContract = getContract(library, bounceERC20.abi, res.token0)
                 tokenContract.methods.symbol().call().then((res) => {
                     console.log('query fs symbol:', res)
                     setSymbol(res)
@@ -138,20 +92,76 @@ export const usePoolDetail = (id = 0) => {
                     console.log('query fs decimals:', res)
                     setDecimals(res)
                 })
+
+                const toToken = tokenOptions.find(item => {
+                    return res.token1.toLowerCase() === item.key.toLowerCase()
+                })
+
+                if (res === '0x0000000000000000000000000000000000000000') {
+                    setToAddress(null)
+                    setToSymbol(Psymbol)
+                    setToDecimals('18')
+                } else if (toToken) {
+                    setToAddress(res.token1)
+                    setToDecimals(toToken.decimals)
+                    setToSymbol(toToken.symbol)
+                } else {
+                    setToAddress(null)
+                    setToSymbol(Psymbol)
+                    setToDecimals('18')
+                }
+
+                const date = new Date(res.closeAt * 1000);
+                const now = new Date();
+                const leftTime = date - now;
+
+                setIsMine((res.beneficiary.toLowerCase() === account.toLowerCase()))
+                if (res.beneficiary.toLowerCase() === account.toLowerCase()) {
+                    let myPoolIndex = await fsContract.methods.myP(account).call()
+                    if (myPoolIndex > 0) {
+                        myPoolIndex = myPoolIndex - 1
+                        const fromAmount = res.amountTotal0
+                        const bidAmount = await fsContract.methods.amountSwap0P(myPoolIndex).call()
+                        if (fromAmount === bidAmount) {
+                            setClaimed(true)
+                        } else {
+                            setClaimed(false)
+                        }
+                    } else {
+                        setClaimed(true)
+                    }
+                }
+
+                setTime(res.closeAt)
+                setToAmount(res.amountTotal1)
+
+                setStatus(leftTime > 0 ? 'Live' : 'Closed')
+                fsContract.methods.amountSwap1P(id).call().then((bidAmount) => {
+                    console.log('query fs to bid amount:', bidAmount)
+                    setToBidAmount(bidAmount)
+                    if (bidAmount === res.amountTotal1) {
+                        setStatus('Filled')
+                    }
+                })
             })
 
-            fsContract.methods.amountTotal0FP(id).call().then((res) => {
-                console.log('query fs from total:', res)
-                setFromAmount(res)
+            fsContract.methods.myAmountSwapped1(account, id).call().then((res) => {
+                console.log('query fs myAmountSwapped1:', res)
+                setJoinStatus(isGreaterThan(res, '0'))
             })
 
-            fsContract.methods.amountSwap0FP(id).call().then((res) => {
+            fsContract.methods.onlyBotHolder(id).call().then((res) => {
+                console.log('query fs name:', res)
+                setOnlyBOT(res)
+            })
+
+            fsContract.methods.amountSwap0P(id).call().then((res) => {
                 console.log('query fs to bid amount:', res)
                 setFromBidAmount(res)
             })
 
 
-            fsContract.methods.maxEthPerWalletFP(id).call().then((res) => {
+            fsContract.methods.maxEthPerWalletP(id).call().then((res) => {
                 console.log('query fs limit max:', res)
                 setLimit(res)
             })
@@ -163,7 +173,6 @@ export const usePoolDetail = (id = 0) => {
     }
 
     useEffect(() => {
-
         if (active, chainId, account) {
             console.log('chainId', chainId)
             getFSPoolDetail()

@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Step3Styled } from './styled'
-import { TextAreaInput, Button } from '../components/Table'
+import { TextInput, Button } from '../components/Table'
 
 const requireList = ['teambio']
 
-export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data }) {
+export default function Step3 ({ setCurStep, setTitle, step3Data, setStep3Data }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        setTitle('Team')
+        setTitle({
+            title: 'Team',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information',
+                onClick: () => { return setCurStep(1) }
+            }, {
+                name: 'Details',
+                onClick: () => { return setCurStep(2) }
+            }, {
+                name: 'Team',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {
@@ -22,23 +36,28 @@ export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data })
         }
     }, [step3Data])
 
-    const handelInputChange = (key, value) => {
+    const handelInputChange = (key, data) => {
         const obj = { ...step3Data }
-        obj[key] = value
+        if (data.isRequire && !data.isError) {
+            obj[key] = data.value
+        } else {
+            obj[key] = null
+        }
         setStep3Data(obj)
     }
 
     return (
         <Step3Styled>
-            <TextAreaInput
+            <TextInput
                 label='Team'
                 placeholder='Enter short bio about your team'
                 width='600px'
-                height='140px'
+                minHeight='140px'
                 marginTop='0px'
+                maxLength={500}
                 isRequire={true}
                 defaultVal={step3Data.teambio}
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('teambio', val)
                 }}
             />
@@ -49,7 +68,6 @@ export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data })
                 }} />
                 <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
                     setCurStep(4)
-                    console.log(step3Data)
                 }} />
             </div>
         </Step3Styled>

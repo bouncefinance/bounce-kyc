@@ -22,7 +22,7 @@ export const Upload = ({
         const file = e.target.files[0]
         if (!file) return
         // console.log(file)
-        if (file.type === 'image/png' || file.type === 'image/jpeg') {
+        if (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/gif' ) {
             let reader = new FileReader();  //调用FileReader
             reader.readAsDataURL(file); //将文件读取为 DataURL(base64)
             reader.onload = function (evt) {   //读取操作完成时触发。
@@ -71,7 +71,7 @@ export const Upload = ({
                             <img src={upload_img} alt={'upload_img_' + name} />
                             <p>Drop logo here or <span>upload</span></p>
                         </div>
-                        <input type="file" name={'upload_img_' + name} id={'upload_img_' + name} onChange={handelFileChange} />
+                        <input  accept="image/*" type="file" name={'upload_img_' + name} id={'upload_img_' + name} onChange={handelFileChange} />
                     </label>
 
 

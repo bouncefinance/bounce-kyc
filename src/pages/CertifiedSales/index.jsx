@@ -1,14 +1,25 @@
 import React from 'react'
-import { CsStyled } from './styled'
+import {CsStyled} from './styled'
 import Card from './Card'
+import {usePoolList} from "./hooks";
+import {EmptyLayout} from "../../components/common/Layout";
+import loading from "../../assets/icons/loading.svg";
 
 export default function Index() {
-    return (
-        <CsStyled>
-            <Card status='Active' poolId={1} />
-            <Card status='Upcoming' poolId={2} />
-            <Card status='Past' poolId={3} />   
-            <Card />
-        </CsStyled>
-    )
+  const {list} = usePoolList()
+  return (
+      <CsStyled>
+        {!list || list.length === 0 ? (
+                <EmptyLayout>
+                  <img src={loading} alt=""/>
+                  <p>{Array.isArray(list) && list.length === 0 ? 'No sales now Please check back later' : 'Sales are loading ... Please wait'}</p>
+                </EmptyLayout>
+            ) :
+            list.map(item => {
+              return (
+                  <Card pool={item} status='Active' poolId={1}/>
+              )
+            })}
+      </CsStyled>
+  )
 }

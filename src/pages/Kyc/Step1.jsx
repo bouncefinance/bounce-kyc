@@ -4,52 +4,109 @@ import { TextInput, Form, Button } from '../components/Table'
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const history = useHistory()
-    const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
+
+    const requiredList = ['1_username', '3_lastname', '4_birthday']
+    const requiredList_json = requiredList
+        .sort((a1, a2) => {
+            return parseInt(a1) - parseInt(a2)
+        }).toString()
+    const [checkList, setCheckList] = useState([])
 
 
     useEffect(() => {
-        // console.log(data, isNext)
-        const requiredList = ['birthday', 'lastname', 'middlename', 'username']
-        const data_2 = requiredList.filter(item => {
-            if (!data[item]) {
-                return item
+        const checkList_json = checkList.sort((a1, a2) => {
+            return parseInt(a1) - parseInt(a2)
+        }).toString()
+
+        if (checkList_json === requiredList_json) {
+            setIsNext(true)
+        } else {
+            setIsNext(false)
+        }
+    }, [checkList])
+
+    const handelValChange = (key, val) => {
+        const data = { ...ReqData }
+        data[key] = val
+        setReqData(data)
+    }
+
+    const checkValue = (data) => {
+        if (!data) return
+        if (data.isRequire) {
+            const arrList = [...checkList]
+            if (!data.isError && data.value !== '') {
+                if (!arrList.includes(data.name)) {
+                    arrList.push(data.name)
+                }
+            } else {
+                if (arrList.includes(data.name)) {
+                    const index = arrList.indexOf(data.name)
+                    arrList.splice(index, 1)
+                }
             }
-        })
-
-        if (data_2.length === 0) {
-            setReqData(data)
-            return setIsNext(true)
-        } else {
-            return setIsNext(false)
+            setCheckList(arrList)
         }
-    }, [data])
-
-    const handelValChange = (key, val, required = false) => {
-        const data_2 = data
-        if (required && val === '') {
-            data_2[key] = null
-        } else {
-            data_2[key] = val || ''
-        }
-        setData({ ...ReqData, ...data_2 })
     }
 
 
     return (
         <Form title={'Basic Info'}>
-            <TextInput label='First Name' width='294px' placeholder='Enter first name' onValChange={(val) => {
-                handelValChange('username', val)
-            }} />
-            <TextInput label='Middle Name (if applicable)' width='294px' placeholder='Enter middle name' onValChange={(val) => {
-                handelValChange('middlename', val)
-            }} />
-            <TextInput label='Last Name' placeholder='Enter last name' onValChange={(val) => {
-                handelValChange('lastname', val)
-            }} />
-            <TextInput label='Date of Birth' placeholder='01.01.2021' onValChange={(val) => {
-                handelValChange('birthday', val)
-            }} />
+            <TextInput
+                label='First Name'
+                width='294px'
+                placeholder='Enter first name'
+                name='1_username'
+                defaultVal={ReqData && ReqData.username}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('username', data.value)
+                }}
+                isRequire={true}
+                isName={true}
+            />
+            <TextInput
+                label='Middle Name (if applicable)'
+                width='294px'
+                placeholder='Enter middle name'
+                name='2_middlename'
+                defaultVal={ReqData && ReqData.middlename}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('middlename', data.value)
+                }}
+                isName={true}
+            />
+            <TextInput
+                label='Last Name'
+                placeholder='Enter last name'
+                name='3_lastname'
+                defaultVal={ReqData && ReqData.lastname}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('lastname', data.value)
+                }}
+                isRequire={true}
+                isName={true}
+            />
+
+
+            <TextInput
+                label='Date of Birth'
+                placeholder='2021-1-1'
+                name='4_birthday'
+                isRequire={true}
+                defaultVal={ReqData && ReqData.birthday}
+                onValueChange={(data) => {
+                    checkValue(data)
+                    handelValChange('birthday', data.value)
+                }}
+                REG_rule={{
+                    reg: /^((19[2-9]\d{1})|(20((0[0-2])|(1[0-8]))))\-((0?[1-9])|(1[0-2]))\-((0?[1-9])|([1-2][0-9])|30|31)$/,
+                    msg: 'Incorrect birth date format (yyyy-mm-dd) Or under the age of 18'
+                }}
+            />
 
             <div className="btn_group">
                 <Button type='white' value='Cancel' width='164px' onClick={() => {

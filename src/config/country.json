@@ -1,0 +1,1543 @@
+[
+    {
+      "short": "AD",
+      "cn": "安道尔共和国",
+      "name": "Andorra",
+      "tel": "376",
+      "pinyin": "adeghg"
+    },
+    {
+      "short": "AE",
+      "chinese": "阿拉伯联合酋长国",
+      "name": "UnitedArabEmirates",
+      "tel": "971",
+      "pinyin": "alblhqzg"
+    },
+    {
+      "short": "AF",
+      "chinese": "阿富汗",
+      "name": "Afghanistan",
+      "tel": "93",
+      "pinyin": "afh"
+    },
+    {
+      "short": "AG",
+      "chinese": "安提瓜和巴布达",
+      "name": "AntiguaandBarbuda",
+      "tel": "1268",
+      "pinyin": "atghbbd"
+    },
+    {
+      "short": "AI",
+      "chinese": "安圭拉岛",
+      "name": "Anguilla",
+      "tel": "1264",
+      "pinyin": "agld"
+    },
+    {
+      "short": "AL",
+      "chinese": "阿尔巴尼亚",
+      "name": "Albania",
+      "tel": "355",
+      "pinyin": "aebny"
+    },
+    {
+      "short": "AM",
+      "chinese": "阿美尼亚",
+      "name": "Armenia",
+      "tel": "374",
+      "pinyin": "amny"
+    },
+    {
+      "short": "",
+      "chinese": "阿森松",
+      "name": "Ascension",
+      "tel": "247",
+      "pinyin": "als"
+  
+    },
+    {
+      "short": "AO",
+      "chinese": "安哥拉",
+      "name": "Angola",
+      "tel": "244",
+      "pinyin": "agl"
+  
+    },
+    {
+      "short": "AR",
+      "chinese": "阿根廷",
+      "name": "Argentina",
+      "tel": "54",
+      "pinyin": "agt"
+  
+    },
+    {
+      "short": "AT",
+      "chinese": "奥地利",
+      "name": "Austria",
+      "tel": "43",
+      "pinyin": "adl"
+  
+    },
+    {
+      "short": "AU",
+      "chinese": "澳大利亚",
+      "name": "Australia",
+      "tel": "61",
+      "pinyin": "adly"
+  
+    },
+    {
+      "short": "AZ",
+      "chinese": "阿塞拜疆",
+      "name": "Azerbaijan",
+      "tel": "994",
+      "pinyin": "asbj"
+  
+    },
+    {
+      "short": "BB",
+      "chinese": "巴巴多斯",
+      "name": "Barbados",
+      "tel": "1246",
+      "pinyin": "bbds"
+  
+    },
+    {
+      "short": "BD",
+      "chinese": "孟加拉国",
+      "name": "Bangladesh",
+      "tel": "880",
+      "pinyin": "mjlg"
+  
+    },
+    {
+      "short": "BE",
+      "chinese": "比利时",
+      "name": "Belgium",
+      "tel": "32",
+      "pinyin": "bls"
+  
+    },
+    {
+      "short": "BF",
+      "chinese": "布基纳法索",
+      "name": "Burkina-faso",
+      "tel": "226",
+      "pinyin": "bjnfs"
+  
+    },
+    {
+      "short": "BG",
+      "chinese": "保加利亚",
+      "name": "Bulgaria",
+      "tel": "359",
+      "pinyin": "bjly"
+  
+    },
+    {
+      "short": "BH",
+      "chinese": "巴林",
+      "name": "Bahrain",
+      "tel": "973",
+      "pinyin": "bl"
+  
+    },
+    {
+      "short": "BI",
+      "chinese": "布隆迪",
+      "name": "Burundi",
+      "tel": "257",
+      "pinyin": "bld"
+  
+    },
+    {
+      "short": "BJ",
+      "chinese": "贝宁",
+      "name": "Benin",
+      "tel": "229",
+      "pinyin": "bl"
+  
+    },
+    {
+      "short": "BL",
+      "chinese": "巴勒斯坦",
+      "name": "Palestine",
+      "tel": "970",
+      "pinyin": "blst"
+  
+    },
+    {
+      "short": "BM",
+      "chinese": "百慕大群岛",
+      "name": "BermudaIs.",
+      "tel": "1441",
+      "pinyin": "bmdqd"
+  
+    },
+    {
+      "short": "BN",
+      "chinese": "文莱",
+      "name": "Brunei",
+      "tel": "673",
+      "pinyin": "wl"
+  
+    },
+    {
+      "short": "BO",
+      "chinese": "玻利维亚",
+      "name": "Bolivia",
+      "tel": "591",
+      "pinyin": "blwy"
+  
+    },
+    {
+      "short": "BR",
+      "chinese": "巴西",
+      "name": "Brazil",
+      "tel": "55",
+      "pinyin": "bx"
+  
+    },
+    {
+      "short": "BS",
+      "chinese": "巴哈马",
+      "name": "Bahamas",
+      "tel": "1242",
+      "pinyin": "bhm"
+  
+    },
+    {
+      "short": "BW",
+      "chinese": "博茨瓦纳",
+      "name": "Botswana",
+      "tel": "267",
+      "pinyin": "bcwn"
+  
+    },
+    {
+      "short": "BY",
+      "chinese": "白俄罗斯",
+      "name": "Belarus",
+      "tel": "375",
+      "pinyin": "bels"
+  
+    },
+    {
+      "short": "BZ",
+      "chinese": "伯利兹",
+      "name": "Belize",
+      "tel": "501",
+      "pinyin": "blz"
+  
+    },
+    {
+      "short": "CA",
+      "chinese": "加拿大",
+      "name": "Canada",
+      "tel": "1",
+      "pinyin": "jnd"
+  
+    },
+    {
+      "short": "",
+      "chinese": "开曼群岛",
+      "name": "CaymanIs.",
+      "tel": "1345",
+      "pinyin": "kmqd"
+  
+    },
+    {
+      "short": "CF",
+      "chinese": "中非共和国",
+      "name": "CentralAfricanRepublic",
+      "tel": "236",
+      "pinyin": "zfghg"
+  
+    },
+    {
+      "short": "CG",
+      "chinese": "刚果",
+      "name": "Congo",
+      "tel": "242",
+      "pinyin": "gg"
+  
+    },
+    {
+      "short": "CH",
+      "chinese": "瑞士",
+      "name": "Switzerland",
+      "tel": "41",
+      "pinyin": "rs"
+  
+    },
+    {
+      "short": "CK",
+      "chinese": "库克群岛",
+      "name": "CookIs.",
+      "tel": "682",
+      "pinyin": "kkqd"
+  
+    },
+    {
+      "short": "CL",
+      "chinese": "智利",
+      "name": "Chile",
+      "tel": "56",
+      "pinyin": "zl"
+  
+    },
+    {
+      "short": "CM",
+      "chinese": "喀麦隆",
+      "name": "Cameroon",
+      "tel": "237",
+      "pinyin": "kml"
+  
+    },
+    {
+      "short": "CN",
+      "chinese": "中国",
+      "name": "China",
+      "tel": "86",
+      "pinyin": "zg"
+  
+    },
+    {
+      "short": "CO",
+      "chinese": "哥伦比亚",
+      "name": "Colombia",
+      "tel": "57",
+      "pinyin": "glby"
+  
+    },
+    {
+      "short": "CR",
+      "chinese": "哥斯达黎加",
+      "name": "CostaRica",
+      "tel": "506",
+      "pinyin": "gsdlj"
+  
+    },
+    {
+      "short": "CS",
+      "chinese": "捷克",
+      "name": "Czech",
+      "tel": "420",
+      "pinyin": "jk"
+  
+    },
+    {
+      "short": "CU",
+      "chinese": "古巴",
+      "name": "Cuba",
+      "tel": "53",
+      "pinyin": "gb"
+  
+    },
+    {
+      "short": "CY",
+      "chinese": "塞浦路斯",
+      "name": "Cyprus",
+      "tel": "357",
+      "pinyin": "spls"
+  
+    },
+    {
+      "short": "CZ",
+      "chinese": "捷克",
+      "name": "CzechRepublic",
+      "tel": "420",
+      "pinyin": "jk"
+  
+    },
+    {
+      "short": "DE",
+      "chinese": "德国",
+      "name": "Germany",
+      "tel": "49",
+      "pinyin": "dg"
+  
+    },
+    {
+      "short": "DJ",
+      "chinese": "吉布提",
+      "name": "Djibouti",
+      "tel": "253",
+      "pinyin": "jbt"
+  
+    },
+    {
+      "short": "DK",
+      "chinese": "丹麦",
+      "name": "Denmark",
+      "tel": "45",
+      "pinyin": "dm"
+  
+    },
+    {
+      "short": "DO",
+      "chinese": "多米尼加共和国",
+      "name": "DominicaRep.",
+      "tel": "1890",
+      "pinyin": "dmnjghg"
+  
+    },
+    {
+      "short": "DZ",
+      "chinese": "阿尔及利亚",
+      "name": "Algeria",
+      "tel": "213",
+      "pinyin": "aejly"
+  
+    },
+    {
+      "short": "EC",
+      "chinese": "厄瓜多尔",
+      "name": "Ecuador",
+      "tel": "593",
+      "pinyin": "egde"
+  
+    },
+    {
+      "short": "EE",
+      "chinese": "爱沙尼亚",
+      "name": "Estonia",
+      "tel": "372",
+      "pinyin": "asny"
+  
+    },
+    {
+      "short": "EG",
+      "chinese": "埃及",
+      "name": "Egypt",
+      "tel": "20",
+      "pinyin": "ej"
+  
+    },
+    {
+      "short": "ES",
+      "chinese": "西班牙",
+      "name": "Spain",
+      "tel": "34",
+      "pinyin": "xby"
+  
+    },
+    {
+      "short": "ET",
+      "chinese": "埃塞俄比亚",
+      "name": "Ethiopia",
+      "tel": "251",
+      "pinyin": "aseby"
+  
+    },
+    {
+      "short": "FI",
+      "chinese": "芬兰",
+      "name": "Finland",
+      "tel": "358",
+      "pinyin": "fl"
+  
+    },
+    {
+      "short": "FJ",
+      "chinese": "斐济",
+      "name": "Fiji",
+      "tel": "679",
+      "pinyin": "fj"
+  
+    },
+    {
+      "short": "FR",
+      "chinese": "法国",
+      "name": "France",
+      "tel": "33",
+      "pinyin": "fg"
+  
+    },
+    {
+      "short": "GA",
+      "chinese": "加蓬",
+      "name": "Gabon",
+      "tel": "241",
+      "pinyin": "jp"
+  
+    },
+    {
+      "short": "GB",
+      "chinese": "英国",
+      "name": "UnitedKiongdom",
+      "tel": "44",
+      "pinyin": "yg"
+  
+    },
+    {
+      "short": "GD",
+      "chinese": "格林纳达",
+      "name": "Grenada",
+      "tel": "1809",
+      "pinyin": "glnd"
+  
+    },
+    {
+      "short": "GE",
+      "chinese": "格鲁吉亚",
+      "name": "Georgia",
+      "tel": "995",
+      "pinyin": "gljy"
+  
+    },
+    {
+      "short": "GF",
+      "chinese": "法属圭亚那",
+      "name": "FrenchGuiana",
+      "tel": "594",
+      "pinyin": "fsgyn"
+  
+    },
+    {
+      "short": "GH",
+      "chinese": "加纳",
+      "name": "Ghana",
+      "tel": "233",
+      "pinyin": "jn"
+  
+    },
+    {
+      "short": "GI",
+      "chinese": "直布罗陀",
+      "name": "Gibraltar",
+      "tel": "350",
+      "pinyin": "zblt"
+  
+    },
+    {
+      "short": "GM",
+      "chinese": "冈比亚",
+      "name": "Gambia",
+      "tel": "220",
+      "pinyin": "gby"
+  
+    },
+    {
+      "short": "GN",
+      "chinese": "几内亚",
+      "name": "Guinea",
+      "tel": "224",
+      "pinyin": "jny"
+  
+    },
+    {
+      "short": "GR",
+      "chinese": "希腊",
+      "name": "Greece",
+      "tel": "30",
+      "pinyin": "xl"
+  
+    },
+    {
+      "short": "GT",
+      "chinese": "危地马拉",
+      "name": "Guatemala",
+      "tel": "502",
+      "pinyin": "wdml"
+  
+    },
+    {
+      "short": "GU",
+      "chinese": "关岛",
+      "name": "Guam",
+      "tel": "1671",
+      "pinyin": "gd"
+  
+    },
+    {
+      "short": "GY",
+      "chinese": "圭亚那",
+      "name": "Guyana",
+      "tel": "592",
+      "pinyin": "gyn"
+  
+    },
+    {
+      "short": "HK",
+      "chinese": "香港(中国)",
+      "name": "Hongkong",
+      "tel": "852",
+      "pinyin": "xgzg"
+  
+    },
+    {
+      "short": "HN",
+      "chinese": "洪都拉斯",
+      "name": "Honduras",
+      "tel": "504",
+      "pinyin": "hdls"
+  
+    },
+    {
+      "short": "HT",
+      "chinese": "海地",
+      "name": "Haiti",
+      "tel": "509",
+      "pinyin": "hd"
+  
+    },
+    {
+      "short": "HU",
+      "chinese": "匈牙利",
+      "name": "Hungary",
+      "tel": "36",
+      "pinyin": "xyl"
+  
+    },
+    {
+      "short": "ID",
+      "chinese": "印度尼西亚",
+      "name": "Indonesia",
+      "tel": "62",
+      "pinyin": "ydnxy"
+  
+    },
+    {
+      "short": "IE",
+      "chinese": "爱尔兰",
+      "name": "Ireland",
+      "tel": "353",
+      "pinyin": "ael"
+  
+    },
+    {
+      "short": "IL",
+      "chinese": "以色列",
+      "name": "Israel",
+      "tel": "972",
+      "pinyin": "ysl"
+  
+    },
+    {
+      "short": "IN",
+      "chinese": "印度",
+      "name": "India",
+      "tel": "91",
+      "pinyin": "yd"
+  
+    },
+    {
+      "short": "IQ",
+      "chinese": "伊拉克",
+      "name": "Iraq",
+      "tel": "964",
+      "pinyin": "ylk"
+  
+    },
+    {
+      "short": "IR",
+      "chinese": "伊朗",
+      "name": "Iran",
+      "tel": "98",
+      "pinyin": "yl"
+  
+    },
+    {
+      "short": "IS",
+      "chinese": "冰岛",
+      "name": "Iceland",
+      "tel": "354",
+      "pinyin": "bd"
+  
+    },
+    {
+      "short": "IT",
+      "chinese": "意大利",
+      "name": "Italy",
+      "tel": "39",
+      "pinyin": "ydl"
+  
+    },
+    {
+      "short": "",
+      "chinese": "科特迪瓦",
+      "name": "IvoryCoast",
+      "tel": "225",
+      "pinyin": "ktdw"
+  
+    },
+    {
+      "short": "JM",
+      "chinese": "牙买加",
+      "name": "Jamaica",
+      "tel": "1876",
+      "pinyin": "ymj"
+  
+    },
+    {
+      "short": "JO",
+      "chinese": "约旦",
+      "name": "Jordan",
+      "tel": "962",
+      "pinyin": "yd"
+  
+    },
+    {
+      "short": "JP",
+      "chinese": "日本",
+      "name": "Japan",
+      "tel": "81",
+      "pinyin": "rb"
+  
+    },
+    {
+      "short": "KE",
+      "chinese": "肯尼亚",
+      "name": "Kenya",
+      "tel": "254",
+      "pinyin": "kny"
+  
+    },
+    {
+      "short": "KG",
+      "chinese": "吉尔吉斯坦",
+      "name": "Kyrgyzstan",
+      "tel": "331",
+      "pinyin": "jejst"
+  
+    },
+    {
+      "short": "KH",
+      "chinese": "柬埔寨",
+      "name": "Kampuchea(Cambodia)",
+      "tel": "855",
+      "pinyin": "jpz"
+  
+    },
+    {
+      "short": "KP",
+      "chinese": "朝鲜",
+      "name": "NorthKorea",
+      "tel": "850",
+      "pinyin": "cx"
+  
+    },
+    {
+      "short": "KR",
+      "chinese": "韩国",
+      "name": "Korea",
+      "tel": "82",
+      "pinyin": "hg"
+  
+  
+    },
+    {
+      "short": "KT",
+      "chinese": "科特迪瓦共和国",
+      "name": "RepublicofIvoryCoast",
+      "tel": "225",
+      "pinyin": "ktdwghg"
+  
+    },
+    {
+      "short": "KW",
+      "chinese": "科威特",
+      "name": "Kuwait",
+      "tel": "965",
+      "pinyin": "kwt"
+  
+    },
+    {
+      "short": "KZ",
+      "chinese": "哈萨克斯坦",
+      "name": "Kazakstan",
+      "tel": "327",
+      "pinyin": "hskst"
+  
+    },
+    {
+      "short": "LA",
+      "chinese": "老挝",
+      "name": "Laos",
+      "tel": "856",
+      "pinyin": "lw"
+  
+    },
+    {
+      "short": "LB",
+      "chinese": "黎巴嫩",
+      "name": "Lebanon",
+      "tel": "961",
+      "pinyin": "lbn"
+  
+    },
+    {
+      "short": "LC",
+      "chinese": "圣卢西亚",
+      "name": "St.Lucia",
+      "tel": "1758",
+      "pinyin": "slxy"
+  
+    },
+    {
+      "short": "LI",
+      "chinese": "列支敦士登",
+      "name": "Liechtenstein",
+      "tel": "423",
+      "pinyin": "lzdsd"
+  
+    },
+    {
+      "short": "LK",
+      "chinese": "斯里兰卡",
+      "name": "SriLanka",
+      "tel": "94",
+      "pinyin": "sllk"
+  
+    },
+    {
+      "short": "LR",
+      "chinese": "利比里亚",
+      "name": "Liberia",
+      "tel": "231",
+      "pinyin": "lbly"
+  
+    },
+    {
+      "short": "LS",
+      "chinese": "莱索托",
+      "name": "Lesotho",
+      "tel": "266",
+      "pinyin": "lst"
+  
+    },
+    {
+      "short": "LT",
+      "chinese": "立陶宛",
+      "name": "Lithuania",
+      "tel": "370",
+      "pinyin": "ltw"
+  
+    },
+    {
+      "short": "LU",
+      "chinese": "卢森堡",
+      "name": "Luxembourg",
+      "tel": "352",
+      "pinyin": "lsb"
+  
+    },
+    {
+      "short": "LV",
+      "chinese": "拉脱维亚",
+      "name": "Latvia",
+      "tel": "371",
+      "pinyin": "ltwy"
+  
+    },
+    {
+      "short": "LY",
+      "chinese": "利比亚",
+      "name": "Libya",
+      "tel": "218",
+      "pinyin": "lby"
+  
+    },
+    {
+      "short": "MA",
+      "chinese": "摩洛哥",
+      "name": "Morocco",
+      "tel": "212",
+      "pinyin": "mlg"
+  
+    },
+    {
+      "short": "MC",
+      "chinese": "摩纳哥",
+      "name": "Monaco",
+      "tel": "377",
+      "pinyin": "mng"
+  
+    },
+    {
+      "short": "MD",
+      "chinese": "摩尔多瓦",
+      "name": "Moldova,Republicof",
+      "tel": "373",
+      "pinyin": "medw"
+  
+    },
+    {
+      "short": "MG",
+      "chinese": "马达加斯加",
+      "name": "Madagascar",
+      "tel": "261",
+      "pinyin": "mdjsj"
+  
+    },
+    {
+      "short": "ML",
+      "chinese": "马里",
+      "name": "Mali",
+      "tel": "223",
+      "pinyin": "ml"
+  
+    },
+    {
+      "short": "MM",
+      "chinese": "缅甸",
+      "name": "Burma",
+      "tel": "95",
+      "pinyin": "md"
+  
+    },
+    {
+      "short": "MN",
+      "chinese": "蒙古",
+      "name": "Mongolia",
+      "tel": "976",
+      "pinyin": "mg"
+  
+    },
+    {
+      "short": "MO",
+      "chinese": "澳门（中国）",
+      "name": "Macao",
+      "tel": "853",
+      "pinyin": "am zg"
+  
+    },
+    {
+      "short": "MS",
+      "chinese": "蒙特塞拉特岛",
+      "name": "MontserratIs",
+      "tel": "1664",
+      "pinyin": "mtsstd"
+  
+    },
+    {
+      "short": "MT",
+      "chinese": "马耳他",
+      "name": "Malta",
+      "tel": "356",
+      "pinyin": "met"
+  
+    },
+    {
+      "short": "",
+      "chinese": "马里亚那群岛",
+      "name": "MarianaIs",
+      "tel": "1670",
+      "pinyin": "mlynqd"
+  
+    },
+    {
+      "short": "",
+      "chinese": "马提尼克",
+      "name": "Martinique",
+      "tel": "596",
+      "pinyin": "mtnk"
+  
+    },
+    {
+      "short": "MU",
+      "chinese": "毛里求斯",
+      "name": "Mauritius",
+      "tel": "230",
+      "pinyin": "mlqs"
+  
+    },
+    {
+      "short": "MV",
+      "chinese": "马尔代夫",
+      "name": "Maldives",
+      "tel": "960",
+      "pinyin": "medf"
+  
+  
+    },
+    {
+      "short": "MW",
+      "chinese": "马拉维",
+      "name": "Malawi",
+      "tel": "265",
+      "pinyin": "mlw"
+  
+    },
+    {
+      "short": "MX",
+      "chinese": "墨西哥",
+      "name": "Mexico",
+      "tel": "52",
+      "pinyin": "mxg"
+  
+    },
+    {
+      "short": "MY",
+      "chinese": "马来西亚",
+      "name": "Malaysia",
+      "tel": "60",
+      "pinyin": "mlxy"
+  
+    },
+    {
+      "short": "MZ",
+      "chinese": "莫桑比克",
+      "name": "Mozambique",
+      "tel": "258",
+      "pinyin": "msbk"
+  
+    },
+    {
+      "short": "NA",
+      "chinese": "纳米比亚",
+      "name": "Namibia",
+      "tel": "264",
+      "pinyin": "nmby"
+  
+    },
+    {
+      "short": "NE",
+      "chinese": "尼日尔",
+      "name": "Niger",
+      "tel": "977",
+      "pinyin": "nre"
+  
+    },
+    {
+      "short": "NG",
+      "chinese": "尼日利亚",
+      "name": "Nigeria",
+      "tel": "234",
+      "pinyin": "nrly"
+  
+    },
+    {
+      "short": "NI",
+      "chinese": "尼加拉瓜",
+      "name": "Nicaragua",
+      "tel": "505",
+      "pinyin": "njlg"
+  
+    },
+    {
+      "short": "NL",
+      "chinese": "荷兰",
+      "name": "Netherlands",
+      "tel": "31",
+      "pinyin": "hl"
+  
+    },
+    {
+      "short": "NO",
+      "chinese": "挪威",
+      "name": "Norway",
+      "tel": "47",
+      "pinyin": "nw"
+  
+    },
+    {
+      "short": "NP",
+      "chinese": "尼泊尔",
+      "name": "Nepal",
+      "tel": "977",
+      "pinyin": "nbe"
+  
+    },
+    {
+      "short": "",
+      "chinese": "荷属安的列斯",
+      "name": "NetheriandsAntilles",
+      "tel": "599",
+      "pinyin": "hsadls"
+  
+    },
+    {
+      "short": "NR",
+      "chinese": "瑙鲁",
+      "name": "Nauru",
+      "tel": "674",
+      "pinyin": "nl"
+  
+    },
+    {
+      "short": "NZ",
+      "chinese": "新西兰",
+      "name": "NewZealand",
+      "tel": "64",
+      "pinyin": "xxl"
+  
+    },
+    {
+      "short": "OM",
+      "chinese": "阿曼",
+      "name": "Oman",
+      "tel": "968",
+      "pinyin": "am"
+  
+    },
+    {
+      "short": "PA",
+      "chinese": "巴拿马",
+      "name": "Panama",
+      "tel": "507",
+      "pinyin": "bnm"
+  
+    },
+    {
+      "short": "PE",
+      "chinese": "秘鲁",
+      "name": "Peru",
+      "tel": "51",
+      "pinyin": "bl"
+  
+    },
+    {
+      "short": "PF",
+      "chinese": "法属玻利尼西亚",
+      "name": "FrenchPolynesia",
+      "tel": "689",
+      "pinyin": "fsblnxy"
+  
+    },
+    {
+      "short": "PG",
+      "chinese": "巴布亚新几内亚",
+      "name": "PapuaNewCuinea",
+      "tel": "675",
+      "pinyin": "bbyxjny"
+  
+    },
+    {
+      "short": "PH",
+      "chinese": "菲律宾",
+      "name": "Philippines",
+      "tel": "63",
+      "pinyin": "flb"
+  
+    },
+    {
+      "short": "PK",
+      "chinese": "巴基斯坦",
+      "name": "Pakistan",
+      "tel": "92",
+      "pinyin": "bjst"
+  
+    },
+    {
+      "short": "PL",
+      "chinese": "波兰",
+      "name": "Poland",
+      "tel": "48",
+      "pinyin": "bl"
+  
+    },
+    {
+      "short": "PR",
+      "chinese": "波多黎各",
+      "name": "PuertoRico",
+      "tel": "1787",
+      "pinyin": "bdlg"
+  
+    },
+    {
+      "short": "PT",
+      "chinese": "葡萄牙",
+      "name": "Portugal",
+      "tel": "351",
+      "pinyin": "pty"
+  
+    },
+    {
+      "short": "PY",
+      "chinese": "巴拉圭",
+      "name": "Paraguay",
+      "tel": "595",
+      "pinyin": "blg"
+  
+    },
+    {
+      "short": "QA",
+      "chinese": "卡塔尔",
+      "name": "Qatar",
+      "tel": "974",
+      "pinyin": "kte"
+  
+    },
+    {
+      "short": "",
+      "chinese": "留尼旺",
+      "name": "Reunion",
+      "tel": "262",
+      "pinyin": "lnw"
+  
+    },
+    {
+      "short": "RO",
+      "chinese": "罗马尼亚",
+      "name": "Romania",
+      "tel": "40",
+      "pinyin": "lmny"
+  
+    },
+    {
+      "short": "RU",
+      "chinese": "俄罗斯",
+      "name": "Russia",
+      "tel": "7",
+      "pinyin": "els"
+  
+    },
+    {
+      "short": "SA",
+      "chinese": "沙特阿拉伯",
+      "name": "SaudiArabia",
+      "tel": "966",
+      "pinyin": "stalb"
+  
+    },
+    {
+      "short": "SB",
+      "chinese": "所罗门群岛",
+      "name": "SolomonIs",
+      "tel": "677",
+      "pinyin": "slmqd"
+  
+    },
+    {
+      "short": "SC",
+      "chinese": "塞舌尔",
+      "name": "Seychelles",
+      "tel": "248",
+      "pinyin": "sse"
+  
+    },
+    {
+      "short": "SD",
+      "chinese": "苏丹",
+      "name": "Sudan",
+      "tel": "249",
+      "pinyin": "sd"
+  
+    },
+    {
+      "short": "SE",
+      "chinese": "瑞典",
+      "name": "Sweden",
+      "tel": "46",
+      "pinyin": "rd"
+  
+    },
+    {
+      "short": "SG",
+      "chinese": "新加坡",
+      "name": "Singapore",
+      "tel": "65",
+      "pinyin": "xjp"
+  
+    },
+    {
+      "short": "SI",
+      "chinese": "斯洛文尼亚",
+      "name": "Slovenia",
+      "tel": "386",
+      "pinyin": "slwny"
+  
+    },
+    {
+      "short": "SK",
+      "chinese": "斯洛伐克",
+      "name": "Slovakia",
+      "tel": "421",
+      "pinyin": "slfk"
+  
+    },
+    {
+      "short": "SL",
+      "chinese": "塞拉利昂",
+      "name": "SierraLeone",
+      "tel": "232",
+      "pinyin": "slla"
+  
+    },
+    {
+      "short": "SM",
+      "chinese": "圣马力诺",
+      "name": "SanMarino",
+      "tel": "378",
+      "pinyin": "smln"
+  
+    },
+    {
+      "short": "",
+      "chinese": "东萨摩亚(美)",
+      "name": "SamoaEastern",
+      "tel": "684",
+      "pinyin": "dsmym"
+  
+    },
+    {
+      "short": "",
+      "chinese": "西萨摩亚",
+      "name": "SanMarino",
+      "tel": "685",
+      "pinyin": "xsmy"
+  
+    },
+    {
+      "short": "SN",
+      "chinese": "塞内加尔",
+      "name": "Senegal",
+      "tel": "221",
+      "pinyin": "snje"
+  
+    },
+    {
+      "short": "SO",
+      "chinese": "索马里",
+      "name": "Somali",
+      "tel": "252",
+      "pinyin": "sml"
+  
+    },
+    {
+      "short": "SR",
+      "chinese": "苏里南",
+      "name": "Suriname",
+      "tel": "597",
+      "pinyin": "sln"
+  
+    },
+    {
+      "short": "ST",
+      "chinese": "圣多美和普林西比",
+      "name": "SaoTomeandPrincipe",
+      "tel": "239",
+      "pinyin": "sdmhplxb"
+  
+    },
+    {
+      "short": "SV",
+      "chinese": "萨尔瓦多",
+      "name": "EISalvador",
+      "tel": "503",
+      "pinyin": "sewd"
+  
+    },
+    {
+      "short": "SY",
+      "chinese": "叙利亚",
+      "name": "Syria",
+      "tel": "963",
+      "pinyin": "xly"
+  
+    },
+    {
+      "short": "SZ",
+      "chinese": "斯威士兰",
+      "name": "Swaziland",
+      "tel": "268",
+      "pinyin": "swsl"
+  
+    },
+    {
+      "short": "TD",
+      "chinese": "乍得",
+      "name": "Chad",
+      "tel": "235",
+      "pinyin": "zd"
+  
+    },
+    {
+      "short": "TG",
+      "chinese": "多哥",
+      "name": "Togo",
+      "tel": "228",
+      "pinyin": "dg"
+  
+    },
+    {
+      "short": "TH",
+      "chinese": "泰国",
+      "name": "Thailand",
+      "tel": "66",
+      "pinyin": "tg"
+  
+    },
+    {
+      "short": "TJ",
+      "chinese": "塔吉克斯坦",
+      "name": "Tajikstan",
+      "tel": "992",
+      "pinyin": "tjkst"
+  
+    },
+    {
+      "short": "TM",
+      "chinese": "土库曼斯坦",
+      "name": "Turkmenistan",
+      "tel": "993",
+      "pinyin": "tkmst"
+  
+    },
+    {
+      "short": "TN",
+      "chinese": "突尼斯",
+      "name": "Tunisia",
+      "tel": "216",
+      "pinyin": "tns"
+  
+    },
+    {
+      "short": "TO",
+      "chinese": "汤加",
+      "name": "Tonga",
+      "tel": "676",
+      "pinyin": "tj"
+  
+    },
+    {
+      "short": "TR",
+      "chinese": "土耳其",
+      "name": "Turkey",
+      "tel": "90",
+      "pinyin": "teq"
+  
+    },
+    {
+      "short": "TT",
+      "chinese": "特立尼达和多巴哥",
+      "name": "TrinidadandTobago",
+      "tel": "1809",
+      "pinyin": "tlndhdbg"
+  
+    },
+    {
+      "short": "TW",
+      "chinese": "台湾（中国）",
+      "name": "Taiwan",
+      "tel": "886",
+      "pinyin": "twzg"
+  
+    },
+    {
+      "short": "TZ",
+      "chinese": "坦桑尼亚",
+      "name": "Tanzania",
+      "tel": "255",
+      "pinyin": "tsny"
+  
+    },
+    {
+      "short": "UA",
+      "chinese": "乌克兰",
+      "name": "Ukraine",
+      "tel": "380",
+      "pinyin": "wkl"
+  
+    },
+    {
+      "short": "UG",
+      "chinese": "乌干达",
+      "name": "Uganda",
+      "tel": "256",
+      "pinyin": "wgd"
+  
+    },
+    {
+      "short": "US",
+      "chinese": "美国",
+      "name": "UnitedStatesofAmerica",
+      "tel": "1",
+      "pinyin": "mg"
+  
+    },
+    {
+      "short": "UY",
+      "chinese": "乌拉圭",
+      "name": "Uruguay",
+      "tel": "598",
+      "pinyin": "wlg"
+  
+    },
+    {
+      "short": "UZ",
+      "chinese": "乌兹别克斯坦",
+      "name": "Uzbekistan",
+      "tel": "233",
+      "pinyin": "wzbkst"
+  
+    },
+    {
+      "short": "VC",
+      "chinese": "圣文森特岛",
+      "name": "SaintVincent",
+      "tel": "1784",
+      "pinyin": "swstd"
+  
+    },
+    {
+      "short": "VE",
+      "chinese": "委内瑞拉",
+      "name": "Venezuela",
+      "tel": "58",
+      "pinyin": "wnrl"
+  
+    },
+    {
+      "short": "VN",
+      "chinese": "越南",
+      "name": "Vietnam",
+      "tel": "84",
+      "pinyin": "yn"
+  
+    },
+    {
+      "short": "YE",
+      "chinese": "也门",
+      "name": "Yemen",
+      "tel": "967",
+      "pinyin": "ym"
+  
+    },
+    {
+      "short": "YU",
+      "chinese": "南斯拉夫",
+      "name": "Yugoslavia",
+      "tel": "381",
+      "pinyin": "nslf"
+  
+    },
+    {
+      "short": "ZA",
+      "chinese": "南非",
+      "name": "SouthAfrica",
+      "tel": "27",
+      "pinyin": "nf"
+  
+    },
+    {
+      "short": "ZM",
+      "chinese": "赞比亚",
+      "name": "Zambia",
+      "tel": "260",
+      "pinyin": "zby"
+  
+    },
+    {
+      "short": "ZR",
+      "chinese": "扎伊尔",
+      "name": "Zaire",
+      "tel": "243",
+      "pinyin": "zye"
+  
+    },
+    {
+      "short": "ZW",
+      "chinese": "津巴布韦",
+      "name": "Zimbabwe",
+      "tel": "263",
+      "pinyin": "jbbw"
+  
+    }
+  ]
+  
+  

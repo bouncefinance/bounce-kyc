@@ -4,16 +4,36 @@ import { TextInput, TimeInput, Radio, Select, Button } from '../components/Table
 
 const requireList = ['auctiontype', 'amountoftoken', 'pricepertoken', 'allocationperwallet', 'auctiontime', 'teamwallet', 'ifkyc', 'ifwhitelist']
 
-export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data }) {
+export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
-        setTitle('Auction ')
+        setTitle({
+            title: 'Auction',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information',
+                onClick: () => { return setCurStep(1) }
+            }, {
+                name: 'Details',
+                onClick: () => { return setCurStep(2) }
+            }, {
+                name: 'Team',
+                onClick: () => { return setCurStep(3) }
+            }, {
+                name: 'Token metrics',
+                onClick: () => { return setCurStep(4) }
+            }, {
+                name: 'Auction',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {
         const arr = requireList.filter(item => {
-            return !step5Data[item]
+            return step5Data[item] === null
         })
         if (arr.length === 0) {
             setIsNext(true)
@@ -22,9 +42,13 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
         }
     }, [step5Data])
 
-    const handelInputChange = (key, value) => {
+    const handelInputChange = (key, data) => {
         const obj = { ...step5Data }
-        obj[key] = value
+        if (data.isRequire && !data.isError) {
+            obj[key] = data.value
+        } else {
+            obj[key] = null
+        }
         setStep5Data(obj)
     }
 
@@ -35,23 +59,32 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                 label='Auction type'
                 width='600px'
                 options={[
-                    { name: 'Fixed swap auction' }
+                    { name: 'Fixed swap auction' },
+                    { name: 'Sealed-bid auction' },
+                    { name: 'Dutch auction' },
                 ]}
                 onChange={(val) => {
-                    console.log(val)
-                    console.log(val.name)
-                    handelInputChange('auctiontype', val.name)
+                    handelInputChange('auctiontype', {
+                        isRequire: true,
+                        isError: false,
+                        value: val.name
+                    })
                 }}
             />
 
             <TextInput
-                label='Amount of token'
-                placeholder='Enter your Total supply'
+                label='Amount of tokens for auction'
+                placeholder='Enter the amount of token you want to auction'
                 width='600px'
                 defaultVal={step5Data.amountoftoken}
                 isRequire={true}
-                onValChange={(val) => {
-                    handelInputChange('amountoftoken', val)
+                isNumber={true}
+                onValueChange={(val) => {
+                    handelInputChange('amountoftoken', {
+                        isRequire: true,
+                        isError: false,
+                        value: val.value
+                    })
                 }}
             />
 
@@ -61,7 +94,9 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                 width='600px'
                 defaultVal={step5Data.pricepertoken}
                 isRequire={true}
-                onValChange={(val) => {
+                isNumber={true}
+                unit='USDT'
+                onValueChange={(val) => {
                     handelInputChange('pricepertoken', val)
                 }}
             />
@@ -73,7 +108,11 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                     { name: 'ETH' },
                 ]}
                 onChange={(val) => {
-                    handelInputChange('allocationperwallet', val.name)
+                    handelInputChange('allocationperwallet', {
+                        isRequire: true,
+                        isError: false,
+                        value: val.name
+                    })
                 }}
             />
 
@@ -81,7 +120,11 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                 label='Auction time'
                 width='600px'
                 onChange={(time) => {
-                    handelInputChange('auctiontime', String(time.seconds))
+                    handelInputChange('auctiontime', {
+                        isRequire: true,
+                        isError: false,
+                        value: String(time.seconds)
+                    })
                 }}
             />
 
@@ -89,11 +132,11 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
 
             <TextInput
                 label='Team wallet to receive auction fund'
-                placeholder='Enter token lockup schedule'
+                placeholder='Enter team wallet address to receive fund'
                 width='600px'
                 defaultVal={step5Data.teamwallet}
                 isRequire={true}
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('teamwallet', val)
                 }}
             />
@@ -107,8 +150,11 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                         { name: 'No', value: 0 },
                     ]}
                     onChange={(val) => {
-
-                        handelInputChange('ifkyc', val.value)
+                        handelInputChange('ifkyc', {
+                            isRequire: true,
+                            isError: false,
+                            value: val.value
+                        })
                     }}
                 />
 
@@ -120,7 +166,11 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                         { name: 'No', value: 0 },
                     ]}
                     onChange={(val) => {
-                        handelInputChange('ifwhitelist', val.value)
+                        handelInputChange('ifwhitelist', {
+                            isRequire: true,
+                            isError: false,
+                            value: val.value
+                        })
                     }}
                 />
             </div>

@@ -7,7 +7,7 @@ const SocialConfig = ['Twitter', 'Medium', 'Telegram', 'Facebook']
 const requireList = ['proname', 'prowebsite', 'protheme', 'whitepaperlink', 'githublink']
 
 
-export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data }) {
+export default function Step1 ({ setCurStep, setTitle, step1Data, setStep1Data }) {
     const history = useHistory()
     const [socialLink, setSocialLink] = useState([])
     const [isNext, setIsNext] = useState(false)
@@ -17,12 +17,20 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
     }
 
     useEffect(() => {
-        setTitle('General information')
+        setTitle({
+            title: 'General information',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {
         const arr = requireList.filter(item => {
-            return !step1Data[item]
+            return step1Data[item] === null || step1Data[item] === ''
         })
         if (arr.length === 0) {
             setIsNext(true)
@@ -42,9 +50,13 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
         setSocialLink(list)
     }
 
-    const handelInputChange = (key, value) => {
+    const handelInputChange = (key, data) => {
         const obj = { ...step1Data }
-        obj[key] = value
+        if (data.isRequire && !data.isError) {
+            obj[key] = data.value
+        } else {
+            obj[key] = null
+        }
         setStep1Data(obj)
     }
 
@@ -58,9 +70,10 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 defaultVal={step1Data.proname}
                 isRequire={true}
                 width='600px'
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('proname', val)
                 }}
+                maxLength={20}
             />
 
             <TextInput
@@ -69,29 +82,39 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 defaultVal={step1Data.prowebsite}
                 isRequire={true}
                 width='600px'
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('prowebsite', val)
+                }}
+                maxLength={100}
+                REG_rule={{
+                    reg: /http(s)?:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/,
+                    msg: 'Please enter a valid website address'
                 }}
             />
 
             <TextInput
                 label='Theme'
-                placeholder='Enter your project theme'
+                placeholder='For Example: Defi , Public Chain'
                 defaultVal={step1Data.protheme}
                 isRequire={true}
                 width='600px'
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('protheme', val)
                 }}
             />
 
             <TextInput
                 label='Whitepaper link'
-                placeholder='Paste your project link'
+                placeholder=' Enter your whitepaper link'
                 defaultVal={step1Data.whitepaperlink}
                 isRequire={true}
                 width='600px'
-                onValChange={(val) => {
+                REG_rule={{
+                    reg: /http(s)?:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/,
+                    msg: 'Please enter a standard Whitepaper link'
+                }}
+                maxLength={100}
+                onValueChange={(val) => {
                     handelInputChange('whitepaperlink', val)
                 }}
             />
@@ -102,7 +125,13 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 defaultVal={step1Data.githublink}
                 isRequire={true}
                 width='600px'
-                onValChange={(val) => {
+                maxLength={100}
+                REG_rule={{
+                    reg: /http(s)?:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/,
+                    msg: 'Please enter a standard GitHub address'
+                }}
+
+                onValueChange={(val) => {
                     handelInputChange('githublink', val)
                 }}
             />
@@ -115,7 +144,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                     placeholder={`Paste ${item} link`}
                     defaultVal={step1Data[item]}
                     width='600px'
-                    onValChange={(val) => {
+                    onValueChange={(val) => {
                         const name = String(item).toLowerCase()
                         handelInputChange(name, val)
                     }}

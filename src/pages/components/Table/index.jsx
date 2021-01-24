@@ -1,4 +1,4 @@
-import Form from './Form'
+import { Form } from './Form'
 import { TextInput, TextAreaInput, TimeInput } from './Input'
 import { Radio } from './Check'
 import { Button } from './Button'

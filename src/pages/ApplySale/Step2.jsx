@@ -3,9 +3,9 @@ import { Step2Styled } from './styled'
 import { TextInput, Button } from '../components/Table'
 
 
-const requireList = ['prosummary', 'techhighlight', 'architecture']
+const requireList = ['prosummary', 'techhighlight']
 
-export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data }) {
+export default function Step2 ({ setCurStep, setTitle, step2Data, setStep2Data }) {
 
 
     const [isNext, setIsNext] = useState(false)
@@ -15,7 +15,18 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
     }
 
     useEffect(() => {
-        setTitle('Details')
+        setTitle({
+            title: 'Details',
+            crumbsList: [{
+                name: 'Apply Certified Sales'
+            }, {
+                name: 'General information',
+                onClick: () => { return setCurStep(1) }
+            }, {
+                name: 'Details',
+                active: true
+            }]
+        })
     }, [])
 
     useEffect(() => {
@@ -29,9 +40,13 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
         }
     }, [step2Data])
 
-    const handelInputChange = (key, value) => {
+    const handelInputChange = (key, data) => {
         const obj = { ...step2Data }
-        obj[key] = value
+        if (data.isRequire && !data.isError) {
+            obj[key] = data.value
+        } else {
+            obj[key] = null
+        }
         setStep2Data(obj)
     }
 
@@ -39,23 +54,25 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
         <Step2Styled>
             <TextInput
                 label='Project Summary'
-                placeholder='Enter your project Summary'
+                placeholder='Enter your project Summary (Limit to 100 characters)'
                 width='600px'
                 marginTop='0px'
                 defaultVal={step2Data.prosummary}
                 isRequire={true}
-                onValChange={(val) => {
+                maxLength={100}
+                onValueChange={(val) => {
                     handelInputChange('prosummary', val)
                 }}
             />
 
             <TextInput
                 label='Technical highlight'
-                placeholder='Enter your project Technical highlight'
+                placeholder='Enter your project Technical highlight(Limit to 500 characters)'
                 width='600px'
+                maxLength={500}
                 defaultVal={step2Data.techhighlight}
                 isRequire={true}
-                onValChange={(val) => {
+                onValueChange={(val) => {
                     handelInputChange('techhighlight', val)
                 }}
             />
@@ -65,8 +82,9 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
                 placeholder='Enter your architecture'
                 width='600px'
                 defaultVal={step2Data.architecture}
-                isRequire={true}
-                onValChange={(val) => {
+                isRequire={false}
+                maxLength={500}
+                onValueChange={(val) => {
                     handelInputChange('architecture', val)
                 }}
             />
