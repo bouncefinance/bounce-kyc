@@ -4,7 +4,7 @@ import { TextInput, TextAreaInput, Button, Upload } from '../components/Table'
 
 const requireList = ['contactemail', 'additionalinfo', 'prologourl']
 
-export default function Step6({ setCurStep, setTitle, step6Data, setStep6Data, handelSubmit }) {
+export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, handelSubmit }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
@@ -13,15 +13,20 @@ export default function Step6({ setCurStep, setTitle, step6Data, setStep6Data, h
             crumbsList: [{
                 name: 'Apply Certified Sales'
             }, {
-                name: 'General information'
+                name: 'General information',
+                onClick: () => { return setCurStep(1) }
             }, {
-                name: 'Details'
+                name: 'Details',
+                onClick: () => { return setCurStep(2) }
             }, {
-                name: 'Team'
+                name: 'Team',
+                onClick: () => { return setCurStep(3) }
             }, {
-                name: 'Token metrics'
+                name: 'Token metrics',
+                onClick: () => { return setCurStep(4) }
             }, {
-                name: 'Auction'
+                name: 'Auction',
+                onClick: () => { return setCurStep(5) }
             }, {
                 name: 'Additional information',
                 active: true
@@ -40,9 +45,13 @@ export default function Step6({ setCurStep, setTitle, step6Data, setStep6Data, h
         }
     }, [step6Data])
 
-    const handelInputChange = (key, value) => {
+    const handelInputChange = (key, data) => {
         const obj = { ...step6Data }
-        obj[key] = value
+        if (data.isRequire && !data.isError) {
+            obj[key] = data.value
+        } else {
+            obj[key] = null
+        }
         setStep6Data(obj)
     }
 
@@ -54,18 +63,23 @@ export default function Step6({ setCurStep, setTitle, step6Data, setStep6Data, h
                 width='600px'
                 defaultVal={step6Data.contactemail}
                 isRequire={true}
-                onValChange={(val) => {
+                REG_rule={{
+                    reg: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+                    msg: 'Please enter a valid email address'
+                }}
+                onValueChange={(val) => {
                     handelInputChange('contactemail', val)
                 }}
             />
 
-            <TextAreaInput
+            <TextInput
                 label='Additional information'
                 placeholder='Enter amount of token'
                 width='600px'
                 defaultVal={step6Data.additionalinfo}
                 isRequire={true}
-                onValChange={(val) => {
+                maxLength={200}
+                onValueChange={(val) => {
                     handelInputChange('additionalinfo', val)
                 }}
             />
@@ -75,8 +89,11 @@ export default function Step6({ setCurStep, setTitle, step6Data, setStep6Data, h
                 width='600px'
                 desc='Supports JPG, PNG, JPEG2000, GIF, no more than 100MB, 262*262 Reccomended'
                 successCallBack={(path) => {
-                    console.log(path)
-                    handelInputChange('prologourl', path || null)
+                    handelInputChange('prologourl', {
+                        isRequire: true,
+                        isError: false,
+                        value: path
+                    })
                 }} />
 
             <div className="btn_group">
