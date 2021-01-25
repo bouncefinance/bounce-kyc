@@ -201,7 +201,7 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
           <Button type='white' value='Visit Project' width='168px' onClick={() => {
             // history.push(`/learn-more/${poolId}`)
           }}/>
-          {!myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
+          {isVote && myVotes && new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
             // history.push(`/certified-sales/${poolId}`)
             onCliam()
           }}/>}
