@@ -65,7 +65,6 @@ export default function Index() {
                 window.localStorage.setItem('KYC_STATUS', 0)
             }
         }).catch(err => {
-            console.log(err)
             window.localStorage.setItem('KYC_STATUS', 0)
         })
     }
@@ -81,7 +80,7 @@ export default function Index() {
                         {headerMenu.map((item, index) => {
                             return <li
                                 key={index}
-                                className={item.route && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
+                                className={item.route && curTab && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
                                 onClick={() => {
                                     if (item.route) {
                                         history.push(item.route)
