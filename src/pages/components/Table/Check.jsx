@@ -16,11 +16,14 @@ export const Radio = ({ label, width, onChange, options = [], defaultIndex = 0 }
 
             <ul>
                 {options.map((item, index) => {
-                    return <li key={index} onClick={() => {
-                        setCurSel(index)
-                    }}>
+                    return <li
+                        key={index}
+                        onClick={() => {
+                            setCurSel(index)
+                        }}>
                         <img src={curSel === index ? icon_radio_sel : icon_radio} alt="" />
                         <span>{item.name}</span>
+                        {item.append && curSel === index && item.append}
                     </li>
                 })}
             </ul>

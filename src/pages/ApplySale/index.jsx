@@ -29,7 +29,7 @@ export default function Index() {
     const [modalStatus, setModalStatus] = useState(initStatus)
     const { account, library, chainId, active } = useActiveWeb3React()
     const { dispatch } = useContext(myContext)
-    const [curStep, setCurStep] = useState(1)
+    const [curStep, setCurStep] = useState(5)
     const [title, setTitle] = useState({
         title: 'Apply Certified Sales',
         crumbsList: [{

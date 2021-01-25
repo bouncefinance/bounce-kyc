@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { InputStyled, InputAreaStyled, TimeInputStyled } from './styled'
+import { InputStyled, AmountStyled, TimeInputStyled } from './styled'
 
 export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, maxLength, disabled, defaultVal, placeholder, width, minHeight, marginTop, label, onChange, onValChange, onValueChange, isRequire = false, bottom }) => {
     const [val, setVal] = useState('')
@@ -13,6 +13,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
     }, [defaultVal])
 
     useEffect(() => {
+        if(String(val).trim()==='') return
         onValueChange && onValueChange({
             name: name,
             value: val,
@@ -138,53 +139,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
     )
 }
 
-export const TextAreaInput = ({ REG_rule, name, defaultVal, placeholder, width, height, marginTop, label, onChange, onValChange, isRequire }) => {
-    const [val, setVal] = useState('')
-
-    useEffect(() => {
-        if (!defaultVal) return
-        setVal(defaultVal)
-    }, [defaultVal])
-
-    const regMatch = (val) => {
-        if (REG_rule) {
-            console.log(REG_rule)
-        }
-        return true
-    }
-
-    return (
-        <InputAreaStyled
-            width={width}
-            height={height}
-            marginTop={marginTop}
-        >
-            {label && <p>
-                {label}
-            </p>}
-            <textarea
-                name={name}
-                cols="30"
-                rows="10"
-                value={val}
-                placeholder={placeholder}
-                onChange={(e) => {
-                    const val = String(e.target.value).trim()
-                    if (!regMatch(val)) return
-                    setVal(val)
-                    if (isRequire && val === '') {
-                        onValChange && onValChange(null)
-                    } else {
-                        onValChange && onValChange(val)
-                    }
-                    onChange && onChange(e)
-                }}
-            />
-        </InputAreaStyled>
-    )
-}
-
-export const TimeInput = ({ label, width, marginTop, onChange }) => {
+export const TimeInput = ({ label, width, marginTop, onChange, defaultVal }) => {
     const [days, setDays] = useState('')
     const [hours, setHours] = useState('')
     const [minutes, setMinutes] = useState('')
@@ -203,12 +158,26 @@ export const TimeInput = ({ label, width, marginTop, onChange }) => {
             seconds: getSeconds(days, hours, minutes),
             timestamp: getSeconds(days, hours, minutes) * 1000,
             isRequire: true,
-            isError: err
+            isError: err,
+            value: getSeconds(days, hours, minutes)
         }
 
 
         onChange && onChange(obj)
     }, [days, hours, minutes])
+
+    useEffect(() => {
+        if (!defaultVal) return
+        console.log(defaultVal)
+        const day = parseInt(defaultVal / (24 * 60 * 60))
+        const hour = parseInt((defaultVal / (60 * 60))) % 24
+        const minute = parseInt(defaultVal / 60) % 60
+
+        day && setDays(day)
+        hour && setHours(hour)
+        minute && setMinutes(minute)
+
+    }, [])
 
     const getSeconds = (days = 0, hours = 0, minutes = 0) => {
         const s1 = days * 24 * 60 * 60
@@ -247,7 +216,7 @@ export const TimeInput = ({ label, width, marginTop, onChange }) => {
                 val = parseFloat(val).toString()
                 if (val !== 'NaN') {
                     if (val > 23) {
-                        val = 24
+                        val = 23
                     } else if (val < 1) {
                         val = 0
                     }
@@ -274,4 +243,46 @@ export const TimeInput = ({ label, width, marginTop, onChange }) => {
 
         {isError && <p className="error_msg">5 minutes minimum input</p>}
     </TimeInputStyled>
+}
+
+export const AmountInput = ({ placeholder, width, defaultVal, onChange, maxValue }) => {
+    const [inputVal, setInputVal] = useState(defaultVal || '')
+    const [isError, setIsError] = useState(false)
+    const [errMsg, setErrmsg] = useState('')
+
+    useEffect(() => {
+        onChange && onChange({
+            isRequire: true,
+            isError: isError,
+            value: inputVal
+        })
+    }, [inputVal])
+
+    return <AmountStyled
+        width={width || '100px'}
+    >
+        <input
+            type="number"
+            value={inputVal}
+            className={isError ? 'error' : ''}
+            placeholder={placeholder}
+            onChange={(e) => {
+                let val = e.target.value
+                if (maxValue && parseFloat(val) > maxValue) {
+                    val = maxValue
+                }
+                setInputVal(val)
+            }}
+
+            onBlur={(e) => {
+                const val = e.target.value
+                if (String(val).trim() === '') {
+                    setIsError(true)
+                    setErrmsg('Please Enter')
+                }
+            }}
+        />
+
+        {isError && <p className='errMsg'>{errMsg}</p>}
+    </AmountStyled>
 }

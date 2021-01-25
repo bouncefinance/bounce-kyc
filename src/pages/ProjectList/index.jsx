@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import { ProjectListStyle } from './styled'
 import Card from '../CertifiedSales/Card'
 import { useVoteList } from "../CertifiedSales/hooks";
@@ -7,25 +8,27 @@ import loading from '../../assets/icons/loading.svg'
 
 const proTabs = [{
   status: 'Active',
-  name: 'Active Projects'
+  name: 'Active Votings',
+  route: '/project-voting-board/active'
 }, {
   status: 'Close',
-  name: 'Closed Projects'
+  name: 'Closed Votings',
+  route: '/project-voting-board/close'
 }]
 
 export default function Index() {
-
+  const history = useHistory()
+  const { type } = useParams()
   const { list } = useVoteList()
   const [curPro, setCurPro] = useState(0)
-  console.log('list', list)
 
   useEffect(() => {
     console.log(list)
   }, [list])
 
   const renderProList = (proTab) => {
-    switch (proTab) {
-      case 'Active Projects':
+    switch (type) {
+      case 'active':
         const activePools = list ? list.filter(item => {
           return item.status === 'Active'
         }) : null
@@ -34,25 +37,29 @@ export default function Index() {
           {!activePools || activePools.length === 0 ? (
             <EmptyLayout>
               <img src={loading} alt="" />
-              <p>{Array.isArray(activePools) && activePools.length === 0 ? 'No sales now Please check back later' : 'Sales are loading ... Please wait'}</p>
+              <p>{Array.isArray(activePools) && activePools.length === 0 ? 'Coming Soon ...' : 'Sales are loading ... Please wait'}</p>
             </EmptyLayout>
           )
             :
-            activePools.map(item => {
+            activePools.map((item, index) => {
               return (
-                <Card isVote pool={item} progress={{
-                  value: '200 BOT',
-                  total: 'Success',
-                  plan: 1,
-                  status: 'success'
-                }}
+                <Card
+                  key={index}
+                  isVote
+                  pool={item}
+                  progress={{
+                    value: '200 BOT',
+                    total: 'Success',
+                    plan: 1,
+                    status: 'success'
+                  }}
                   status='proList-Active'
                 />
               )
             })}
         </>
 
-      case 'Closed Projects':
+      case 'close':
         const closedPools = list ? list.filter(item => {
           return item.status === 'Failed' || item.status === 'Success'
         }) : null
@@ -90,6 +97,7 @@ export default function Index() {
             return <li
               key={index}
               onClick={() => {
+                history.push(item.route)
                 setCurPro(index)
               }}
               className={curPro === index ? `active ${item.status}` : item.status}
