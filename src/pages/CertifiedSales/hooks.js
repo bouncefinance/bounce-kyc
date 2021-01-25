@@ -99,7 +99,7 @@ export const usePoolList = () => {
             }
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-            console.log('pool',pool)
+            // console.log('pool',pool)
             pools = pools.concat(pool)
             setList(pools)
           })

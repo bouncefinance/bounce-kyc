@@ -159,7 +159,7 @@ export const TimeInput = ({ label, width, marginTop, onChange, defaultVal }) => 
             timestamp: getSeconds(days, hours, minutes) * 1000,
             isRequire: true,
             isError: err,
-            value: getSeconds(days, hours, minutes)
+            value: String(getSeconds(days, hours, minutes))
         }
 
 
