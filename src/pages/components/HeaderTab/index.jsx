@@ -74,7 +74,7 @@ export default function Index() {
         <HeaderTabStyled>
             <div className="container">
                 <div className="left">
-                    <img style={{ cursor: 'pointer' }} onClick={() => { history.push('/') }} src={logo_black} alt="bounce logo" />
+                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={logo_black} alt="bounce logo" />
                 </div>
                 <div className="right">
                     <ul>
