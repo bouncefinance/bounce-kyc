@@ -7,7 +7,8 @@ const API_HOST = {
     queryKycByAccount: HOST + '/api/v1/queryuserinfobyaccount',
     applySale: HOST + '/api/v1/applysaleinfo',
     queryProInfoById: HOST + '/api/v1/applysaleinfoquerybyid',
-    getOnlineURL: HOST + '/api/v1/filedownload'
+    getOnlineURL: HOST + '/api/v1/filedownload',
+    queryProInfoByName: HOST + '/api/v1/filedownload',
 }
 
 export default API_HOST
