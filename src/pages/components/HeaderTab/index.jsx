@@ -82,9 +82,7 @@ export default function Index() {
                                 key={index}
                                 className={item.route && curTab && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
                                 onClick={() => {
-                                    if (item.route) {
-                                        history.push(item.route)
-                                    } else if (item.isConfirm) {
+                                    if (item.isConfirm) {
                                         dispatch({
                                             type: 'MODAL',
                                             value: {
@@ -102,6 +100,8 @@ export default function Index() {
                                                 }
                                             }
                                         })
+                                    } else if (item.route) {
+                                        history.push(item.route)
                                     }
                                     setCurTab(item.route)
                                 }}>
