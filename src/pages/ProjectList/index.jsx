@@ -20,13 +20,13 @@ export default function Index() {
   const history = useHistory()
   const { type } = useParams()
   const { list } = useVoteList()
-  const [curPro, setCurPro] = useState(0)
+  const [curPro, setCurPro] = useState(type === 'close' ? 1 : 0)
 
   useEffect(() => {
     console.log(list)
   }, [list])
 
-  const renderProList = (proTab) => {
+  const renderProList = () => {
     switch (type) {
       case 'active':
         const activePools = list ? list.filter(item => {

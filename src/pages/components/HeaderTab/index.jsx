@@ -18,6 +18,12 @@ export default function Index() {
     const { active, account } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined')
 
+    useEffect(() => {
+        const width = window.document.documentElement.clientWidth
+        if(width<750){
+            alert('Please use desktop version! Phone version coming soon')
+        }
+    }, [])
 
     useEffect(() => {
         if (!account) return

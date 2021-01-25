@@ -274,7 +274,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
                         <Passage
                             title='Requirement'
-                            desc={pool.proInfo.ifkyc === 1 ? 'KYC' : 'No Limit '} />
+                            desc={(pool.proInfo.ifkyc === 0 && pool.proInfo.ifwhitelist === 0) ? 'None' : `${pool.proInfo.ifkyc === 1 ? 'KYC /' : ''} ${pool.proInfo.ifwhitelist === 1 ? 'White List ' : ''}`} />
                     </div>
                 </div>
 
