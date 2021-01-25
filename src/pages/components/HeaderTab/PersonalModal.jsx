@@ -16,7 +16,7 @@ export default function PersonalModal({ show = false, userName }) {
 
     const {list} = useVoteList()
 
-    const myProject = list && list.filter(item => { return  item.creator.toLowerCase() === account.toLowerCase()})[0]
+    const myProject = list && list.filter(item => { return item.status === 'Active' &&  item.creator.toLowerCase() === account.toLowerCase()})[0]
     console.log('myProject',myProject)
 
     const { authToken } = state;

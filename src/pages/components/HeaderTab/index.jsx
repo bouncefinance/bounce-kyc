@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { HeaderTabStyled } from './styled'
-import { useWeb3React } from "@web3-react/core";
 import logo_black from '../../../assets/logo/logo-black.svg'
 import { headerMenu } from './config'
 import { useHistory } from 'react-router-dom'
@@ -10,7 +9,6 @@ import { Button } from '../Table'
 import axios from 'axios'
 import HOST_API from '../../../config/request_api'
 import { useActiveWeb3React } from "../../../web3";
-import {useVoteList} from "../../CertifiedSales/hooks";
 
 
 export default function Index() {

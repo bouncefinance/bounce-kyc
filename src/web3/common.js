@@ -1,14 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import bounceERC20 from '../web3/abi/bounceERC20.json'
 import { useActiveWeb3React } from "./index";
 import { getContract } from "../web3";
 import { getBotAddress, getUSDTAddress, getWBTCAddress, getYFIAddress } from "./address";
-import { isGreaterThan } from "../utils/common";
-import BigNumber from "bignumber.js";
 import Web3 from 'web3'
-import { mainContext } from '../reducer'
-import { HANDLE_SHOW_CONNECT_MODAL } from "../const";
-import { weiToNum } from "../utils/numberTransform";
 import { TokenFrame } from "../components/common/Layout";
 import icon_usdt from '../assets/icons/icon-usdt.png'
 import bounce_token from '../assets/icons/bounce_token.png'
