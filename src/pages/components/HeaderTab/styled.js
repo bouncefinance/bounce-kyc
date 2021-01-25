@@ -56,10 +56,11 @@ export const PerModalStyled = styled.div`
     position: absolute;
     right: 0;
     top: 80px;
-    width:　220px;
+    width: 220px;
     border: 1px solid #EAEAEA;
     background-color: #fff;
     user-select: none;
+    z-index: 99;
 
     .account{
         padding: 12px 24px;

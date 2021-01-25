@@ -27,13 +27,13 @@ export function BOUNCE_PRO(chainId) {
 export function BOUNCE_PRO_VOTING(chainId) {
   switch (chainId) {
     case 1:
-      return '0x300C7ED77641C7589e7CB86Dd4EA95B2ef90C3F9'
+      return '0x4c3FD03BC42219Ee2A0b98be8bd418D8E957F1DE'
     case 4:
       return '0x300C7ED77641C7589e7CB86Dd4EA95B2ef90C3F9'
     case 56:
-      return '0x300C7ED77641C7589e7CB86Dd4EA95B2ef90C3F9'
+      return '0x4c3FD03BC42219Ee2A0b98be8bd418D8E957F1DE'
     default:
-      return '0x300C7ED77641C7589e7CB86Dd4EA95B2ef90C3F9'
+      return '0x4c3FD03BC42219Ee2A0b98be8bd418D8E957F1DE'
   }
 }
 

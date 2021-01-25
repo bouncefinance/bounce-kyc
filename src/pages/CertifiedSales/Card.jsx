@@ -14,7 +14,7 @@ import {
     successStatus,
     confirmStatus,
     pendingStatus,
-    cancelStatus
+    cancelStatus, successVotedStatus, successVoteClaimedStatus
 } from "../../components/common/TXModal";
 import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
@@ -26,6 +26,7 @@ import BigNumber from "bignumber.js";
 import { getPoolLeftTime } from "../../utils/time";
 import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
+import API_HOST, {HOST} from "../../config/request_api";
 
 
 export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
@@ -82,7 +83,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 })
                 .on('receipt', (_, receipt) => {
                     console.log('bid fixed swap receipt:', receipt)
-                    setBidStatus(successStatus)
+                    setBidStatus(successVotedStatus)
                 })
                 .on('error', (err, receipt) => {
                     setBidStatus(errorStatus)
@@ -110,7 +111,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 })
                 .on('receipt', (_, receipt) => {
                     console.log('bid fixed swap receipt:', receipt)
-                    setBidStatus(successStatus)
+                    setBidStatus(successVoteClaimedStatus)
                 })
                 .on('error', (err, receipt) => {
                     setBidStatus(errorStatus)
@@ -200,7 +201,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                     <Button type='white' value='Visit Project' width='168px' onClick={() => {
                         history.push(`/learn-more/${poolId}`)
                     }} />
-                    {!myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
+                    {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
                         // history.push(`/certified-sales/${poolId}`)
                         onCliam()
                     }} />}
@@ -218,7 +219,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 {/* <span>Active Sales</span> */}
             </div>
             <div className="main">
-                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={pool.prologourl} socialLink={[
+                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={HOST+'/'+pool.proInfo.prologourl} socialLink={[
                     { name: 'facebook', link: pool.proInfo.fackbook },
                     { name: 'telegram', link: pool.proInfo.telegram },
                     { name: 'twitter', link: pool.proInfo.twitter },

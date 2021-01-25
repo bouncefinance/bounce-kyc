@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { ApplySaleStyled } from './styled'
+import { useHistory } from 'react-router-dom'
 import { Crumbs } from '../components/Exhibition'
 import Step1 from './Step1'
 import Step2 from './Step2'
@@ -17,17 +18,17 @@ import {
     cancelStatus,
     confirmStatus,
     errorStatus, initStatus,
-    pendingStatus,
+    pendingStatus, successIssuedStatus,
     successStatus
 } from "../CertifiedSales/ApplyModal";
 import { getContract, useActiveWeb3React } from "../../web3";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
-import {successIssuedStatus} from "../../components/common/TXModal";
 
 export default function Index() {
     const [modalStatus, setModalStatus] = useState(initStatus)
+    const history = useHistory()
     const { account, library, chainId, active } = useActiveWeb3React()
     const { dispatch } = useContext(myContext)
     const [curStep, setCurStep] = useState(1)
@@ -172,7 +173,7 @@ export default function Index() {
             </ApplySaleStyled>
             <ApplyModal onOK={() => {
                 setModalStatus(initStatus)
-                //history.goBack()
+                history.push('/project-voting-board/active')
             }} onDismiss={() => {
                 setModalStatus(initStatus)
             }} modalStatus={modalStatus} />
