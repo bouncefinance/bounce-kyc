@@ -1,4 +1,4 @@
-const HOST = 'https://account.bounce.finance:16000'
+export const HOST = 'https://account.bounce.finance:16000'
 
 const API_HOST = {
     HOST: HOST,
