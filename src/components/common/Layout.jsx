@@ -501,7 +501,7 @@ line-height: 140%;
 
 text-align: center;
 letter-spacing: 0.02em;
-width: 160px;
+width: 240px;
 color: #FFFFFF;
   }
 `

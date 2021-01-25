@@ -12,7 +12,7 @@ export default function Index() {
         {!list || list.length === 0 ? (
                 <EmptyLayout>
                   <img src={loading} alt=""/>
-                  <p>{Array.isArray(list) && list.length === 0 ? 'Coming Soon ...' : 'Sales are loading ... Please wait'}</p>
+                  <p>{Array.isArray(list) && list.length === 0 ? 'The next bounce certified sale will come soon. Stay tuned!' : 'Sales are loading ... Please wait'}</p>
                 </EmptyLayout>
             ) :
             list.map(item => {

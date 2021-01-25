@@ -24,6 +24,7 @@ import { getContract, useActiveWeb3React } from "../../web3";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
+import {successIssuedStatus} from "../../components/common/TXModal";
 
 export default function Index() {
     const [modalStatus, setModalStatus] = useState(initStatus)
@@ -69,7 +70,7 @@ export default function Index() {
                         setModalStatus(pendingStatus)
                     })
                     .on('receipt', (_, receipt) => {
-                        setModalStatus(successStatus)
+                        setModalStatus(successIssuedStatus)
                     })
                     .on('error', (err, receipt) => {
                         setModalStatus(errorStatus)

@@ -37,7 +37,7 @@ export default function Index() {
           {!activePools || activePools.length === 0 ? (
             <EmptyLayout>
               <img src={loading} alt="" />
-              <p>{Array.isArray(activePools) && activePools.length === 0 ? 'Coming Soon ...' : 'Sales are loading ... Please wait'}</p>
+              <p>{Array.isArray(activePools) && activePools.length === 0 ? 'The next bounce certified sale will come soon. Stay tuned!' : 'Sales are loading ... Please wait'}</p>
             </EmptyLayout>
           )
             :
