@@ -14,7 +14,6 @@ export const voteSuccessStatus = {status: 3, title: 'Congratulations!', content:
 export const successStatus = {status: 3, title: 'Congratulations!', content: 'You have successfully participated in this auction. To proceed to next step, please read more instructions on auction in the bounce documentation'}
 export const successVotedStatus = {status: 3, title: 'Congratulations!', content: 'You have successfully voted for your favorite project. Please come back to claim tokens when voting process ends'}
 export const successVoteClaimedStatus = {status: 3, title: 'Congratulations!', content: 'You have successfully claimed back your voted tokens'}
-export const successIssuedStatus = {status: 3, title: 'Congratulations!', content: 'You have successfully submitted your project to voting board.'}
 
 export const errorStatus = {status: -1, title: 'Transaction failed on Bounce', content: 'Oops! Your transaction is failed for on-chain approval and settlement. Please initiate another transaction'}
 export const cancelStatus = {status: -2, title: 'Transaction canceled on Bounce', content: 'Sorry! Your transaction is canceled. Please try again'}

@@ -107,12 +107,21 @@ export const PerModalStyled = styled.div`
             color: #1F191B;
             display: flex;
             cursor: pointer;
+            
+            span{
+                font-family: 'Helvetica Neue';
+                font-weight: 500;
+                font-size: 14px;
+                color: rgba(31,25,27,.8);
+            }
 
             &:hover{
                 background-color: #000;
-                color: #fff;
             }
 
+            &:hover span{
+                color: #fff;
+            }
 
             i{
                 display: block;
