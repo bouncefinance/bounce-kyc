@@ -1,5 +1,5 @@
 import { Form } from './Form'
-import { TextInput, TextAreaInput, TimeInput } from './Input'
+import { TextInput, TimeInput, AmountInput } from './Input'
 import { Radio } from './Check'
 import { Button } from './Button'
 import { Upload } from './Upload'
@@ -11,7 +11,7 @@ export {
     TextInput,
     Button,
     Upload,
-    Text, TextAreaInput, TimeInput,
+    Text, TimeInput, AmountInput,
     Radio,
     Select
 }

@@ -17,7 +17,7 @@ import {
     errorStatus,
     initStatus,
     pendingStatus,
-    successStatus,
+    successStatus, successVotedStatus,
     TxModal
 } from "../../../components/common/TXModal";
 import {ModalLayout} from "../../components/Modal/styled";
@@ -68,7 +68,7 @@ export default function Index() {
                 })
                 .on('receipt', (_, receipt) => {
                     console.log('bid fixed swap receipt:', receipt)
-                    setBidStatus(successStatus)
+                    setBidStatus(successVotedStatus)
                 })
                 .on('error', (err, receipt) => {
                     setBidStatus(errorStatus)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Step4Styled } from './styled'
-import { TextInput, TextAreaInput, Button } from '../components/Table'
+import { TextInput, Button } from '../components/Table'
 
 const requireList = ['totalsupply', 'circulatingsupply', 'tokenticketer', 'tokencontractaddress', 'tokendistribution', 'tokenlookupschedule']
 

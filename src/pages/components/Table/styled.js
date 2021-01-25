@@ -221,33 +221,6 @@ export const TextStyled = styled.div`
     }
 `
 
-export const InputAreaStyled = styled.div`
-    width: ${({ width }) => { return width ? width : '100%' }};
-    p{
-        font-size: 13px;
-        color: rgba(0,0,0,.4);
-        margin-bottom: 8px;
-        font-weight: 500;
-        margin-top: ${({ marginTop }) => { return marginTop ? marginTop : '20px' }};
-    }
-
-    textarea{
-        width: ${({ width }) => { return width ? width : '100%' }};
-        height: ${({ height }) => { return height ? height : '80px' }};
-        border: 1px solid rgba(0,0,0,.4);
-        box-sizing: border-box;
-        font-size: 16px;
-        color: #000;
-        padding: 15px 20px;
-        box-sizing: border-box;
-
-        &::placeholder{
-            color: rgba(0,0,0,.4);
-        }
-    }
-`
-
-
 export const RadioStyled = styled.div`
     width: ${({ width }) => { return width ? width : '100%' }};
     p{
@@ -411,5 +384,35 @@ export const SelectStyled = styled.div`
 
             }
         }
+    }
+`
+
+export const AmountStyled = styled.div`
+    position: relative;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    /*火狐*/
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    input{
+        color: #000;
+        width: 100px;
+        text-indent: 12px;
+        margin-left: 8px;
+        border-bottom: 1px solid rgba(0,0,0,.6);
+        &.error{
+            border-bottom: 1px solid rgba(228,63,41,1);
+        }
+    }
+
+    p.errMsg{
+        position: absolute;
+        top: 3px;
+        left: 16px;
+        color: rgba(228,63,41,1);
     }
 `

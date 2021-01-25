@@ -6,12 +6,18 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import copy_icon from '../../../assets/icons/copy-black.svg'
 import bule_check from '../../../assets/images/bule-check.svg'
 import {mainContext} from "../../../reducer";
+import {useVoteList} from "../../CertifiedSales/hooks";
 
 export default function PersonalModal({ show = false, userName }) {
     const history = useHistory()
     const { account } = useWeb3React()
     const KYC_STATUS = window.localStorage.getItem('KYC_STATUS') || 0
     const { state } = useContext(mainContext);
+
+    const {list} = useVoteList()
+
+    const myProject = list && list.filter(item => { return  item.creator.toLowerCase() === account.toLowerCase()})[0]
+    console.log('myProject',myProject)
 
     const { authToken } = state;
     useEffect(() => {
@@ -26,7 +32,11 @@ export default function PersonalModal({ show = false, userName }) {
             case 'PersonalInfo':
                 return history.push('/PersonalInfo')
             case 'applySale':
-                return history.push('/applySale')
+                if(myProject){
+                    return history.push(`/learn-more/${myProject.id}`)
+                }else {
+                    return history.push('/applySale')
+                }
             default:
                 return
         }
@@ -70,7 +80,7 @@ export default function PersonalModal({ show = false, userName }) {
                     onClick={() => { handelClickLi('applySale') }}
                 >
                     <i className='acs'></i>
-                    <span>Apply Certified Sale</span>
+                    <span>{myProject? 'Check Status': 'Apply Certified Sale'}</span>
                 </li>
             </ul>
         </PerModalStyled>

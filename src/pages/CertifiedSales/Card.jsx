@@ -14,7 +14,7 @@ import {
   successStatus,
   confirmStatus,
   pendingStatus,
-  cancelStatus
+  cancelStatus, successVotedStatus
 } from "../../components/common/TXModal";
 import {BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
@@ -83,7 +83,7 @@ export default function Card({status, poolId = 0, progress, claimFun, isVote, po
           })
           .on('receipt', (_, receipt) => {
             console.log('bid fixed swap receipt:', receipt)
-            setBidStatus(successStatus)
+            setBidStatus(successVotedStatus)
           })
           .on('error', (err, receipt) => {
             setBidStatus(errorStatus)

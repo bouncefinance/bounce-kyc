@@ -59,7 +59,7 @@ export default function Index() {
                         <p>Bounce Certified empowers the community to curate a select group of high-quality projects to conduct their public sale on the same robust and secure platform behind Bounce Finance.</p>
                         <p><span>KYC checks</span> / <span>White list sales</span> / <span>Decentralized auction managed by community DAO</span></p>
 
-                        <button onClick={()=>{history.push('/applySale')}}>Apply for certified sale</button>
+                        <button onClick={() => { history.push('/applySale') }}>Apply for certified sale</button>
                     </div>
                 </div>
             </div>
@@ -151,10 +151,10 @@ export default function Index() {
             </div>
 
             <div className="started">
-                <div className="bg"></div>
-                <div className="main">
+                <div className="started_bg" onClick={() => { return console.log(31) }}></div>
+                <div className="started_main">
                     <h3>Get started to apply for certified sale with Bounce</h3>
-                    <button onClick={()=>{history.push('/applySale')}}>Get Started</button>
+                    <button onClick={() => { return history.push('/applySale') }}>Get Started</button>
                 </div>
             </div>
 

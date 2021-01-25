@@ -235,7 +235,7 @@ export const HomeStyled = styled.div`
         position: relative;
         margin-top: 100px;
 
-        .bg{
+        .started_bg{
             width: 100%;
             height: 100%;
             position: absolute;
@@ -243,15 +243,17 @@ export const HomeStyled = styled.div`
             left: 0;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.4) 100%);
             opacity: .2;
+            z-index: 1;
         }
 
-        .main{
+        .started_main{
             width: 1100px;
             height: 100%;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            z-index: 2;
 
             h3{
                 font-family: 'Optima';
@@ -271,6 +273,8 @@ export const HomeStyled = styled.div`
                 line-height: 46px;
                 color: #fff;
                 background-color: #000;
+                cursor: pointer;
+                z-index: 2;
             }
         }
     }

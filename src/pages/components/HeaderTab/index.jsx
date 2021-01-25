@@ -9,7 +9,8 @@ import { myContext } from '../../../redux'
 import { Button } from '../Table'
 import axios from 'axios'
 import HOST_API from '../../../config/request_api'
-import {useActiveWeb3React} from "../../../web3";
+import { useActiveWeb3React } from "../../../web3";
+import {useVoteList} from "../../CertifiedSales/hooks";
 
 
 export default function Index() {
@@ -18,6 +19,7 @@ export default function Index() {
     const [curTab, setCurTab] = useState(history.location.pathname)
     const { active, account } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined')
+
 
     useEffect(() => {
         if (!account) return
@@ -74,14 +76,14 @@ export default function Index() {
         <HeaderTabStyled>
             <div className="container">
                 <div className="left">
-                    <img style={{cursor: 'pointer'}} onClick={()=>{history.push('/')}} src={logo_black} alt="bounce logo" />
+                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={logo_black} alt="bounce logo" />
                 </div>
                 <div className="right">
                     <ul>
                         {headerMenu.map((item, index) => {
                             return <li
                                 key={index}
-                                className={curTab === item.route ? 'active' : ''}
+                                className={item.route && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
                                 onClick={() => {
                                     if (item.route) {
                                         history.push(item.route)
@@ -112,7 +114,7 @@ export default function Index() {
                     </ul>
                     {renderConnectBtn()}
                 </div>
-                <PersonalModal show={state.isShowPersonal} userName={userName}/>
+                <PersonalModal show={state.isShowPersonal} userName={userName} />
             </div>
         </HeaderTabStyled>
     )
