@@ -6,7 +6,8 @@ const API_HOST = {
     upload: HOST + '/api/v1/fileupload',
     queryKycByAccount: HOST + '/api/v1/queryuserinfobyaccount',
     applySale: HOST + '/api/v1/applysaleinfo',
-    queryProInfoById: HOST + '/api/v1/applysaleinfoquerybyid'
+    queryProInfoById: HOST + '/api/v1/applysaleinfoquerybyid',
+    getOnlineURL: HOST + '/api/v1/filedownload'
 }
 
 export default API_HOST

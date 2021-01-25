@@ -90,6 +90,7 @@ export default function Index() {
 
     const handelSubmit = () => {
         const params = {
+            id: 0,
             ...step1Data,
             ...step2Data,
             ...step3Data,
@@ -97,30 +98,16 @@ export default function Index() {
             ...step5Data,
             ...step6Data
         }
+        console.log(JSON.stringify(params))
         try {
             axios.post(API.applySale, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
-                    console.log('onApply', res.data.data.id)
+                    // console.log('onApply', res.data.data.id)
                     onApply(res.data.data.id)
-                    // dispatch({
-                    //     type: 'MODAL',
-                    //     value: {
-                    //         name: 'CONFIRM',
-                    //         title: 'Message',
-                    //         deputy: 'Form information submitted successfully',
-                    //         confirm: {
-                    //             text: 'Confirm',
-                    //             callback: () => {
-                    //                 dispatch({
-                    //                     type: 'MODAL',
-                    //                     value: null
-                    //                 })
-                    //             }
-                    //         }
-                    //     }
-                    // })
+
                 } else {
                     console.log(res)
+                    alert('Information submission error, please contact the platform customer service')
                 }
             })
         } catch (error) {

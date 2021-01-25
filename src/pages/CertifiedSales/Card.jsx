@@ -266,7 +266,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                     <div className="right">
                         <Passage
                             title='Auction Type'
-                            desc='Fixed-swap auction' />
+                            desc={pool.proInfo.auctiontype} />
 
                         <Passage
                             title='Participant'
@@ -274,7 +274,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
                         <Passage
                             title='Requirement'
-                            desc='KYC' />
+                            desc={pool.proInfo.ifkyc === 1 ? 'KYC' : 'No Limit '} />
                     </div>
                 </div>
 
