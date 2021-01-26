@@ -29,8 +29,9 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
     }, [])
 
     useEffect(() => {
+        // console.log(step1Data)
         const arr = requireList.filter(item => {
-            return step1Data[item] === null || step1Data[item] === ''
+            return !step1Data[item]
         })
         if (arr.length === 0) {
             setIsNext(true)

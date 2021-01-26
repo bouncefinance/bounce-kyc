@@ -8,7 +8,7 @@ import loading from "../../assets/icons/loading.svg";
 
 export default function Index() {
   const { list } = usePoolList()
-  console.log(list)
+  // console.log(list)
   return (
     <CsStyled>
       {!list || list.length === 0 ? (
@@ -57,9 +57,12 @@ export default function Index() {
         //   }
         // }} />
       ) :
-        list.map(item => {
+        list.sort((item1, item2) => {
+          // console.log('sort', item1, item2)
+          return item2.id - item1.id
+        }).map((item, index) => {
           return (
-            <Card pool={item} status='Active' poolId={1} />
+            <Card key={index} pool={item} status='Active' />
           )
         })}
     </CsStyled>

@@ -33,14 +33,14 @@ const getProjectInfo = async (proId) => {
 
 export const useVoteList = () => {
   const [list, setList] = useState()
-  const {active, library, chainId} = useActiveWeb3React();
+  const { active, library, chainId } = useActiveWeb3React();
 
   const fetchList = () => {
     let pools = []
     try {
       const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
       bounceContract.methods.getPoolCount().call().then(res => {
-        for (let i = 0; i < res; i++) {
+        for (let i = res; i >= 0; i--) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
             const pool = poolRes
             pool.id = i
@@ -78,7 +78,7 @@ export const useVoteList = () => {
 
 export const usePoolList = () => {
   const [list, setList] = useState([])
-  const {active, library, chainId} = useActiveWeb3React();
+  const { active, library, chainId } = useActiveWeb3React();
 
   const fetchList = () => {
     let pools = []
@@ -87,10 +87,10 @@ export const usePoolList = () => {
       bounceContract.methods.getPoolCount().call().then(res => {
         for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
-            console.log('pool--->', poolRes)
+            // console.log('pool--->', poolRes)
             const pool = poolRes
             pool.id = i
-            const isOpen = new Date() - poolRes.openAt*1000 > 0
+            const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
               pool.status = 'Upcoming'
             } else {
@@ -114,7 +114,7 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      //fetchList()
+      // fetchList()
     }
   }, [active])
 
@@ -122,18 +122,18 @@ export const usePoolList = () => {
 }
 
 export const useStatus = (id) => {
-  const {active, library, chainId, account} = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
   const [myVotes, setMyVotes] = useState()
   const [myVotesClaimed, setMyVotesClaimed] = useState(true)
 
   const fetchStatus = () => {
     try {
       const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
-      bounceContract.methods.myVotes(account, id).call().then(res =>{
+      bounceContract.methods.myVotes(account, id).call().then(res => {
         console.log('myVotes', res)
         setMyVotes(res)
       })
-      bounceContract.methods.myVotesClaimed(account, id).call().then(res =>{
+      bounceContract.methods.myVotesClaimed(account, id).call().then(res => {
         console.log('myVotesClaimed', myVotesClaimed)
         setMyVotesClaimed(res)
       })

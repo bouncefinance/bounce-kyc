@@ -23,7 +23,7 @@ export default function Index() {
   const [curPro, setCurPro] = useState(type === 'close' ? 1 : 0)
 
   useEffect(() => {
-    console.log('list', list)
+    // console.log('list', list)
   }, [list])
 
   const renderProList = () => {
@@ -41,7 +41,9 @@ export default function Index() {
             </EmptyLayout>
           )
             :
-            activePools.map((item, index) => {
+            activePools.sort((item1, item2) => {
+              return item2.id - item1.id
+            }).map((item, index) => {
               return (
                 <Card
                   key={index}
@@ -70,9 +72,11 @@ export default function Index() {
               <p>{Array.isArray(closedPools) && closedPools.length === 0 ? 'No sales now Please check back later' : 'Sales are loading ... Please wait'}</p>
             </EmptyLayout>
           )
-            : closedPools.map(item => {
+            : closedPools.sort((item1, item2) => {
+              return item2.id - item1.id
+            }).map((item, index) => {
               return (
-                <Card isVote pool={item} progress={{
+                <Card key={item.id} isVote pool={item} progress={{
                   value: '200 BOT',
                   total: 'Success',
                   plan: 1,
