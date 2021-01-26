@@ -60,6 +60,7 @@ export const useVoteList = () => {
             setList(pools)
           })
         }
+        setList(pools)
       })
     } catch (e) {
       console.log('fetchList error', e)
@@ -104,6 +105,7 @@ export const usePoolList = () => {
             setList(pools)
           })
         }
+        setList(pools)
       })
     } catch (e) {
       console.log('fetchList error', e)

@@ -62,9 +62,11 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
                 width='600px'
                 options={country}
                 isRequire={true}
-
+                defaultVal={{
+                    name: 'Andorra'
+                }}
                 onChange={(val) => {
-                    handelValChange('country', val)
+                    handelValChange('country', val.name)
                 }}
 
             />
