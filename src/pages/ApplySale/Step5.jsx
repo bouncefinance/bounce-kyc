@@ -45,7 +45,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
 
     const handelInputChange = (key, data) => {
         const obj = { ...step5Data }
-        if (data.isRequire && !data.isError) {
+        if (!data.isError) {
             obj[key] = data.value
         } else {
             obj[key] = null

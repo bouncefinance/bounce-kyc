@@ -4,7 +4,7 @@ import { TextInput, Button } from '../components/Table'
 
 const requireList = ['teambio']
 
-export default function Step3 ({ setCurStep, setTitle, step3Data, setStep3Data }) {
+export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Step3 ({ setCurStep, setTitle, step3Data, setStep3Data }
 
     const handelInputChange = (key, data) => {
         const obj = { ...step3Data }
-        if (data.isRequire && !data.isError) {
+        if (!data.isError) {
             obj[key] = data.value
         } else {
             obj[key] = null

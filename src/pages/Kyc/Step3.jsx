@@ -66,7 +66,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
-                                history.push('/')
+                                // history.push('/')
+                                window.location.reload()
                             }
                         }
                     }
@@ -85,7 +86,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
-                                history.push('/')
+                                // history.push('/')
+                                window.location.reload()
                             }
                         }
                     }
