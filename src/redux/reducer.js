@@ -9,24 +9,24 @@ export const reducer = (state, action) => {
     switch (action.type) {
         case 'MODAL':
             return {
-                ...initState,
+                ...state,
                 showModal: action.value
             }
         case 'CONNECT_WALLET':
             return {
-                ...initState,
+                ...state,
                 isConnectWallet: action.value
             }
 
         case 'SHOW_PER':
             return {
-                ...initState,
+                ...state,
                 isShowPersonal: action.value
             }
 
         case 'SET_KYC':
             return {
-                ...initState,
+                ...state,
                 KYC_Status: action.value
             }
 
