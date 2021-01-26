@@ -39,10 +39,10 @@ export const BidModal = ({modalStatus, onDismiss}) =>{
             <Lottie width={200} height={200} options={defaultOptions}/>}
 
             {(status === 3 ) &&
-            <FormStatus ><img src={icon_success}/></FormStatus>}
+            <FormStatus ><img src={icon_success} alt=""/></FormStatus>}
 
             {(status === -1 || status === -2) &&
-            <FormStatus><img src={icon_error}/></FormStatus>}
+            <FormStatus><img src={icon_error} alt=""/></FormStatus>}
 
             <ModalContent style={{width: 300, textAlign: 'center'}}>{content}</ModalContent>
             {(status === 1 || status === 2) && <Button width={'320px'} black>Awaiting...</Button>}

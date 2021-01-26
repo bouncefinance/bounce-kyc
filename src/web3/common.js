@@ -84,7 +84,7 @@ export const useEthBalance = (token) => {
       setEthBalance(null)
     }
 
-  }, [active, token])
+  }, [active, token, account])
 
   return { ethBalance }
 }

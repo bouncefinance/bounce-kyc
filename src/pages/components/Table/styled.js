@@ -336,6 +336,7 @@ export const SelectStyled = styled.div`
             justify-content: space-between;
             cursor: pointer;
             img{
+                width: 20px;
                 margin-right: 18.5px;
                 &.up{
                     transform: rotateZ(180deg);
