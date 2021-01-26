@@ -13,7 +13,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
     }, [defaultVal])
 
     useEffect(() => {
-        if(String(val).trim()==='') return
+        if (String(val).trim() === '') return
         onValueChange && onValueChange({
             name: name,
             value: val,
@@ -70,6 +70,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
     const wrapperUpperCase = (str) => {
         let reg = /[a-zA-Z]+/g;
         let str1 = str.replace(reg, (v) => {
+            if(v===' ') return
             return v.toUpperCase()
         });
         return str1
@@ -106,10 +107,12 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
 
                         let val = e.target.value
                         if (isName) {
+                            val = String(val).trim()
                             val = wrapperName(val)
                         }
 
                         if (isNumber) {
+                            val = String(val).trim()
                             val = wrapperNumber(val)
                         }
 
