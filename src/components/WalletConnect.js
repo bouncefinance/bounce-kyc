@@ -92,7 +92,7 @@ export const WalletConnect = () => {
         >
 
             <div style={{ marginTop: 28 }}>
-                <WalletItem name='MateMask' icon={icon_matemask} onClick={() => {
+                <WalletItem name='MetaMask' icon={icon_matemask} onClick={() => {
                     onConnect(currentConnector, 'MetaMask')
                 }} />
                 <WalletItem name='WalletConnect' icon={icon_walletconnect} onClick={() => {
