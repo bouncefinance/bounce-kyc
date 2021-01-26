@@ -42,8 +42,7 @@ const wallets = {
 }
 
 export const WalletConnect = () => {
-    const { state, dispatch } = useContext(myContext);
-    const [connectedName, setConnectedName] = useState()
+    const { dispatch } = useContext(myContext);
 
     const [activatingConnector, setActivatingConnector] = useState();
     const [currentConnector] = useState();
@@ -62,14 +61,6 @@ export const WalletConnect = () => {
         }
     }, [activatingConnector]);
 
-    useEffect(() => {
-        const localContent = window && window.localStorage.getItem(BOUNCE_SELECT_WEB3_CONTEXT)
-        // console.log('wallet content', localContent)
-        if (localContent) {
-            setConnectedName(localContent)
-        }
-    }, [])
-
 
     useEffect(() => {
         // console.log(account, account, library)
@@ -80,7 +71,6 @@ export const WalletConnect = () => {
 
     function onConnect(currentConnector, name) {
         setActivatingConnector(currentConnector);
-        setConnectedName(name)
         window && window.localStorage.setItem(BOUNCE_SELECT_WEB3_CONTEXT, name)
         activate(wallets[name]);
     }

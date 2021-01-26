@@ -21,13 +21,13 @@ export const useTokenBalance = (address) => {
       }
     }
 
-    if (active) {
+    if (active && account && chainId) {
       getBalance()
     } else {
       setBalance(null)
     }
 
-  }, [active, account])
+  }, [active, account, chainId])
 
 
   return { balance }
