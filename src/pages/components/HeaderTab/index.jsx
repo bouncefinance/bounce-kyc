@@ -14,13 +14,14 @@ import { useActiveWeb3React } from "../../../web3";
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
-    const [curTab, setCurTab] = useState(history.location.pathname)
+    const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
+    console.log(curTab)
     const { active, account } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined')
 
     useEffect(() => {
         const width = window.document.documentElement.clientWidth
-        if(width<750){
+        if (width < 750) {
             alert('Please use desktop version! Phone version coming soon')
         }
     }, [])
