@@ -15,7 +15,7 @@ export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
-    console.log(curTab)
+    // console.log(curTab)
     const { active, account } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined')
 
