@@ -26,10 +26,10 @@ import BigNumber from "bignumber.js";
 import { getPoolLeftTime } from "../../utils/time";
 import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
-import API_HOST, {HOST} from "../../config/request_api";
+import API_HOST, { HOST as host } from "../../config/request_api";
 
 
-export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
+export default function SalesCard({ status, poolId = 0, progress, claimFun, isVote, pool = {} }) {
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const { balance } = useTokenBalance()
@@ -39,7 +39,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
     const { account, library, chainId, active } = useActiveWeb3React()
     const [value, setValue] = useState()
 
-    const { myVotes, myVotesClaimed } = useStatus(pool.id)
+    const { myVotes, myVotesClaimed } = useStatus(pool.id || 0)
     //   console.log('myVotesClaimed--->', myVotesClaimed)
     const [left, setLeft] = useState({
         days: 0,
@@ -50,7 +50,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
     let timer
     useEffect(() => {
-        console.log('pool left', isVote, pool.status, pool.openAt)
+        console.log('pool left', pool)
         if (pool) {
             timer = setInterval(() => {
                 const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt)
@@ -219,12 +219,12 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 {/* <span>Active Sales</span> */}
             </div>
             <div className="main">
-                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={HOST+'/'+pool.proInfo.prologourl} socialLink={[
-                    { name: 'facebook', link: pool.proInfo.fackbook },
-                    { name: 'telegram', link: pool.proInfo.telegram },
-                    { name: 'twitter', link: pool.proInfo.twitter },
-                    { name: 'github', link: pool.proInfo.githublink },
-                    { name: 'medium', link: pool.proInfo.medium }
+                {pool.proInfo && pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo && pool.proInfo && pool.proInfo.proname} logo={host + '/' + pool.proInfo && pool.proInfo.prologourl} socialLink={[
+                    { name: 'facebook', link: pool.proInfo && pool.proInfo.fackbook },
+                    { name: 'telegram', link: pool.proInfo && pool.proInfo.telegram },
+                    { name: 'twitter', link: pool.proInfo && pool.proInfo.twitter },
+                    { name: 'github', link: pool.proInfo && pool.proInfo.githublink },
+                    { name: 'medium', link: pool.proInfo && pool.proInfo.medium }
                 ]} />}
 
                 <div className="middle">
@@ -232,9 +232,9 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                         {isVote && myVotes && new BigNumber(myVotes).isGreaterThan('0') && <span className='vote'>You Voted</span>}
                         <Passage
                             title='Project details'
-                            desc={pool.proInfo.prosummary} />
+                            desc={pool.proInfo && pool.proInfo.prosummary} />
 
-                        <a href="http://activeprojectname.com">{pool.proInfo.prowebsite}</a>
+                        <a href="http://activeprojectname.com">{pool.proInfo && pool.proInfo.prowebsite}</a>
 
                         <Passage
                             title='Time Left'
@@ -267,7 +267,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                     <div className="right">
                         <Passage
                             title='Auction Type'
-                            desc={pool.proInfo.auctiontype} />
+                            desc={pool.proInfo && pool.proInfo.auctiontype} />
 
                         <Passage
                             title='Participant'
@@ -275,7 +275,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
                         <Passage
                             title='Requirement'
-                            desc={(pool.proInfo.ifkyc === 0 && pool.proInfo.ifwhitelist === 0) ? 'None' : `${pool.proInfo.ifkyc === 1 ? 'KYC /' : ''} ${pool.proInfo.ifwhitelist === 1 ? 'White List ' : ''}`} />
+                            desc={(pool.proInfo && pool.proInfo.ifkyc === 0 && pool.proInfo && pool.proInfo.ifwhitelist === 0) ? 'None' : `${pool.proInfo && pool.proInfo.ifkyc === 1 ? 'KYC /' : ''} ${pool.proInfo && pool.proInfo.ifwhitelist === 1 ? 'White List ' : ''}`} />
                     </div>
                 </div>
 

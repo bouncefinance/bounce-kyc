@@ -5,6 +5,7 @@ import bule_check from '../../assets/images/bule-check.svg'
 import bule_star from '../../assets/images/bule-star.svg'
 import bule_people from '../../assets/images/bule-people.svg'
 import logo_white from '../../assets/logo/logo-white.svg'
+import { useHistory } from 'react-router-dom'
 
 import back1 from '../../assets/images/back1.svg'
 import back2 from '../../assets/images/back2.svg'
@@ -36,6 +37,7 @@ const CertifiedSalesSteps = [{
 export default function Index() {
     const [curCertifiedSalesSteps, setCurCertifiedSalesSteps] = useState(0)
     const [stepIsHover, setStepIsHover] = useState(false)
+    const history = useHistory()
 
     return (
         <HomeStyled>
@@ -57,7 +59,7 @@ export default function Index() {
                         <p>Bounce Certified empowers the community to curate a select group of high-quality projects to conduct their public sale on the same robust and secure platform behind Bounce Finance.</p>
                         <p><span>KYC checks</span> / <span>White list sales</span> / <span>Decentralized auction managed by community DAO</span></p>
 
-                        <button>Apply for certified sale</button>
+                        <button onClick={() => { history.push('/applySale') }}>Apply for certified sale</button>
                     </div>
                 </div>
             </div>
@@ -149,10 +151,10 @@ export default function Index() {
             </div>
 
             <div className="started">
-                <div className="bg"></div>
-                <div className="main">
+                <div className="started_bg" onClick={() => { return console.log(31) }}></div>
+                <div className="started_main">
                     <h3>Get started to apply for certified sale with Bounce</h3>
-                    <button>Get Started</button>
+                    <button onClick={() => { return history.push('/applySale') }}>Get Started</button>
                 </div>
             </div>
 

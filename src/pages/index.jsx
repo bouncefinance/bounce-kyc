@@ -13,6 +13,7 @@ import ProjectList from './ProjectList'
 import { myContext } from '../redux'
 import { Apply } from "./CertifiedSales/Apply";
 import ApplySale from './ApplySale'
+import { FSPoolDetail } from "./FixedSwap/Detail";
 
 
 export default function Index() {
@@ -44,7 +45,9 @@ export default function Index() {
                     <Route path='/certified-sales' exact component={CertifiedSales} />
                     <Route path='/certified-sales/:poolId' exact component={Detail} />
                     <Route path='/learn-more/:poolId' exact component={LearnMore} />
-                    <Route path='/project-voting-board' exact component={ProjectList} />
+                    <Route path='/fixed-swap/:poolId' exact component={FSPoolDetail} />
+                    <Route path='/project-voting-board' exact render={() => { return <Redirect to='/project-voting-board/active' /> }} />
+                    <Route path='/project-voting-board/:type' exact component={ProjectList} />
                     <Route path='/project-apply' exact component={Apply} />
                 </Switch>
             </div>

@@ -85,6 +85,7 @@ export const LayoutFrame = styled.div`
   width: ${({ width }) => (width ? width : '1280px')};
   background-color: ${({ theme }) => (theme.white)};
   position: relative;
+  background-color: #ffffff;
   @media (max-width: 767px) {
     width: 100%;
   }
@@ -500,7 +501,7 @@ line-height: 140%;
 
 text-align: center;
 letter-spacing: 0.02em;
-width: 160px;
+width: 240px;
 color: #FFFFFF;
   }
 `

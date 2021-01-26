@@ -9,6 +9,9 @@ export const HANDLE_AUTH_TOKEN = "HANDLE_AUTH_TOKEN"
 
 export const BOUNCE_AUTH_TOKEN = "BOUNCE_AUTH_TOKEN"
 
+export const BIDDER_CLAIMED_MESSAGE = 'Thank you for your participation! You have successfully claimed your tokens';
+export const CREATOR_CLAIMED_MESSAGE = 'Thank you! You have successfully settled your pool and claimed your tokens';
+
 
 export const waitingForInit = {show: false, title: 'Waiting' ,content: '', link: null};
 

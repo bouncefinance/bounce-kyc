@@ -5,7 +5,7 @@ import { TextInput, Button } from '../components/Table'
 
 const requireList = ['prosummary', 'techhighlight']
 
-export default function Step2 ({ setCurStep, setTitle, step2Data, setStep2Data }) {
+export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data }) {
 
 
     const [isNext, setIsNext] = useState(false)
@@ -42,7 +42,7 @@ export default function Step2 ({ setCurStep, setTitle, step2Data, setStep2Data }
 
     const handelInputChange = (key, data) => {
         const obj = { ...step2Data }
-        if (data.isRequire && !data.isError) {
+        if (!data.isError) {
             obj[key] = data.value
         } else {
             obj[key] = null
@@ -84,7 +84,9 @@ export default function Step2 ({ setCurStep, setTitle, step2Data, setStep2Data }
                 defaultVal={step2Data.architecture}
                 isRequire={false}
                 maxLength={500}
+                name='architecture'
                 onValueChange={(val) => {
+                    console.log(val)
                     handelInputChange('architecture', val)
                 }}
             />

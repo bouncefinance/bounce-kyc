@@ -15,7 +15,7 @@ import {fromWei, getProgress, numToWei, weiDiv, weiToNum, weiToNumber} from "../
 import classNames from "classnames";
 import {useParams} from 'react-router-dom';
 import {Form, Input} from "../../components/common/Form";
-import icon_max from "../../static/image/icon-max.svg";
+import icon_max from "../../assets/icons/icon-max.svg";
 import {Button} from "../../components/common/Button";
 import {useEthBalance, useTokenBalance, useTokenList} from "../../web3/common";
 import {getContract, useActiveWeb3React} from "../../web3";
@@ -33,9 +33,7 @@ import {
     claimSuccessStatus
 } from "../../components/common/BidModal";
 import {useLeftTime} from "../../hooks/useLeftTime";
-import {PasswordModal} from "../../components/common/PasswordMpdal";
-import {myContext} from "../../reducer";
-import md5 from "js-md5";
+import {mainContext} from "../../reducer";
 import {useIsXSDown} from '../../utils/themeHooks';
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import {AuctionTipModal} from "../../components/common/AuctionTipModal";
@@ -56,8 +54,9 @@ const bidSuccessStatus = {
 
 
 export const FSPoolDetail = () => {
+    const { poolId } = useParams()
     const history = useHistory()
-    const {state} = useContext(myContext);
+    const {state} = useContext(mainContext);
     const {ethPrice, BOTPrice, BTCPrice} = state
     const {id} = useParams();
     const {account, library, chainId} = useActiveWeb3React()
@@ -66,15 +65,12 @@ export const FSPoolDetail = () => {
     const {setTime, leftTime} = useLeftTime()
     const [bidAmount, setBidAmount] = useState()
     const [bidStatus, setBidStatus] = useState(initStatus)
-    const [passwordModal, setPasswordModal] = useState(false)
-    const [enterPW, setEnterPW] = useState()
-    const [errorPW, setErrorPW] = useState()
     const [showTip, setShowTip] = useState()
     const [errors, setErrors] = useState({amount: ''})
 
     const isXSDown = useIsXSDown();
 
-    const {name, address, symbol, decimals, limit, password, time, fromBidAmount, fromAmount, toAmount, status, isMine, toBidAmount, onlyBOT, claimed, toSymbol, toAddress, toDecimals, joinStatus} = usePoolDetail(id)
+    const {name, address, symbol, decimals, limit, time, fromBidAmount, fromAmount, toAmount, status, isMine, toBidAmount, onlyBOT, claimed, toSymbol, toAddress, toDecimals, joinStatus} = usePoolDetail(id)
 
     const {ethBalance} = useEthBalance(toAddress)
 
@@ -104,32 +100,22 @@ export const FSPoolDetail = () => {
         }
     }, [setTime, time]);
 
-    useEffect(() => {
-        if (password && password !== '0') {
-            setPasswordModal(true)
-        }
-    }, [password])
-
 
     const onBid = async () => {
         setShowTip(false)
-        if (password && password !== '0' && new BN(md5(enterPW)).toString() !== password) {
-            setPasswordModal(true)
-            return
-        }
         let tokenContract
 
         if (toAddress) {
             tokenContract = getContract(library, bounceERC20.abi, toAddress)
         }
-        const bounceContract = getContract(library, fixSwap.abi, getFixSwapAddress(chainId))
+        const bounceContract = getContract(library, fixSwap.abi, BOUNCE_PRO(chainId))
         const weiAmount = numToWei(bidAmount, toDecimals);
 
         setBidStatus(confirmStatus);
         try {
             if (toAddress) {
                 await tokenContract.methods.approve(
-                    getFixSwapAddress(chainId),
+                    BOUNCE_PRO(chainId),
                     weiAmount,
                 )
                     .send({from: account});
@@ -137,8 +123,7 @@ export const FSPoolDetail = () => {
             }
             bounceContract.methods.fixPoolSwapV2(
                 id,
-                weiAmount,
-                password)
+                weiAmount)
                 .send({from: account, value: toAddress ? 0 : weiAmount})
                 .on('transactionHash', hash => {
                     setBidStatus(pendingStatus)
@@ -160,8 +145,11 @@ export const FSPoolDetail = () => {
     }
 
 
+    console.log('poolid--->', poolId)
+
+
     const onClaim = async () => {
-        const bounceContract = getContract(library, fixSwap.abi, getFixSwapAddress(chainId))
+        const bounceContract = getContract(library, fixSwap.abi, BOUNCE_PRO(chainId))
         setBidStatus(confirmStatus);
         try {
             bounceContract.methods.fixPoolWithdraw()
@@ -418,21 +406,6 @@ export const FSPoolDetail = () => {
             <BidModal modalStatus={bidStatus} onDismiss={() => {
                 setBidStatus(initStatus)
             }}/>
-
-            <PasswordModal error={errorPW} onDismiss={() => {
-                setPasswordModal(false)
-            }} onChange={(password) => {
-                setEnterPW(password)
-            }} onConfirm={() => {
-                console.log('password', password, new BN(md5(enterPW)).toString())
-                if (new BN(md5(enterPW)).toString() === password) {
-                    console.log('confirm password')
-                    setPasswordModal(false)
-                    setErrorPW(null)
-                } else {
-                    setEnterPW('password is wrong, please enter again')
-                }
-            }} show={passwordModal}/>
 
             <Modal
                 closeable

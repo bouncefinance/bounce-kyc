@@ -66,7 +66,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
-                                history.push('/')
+                                // history.push('/')
+                                window.location.reload()
                             }
                         }
                     }
@@ -85,7 +86,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
-                                history.push('/')
+                                // history.push('/')
+                                window.location.reload()
                             }
                         }
                     }
@@ -111,19 +113,27 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
             </div>
 
             <TextInput
-             label='Passport Number'
-              placeholder='Enter your passport number'
-              isRequire={true}
-              onValueChange={(data) => {
-                handelValChange('idcardno', data.value)
-                console.log(data)
-            }} />
-            <Upload name='idcardfronturl' successCallBack={(path) => {
-                handelValChange('idcardfronturl', path || null)
-            }} />
-            <Upload name='idcardbackurl' successCallBack={(path) => {
-                handelValChange('idcardbackurl', path || null)
-            }} />
+                label='Passport Number'
+                placeholder='Enter your passport number'
+                isRequire={true}
+                onValueChange={(data) => {
+                    handelValChange('idcardno', data.value)
+                    console.log(data)
+                }} />
+            <Upload
+                title='Passport photo'
+                name='idcardfronturl'
+                desc='Please upload passport photo of page with ID number '
+                successCallBack={(path) => {
+                    handelValChange('idcardfronturl', path || null)
+                }} />
+            <Upload
+             title='Selfie'
+                name='idcardbackurl'
+                desc='Please upload a photo of yourself to match with passport '
+                successCallBack={(path) => {
+                    handelValChange('idcardbackurl', path || null)
+                }} />
             <div className="btn_group">
                 <Button type='white' value='Back' width='164px' onClick={() => {
                     setCurStep(curStep - 1)

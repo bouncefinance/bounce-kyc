@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Step6Styled } from './styled'
-import { TextInput, TextAreaInput, Button, Upload } from '../components/Table'
+import { TextInput, Button, Upload } from '../components/Table'
 
-const requireList = ['contactemail', 'additionalinfo', 'prologourl']
+const requireList = ['contactemail', 'prologourl']
 
 export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, handelSubmit }) {
     const [isNext, setIsNext] = useState(false)
@@ -38,6 +38,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
         const arr = requireList.filter(item => {
             return !step6Data[item]
         })
+        // console.log('arr',arr, requireList)
         if (arr.length === 0) {
             setIsNext(true)
         } else {
@@ -47,7 +48,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
 
     const handelInputChange = (key, data) => {
         const obj = { ...step6Data }
-        if (data.isRequire && !data.isError) {
+        if (!data.isError) {
             obj[key] = data.value
         } else {
             obj[key] = null
@@ -77,7 +78,6 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
                 placeholder='Enter amount of token'
                 width='600px'
                 defaultVal={step6Data.additionalinfo}
-                isRequire={true}
                 maxLength={200}
                 onValueChange={(val) => {
                     handelInputChange('additionalinfo', val)

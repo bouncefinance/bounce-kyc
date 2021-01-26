@@ -56,10 +56,11 @@ export const PerModalStyled = styled.div`
     position: absolute;
     right: 0;
     top: 80px;
-    width:　220px;
+    width: 220px;
     border: 1px solid #EAEAEA;
     background-color: #fff;
     user-select: none;
+    z-index: 99;
 
     .account{
         padding: 12px 24px;
@@ -106,12 +107,21 @@ export const PerModalStyled = styled.div`
             color: #1F191B;
             display: flex;
             cursor: pointer;
+            
+            span{
+                font-family: 'Helvetica Neue';
+                font-weight: 500;
+                font-size: 14px;
+                color: rgba(31,25,27,.8);
+            }
 
             &:hover{
                 background-color: #000;
-                color: #fff;
             }
 
+            &:hover span{
+                color: #fff;
+            }
 
             i{
                 display: block;

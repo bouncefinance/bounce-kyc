@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Step5Styled } from './styled'
-import { TextInput, TimeInput, Radio, Select, Button } from '../components/Table'
+import { TextInput, TimeInput, AmountInput, Radio, Select, Button } from '../components/Table'
 
 const requireList = ['auctiontype', 'amountoftoken', 'pricepertoken', 'allocationperwallet', 'auctiontime', 'teamwallet', 'ifkyc', 'ifwhitelist']
 
-export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }) {
+export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data }) {
     const [isNext, setIsNext] = useState(false)
 
     useEffect(() => {
@@ -33,8 +33,9 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
 
     useEffect(() => {
         const arr = requireList.filter(item => {
-            return step5Data[item] === null
+            return step5Data[item] === null || step5Data[item] === undefined
         })
+
         if (arr.length === 0) {
             setIsNext(true)
         } else {
@@ -44,7 +45,7 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
 
     const handelInputChange = (key, data) => {
         const obj = { ...step5Data }
-        if (data.isRequire && !data.isError) {
+        if (!data.isError) {
             obj[key] = data.value
         } else {
             obj[key] = null
@@ -63,6 +64,11 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
                     { name: 'Sealed-bid auction' },
                     { name: 'Dutch auction' },
                 ]}
+
+                defaultVal={{
+                    name: step5Data.auctiontype
+                }}
+
                 onChange={(val) => {
                     handelInputChange('auctiontype', {
                         isRequire: true,
@@ -105,37 +111,62 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
                 label='Allocation per wallet'
                 options={[
                     { name: 'No limits' },
-                    { name: 'ETH' },
+                    {
+                        name: 'USDT',
+                        append: <AmountInput
+                            width='100px'
+                            placeholder={'Amount'}
+                            defaultVal={
+                                step5Data.allocationperwallet !== 'No limits' && parseFloat(step5Data.allocationperwallet)
+                            }
+                            onChange={(val) => {
+                                handelInputChange('allocationperwallet', {
+                                    isRequire: true,
+                                    isError: false,
+                                    value: val.value + ' USDT'
+                                })
+                            }}
+                        />
+                    },
                 ]}
+
+                defaultIndex={
+                    step5Data.allocationperwallet === 'No limits' ? 0 : 1
+                }
+
                 onChange={(val) => {
-                    handelInputChange('allocationperwallet', {
-                        isRequire: true,
-                        isError: false,
-                        value: val.name
-                    })
+                    if (val.name === 'No limits') {
+                        handelInputChange('allocationperwallet', {
+                            isRequire: true,
+                            isError: false,
+                            value: val.name
+                        })
+                    }
                 }}
             />
 
             <TimeInput
                 label='Auction time'
                 width='600px'
+                defaultVal={step5Data.auctiontime}
                 onChange={(time) => {
-                    handelInputChange('auctiontime', {
-                        isRequire: true,
-                        isError: false,
-                        value: String(time.seconds)
-                    })
+                    handelInputChange('auctiontime', time)
                 }}
             />
 
 
 
             <TextInput
+                maxLength={64}
                 label='Team wallet to receive auction fund'
                 placeholder='Enter team wallet address to receive fund'
                 width='600px'
                 defaultVal={step5Data.teamwallet}
                 isRequire={true}
+                REG_rule={{
+                    reg: /[0x|0X][\S]{41}/,
+                    msg: 'Please enter a positive integer Please enter a valid contract address'
+                }}
                 onValueChange={(val) => {
                     handelInputChange('teamwallet', val)
                 }}
@@ -149,6 +180,11 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
                         { name: 'Yes', value: 1 },
                         { name: 'No', value: 0 },
                     ]}
+
+                    defaultVal={{
+                        value: step5Data.ifkyc
+                    }}
+
                     onChange={(val) => {
                         handelInputChange('ifkyc', {
                             isRequire: true,
@@ -165,6 +201,11 @@ export default function Step5 ({ setCurStep, setTitle, step5Data, setStep5Data }
                         { name: 'Yes', value: 1 },
                         { name: 'No', value: 0 },
                     ]}
+
+                    defaultVal={{
+                        value: step5Data.ifwhitelist
+                    }}
+
                     onChange={(val) => {
                         handelInputChange('ifwhitelist', {
                             isRequire: true,

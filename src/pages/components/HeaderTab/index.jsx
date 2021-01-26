@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { HeaderTabStyled } from './styled'
-import { useWeb3React } from "@web3-react/core";
 import logo_black from '../../../assets/logo/logo-black.svg'
 import { headerMenu } from './config'
 import { useHistory } from 'react-router-dom'
@@ -9,15 +8,23 @@ import { myContext } from '../../../redux'
 import { Button } from '../Table'
 import axios from 'axios'
 import HOST_API from '../../../config/request_api'
-import {useActiveWeb3React} from "../../../web3";
+import { useActiveWeb3React } from "../../../web3";
 
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
-    const [curTab, setCurTab] = useState(history.location.pathname)
+    const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
+    // console.log(curTab)
     const { active, account } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined')
+
+    useEffect(() => {
+        const width = window.document.documentElement.clientWidth
+        if (width < 750) {
+            alert('Please use desktop version! Phone version coming soon')
+        }
+    }, [])
 
     useEffect(() => {
         if (!account) return
@@ -65,7 +72,6 @@ export default function Index() {
                 window.localStorage.setItem('KYC_STATUS', 0)
             }
         }).catch(err => {
-            console.log(err)
             window.localStorage.setItem('KYC_STATUS', 0)
         })
     }
@@ -74,18 +80,16 @@ export default function Index() {
         <HeaderTabStyled>
             <div className="container">
                 <div className="left">
-                    <img src={logo_black} alt="bounce logo" />
+                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={logo_black} alt="bounce logo" />
                 </div>
                 <div className="right">
                     <ul>
                         {headerMenu.map((item, index) => {
                             return <li
                                 key={index}
-                                className={curTab === item.route ? 'active' : ''}
+                                className={item.route && curTab && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
                                 onClick={() => {
-                                    if (item.route) {
-                                        history.push(item.route)
-                                    } else if (item.isConfirm) {
+                                    if (item.isConfirm) {
                                         dispatch({
                                             type: 'MODAL',
                                             value: {
@@ -103,6 +107,8 @@ export default function Index() {
                                                 }
                                             }
                                         })
+                                    } else if (item.route) {
+                                        history.push(item.route)
                                     }
                                     setCurTab(item.route)
                                 }}>
@@ -112,7 +118,7 @@ export default function Index() {
                     </ul>
                     {renderConnectBtn()}
                 </div>
-                <PersonalModal show={state.isShowPersonal} userName={userName}/>
+                <PersonalModal show={state.isShowPersonal} userName={userName} />
             </div>
         </HeaderTabStyled>
     )

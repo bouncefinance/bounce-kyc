@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ethersproject/providers": "^5.0.19",
+    "@material-ui/core": "^4.11.3",
     "@reach/dialog": "^0.12.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -14,6 +15,7 @@
     "@web3-react/walletconnect-connector": "^6.1.6",
     "axios": "^0.21.1",
     "bignumber.js": "^9.0.1",
+    "classnames": "^2.2.6",
     "md5": "^2.3.0",
     "node-sass": "4.14.1",
     "polished": "^4.0.5",

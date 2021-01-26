@@ -40,6 +40,7 @@ export default function Index() {
     const handelSubmit = () => {
         const params = showInfo
         if (account && params.bounceid !== 0) {
+            params.bounceid = null
             axios.post(API.KYC, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
 
@@ -122,11 +123,23 @@ export default function Index() {
                             label='Email'
                             placeholder='Enter your email'
                             defaultVal={showInfo.emailaddr}
-                            onValChange={(val) => {
-                                setShowInfo({
-                                    ...showInfo,
-                                    emailaddr: val
-                                })
+                            onValueChange={(val) => {
+                                if (!val.isError) {
+                                    setShowInfo({
+                                        ...showInfo,
+                                        emailaddr: val.value
+                                    })
+                                } else {
+                                    setShowInfo({
+                                        ...showInfo,
+                                        emailaddr: null
+                                    })
+                                }
+                            }}
+                            isRequire={true}
+                            REG_rule={{
+                                reg: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+                                msg: 'Please enter a valid email address'
                             }}
                         />
                         <Text label='Bounce Certified ID'>
@@ -154,7 +167,9 @@ export default function Index() {
                             <Button type='white' value='Cancel' width='164px' onClick={() => {
                                 history.goBack(-1)
                             }} />
-                            <Button type='black' value='Save' width='164px' onClick={handelSubmit} />
+                            <Button type='black' value='Save' width='164px'
+                                disabled={showInfo.emailaddr ? false : true}
+                                onClick={handelSubmit} />
                         </div>
                     </div>
                 </div>

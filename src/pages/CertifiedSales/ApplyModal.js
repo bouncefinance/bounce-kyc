@@ -28,6 +28,8 @@ export const approveStatus = {status: 1, title: 'Bounce requests wallet approval
 export const confirmStatus = {status: 2, title: 'Bounce requests wallet interaction', content: 'Please open your wallet and confirm in the transaction activity to proceed your order'}
 export const pendingStatus = {status: 3, title: 'Bounce waiting for transaction settlement', content: 'Bounce is engaging with blockchain transaction, please wait patiently for on-chain transaction settlement'}
 export const successStatus = {status: 4, title: 'Auction successfully published', content: 'Congratulations! Your auction is live and is now listed in designated area. Please find more information about the next steps in the pool page'}
+export const successIssuedStatus = {status: 4, title: 'Congratulations!', content: 'You have successfully submitted your project to voting board.'}
+
 export const predictionSuccessStatus = {status: 4, title: 'Prediction successfully published', content: 'Congratulations! Your predcition is live and is now listed in designated area. Please find more information about the next steps in the pool page'}
 export const errorStatus = {status: -1, title: 'Transaction failed on Bounce', content: 'Oops! Your transaction is failed for on-chain approval and settlement. Please initiate another transaction'}
 export const cancelStatus = {status: -2, title: 'Transaction canceled on Bounce', content: 'Sorry! Your transaction is canceled. Please try again.'}

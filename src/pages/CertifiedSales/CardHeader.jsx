@@ -5,20 +5,21 @@ import facebook from '../../assets/icons/facebook.svg'
 import telegram from '../../assets/icons/telegram.svg'
 import twitter from '../../assets/icons/twitter.svg'
 import github from '../../assets/icons/github.svg'
+import medium from '../../assets/icons/medium.svg'
 
 const iconMap = {
-    facebook, telegram, twitter, github
+    facebook, telegram, twitter, github, medium
 }
 
-export default function CardHeader({ title = 'Untitled', socialLink = [] }) {
+export default function CardHeader({ title = 'Untitled', socialLink = [], logo }) {
     return (
         <CardHeaderStyled>
             <div className="title">
-                <div className='head_img'></div>
+                <img src={logo} className='head_img'></img>
                 <h2>{title}</h2>
             </div>
             <ul>
-                {socialLink.map((item, index) => {
+                {socialLink.filter(item => { return (item.link && item.link !== '') }).map((item, index) => {
                     return <li key={index}>
                         <a href={item.link} key={index}>
                             <img src={iconMap[item.name]} alt="" />

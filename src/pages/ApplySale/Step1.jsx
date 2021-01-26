@@ -7,7 +7,7 @@ const SocialConfig = ['Twitter', 'Medium', 'Telegram', 'Facebook']
 const requireList = ['proname', 'prowebsite', 'protheme', 'whitepaperlink', 'githublink']
 
 
-export default function Step1 ({ setCurStep, setTitle, step1Data, setStep1Data }) {
+export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data }) {
     const history = useHistory()
     const [socialLink, setSocialLink] = useState([])
     const [isNext, setIsNext] = useState(false)
@@ -29,8 +29,9 @@ export default function Step1 ({ setCurStep, setTitle, step1Data, setStep1Data }
     }, [])
 
     useEffect(() => {
+        // console.log(step1Data)
         const arr = requireList.filter(item => {
-            return step1Data[item] === null || step1Data[item] === ''
+            return !step1Data[item]
         })
         if (arr.length === 0) {
             setIsNext(true)
@@ -52,7 +53,7 @@ export default function Step1 ({ setCurStep, setTitle, step1Data, setStep1Data }
 
     const handelInputChange = (key, data) => {
         const obj = { ...step1Data }
-        if (data.isRequire && !data.isError) {
+        if (!data.isError) {
             obj[key] = data.value
         } else {
             obj[key] = null
@@ -144,7 +145,14 @@ export default function Step1 ({ setCurStep, setTitle, step1Data, setStep1Data }
                     placeholder={`Paste ${item} link`}
                     defaultVal={step1Data[item]}
                     width='600px'
+                    isRequire={false}
+                    maxLength={100}
+                    REG_rule={{
+                        reg: /http(s)?:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/,
+                        msg: 'Please enter a standard web address'
+                    }}
                     onValueChange={(val) => {
+                        console.log(val)
                         const name = String(item).toLowerCase()
                         handelInputChange(name, val)
                     }}
