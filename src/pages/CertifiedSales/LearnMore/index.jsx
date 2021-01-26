@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { LearnMoreStyle } from './styled'
 import CardHeader from '../CardHeader'
 import { Passage } from '../../components/Exhibition'
@@ -9,8 +9,8 @@ import { useParams } from 'react-router-dom'
 import { useVoteListByPoolId } from '../hooks'
 import Crumbs from '../../components/Exhibition/Crumbs'
 import BigNumber from "bignumber.js";
-import {numToWei, weiToNum} from "../../../utils/numberTransform";
-import {useTokenBalance} from "../../../hooks/useBalance";
+import { numToWei, weiToNum } from "../../../utils/numberTransform";
+import { useTokenBalance } from "../../../hooks/useBalance";
 import {
     cancelStatus,
     confirmStatus,
@@ -20,12 +20,13 @@ import {
     successStatus, successVotedStatus,
     TxModal
 } from "../../../components/common/TXModal";
-import {ModalLayout} from "../../components/Modal/styled";
+import { ModalLayout } from "../../components/Modal/styled";
 import Support from "../../components/Modal/Support";
-import {getContract, useActiveWeb3React} from "../../../web3";
+import { getContract, useActiveWeb3React } from "../../../web3";
 import bounceERC20 from "../../../web3/abi/bounceERC20.json";
-import {BOT, BOUNCE_PRO_VOTING} from "../../../web3/address";
+import { BOT, BOUNCE_PRO_VOTING } from "../../../web3/address";
 import BounceProVoting from "../../../web3/abi/BounceProVoting.json";
+import { HOST } from '../../../config/request_api'
 
 
 export default function Index() {
@@ -33,17 +34,17 @@ export default function Index() {
     const { poolId } = useParams()
     const pool = useVoteListByPoolId(poolId)
     const proInfo = pool.proInfo
-    const {balance} = useTokenBalance()
+    const { balance } = useTokenBalance()
     const [supporting, setSupporting] = useState(false)
     const [value, setValue] = useState()
     const [bidStatus, setBidStatus] = useState(initStatus)
-    const {account, library, chainId, active} = useActiveWeb3React()
+    const { account, library, chainId, active } = useActiveWeb3React()
 
     // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
     const [isSupport, setIsSupport] = useState(false)
     const [curTab, setCurTab] = useState(0)
     const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
-    console.log('proInfo',proInfo)
+    console.log('proInfo', proInfo)
     useEffect(() => {
         console.log(proInfo)
     }, [proInfo])
@@ -60,9 +61,9 @@ export default function Index() {
                 BOUNCE_PRO_VOTING(chainId),
                 weiAmount,
             )
-                .send({from: account});
+                .send({ from: account });
             bounceContract.methods.vote(pool.id, weiAmount)
-                .send({from: account})
+                .send({ from: account })
                 .on('transactionHash', hash => {
                     setBidStatus(pendingStatus)
                 })
@@ -150,7 +151,7 @@ export default function Index() {
         <>
             <Crumbs list={[{
                 name: 'Active sales',
-                onClick: ()=>{
+                onClick: () => {
                     history.push('/certified-sales')
                 }
             }, {
@@ -158,12 +159,13 @@ export default function Index() {
                 active: true
             }]} />
             <LearnMoreStyle>
-                <CardHeader title='Bounce Project' socialLink={[
-                    {name: 'facebook', link: proInfo && proInfo.fackbook},
-                    {name: 'telegram', link: proInfo && proInfo.telegram},
-                    {name: 'twitter', link: proInfo && proInfo.twitter},
-                    {name: 'github', link: proInfo && proInfo.githublink}
-                ]} />
+                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={HOST + '/' + pool.proInfo.prologourl} socialLink={[
+                    { name: 'facebook', link: pool.proInfo.fackbook },
+                    { name: 'telegram', link: pool.proInfo.telegram },
+                    { name: 'twitter', link: pool.proInfo.twitter },
+                    { name: 'github', link: pool.proInfo.githublink },
+                    { name: 'medium', link: pool.proInfo.medium }
+                ]} />}
 
                 <div className="main">
                     <div className="left">
@@ -179,22 +181,22 @@ export default function Index() {
                                     title='Support from community:'
                                     status={pool && pool.status}
                                     plan={pool && new BigNumber(pool.totalVotes).dividedBy('200000000000000000000').dividedBy('100')}
-                                    value={ pool && `${weiToNum(pool.totalVotes)} BOT`}
+                                    value={pool && `${weiToNum(pool.totalVotes)} BOT`}
                                     total={pool && pool.total}
                                 />
                             </div>
                             <TextInput onValChange={(value) => {
                                 console.log('value', value)
                                 setValue(value)
-                            }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`}width='100%' bottom={'10px'}/>
+                            }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'} />
                             <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
-                                    value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
-                                    width='180px' onClick={() => {
-                                setSupporting(true)
-                            }}/>
+                                value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
+                                width='180px' onClick={() => {
+                                    setSupporting(true)
+                                }} />
                             <Button type='white' value='Back' width='180px' onClick={() => {
                                 setIsSupport(false)
-                            }}/>
+                            }} />
 
                         </div>}
                     </div>
@@ -237,13 +239,13 @@ export default function Index() {
 
             <TxModal modalStatus={bidStatus} onDismiss={() => {
                 setBidStatus(initStatus)
-            }}/>
+            }} />
 
             {supporting && (
                 <ModalLayout className='layout' onClick={(e) => {
                     e.stopPropagation()
                 }}>
-                    <Support onConfirm={onVote} cancel={() => setSupporting(false)} amount={value}/>
+                    <Support onConfirm={onVote} cancel={() => setSupporting(false)} amount={value} />
                 </ModalLayout>
             )}
         </>
