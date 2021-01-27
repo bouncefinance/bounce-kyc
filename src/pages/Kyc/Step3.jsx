@@ -7,8 +7,10 @@ import API_HOST from '../../config/request_api'
 import { myContext } from '../../redux'
 import Web3 from "web3";
 import icon_plaint from '../../assets/images/plaint.svg'
+import useAxios from '../../hooks/useAxios'
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
+    const {sign_Axios} = useAxios()
     const history = useHistory()
     const { dispatch } = useContext(myContext)
     const { active, account, library } = useWeb3React()
@@ -47,11 +49,11 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
         // console.log(ReqData)
         ReqData.bounceid = 0
         ReqData.accountaddress = account
-        ReqData.status = 1  // 代表提交审核，审核中状态
-        const web3 = new Web3(library.provider);
-        const sign = await web3.eth.personal.sign('Welcome to Bounce!', account)
-        console.log('sign', sign)
-        axios.post(API_HOST.KYC, ReqData).then(res => {
+        ReqData.status = 1 
+        // const web3 = new Web3(library.provider);
+        // const sign = await web3.eth.personal.sign('Welcome to Bounce!', account)
+        // console.log('sign', sign)
+        sign_Axios.post(API_HOST.sign_KYC, ReqData).then(res => {
             if (res.status === 200 && res.data.code === 1) {
                 dispatch({
                     type: 'MODAL',
@@ -66,8 +68,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
-                                // history.push('/')
-                                window.location.reload()
+                                history.push('/')
+                                // window.location.reload()
                             }
                         }
                     }
@@ -86,8 +88,8 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: null
                                 })
-                                // history.push('/')
-                                window.location.reload()
+                                history.push('/')
+                                // window.location.reload()
                             }
                         }
                     }
