@@ -1,79 +1,119 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import { ProjectListStyle } from './styled'
 import Card from '../CertifiedSales/Card'
+import { useVoteList } from "../CertifiedSales/hooks";
+import { EmptyLayout } from "../../components/common/Layout";
+import loading from '../../assets/icons/loading.svg'
 
 const proTabs = [{
-    status: 'Active',
-    name: 'Active Projects'
+  status: 'Active',
+  name: 'Active Votings',
+  route: '/project-voting-board/active'
 }, {
-    status: 'Close',
-    name: 'Closed Projects'
+  status: 'Close',
+  name: 'Closed Votings',
+  route: '/project-voting-board/close'
 }]
 
 export default function Index() {
-    const [curPro, setCurPro] = useState(0)
+  const history = useHistory()
+  const { type } = useParams()
+  const { list } = useVoteList()
+  const [curPro, setCurPro] = useState(type === 'close' ? 1 : 0)
 
-    const renderProList = (proTab) => {
-        switch (proTab) {
-            case 'Active Projects':
-                return <>
-                    <Card progress={{
-                        value: '200 BOT',
-                        total: 'Success',
-                        plan: 1,
-                        status: 'success'
-                    }}
-                        status='proList-Active'
-                    />
-                    <Card progress={true} status='proList-Active' />
-                    <Card progress={true} status='proList-Active' />
-                </>
+  useEffect(() => {
+    // console.log('list', list)
+  }, [list])
 
-            case 'Closed Projects':
-                return <>
-                    <Card
-                        progress={{
-                            value: '200 BOT',
-                            total: 'Success',
-                            plan: 0.7,
-                            status: 'faild'
-                        }}
-                        status='proList-Close'
-                        claimFun={() => {
-                            return true
-                        }}
-                        isVote={true}
-                    />
-                    <Card progress={true} status='proList-Close' />
-                    <Card progress={true} status='proList-Close' />
-                </>
+  const renderProList = () => {
+    switch (type) {
+      case 'active':
+        const activePools = list ? list.filter(item => {
+          return item.status === 'Active'
+        }) : null
+        console.log('activePools', activePools)
+        return <>
+          {!activePools || activePools.length === 0 ? (
+            <EmptyLayout>
+              <img src={loading} alt="" />
+              <p>{Array.isArray(activePools) && activePools.length === 0 ? 'there is currently no active voting, please come back later' : 'Sales are loading ... Please wait'}</p>
+            </EmptyLayout>
+          )
+            :
+            activePools.sort((item1, item2) => {
+              return item2.id - item1.id
+            }).map((item, index) => {
+              return (
+                <Card
+                  key={index}
+                  isVote
+                  pool={item}
+                  progress={{
+                    value: '200 BOT',
+                    total: 'Success',
+                    plan: 1,
+                    status: 'success'
+                  }}
+                  status='proList-Active'
+                />
+              )
+            })}
+        </>
 
-            default:
-                return <></>
-        }
+      case 'close':
+        const closedPools = list ? list.filter(item => {
+          return item.status === 'Failed' || item.status === 'Success'
+        }) : null
+        return <>
+          {!closedPools || closedPools.length === 0 ? (
+            <EmptyLayout>
+              <img src={loading} alt="" />
+              <p>{Array.isArray(closedPools) && closedPools.length === 0 ? 'No sales now Please check back later' : 'Sales are loading ... Please wait'}</p>
+            </EmptyLayout>
+          )
+            : closedPools.sort((item1, item2) => {
+              return item2.id - item1.id
+            }).map((item, index) => {
+              return (
+                <Card key={item.id} isVote pool={item} progress={{
+                  value: '200 BOT',
+                  total: 'Success',
+                  plan: 1,
+                  status: 'success'
+                }}
+                  status='proList-Active'
+                />
+              )
+            })}
+        </>
+
+      default:
+        return <></>
     }
+  }
 
-    return (
-        <ProjectListStyle>
-            <div className="pro_header">
-                <ul className='pro_tabs'>
-                    {proTabs.map((item, index) => {
-                        return <li
-                            key={index}
-                            onClick={() => {
-                                setCurPro(index)
-                            }}
-                            className={curPro === index ? `active ${item.status}` : item.status}
-                        >{item.name}</li>
-                    })}
-                </ul>
+  return (<>
+    <ProjectListStyle>
+      <div className="pro_header">
+        <ul className='pro_tabs'>
+          {proTabs.map((item, index) => {
+            return <li
+              key={index}
+              onClick={() => {
+                history.push(item.route)
+                setCurPro(index)
+              }}
+              className={curPro === index ? `active ${item.status}` : item.status}
+            >{item.name}</li>
+          })}
+        </ul>
 
-                <div className="paging">
-                    1 of 50 112
-                </div>
-            </div>
+        <div className="paging" />
+      </div>
 
-            {renderProList(proTabs[curPro] && proTabs[curPro].name)}
-        </ProjectListStyle>
-    )
+      {renderProList(proTabs[curPro] && proTabs[curPro].name)}
+    </ ProjectListStyle>
+  </>
+  )
 }

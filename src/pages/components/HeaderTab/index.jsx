@@ -1,29 +1,46 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { HeaderTabStyled } from './styled'
-import { useWeb3React } from "@web3-react/core";
 import logo_black from '../../../assets/logo/logo-black.svg'
 import { headerMenu } from './config'
 import { useHistory } from 'react-router-dom'
 import PersonalModal from './PersonalModal'
 import { myContext } from '../../../redux'
 import { Button } from '../Table'
+import axios from 'axios'
+import HOST_API from '../../../config/request_api'
+import { useActiveWeb3React } from "../../../web3";
+
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
-    const [curTab, setCurTab] = useState(history.location.pathname)
-    const [isPerModal, setIsPerModal] = useState(false)  // show personal modal
-    const { account, active, chainId } = useWeb3React()
+    const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
+    // console.log(curTab)
+    const { active, account } = useActiveWeb3React()
+    const [userName, setUserName] = useState('undefined')
 
-    // useEffect(() => {
-    //     setIsPerModal(active)
-    // }, [account, state])
+    useEffect(() => {
+        const width = window.document.documentElement.clientWidth
+        if (width < 750) {
+            alert('Please use desktop version! Phone version coming soon')
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!account) return
+        checkKYC(account)
+    }, [account])
 
     const renderConnectBtn = () => {
 
         return active ? <div
-            className="personal"
-            onClick={() => { setIsPerModal(!isPerModal) }}
+            className="personal ignore"
+            onClick={() => {
+                dispatch({
+                    type: "SHOW_PER",
+                    value: !state.isShowPersonal
+                })
+            }}
         ></div> : <Button
                 type='black'
                 width='130px'
@@ -40,31 +57,47 @@ export default function Index() {
             />
     }
 
+    const checkKYC = (account) => {
+        const params = {
+            "accountaddress": account
+        }
+
+        axios.post(HOST_API.queryKycByAccount, params).then(res => {
+            // console.log(res)
+            if (res.status === 200 && res.data.code === 1) {
+                const { status, username } = res.data.data
+                window.localStorage.setItem('KYC_STATUS', status)
+                setUserName(username)
+            } else {
+                window.localStorage.setItem('KYC_STATUS', 0)
+            }
+        }).catch(err => {
+            window.localStorage.setItem('KYC_STATUS', 0)
+        })
+    }
+
     return (
         <HeaderTabStyled>
             <div className="container">
                 <div className="left">
-                    <img src={logo_black} alt="bounce logo" />
+                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={logo_black} alt="bounce logo" />
                 </div>
                 <div className="right">
                     <ul>
                         {headerMenu.map((item, index) => {
                             return <li
                                 key={index}
-                                className={curTab === item.route ? 'active' : ''}
+                                className={item.route && curTab && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
                                 onClick={() => {
-                                    if (item.route) {
-                                        history.push(item.route)
-                                    } else if (item.isConfirm) {
+                                    if (item.isConfirm) {
                                         dispatch({
                                             type: 'MODAL',
                                             value: {
                                                 name: 'CONFIRM',
-                                                title: 'Jump to remind',
-                                                desc: 'You will be directed to Bounce decentralized platform.',
-                                                tip: item.link,
+                                                title: 'Bounce Decentralized',
+                                                deputy: 'You will be directed to Bounce Decentralized platform',
                                                 cancel: {
-                                                    text: 'Cancel'
+                                                    text: 'Not Now'
                                                 },
                                                 confirm: {
                                                     text: 'Confirm',
@@ -74,6 +107,8 @@ export default function Index() {
                                                 }
                                             }
                                         })
+                                    } else if (item.route) {
+                                        history.push(item.route)
                                     }
                                     setCurTab(item.route)
                                 }}>
@@ -83,7 +118,7 @@ export default function Index() {
                     </ul>
                     {renderConnectBtn()}
                 </div>
-                <PersonalModal show={isPerModal} />
+                <PersonalModal show={state.isShowPersonal} userName={userName} />
             </div>
         </HeaderTabStyled>
     )

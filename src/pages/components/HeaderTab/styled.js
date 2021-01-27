@@ -56,23 +56,47 @@ export const PerModalStyled = styled.div`
     position: absolute;
     right: 0;
     top: 80px;
-    width:　220px;
+    width: 220px;
     border: 1px solid #EAEAEA;
     background-color: #fff;
+    user-select: none;
+    z-index: 99;
 
     .account{
         padding: 12px 24px;
         font-family: 'Helvetica Neue';
-        h5{
-            font-weight: 700;
-            font-size: 16px;
+
+        .account_name{
+            display: flex;
+            h5{
+                font-weight: 700;
+                font-size: 16px;
+            }
+            img{
+                width: 16px;
+                height: 16px;
+                margin-left: 8px;
+            }
         }
 
-        p{
-            font-size: 14px;
-            font-weight: 500;
-            color: rgba(0,0,0,.4);
-            margin-top: 9px;
+        .account_address{
+            display: flex;
+            align-items: center;
+            padding: 0;
+            p{
+                font-size: 14px;
+                font-weight: 500;
+                color: rgba(0,0,0,.4);
+                margin-top: 9px;
+                width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            img{
+                margin-left: 8px;
+                cursor: pointer;
+            }
         }
     }
 
@@ -83,12 +107,21 @@ export const PerModalStyled = styled.div`
             color: #1F191B;
             display: flex;
             cursor: pointer;
+            
+            span{
+                font-family: 'Helvetica Neue';
+                font-weight: 500;
+                font-size: 14px;
+                color: rgba(31,25,27,.8);
+            }
 
             &:hover{
                 background-color: #000;
-                color: #fff;
             }
 
+            &:hover span{
+                color: #fff;
+            }
 
             i{
                 display: block;

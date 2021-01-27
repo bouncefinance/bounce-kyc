@@ -1,9 +1,35 @@
 import { useContext } from 'react'
+import styled from 'styled-components'
 import { myContext } from '../../../redux'
 import { ModalLayout } from './styled'
 import { WalletConnect } from '../../../components/WalletConnect'
 import Confirm from './Confirm'
 import Support from './Support'
+
+export const ModalContent = styled.span`
+  font-family: IBM Plex Mono;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 140%;
+  width: 320px;
+  margin-top: 20px;
+  margin-bottom: 27px;
+  text-align: left;
+`
+
+export const ModalTitle = styled.span`
+  font-family: Optima;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+  border-bottom: 4px solid #000000;
+  width: 320px;
+  padding-bottom: 20px;
+  padding-top: 14px;
+  text-align: left;
+`
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
@@ -22,11 +48,12 @@ export default function Index() {
         }
         switch (showModal.name) {
             case 'CONFIRM':
-                const { title, desc, tip, isCancel, cancel, confirm } = showModal
-                // console.log(showModal)
+                const { title, desc, tip, isCancel, cancel, confirm, deputy } = showModal
+                console.log(showModal)
                 return <Confirm
                     title={title}
                     desc={desc}
+                    deputy={deputy}
                     tip={tip}
                     isCancel={isCancel}
                     cancel={cancel}
@@ -51,12 +78,6 @@ export default function Index() {
     return ((state.showModal || state.isConnectWallet) &&
         <ModalLayout className='layout' onClick={(e) => {
             e.stopPropagation()
-            // if (String(e.target.className).indexOf('layout') !== -1) {
-            //     dispatch({
-            //         type: 'MODAL',
-            //         value: null
-            //     })
-            // }
         }}>
             {renderModal()}
         </ModalLayout>

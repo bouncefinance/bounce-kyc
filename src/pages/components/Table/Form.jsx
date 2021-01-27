@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormStyled } from './styled'
 
-export default function Form({ title, width, children,marginTop }) {
+export const Form = ({ title, width, children, marginTop }) => {
     return (
         <FormStyled width={width} marginTop={marginTop}>
             {title && <h5>{title}</h5>}
@@ -12,3 +12,5 @@ export default function Form({ title, width, children,marginTop }) {
         </FormStyled>
     )
 }
+
+

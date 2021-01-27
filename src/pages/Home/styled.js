@@ -12,23 +12,26 @@ export const HomeStyled = styled.div`
 
         .main{
             width: 100%;
-            height: 340px;
+            height: 525px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .left{
-                width: 340px;
-                height: 340px;
+                width: 525px;
+                height: 525px;
+                margin-left: -100px;
             }
 
             .right{
-                width: 660px;
-                height: 100%;
-
+                width: 675px;
+                height: 340px;
+                box-sizing: border-box;
+                z-index: 1;
                 h1{
                     font-family: 'Optima';
                     font-weight: 700;
-                    font-size: 62px;
+                    font-size: 58px;
                     margin-bottom: 8px;
 
                     span{
@@ -42,6 +45,7 @@ export const HomeStyled = styled.div`
                     font-size: 16px;
                     color: rgba(256,256,256,.5);
                     margin-top: 12px;
+                    line-height: 21.76px;
                 }
 
                 button{
@@ -55,6 +59,7 @@ export const HomeStyled = styled.div`
                     font-weight: 700;
                     font-size: 16px;
                     margin-top: 40px;
+                    cursor: pointer;
                 }
             }
         }
@@ -131,6 +136,7 @@ export const HomeStyled = styled.div`
                     box-sizing: border-box;
                     border-color: rgba(256,256,256);
                     opacity: .2;
+                    cursor: pointer;
 
                     h4{
                         margin-top: 24px;
@@ -153,6 +159,13 @@ export const HomeStyled = styled.div`
                         margin-top: 8px;
                         color: #fff;
                     }
+                    &:hover{
+                        border-color: #1D61FF;
+                        opacity: 1;
+                        p{
+                            opacity: .6;
+                        }
+                    }
 
                     &.active{
                         border-color: #1D61FF;
@@ -161,6 +174,8 @@ export const HomeStyled = styled.div`
                             opacity: .6;
                         }
                     }
+
+                    
                 }
             }
            
@@ -220,7 +235,7 @@ export const HomeStyled = styled.div`
         position: relative;
         margin-top: 100px;
 
-        .bg{
+        .started_bg{
             width: 100%;
             height: 100%;
             position: absolute;
@@ -228,15 +243,17 @@ export const HomeStyled = styled.div`
             left: 0;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.4) 100%);
             opacity: .2;
+            z-index: 1;
         }
 
-        .main{
+        .started_main{
             width: 1100px;
             height: 100%;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            z-index: 2;
 
             h3{
                 font-family: 'Optima';
@@ -256,6 +273,8 @@ export const HomeStyled = styled.div`
                 line-height: 46px;
                 color: #fff;
                 background-color: #000;
+                cursor: pointer;
+                z-index: 2;
             }
         }
     }

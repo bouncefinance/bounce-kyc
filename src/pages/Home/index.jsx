@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HomeStyled } from './styled'
 import lattice from '../../assets/images/lattice.svg'
 import bule_check from '../../assets/images/bule-check.svg'
 import bule_star from '../../assets/images/bule-star.svg'
 import bule_people from '../../assets/images/bule-people.svg'
 import logo_white from '../../assets/logo/logo-white.svg'
+import { useHistory } from 'react-router-dom'
 
 import back1 from '../../assets/images/back1.svg'
 import back2 from '../../assets/images/back2.svg'
@@ -17,21 +18,48 @@ import medium from '../../assets/icons/index-medium.svg'
 import twitter from '../../assets/icons/index-twitter.svg'
 import telegram from '../../assets/icons/index-telegram.svg'
 
+import video from '../../assets/video/index.mp4'
+
+const CertifiedSalesSteps = [{
+    title: 'Certified sale application',
+    desc: 'Submit project information to the voting board to apply for a certified sale'
+}, {
+    title: 'Community scanning and voting',
+    desc: 'The community reviews your project for quality and approves the start of the best token sale'
+}, {
+    title: 'Multisig governance configuration',
+    desc: 'Execution upon multisignature by parties involved'
+}, {
+    title: 'Token sale activation',
+    desc: 'Your certified token sale goes live for verified user'
+}]
+
 export default function Index() {
+    const [curCertifiedSalesSteps, setCurCertifiedSalesSteps] = useState(0)
+    const [stepIsHover, setStepIsHover] = useState(false)
+    const history = useHistory()
+
     return (
         <HomeStyled>
             <div className="page_wrapper page_one">
                 <div className="main">
                     <div className="left">
-                        <img src={lattice} alt="lattice" />
+                        <video
+                            width='525px'
+                            height='525px'
+                            muted
+                            src={video}
+                            autoPlay='autoPlay'
+                            loop='loop'
+                        />
                     </div>
 
                     <div className="right">
-                        <h1>Certified crypto auction curated <span>by community</span></h1>
-                        <p>Bounce Certified is a branch of Bounce Finance decentralized platform, where high quality of listed projects in ensured by community’s right to activate or block token sales.</p>
+                        <h1>Certified crypto auction curated <span>by the community</span></h1>
+                        <p>Bounce Certified empowers the community to curate a select group of high-quality projects to conduct their public sale on the same robust and secure platform behind Bounce Finance.</p>
                         <p><span>KYC checks</span> / <span>White list sales</span> / <span>Decentralized auction managed by community DAO</span></p>
 
-                        <button>Apply for certified sale</button>
+                        <button onClick={() => { history.push('/applySale') }}>Apply for certified sale</button>
                     </div>
                 </div>
             </div>
@@ -72,38 +100,22 @@ export default function Index() {
 
                 <div className="block Certified">
                     <h3>Certified Sales Steps</h3>
-                    <ul className="step_list">
-                        <li className='active'>
-                            <h4>
-                                <i>1</i>
-                                Certified sale application
-                            </h4>
-                            <p>Submit project information to the voting board to apply for a certified sale</p>
-                        </li>
-
-                        <li>
-                            <h4>
-                                <i>2</i>
-                                Community scanning and voting
-                            </h4>
-                            <p>The community reviews your project for quality and approves the start of the best token sale</p>
-                        </li>
-
-                        <li>
-                            <h4>
-                                <i>3</i>
-                                Multisig governance configuration
-                            </h4>
-                            <p>Execution upon multisignature by parties involved</p>
-                        </li>
-
-                        <li>
-                            <h4>
-                                <i>4</i>
-                                Token sale activation
-                            </h4>
-                            <p>Your certified token sale goes live for verified user</p>
-                        </li>
+                    <ul className="step_list" >
+                        {CertifiedSalesSteps.map((item, index) => {
+                            return <li
+                                key={index}
+                                className={curCertifiedSalesSteps === index && !stepIsHover ? 'active' : ''}
+                                onMouseEnter={() => {
+                                    setCurCertifiedSalesSteps(index)
+                                }}
+                            >
+                                <h4>
+                                    <i>{index + 1}</i>
+                                    {item.title}
+                                </h4>
+                                <p>{item.desc}</p>
+                            </li>
+                        })}
                     </ul>
                 </div>
 
@@ -118,18 +130,18 @@ export default function Index() {
 
                             <div>
                                 <i>3</i>
-                                Application fee
+                                BOT token holder exclusive sales
                             </div>
                         </li>
                         <li>
                             <div>
                                 <i>2</i>
-                                Application fee
+                                Project voting power
                             </div>
 
                             <div>
                                 <i>4</i>
-                                Application fee
+                                Transaction fee buy back and burn
                             </div>
                         </li>
                     </ul>
@@ -139,10 +151,10 @@ export default function Index() {
             </div>
 
             <div className="started">
-                <div className="bg"></div>
-                <div className="main">
+                <div className="started_bg" onClick={() => { return console.log(31) }}></div>
+                <div className="started_main">
                     <h3>Get started to apply for certified sale with Bounce</h3>
-                    <button>Get Started</button>
+                    <button onClick={() => { return history.push('/applySale') }}>Get Started</button>
                 </div>
             </div>
 
@@ -195,7 +207,7 @@ export default function Index() {
                                 </a>
                             </li>
                         </ul>
-                        
+
                         <p>Forum</p>
                     </div>
 

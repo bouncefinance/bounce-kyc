@@ -8,9 +8,10 @@ export const headerMenu = [{
     name: '/ Project Voting Board',
     route: '/project-voting-board'
 }, {
-    name: '/ Project Voting Board',
+    name: '/ Bounce Decentralized',
+    route: '/bounce-decentralized',
     isConfirm: true,
-    link: 'http://bounce.finance'
+    link: 'https://app.bounce.finance'
 }]
 
 

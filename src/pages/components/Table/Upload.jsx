@@ -3,13 +3,14 @@ import axios from 'axios'
 import { UploadStyled } from './styled'
 import upload_img from '../../../assets/images/upload-img.svg'
 import { Button } from '../Table'
+import API_HOST from '../../../config/request_api'
 
 export const Upload = ({
-    title = 'Passport Photo',
-    tip = 'Drop logo here or upload',
-    desc = "Please upload photo where your face will be clearly visible Supports JPG, PNG, JPEG2000",
+    title = 'Project logo',
+    desc = "Please upload photo of page with iD number and photo Supports JPG, PNG, JPEG2000",
     successCallBack,
-    name
+    name,
+    width
 }) => {
 
     const [coverSrc, setCoverSrc] = useState(null)
@@ -20,8 +21,8 @@ export const Upload = ({
     const handelFileChange = (e) => {
         const file = e.target.files[0]
         if (!file) return
-        console.log(file)
-        if (file.type === 'image/png' || file.type === 'image/jpeg') {
+        // console.log(file)
+        if (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/gif' ) {
             let reader = new FileReader();  //调用FileReader
             reader.readAsDataURL(file); //将文件读取为 DataURL(base64)
             reader.onload = function (evt) {   //读取操作完成时触发。
@@ -42,7 +43,7 @@ export const Upload = ({
         }
 
         axios
-            .post("https://account.bounce.finance:16000/api/v1/fileupload", formData, config)
+            .post(API_HOST.upload, formData, config)
             .then(function (response) {
                 // console.log(response);
                 if (response.data.code === 200) {
@@ -53,7 +54,6 @@ export const Upload = ({
                 }
             })
             .catch(function (error) {
-                console.log(error);
                 setUploadRes('Error')
             }).finally(() => {
                 setIsLoading(false)
@@ -61,17 +61,17 @@ export const Upload = ({
     }
 
     return (
-        <UploadStyled>
+        <UploadStyled width={width}>
             {title && <p className='title'>{title}</p>}
-            <div className="main">
+            <div className="upload_main">
                 <div className="left">
                     <label htmlFor={'upload_img_' + name}>
                         {coverSrc && <img className='cover' src={coverSrc} alt="" />}
                         <div className="upload_select">
                             <img src={upload_img} alt={'upload_img_' + name} />
-                            <p>{tip}</p>
+                            <p>Drop logo here or <span>upload</span></p>
                         </div>
-                        <input type="file" name={'upload_img_' + name} id={'upload_img_' + name} onChange={handelFileChange} />
+                        <input  accept="image/*" type="file" name={'upload_img_' + name} id={'upload_img_' + name} onChange={handelFileChange} />
                     </label>
 
 
@@ -82,6 +82,8 @@ export const Upload = ({
                     {coverSrc && <div className="btn_grop">
                         <Button onClick={() => {
                             setCoverSrc(null)
+                            successCallBack(null)
+                            setUploadRes('')
                         }} value='Reset' type='white' width='100px' height='30px' />
                         {isLoading ?
                             <Button disabled value='uploading...' type='black' width='120px' height='30px' /> :
