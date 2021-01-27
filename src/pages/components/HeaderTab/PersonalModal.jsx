@@ -52,6 +52,7 @@ export default function PersonalModal({ show = false, userName }) {
                             confirm: {
                                 text: 'Go',
                                 callback: () => {
+                                    dispatch({type: 'MODAL', value: null})
                                     history.push('/kyc')
                                 }
                             }

@@ -100,7 +100,8 @@ export default function Index() {
             ...step5Data,
             ...step6Data
         }
-        console.log(JSON.stringify(params))
+        params.accountaddress = account
+        // console.log(JSON.stringify(params))
         try {
             axios.post(API.applySale, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
