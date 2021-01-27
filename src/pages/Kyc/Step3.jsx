@@ -9,7 +9,6 @@ import Web3 from "web3";
 import icon_plaint from '../../assets/images/plaint.svg'
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
-    const history = useHistory()
     const { dispatch } = useContext(myContext)
     const { active, account, library } = useWeb3React()
     const [data, setData] = useState({})

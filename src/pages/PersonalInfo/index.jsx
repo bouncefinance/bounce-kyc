@@ -9,11 +9,12 @@ import axios from 'axios'
 import API from '../../config/request_api'
 import { useWeb3React } from '@web3-react/core'
 import { myContext } from '../../redux'
+import Web3 from 'web3'
 
 export default function Index() {
     const { dispatch } = useContext(myContext)
     const history = useHistory()
-    const { account } = useWeb3React()
+    const { account, library } = useWeb3React()
     const [showInfo, setShowInfo] = useState({
         username: '',
         emailaddr: '',
@@ -37,8 +38,12 @@ export default function Index() {
     }, [account])
 
 
-    const handelSubmit = () => {
+    const handelSubmit = async () => {
         const params = showInfo
+        const web3 = new Web3(library.provider);
+        const sign = await web3.eth.personal.sign('Welcome to Bounce!', account)
+        console.log('sign', sign)
+        return
         if (account && params.bounceid !== 0) {
             params.bounceid = null
             axios.post(API.KYC, params).then(res => {
