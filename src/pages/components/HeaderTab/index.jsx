@@ -11,7 +11,7 @@ import HOST_API from '../../../config/request_api'
 import { useActiveWeb3React } from "../../../web3";
 
 
-export default function Index() {
+export default function Index () {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
@@ -23,6 +23,29 @@ export default function Index() {
         const width = window.document.documentElement.clientWidth
         if (width < 750) {
             alert('Please use desktop version! Phone version coming soon')
+        }
+
+        // 设置cookie
+        const isShowTip = getCookie('isShowTip')
+        console.log(isShowTip)
+        if (isShowTip === '') {
+            dispatch({
+                type: 'MODAL',
+                value: {
+                    name: 'KYC_TIP',
+                    confirm: {
+                        text: 'Confirm',
+                        callback: () => {
+                            window.document.cookie = 'isShowTip = true'
+                            dispatch({
+                                type: 'MODAL',
+                                value: null
+                            })
+                        }
+                    }
+                }
+            })
+
         }
     }, [])
 
@@ -122,4 +145,22 @@ export default function Index() {
             </div>
         </HeaderTabStyled>
     )
+}
+
+
+
+
+
+
+
+
+
+function getCookie (cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
 }

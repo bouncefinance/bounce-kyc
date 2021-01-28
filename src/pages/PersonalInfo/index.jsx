@@ -10,7 +10,7 @@ import API from '../../config/request_api'
 import { useWeb3React } from '@web3-react/core'
 import { myContext } from '../../redux'
 
-export default function Index() {
+export default function Index () {
     const { dispatch } = useContext(myContext)
     const history = useHistory()
     const { account } = useWeb3React()
@@ -39,7 +39,7 @@ export default function Index() {
 
     const handelSubmit = () => {
         const params = showInfo
-        if (account && params.bounceid !== 0) {
+        if (account && params.bounceid !== '0') {
             params.bounceid = null
             axios.post(API.KYC, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
@@ -168,7 +168,7 @@ export default function Index() {
                                 history.goBack(-1)
                             }} />
                             <Button type='black' value='Save' width='164px'
-                                disabled={showInfo.emailaddr ? false : true}
+                                disabled={showInfo.bounceid !== '0' && showInfo.emailaddr ? false : true}
                                 onClick={handelSubmit} />
                         </div>
                     </div>
