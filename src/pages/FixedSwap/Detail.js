@@ -57,18 +57,21 @@ export const FSPoolDetail = () => {
   const {account, library, chainId} = useActiveWeb3React()
   const {balance} = useTokenBalance()
   const {setTime, leftTime} = useLeftTime()
+  const claimTime = useLeftTime()
   const [bidAmount, setBidAmount] = useState()
   const [bidStatus, setBidStatus] = useState(initStatus)
   const [showTip, setShowTip] = useState()
   const [errors, setErrors] = useState({amount: ''})
 
   const isXSDown = useIsXSDown();
-
+  const setClaimTime = claimTime.setTime
+  const claimLeftTime = claimTime.leftTime
+  console.log('claimLeftTime', claimLeftTime)
   const {
     name, address, symbol, decimals, limit, time, fromBidAmount, fromAmount, toAmount,
     status, isMine, toBidAmount, onlyBOT,
     claimed, toSymbol, toAddress, toDecimals,
-    biddenAmount, joinStatus, inWhiteList, claimStatus
+    biddenAmount, joinStatus, inWhiteList, claimAble, setClaimAble, claimAt
   } = usePoolDetail(poolId)
 
   const {ethBalance} = useEthBalance(toAddress)
@@ -98,6 +101,29 @@ export const FSPoolDetail = () => {
       clearInterval(timer)
     }
   }, [setTime, time]);
+
+  let claimTimer = null
+  useEffect(() => {
+    claimTimer = setInterval(() => {
+      console.log('claimTime',claimAt)
+      const date = new Date(claimAt * 1000);
+      const now = new Date();
+      const lefttime = date - now;
+      if (lefttime >= 1000) {
+        setClaimTime(lefttime)
+      } else if (0 < lefttime && lefttime < 1000) {
+        //window.location.reload()
+        setClaimAble(true)
+        setClaimTime(null)
+      } else {
+        clearInterval(timer)
+      }
+    }, (1000));
+    return () => {
+      clearInterval(timer)
+    }
+  }, [setClaimTime, claimAt]);
+
 
 
   const onBid = async () => {
@@ -279,7 +305,9 @@ export const FSPoolDetail = () => {
         <LayoutFrame width={'1072px'} style={{padding: '24px 0', margin: 'auto', marginTop: 0}}>
           <Pool.Mode>Fixed-Swap</Pool.Mode>
           <Pool.Header><span>{name}</span></Pool.Header>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
           <Address style={{wordBreak: isXSDown ? 'break-all' : 'normal'}}>{address}</Address>
+          </div>
           <Pool.Content style={{marginTop: 40}}>
 
             <Pool.Content width={isXSDown ? '100%' : '456px'} style={{marginTop: 0}}>
@@ -319,12 +347,11 @@ export const FSPoolDetail = () => {
                 fontSize: 12,
                 fontFamily: 'IBM Plex Mono',
                 fontWeight: 500
-              }}>Auction
-                progress: {toBidAmount && weiToNumber(toBidAmount, toDecimals)} {toSymbol}
+              }}>Auction progress: {toBidAmount && weiToNumber(toBidAmount, toDecimals)} {toSymbol}
                 <span
                     style={{opacity: .3}}> / {toAmount && weiToNumber(toAmount, toDecimals)} {toSymbol}</span>
               </OText5>
-              {fromBidAmount && fromAmount && (
+              {toBidAmount && toAmount && (
                   <Progress style={{marginTop: 16}} height={'5px'}
                             className={classNames('progress', toBidAmount === toAmount ? 'Filled' : status)}>
                     <Progress.Value style={{width: `${getProgress(toBidAmount, toAmount)}%`}}
@@ -336,7 +363,7 @@ export const FSPoolDetail = () => {
 
             <Pool.Content width={'auto'}
                           style={{
-                            height: 'fit-content',
+                            height: 'auto',
                             width: isXSDown ? '100%' : '480px',
                             flexDirection: 'column',
                             padding: isXSDown ? '48px 20px' : '48px 56px',
@@ -344,6 +371,18 @@ export const FSPoolDetail = () => {
                             marginTop: 0,
                             backgroundColor: 'rgba(248, 248, 251, 1)'
                           }}>
+
+              {status === 'Live' && (
+                  <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>Join Auction</OText2>
+              )}
+
+              {status === 'Closed' && (
+                  <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>Auction is Closed</OText2>
+              )}
+
+              {status === 'Filled' && (
+                  <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>The Auction Filled</OText2>
+              )}
 
               {isMine ? (
                   <>
@@ -361,21 +400,14 @@ export const FSPoolDetail = () => {
 
                     {(status === 'Closed' && !claimed) ?
                         <Button black onClick={onCreatorClaim}>Claim your tokens</Button> : null}
-
                   </>
               ) : (
                   <form id="bid-fs-form" onSubmit={handleSubmit}>
-                    {!claimStatus && (
-                        <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>Waiting For Token Claim</OText2>
-                    )}
-                    {claimStatus && (
-                        <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>Join The Pool</OText2>
-                    )}
                     {renderTime(leftTime)}
                     <LineDivider style={{marginTop: 0}}/>
                     <Pool.topInfo>
                       <span>You have successfully bid</span>
-                      <span>{`${biddenAmount ? weiToNumber(biddenAmount, decimals) : '--'}`} {symbol}</span>
+                      <span>{`${(biddenAmount && decimals) ? weiToNumber(biddenAmount, decimals) : '--'}`} {symbol}</span>
                     </Pool.topInfo>
 
                     {status === 'Live' && (
@@ -416,8 +448,11 @@ export const FSPoolDetail = () => {
                         </>
                     )}
 
-                    {(status === 'Closed' && !claimed && joinStatus) ?
-                        <Button type='button' style={{marginTop: 24}} black onClick={onClaim}>Claim your tokens</Button> : null}
+                    {((status === 'Closed' || status === 'Filled') && !claimed && joinStatus) ?
+                        <Button disabled={!claimAble} type='button' style={{marginTop: 24}} black onClick={onClaim}>
+                          Claim your tokens
+                          {claimLeftTime && `( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                        </Button> : null}
                     <TipLink/>
                   </form>
               )}
