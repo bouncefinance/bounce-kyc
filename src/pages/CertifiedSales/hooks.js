@@ -5,6 +5,8 @@ import { getContract, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
 import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
+import BigNumber from "bignumber.js";
+import {isGreaterThan} from "../../utils/common";
 
 export const getProjectInfo = async (proId) => {
   const params = {
@@ -81,7 +83,7 @@ export const usePoolList = () => {
   const [activePool, setActivePool] = useState([])
   const [upcomingPools, setUpcomingPools] = useState([])
   const [passPools, setPassPools] = useState([])
-  const { active, library, chainId } = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
 
 
   const fetchList = () => {
@@ -102,6 +104,15 @@ export const usePoolList = () => {
               const closed = closeAt - new Date()
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
+
+            const  toAmount = await bounceContract.methods.amountSwap1P(i).call()
+            if(poolRes.amountTotal1 === toAmount){
+              pool.status = 'Failed'
+            }
+
+            const  bidAmount = bounceContract.methods.myAmountSwapped0(account, i).call()
+            pool.joined = isGreaterThan(bidAmount, '0')
+
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
             // console.log('pool',pool)

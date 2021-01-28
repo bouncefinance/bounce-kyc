@@ -37,6 +37,8 @@ export const usePoolDetail = (id = 0) => {
     const [toTokenBalance, setToTokenBalance] = useState(0)
     const [biddenAmount, setBiddenAmount] = useState()
     const [inWhiteList, setInWhiteList] = useState()
+    const [myBidFromAmount, setMyBidFromAmount] = useState()
+
 
     const { Psymbol } = useActivePlatform()
     const tokenOptions = useTokenList()
@@ -123,27 +125,27 @@ export const usePoolDetail = (id = 0) => {
 
                 setTime(res.closeAt)
 
-                setIsMine((res.beneficiary.toLowerCase() === account.toLowerCase()))
-                if (res.beneficiary.toLowerCase() === account.toLowerCase()) {
-                    let myPoolIndex = await fsContract.methods.myP(account).call()
-                    if (myPoolIndex > 0) {
-                        myPoolIndex = myPoolIndex - 1
-                        const fromAmount = res.amountTotal0
-                        const bidAmount = await fsContract.methods.amountSwap0P(myPoolIndex).call()
-                        if (fromAmount === bidAmount) {
-                            setClaimed(true)
-                        } else {
-                            setClaimed(false)
-                        }
-                    } else {
-                        setClaimed(true)
-                    }
-                }else {
-                    fsContract.methods.myClaimed(account, id).call().then((res) => {
-                        console.log('myClaimed:', res)
-                        setClaimed(res)
-                    })
-                }
+                // setIsMine((res.beneficiary.toLowerCase() === account.toLowerCase()))
+                // if (res.beneficiary.toLowerCase() === account.toLowerCase()) {
+                //     let myPoolIndex = await fsContract.methods.myP(account).call()
+                //     if (myPoolIndex > 0) {
+                //         myPoolIndex = myPoolIndex - 1
+                //         const fromAmount = res.amountTotal0
+                //         const bidAmount = await fsContract.methods.amountSwap0P(myPoolIndex).call()
+                //         if (fromAmount === bidAmount) {
+                //             setClaimed(true)
+                //         } else {
+                //             setClaimed(false)
+                //         }
+                //     } else {
+                //         setClaimed(true)
+                //     }
+                // }else {
+                //     fsContract.methods.myClaimed(account, id).call().then((res) => {
+                //         console.log('myClaimed:', res)
+                //         setClaimed(res)
+                //     })
+                // }
 
                 setToAmount(res.amountTotal1)
 
@@ -184,6 +186,12 @@ export const usePoolDetail = (id = 0) => {
             fsContract.methods.myAmountSwapped1(account, id).call().then((res) => {
                 console.log('query fs myAmountSwapped1:', res)
                 setBiddenAmount(res)
+                setJoinStatus(isGreaterThan(res, '0'))
+            })
+
+            fsContract.methods.myAmountSwapped0(account, id).call().then((res) => {
+                console.log('query fs myAmountSwapped0:', res)
+                setMyBidFromAmount(res)
                 setJoinStatus(isGreaterThan(res, '0'))
             })
 
@@ -250,6 +258,7 @@ export const usePoolDetail = (id = 0) => {
         inWhiteList,
         claimAble,
         claimAt,
-        setClaimAble
+        setClaimAble,
+        myBidFromAmount
     }
 }

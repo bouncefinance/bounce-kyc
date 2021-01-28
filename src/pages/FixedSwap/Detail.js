@@ -40,7 +40,8 @@ import {Message} from "../../components/common/message";
 import {TipLink} from "../../components/common/TipLink";
 import {CREATOR_CLAIMED_MESSAGE} from "../../const";
 import {validateForm} from "../../utils/form";
-import {isGreaterThan} from "../../utils/common";
+import {isEqualTo, isGreaterThan} from "../../utils/common";
+import BigNumber from "bignumber.js";
 
 const {toWei} = Web3.utils
 
@@ -71,7 +72,7 @@ export const FSPoolDetail = () => {
     name, address, symbol, decimals, limit, time, fromBidAmount, fromAmount, toAmount,
     status, isMine, toBidAmount, onlyBOT,
     claimed, toSymbol, toAddress, toDecimals,
-    biddenAmount, joinStatus, inWhiteList, claimAble, setClaimAble, claimAt
+    biddenAmount, joinStatus, inWhiteList, claimAble, setClaimAble, claimAt, myBidFromAmount
   } = usePoolDetail(poolId)
 
   const {ethBalance} = useEthBalance(toAddress)
@@ -82,6 +83,14 @@ export const FSPoolDetail = () => {
       setErrors(errors)
     }
   }, [onlyBOT, balance, bidAmount, account])
+
+  useEffect(() => {
+    console.log('limit--->',biddenAmount, limit)
+    if (biddenAmount && limit && isGreaterThan(limit, '0') && isEqualTo(biddenAmount, limit)) {
+      errors.amount = 'You have reached your maximum allocation per wallet.'
+      setErrors(errors)
+    }
+  }, [biddenAmount, limit])
 
   let timer = null
   useEffect(() => {
@@ -238,7 +247,7 @@ export const FSPoolDetail = () => {
         if (!ethBalance || (ethBalance && isGreaterThan(numToWei(amountValue, decimals), ethBalance))) {
           errors.amount = 'you do not have enough balance'
         }
-        if (limit && isGreaterThan(limit, '0') && isGreaterThan(numToWei(amountValue, toDecimals), limit)) {
+        if (limit && isGreaterThan(limit, '0') && isGreaterThan(new BigNumber(numToWei(amountValue, toDecimals)).plus(biddenAmount), limit)) {
           errors.amount = 'maximum allocation per wallet is ' + weiToNum(limit, toDecimals)
         }
         break
@@ -253,7 +262,7 @@ export const FSPoolDetail = () => {
     event.preventDefault();
     console.log('handleSubmit', event)
     if (validateForm(errors)) {
-      setShowTip(true)
+      onBid()
     }
   }
 
@@ -290,7 +299,7 @@ export const FSPoolDetail = () => {
             <>
               {status === 'Live' && joinStatus && (
                   <Message type={'success'}
-                           content={'You have successfully bidded and your swapped tokens are automatically sent to your wallet. You can now make more bids.'}/>
+                           content={'You have successfully bidded and your can claim your swapped tokens when auction is finished. You can now make more bids.'}/>
               )}
               {status !== 'Live' && (
                   <Message content={'This auction is finished, please visit other live auctions.'}/>
@@ -407,7 +416,7 @@ export const FSPoolDetail = () => {
                     <LineDivider style={{marginTop: 0}}/>
                     <Pool.topInfo>
                       <span>You have successfully bid</span>
-                      <span>{`${(biddenAmount && decimals) ? weiToNumber(biddenAmount, decimals) : '--'}`} {symbol}</span>
+                      <span>{`${(myBidFromAmount && decimals) ? weiToNumber(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
                     </Pool.topInfo>
 
                     {status === 'Live' && (
@@ -430,7 +439,8 @@ export const FSPoolDetail = () => {
                                   }}
                                   name={'amount'}
                                   placeholder={'Bid Amount'}
-                                  disabled={onlyBOT && isGreaterThan(toWei('0.1'), balance)}
+                                  disabled={(onlyBOT && isGreaterThan(toWei('0.1'), balance)) ||
+                                  (limit && biddenAmount && isGreaterThan(limit, '0') &&  isEqualTo(limit, biddenAmount))}
                                   value={bidAmount}
                                   onChange={handleChange}
                               />} name={' '} addonAfter={(<img onClick={() => {

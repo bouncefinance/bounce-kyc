@@ -11,6 +11,7 @@ import {
 import {getPoolLeftTime} from "../../utils/time";
 import {HOST} from "../../config/request_api";
 import InfoBox from './LearnMore/InfoBox'
+import BigNumber from "bignumber.js";
 
 export default function SalesCard({status, isVote, pool = {}}) {
   const [bidStatus, setBidStatus] = useState(initStatus)
@@ -56,6 +57,7 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
           <div className="middle">
             <div className="left">
+              {pool.status === 'Failed'  && pool.joined && <span className='vote'>You participated</span>}
               <Passage
                   title='Project details'
                   desc={pool.proInfo && pool.proInfo.prosummary}/>
