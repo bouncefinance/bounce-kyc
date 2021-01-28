@@ -123,8 +123,10 @@ export const FSPoolDetail = () => {
       } else if (0 < lefttime && lefttime < 1000) {
         //window.location.reload()
         setClaimAble(true)
-        setClaimTime(null)
+        console.log('setClaimTime')
       } else {
+        setClaimAble(true)
+        console.log('setClaimTime1')
         clearInterval(timer)
       }
     }, (1000));
@@ -461,7 +463,7 @@ export const FSPoolDetail = () => {
                     {((status === 'Closed' || status === 'Filled') && !claimed && joinStatus) ?
                         <Button disabled={!claimAble} type='button' style={{marginTop: 24}} black onClick={onClaim}>
                           Claim your tokens
-                          {claimLeftTime && `( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                          {claimLeftTime && !claimAble && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
                         </Button> : null}
                     <TipLink/>
                   </form>

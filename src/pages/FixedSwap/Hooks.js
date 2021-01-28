@@ -155,6 +155,10 @@ export const usePoolDetail = (id = 0) => {
                     setStatus('Upcoming')
                 }else {
                     setStatus(leftTime > 0 ? 'Live' : 'Closed')
+                    fsContract.methods.myClaimed(account, id).call().then((res) => {
+                        console.log('myClaimed:', res)
+                        setClaimed(res)
+                    })
                     fsContract.methods.amountSwap1P(id).call().then((bidAmount) => {
                         console.log('query pool to bid amount:', bidAmount, res.amountTotal1)
                         setToBidAmount(bidAmount)
@@ -169,7 +173,6 @@ export const usePoolDetail = (id = 0) => {
                                 }else {
                                     setClaimAt(claimTime)
                                     console.log('claimTime2:', filledAt)
-
                                 }
                             })
                         }
