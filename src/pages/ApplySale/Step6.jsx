@@ -75,7 +75,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
 
             <TextInput
                 label='Additional information'
-                placeholder='Enter amount of token'
+                placeholder='Enter additional information '
                 width='600px'
                 defaultVal={step6Data.additionalinfo}
                 maxLength={200}

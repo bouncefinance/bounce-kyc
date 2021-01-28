@@ -11,7 +11,7 @@ import { useWeb3React } from '@web3-react/core'
 import { myContext } from '../../redux'
 import useAxios from '../../hooks/useAxios'
 
-export default function Index() {
+export default function Index () {
     const { dispatch } = useContext(myContext)
     const history = useHistory()
     const { account } = useWeb3React()
@@ -41,7 +41,7 @@ export default function Index() {
 
     const handelSubmit = async () => {
         const params = showInfo
-        if (account && params.status === 1) {
+        if (account && params.bounceid !== '0') {
             params.bounceid = null
             sign_Axios.post(API.sign_KYC, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
@@ -166,8 +166,8 @@ export default function Index() {
                             <Button type='white' value='Cancel' width='164px' onClick={() => {
                                 history.goBack(-1)
                             }} />
-                            <Button type='black' disabled={showInfo && showInfo.status === 1 ? false : true} value='Save' width='164px'
-                                disabled={showInfo.emailaddr ? false : true}
+                            <Button type='black' value='Save' width='164px'
+                                disabled={showInfo.bounceid !== '0' && showInfo.emailaddr ? false : true}
                                 onClick={handelSubmit} />
                         </div>
                     </div>

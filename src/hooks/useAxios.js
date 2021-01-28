@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import fetch from 'fetch'
 import Web3 from 'web3'
 import { useWeb3React } from '@web3-react/core'
 import API from '../config/request_api'
@@ -40,7 +41,8 @@ export default function useAxios() {
         let config = {
             ...option,
             headers: {
-                token: token
+                token: token,
+                "Content-Type": "application/x-www-from-urlencoded"
             }
         }
 
@@ -51,7 +53,8 @@ export default function useAxios() {
             config = {
                 ...option,
                 headers: {
-                    token: token
+                    token: token,
+                    "Content-Type": "application/x-www-from-urlencoded"
                 }
             }
             res = await axios.post(host, params, config)
