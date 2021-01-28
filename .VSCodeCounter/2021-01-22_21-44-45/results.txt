@@ -1,6 +1,6 @@
-Date : 2021-01-22 19:43:03
+Date : 2021-01-22 21:44:45
 Directory : c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc
-Total : 161 files,  47764 codes, 103 comments, 2722 blanks, all 50589 lines
+Total : 161 files,  48017 codes, 100 comments, 2740 blanks, all 50857 lines
 
 Languages
 +------------------+------------+------------+------------+------------+------------+
@@ -8,8 +8,8 @@ Languages
 +------------------+------------+------------+------------+------------+------------+
 | JSON             |          6 |     30,297 |          0 |          3 |     30,300 |
 | Log              |          1 |     10,467 |          0 |      1,553 |     12,020 |
-| JavaScript       |         49 |      3,347 |         26 |        563 |      3,936 |
-| JavaScript React |         42 |      2,739 |         38 |        418 |      3,195 |
+| JavaScript       |         49 |      3,363 |         26 |        566 |      3,955 |
+| JavaScript React |         42 |      2,976 |         35 |        433 |      3,444 |
 | XML              |         58 |        395 |          8 |         49 |        452 |
 | SCSS             |          1 |        251 |          0 |         69 |        320 |
 | CSS              |          2 |        210 |          8 |         33 |        251 |
@@ -21,12 +21,12 @@ Directories
 +--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 | path                                                                                                         | files      | code       | comment    | blank      | total      |
 +--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                                            |        161 |     47,764 |        103 |      2,722 |     50,589 |
+| .                                                                                                            |        161 |     48,017 |        100 |      2,740 |     50,857 |
 | .idea                                                                                                        |          7 |         48 |          0 |          0 |         48 |
 | .idea\codeStyles                                                                                             |          1 |          5 |          0 |          0 |          5 |
 | .idea\inspectionProfiles                                                                                     |          2 |         11 |          0 |          0 |         11 |
 | public                                                                                                       |          3 |         49 |         31 |          4 |         84 |
-| src                                                                                                          |        148 |     37,106 |         72 |      1,132 |     38,310 |
+| src                                                                                                          |        148 |     37,359 |         69 |      1,150 |     38,578 |
 | src\assets                                                                                                   |         46 |        571 |          0 |        110 |        681 |
 | src\assets\css                                                                                               |          1 |        251 |          0 |         69 |        320 |
 | src\assets\icons                                                                                             |         25 |        118 |          0 |         22 |        140 |
@@ -36,22 +36,22 @@ Directories
 | src\components\common                                                                                        |          9 |      1,128 |          6 |        175 |      1,309 |
 | src\config                                                                                                   |          1 |          9 |          0 |          2 |         11 |
 | src\hooks                                                                                                    |          2 |         48 |          5 |         11 |         64 |
-| src\pages                                                                                                    |         63 |      4,293 |         45 |        665 |      5,003 |
-| src\pages\ApplySale                                                                                          |          8 |        563 |          3 |        103 |        669 |
+| src\pages                                                                                                    |         63 |      4,546 |         42 |        683 |      5,271 |
+| src\pages\ApplySale                                                                                          |          8 |        770 |          0 |        118 |        888 |
 | src\pages\CertifiedSales                                                                                     |         12 |        719 |          3 |        122 |        844 |
 | src\pages\CertifiedSales\Detail                                                                              |          2 |         12 |          0 |          4 |         16 |
 | src\pages\CertifiedSales\LearnMore                                                                           |          2 |        188 |          0 |         33 |        221 |
 | src\pages\FixedSwap                                                                                          |          2 |        562 |          1 |         89 |        652 |
-| src\pages\Home                                                                                               |          2 |        482 |          0 |         69 |        551 |
-| src\pages\Kyc                                                                                                |          5 |        293 |          4 |         37 |        334 |
-| src\pages\PersonalInfo                                                                                       |          2 |        193 |          0 |         21 |        214 |
+| src\pages\Home                                                                                               |          2 |        483 |          0 |         69 |        552 |
+| src\pages\Kyc                                                                                                |          5 |        295 |          4 |         37 |        336 |
+| src\pages\PersonalInfo                                                                                       |          2 |        235 |          0 |         24 |        259 |
 | src\pages\ProjectList                                                                                        |          2 |        105 |          0 |         14 |        119 |
-| src\pages\components                                                                                         |         27 |      1,271 |         16 |        189 |      1,476 |
+| src\pages\components                                                                                         |         27 |      1,272 |         16 |        189 |      1,477 |
 | src\pages\components\Exhibition                                                                              |          4 |         75 |          0 |         14 |         89 |
 | src\pages\components\HeaderTab                                                                               |         10 |        343 |         12 |         47 |        402 |
 | src\pages\components\HeaderTab\assets                                                                        |          6 |         24 |          0 |          6 |         30 |
 | src\pages\components\Modal                                                                                   |          4 |        228 |          1 |         38 |        267 |
-| src\pages\components\Table                                                                                   |          9 |        625 |          3 |         90 |        718 |
+| src\pages\components\Table                                                                                   |          9 |        626 |          3 |         90 |        719 |
 | src\redux                                                                                                    |          2 |         43 |          0 |          7 |         50 |
 | src\test                                                                                                     |          1 |         29 |          1 |          7 |         37 |
 | src\utils                                                                                                    |          9 |        260 |          0 |         60 |        320 |
@@ -144,11 +144,11 @@ Files
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\index.js                                           | JavaScript       |          7 |          0 |          2 |          9 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step1.jsx                          | JavaScript React |        129 |          0 |         20 |        149 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step2.jsx                          | JavaScript React |         75 |          0 |         15 |         90 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step3.jsx                          | JavaScript React |         27 |          0 |          5 |         32 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step4.jsx                          | JavaScript React |         52 |          0 |         11 |         63 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step5.jsx                          | JavaScript React |         80 |          1 |         15 |         96 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step6.jsx                          | JavaScript React |         35 |          2 |          7 |         44 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\index.jsx                          | JavaScript React |         46 |          0 |         10 |         56 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step3.jsx                          | JavaScript React |         50 |          0 |          8 |         58 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step4.jsx                          | JavaScript React |        100 |          0 |         14 |        114 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step5.jsx                          | JavaScript React |        121 |          0 |         19 |        140 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\Step6.jsx                          | JavaScript React |         65 |          0 |         10 |         75 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\index.jsx                          | JavaScript React |        111 |          0 |         12 |        123 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ApplySale\styled.js                          | JavaScript       |        119 |          0 |         20 |        139 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\CertifiedSales\Apply.jsx                     | JavaScript React |         69 |          1 |         10 |         80 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\CertifiedSales\ApplyModal.js                 | JavaScript       |         53 |          0 |         12 |         65 |
@@ -165,15 +165,15 @@ Files
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\FixedSwap\Detail.js                          | JavaScript       |        397 |          0 |         54 |        451 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\FixedSwap\Hooks.js                           | JavaScript       |        165 |          1 |         35 |        201 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Home\index.jsx                               | JavaScript React |        189 |          0 |         27 |        216 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Home\styled.js                               | JavaScript       |        293 |          0 |         42 |        335 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Home\styled.js                               | JavaScript       |        294 |          0 |         42 |        336 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\InitPage.jsx                                 | JavaScript React |         47 |         17 |         14 |         78 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Kyc\Step1.jsx                                | JavaScript React |         55 |          1 |          9 |         65 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Kyc\Step2.jsx                                | JavaScript React |         53 |          1 |          8 |         62 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Kyc\Step3.jsx                                | JavaScript React |        102 |          2 |          8 |        112 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Kyc\Step3.jsx                                | JavaScript React |        104 |          2 |          8 |        114 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Kyc\index.jsx                                | JavaScript React |         43 |          0 |          6 |         49 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\Kyc\styled.js                                | JavaScript       |         40 |          0 |          6 |         46 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\PersonalInfo\index.jsx                       | JavaScript React |        128 |          0 |         10 |        138 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\PersonalInfo\styled.js                       | JavaScript       |         65 |          0 |         11 |         76 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\PersonalInfo\index.jsx                       | JavaScript React |        155 |          0 |         10 |        165 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\PersonalInfo\styled.js                       | JavaScript       |         80 |          0 |         14 |         94 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ProjectList\index.jsx                        | JavaScript React |         71 |          0 |          9 |         80 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\ProjectList\styled.js                        | JavaScript       |         34 |          0 |          5 |         39 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Exhibition\Crumbs.jsx             | JavaScript React |         13 |          0 |          2 |         15 |
@@ -200,7 +200,7 @@ Files
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\Input.jsx                   | JavaScript React |        118 |          0 |         16 |        134 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\Select.jsx                  | JavaScript React |         39 |          0 |          5 |         44 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\Text.jsx                    | JavaScript React |         11 |          0 |          3 |         14 |
-| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\Upload.jsx                  | JavaScript React |         88 |          2 |         11 |        101 |
+| c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\Upload.jsx                  | JavaScript React |         89 |          2 |         11 |        102 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\index.jsx                   | JavaScript React |         16 |          0 |          1 |         17 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\components\Table\styled.js                   | JavaScript       |        294 |          1 |         44 |        339 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\pages\index.jsx                                    | JavaScript React |         49 |          1 |          5 |         55 |
@@ -224,5 +224,5 @@ Files
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\web3\address.js                                    | JavaScript       |         36 |          0 |          3 |         39 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\src\web3\index.js                                      | JavaScript       |          9 |          1 |          3 |         13 |
 | c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc\yarn-error.log                                         | Log              |     10,467 |          0 |      1,553 |     12,020 |
-| Total                                                                                                        |                  |     47,764 |        103 |      2,722 |     50,589 |
+| Total                                                                                                        |                  |     48,017 |        100 |      2,740 |     50,857 |
 +--------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

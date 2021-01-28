@@ -305,12 +305,12 @@ Pool.Frame = styled.div`
 `
 
 Pool.Return = styled.img`
-  width: 34px;
+  width: 12px;
   position: absolute;
-  top: 12px;
-  left: 48px;
+  top: 24px;
+  left: 24px;
   height: 40px;
-  padding-right: 24px;
+  padding-right: 12px;
   border-right: 1px solid #C4C4C4;
   cursor: pointer;
   z-index: 2;
@@ -382,6 +382,7 @@ Pool.Status = styled.div`
   line-height: 15px;
   display: flex;
   align-content: center;
+  align-items: center;
   i{
     /* font-size: 36px; */
     width: 9px;

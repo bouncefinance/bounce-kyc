@@ -47,10 +47,6 @@ export const InitPage = () => {
 
     const { state } = useContext(mainContext);
 
-    const {
-        showConnectModal,
-    } = state;
-
     useEffect(() => {
         const localContent = window && window.localStorage.getItem(BOUNCE_SELECT_WEB3_CONTEXT)
         // console.log('wallet content', localContent)

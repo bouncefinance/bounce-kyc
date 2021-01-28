@@ -9,7 +9,7 @@ import bounce_loading from "../../assets/bounce-loading.json";
 
 export const confirmStatus = {status: 1, title: 'Bounce requests wallet interaction', content: 'Please open your wallet and confirm in the transaction activity to proceed your order'}
 export const pendingStatus = {status: 2, title: 'Bounce waiting for transaction settlement', content: 'Bounce is engaging with blockchain transaction, please wait patiently for on-chain transaction settlement'}
-export const claimSuccessStatus = {status: 3, title: 'Settlement', content: 'You have successfully claimed back your voted tokens.'}
+export const claimSuccessStatus = {status: 3, title: 'Settlement', content: 'your token arrives into your wallet.'}
 export const voteSuccessStatus = {status: 3, title: 'Congratulations!', content: 'You have successfully participated in this prediction. Please come back to check results when the prediction pool is closed'}
 export const successStatus = {status: 3, title: 'Congratulations!', content: 'You have successfully participated in this auction. To proceed to next step, please read more instructions on auction in the bounce documentation'}
 export const errorStatus = {status: -1, title: 'Transaction failed on Bounce', content: 'Oops! Your transaction is failed for on-chain approval and settlement. Please initiate another transaction'}

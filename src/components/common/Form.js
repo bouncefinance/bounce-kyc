@@ -10,6 +10,7 @@ const InputFrame = styled.div`
   margin-top: ${({ top }) => (top ? top : 0)};
   
   input{
+      background-color: transparent;
     /* opacity: .3; */
       &:hover{
         opacity: 1;

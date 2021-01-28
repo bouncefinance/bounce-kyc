@@ -5,7 +5,6 @@ import icon_close from '../../assets/icons/icon-close-white.svg'
 const MessageFrame = styled.div`
   color: ${({ color }) => (color)};
   background-color: ${({ background }) => (background)};
-  width: 100%;
   min-height: 60px;
   font-family: IBM Plex Mono;
   font-style: normal;

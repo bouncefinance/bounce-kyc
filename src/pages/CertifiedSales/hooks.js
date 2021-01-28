@@ -6,7 +6,7 @@ import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
 import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
 
-const getProjectInfo = async (proId) => {
+export const getProjectInfo = async (proId) => {
   const params = {
     id: parseInt(proId)
   }
@@ -77,8 +77,12 @@ export const useVoteList = () => {
 }
 
 export const usePoolList = () => {
-  const [list, setList] = useState([])
+  const [list, setList] = useState()
+  const [activePool, setActivePool] = useState([])
+  const [upcomingPools, setUpcomingPools] = useState([])
+  const [passPools, setPassPools] = useState([])
   const { active, library, chainId } = useActiveWeb3React();
+
 
   const fetchList = () => {
     let pools = []
@@ -87,7 +91,7 @@ export const usePoolList = () => {
       bounceContract.methods.getPoolCount().call().then(res => {
         for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
-            // console.log('pool--->', poolRes)
+             console.log('pool--->', poolRes)
             const pool = poolRes
             pool.id = i
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
@@ -114,11 +118,19 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      // fetchList()
+       fetchList()
     }
   }, [active])
 
-  return { list }
+  useEffect(() => {
+    if (list && list.length !== 0) {
+      setActivePool(list.filter(item => {return item.status === 'Active'}))
+      setUpcomingPools(list.filter(item => {return item.status === 'Upcoming'}))
+      setPassPools(list.filter(item => {return item.status === 'Failed'}))
+    }
+  }, [list])
+
+  return { list, activePool, upcomingPools, passPools }
 }
 
 export const useStatus = (id) => {

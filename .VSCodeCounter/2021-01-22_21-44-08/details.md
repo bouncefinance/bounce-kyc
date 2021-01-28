@@ -1,10 +1,10 @@
 # Details
 
-Date : 2021-01-22 19:43:03
+Date : 2021-01-22 21:44:08
 
 Directory c:\Users\Administrator\Desktop\bounce v2.0\bounce-kyc
 
-Total : 161 files,  47764 codes, 103 comments, 2722 blanks, all 50589 lines
+Total : 161 files,  48017 codes, 100 comments, 2740 blanks, all 50857 lines
 
 [summary](results.md)
 
@@ -92,11 +92,11 @@ Total : 161 files,  47764 codes, 103 comments, 2722 blanks, all 50589 lines
 | [src/index.js](/src/index.js) | JavaScript | 7 | 0 | 2 | 9 |
 | [src/pages/ApplySale/Step1.jsx](/src/pages/ApplySale/Step1.jsx) | JavaScript React | 129 | 0 | 20 | 149 |
 | [src/pages/ApplySale/Step2.jsx](/src/pages/ApplySale/Step2.jsx) | JavaScript React | 75 | 0 | 15 | 90 |
-| [src/pages/ApplySale/Step3.jsx](/src/pages/ApplySale/Step3.jsx) | JavaScript React | 27 | 0 | 5 | 32 |
-| [src/pages/ApplySale/Step4.jsx](/src/pages/ApplySale/Step4.jsx) | JavaScript React | 52 | 0 | 11 | 63 |
-| [src/pages/ApplySale/Step5.jsx](/src/pages/ApplySale/Step5.jsx) | JavaScript React | 80 | 1 | 15 | 96 |
-| [src/pages/ApplySale/Step6.jsx](/src/pages/ApplySale/Step6.jsx) | JavaScript React | 35 | 2 | 7 | 44 |
-| [src/pages/ApplySale/index.jsx](/src/pages/ApplySale/index.jsx) | JavaScript React | 46 | 0 | 10 | 56 |
+| [src/pages/ApplySale/Step3.jsx](/src/pages/ApplySale/Step3.jsx) | JavaScript React | 50 | 0 | 8 | 58 |
+| [src/pages/ApplySale/Step4.jsx](/src/pages/ApplySale/Step4.jsx) | JavaScript React | 100 | 0 | 14 | 114 |
+| [src/pages/ApplySale/Step5.jsx](/src/pages/ApplySale/Step5.jsx) | JavaScript React | 121 | 0 | 19 | 140 |
+| [src/pages/ApplySale/Step6.jsx](/src/pages/ApplySale/Step6.jsx) | JavaScript React | 65 | 0 | 10 | 75 |
+| [src/pages/ApplySale/index.jsx](/src/pages/ApplySale/index.jsx) | JavaScript React | 111 | 0 | 12 | 123 |
 | [src/pages/ApplySale/styled.js](/src/pages/ApplySale/styled.js) | JavaScript | 119 | 0 | 20 | 139 |
 | [src/pages/CertifiedSales/Apply.jsx](/src/pages/CertifiedSales/Apply.jsx) | JavaScript React | 69 | 1 | 10 | 80 |
 | [src/pages/CertifiedSales/ApplyModal.js](/src/pages/CertifiedSales/ApplyModal.js) | JavaScript | 53 | 0 | 12 | 65 |
@@ -113,15 +113,15 @@ Total : 161 files,  47764 codes, 103 comments, 2722 blanks, all 50589 lines
 | [src/pages/FixedSwap/Detail.js](/src/pages/FixedSwap/Detail.js) | JavaScript | 397 | 0 | 54 | 451 |
 | [src/pages/FixedSwap/Hooks.js](/src/pages/FixedSwap/Hooks.js) | JavaScript | 165 | 1 | 35 | 201 |
 | [src/pages/Home/index.jsx](/src/pages/Home/index.jsx) | JavaScript React | 189 | 0 | 27 | 216 |
-| [src/pages/Home/styled.js](/src/pages/Home/styled.js) | JavaScript | 293 | 0 | 42 | 335 |
+| [src/pages/Home/styled.js](/src/pages/Home/styled.js) | JavaScript | 294 | 0 | 42 | 336 |
 | [src/pages/InitPage.jsx](/src/pages/InitPage.jsx) | JavaScript React | 47 | 17 | 14 | 78 |
 | [src/pages/Kyc/Step1.jsx](/src/pages/Kyc/Step1.jsx) | JavaScript React | 55 | 1 | 9 | 65 |
 | [src/pages/Kyc/Step2.jsx](/src/pages/Kyc/Step2.jsx) | JavaScript React | 53 | 1 | 8 | 62 |
-| [src/pages/Kyc/Step3.jsx](/src/pages/Kyc/Step3.jsx) | JavaScript React | 102 | 2 | 8 | 112 |
+| [src/pages/Kyc/Step3.jsx](/src/pages/Kyc/Step3.jsx) | JavaScript React | 104 | 2 | 8 | 114 |
 | [src/pages/Kyc/index.jsx](/src/pages/Kyc/index.jsx) | JavaScript React | 43 | 0 | 6 | 49 |
 | [src/pages/Kyc/styled.js](/src/pages/Kyc/styled.js) | JavaScript | 40 | 0 | 6 | 46 |
-| [src/pages/PersonalInfo/index.jsx](/src/pages/PersonalInfo/index.jsx) | JavaScript React | 128 | 0 | 10 | 138 |
-| [src/pages/PersonalInfo/styled.js](/src/pages/PersonalInfo/styled.js) | JavaScript | 65 | 0 | 11 | 76 |
+| [src/pages/PersonalInfo/index.jsx](/src/pages/PersonalInfo/index.jsx) | JavaScript React | 155 | 0 | 10 | 165 |
+| [src/pages/PersonalInfo/styled.js](/src/pages/PersonalInfo/styled.js) | JavaScript | 80 | 0 | 14 | 94 |
 | [src/pages/ProjectList/index.jsx](/src/pages/ProjectList/index.jsx) | JavaScript React | 71 | 0 | 9 | 80 |
 | [src/pages/ProjectList/styled.js](/src/pages/ProjectList/styled.js) | JavaScript | 34 | 0 | 5 | 39 |
 | [src/pages/components/Exhibition/Crumbs.jsx](/src/pages/components/Exhibition/Crumbs.jsx) | JavaScript React | 13 | 0 | 2 | 15 |
@@ -148,7 +148,7 @@ Total : 161 files,  47764 codes, 103 comments, 2722 blanks, all 50589 lines
 | [src/pages/components/Table/Input.jsx](/src/pages/components/Table/Input.jsx) | JavaScript React | 118 | 0 | 16 | 134 |
 | [src/pages/components/Table/Select.jsx](/src/pages/components/Table/Select.jsx) | JavaScript React | 39 | 0 | 5 | 44 |
 | [src/pages/components/Table/Text.jsx](/src/pages/components/Table/Text.jsx) | JavaScript React | 11 | 0 | 3 | 14 |
-| [src/pages/components/Table/Upload.jsx](/src/pages/components/Table/Upload.jsx) | JavaScript React | 88 | 2 | 11 | 101 |
+| [src/pages/components/Table/Upload.jsx](/src/pages/components/Table/Upload.jsx) | JavaScript React | 89 | 2 | 11 | 102 |
 | [src/pages/components/Table/index.jsx](/src/pages/components/Table/index.jsx) | JavaScript React | 16 | 0 | 1 | 17 |
 | [src/pages/components/Table/styled.js](/src/pages/components/Table/styled.js) | JavaScript | 294 | 1 | 44 | 339 |
 | [src/pages/index.jsx](/src/pages/index.jsx) | JavaScript React | 49 | 1 | 5 | 55 |
