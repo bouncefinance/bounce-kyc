@@ -63,7 +63,7 @@ export default function PersonalModal({ show = false, userName }) {
                         type: 'MODAL',
                         value: {
                             name: 'CONFIRM',
-                            title: 'Bounce Decentralized',
+                            title: 'Bounce Certified Fee',
                             deputy: `If you want to add a project vote, you must have more than 0.3 BOT. Your current balance is ${Number(balance)}, so you cannot create it`,
                             cancel: {
                                 text: 'I Know'

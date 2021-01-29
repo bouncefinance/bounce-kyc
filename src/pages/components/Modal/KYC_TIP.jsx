@@ -7,7 +7,7 @@ export default function KYC_TIP ({ cancel, confirm }) {
     return (
         <Kyc_Tip_Styled>
             <div className="top">
-                <h1 className="title">KYC</h1>
+                <h1 className="title">Warning!</h1>
                 <img src={cancel_img} alt="" onClick={cancel} />
             </div>
             <div className="main">
