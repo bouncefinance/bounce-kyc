@@ -21,9 +21,13 @@ export const HeaderTabStyled = styled.div`
         justify-content: space-between;
         align-items: center;
         position: relative;
+        @media screen and (max-width: 960px){
+            background-color:#000;
+            width: 100%;
+            padding:0 24px;
+        }
         .right{
             display: flex;
-
             ul{
                 display: flex;
                 align-items: center;
@@ -37,6 +41,9 @@ export const HeaderTabStyled = styled.div`
                         color: rgba(0,0,0,1);
                     }
                 }
+            }
+            .menu{
+                cursor:pointer;
             }
 
             .personal{
@@ -157,6 +164,68 @@ export const PerModalStyled = styled.div`
                     background: url('${icon_acs_sel}') no-repeat;
                 }
             }
+        }
+    }
+`
+
+
+export const MenuModalStyled = styled.div`
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    user-select: none;
+    z-index: 99;
+    color:#fff;
+    .account{
+        display:flex;
+        padding: 26px 24px;
+        font-family: 'Helvetica Neue';
+        justify-content: space-between;
+        img{
+            cursor: pointer;
+        }
+    }
+    #right{
+        padding-top:100px;
+        flex-direction:column;
+        ul{
+            flex-direction:column;
+            align-items: flex-start;
+            width:100%;
+            li{
+                color:#fff;
+                font-family: Optima;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 30px;
+                line-height: 36px;
+                margin-bottom:36px;
+                width:100%;
+                opacity: 0.4;
+            }
+            .active{
+                opacity: 1;
+            }
+        }
+        .black{
+            width:86%;
+            margin:50px auto 0;
+            height:48px;
+            line-height:48px;
+            color:#000;
+            background-color:#fff;
+        }
+        .cancel{
+            width:86%;
+            margin:16px auto 0;
+            height:48px;
+            line-height:48px;
+            border:1px solid rgba(255, 255, 255, 0.2);
+            text-align:center;
+            cursor: pointer;
         }
     }
 `
