@@ -43,17 +43,18 @@ export default function Index() {
 
     // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
     const [isSupport, setIsSupport] = useState(false)
-    const [curTab, setCurTab] = useState(0)
-    const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
-    const [crumbs_name, setCrumbs_name] = useState('Active_sales')
-    console.log('proInfo', proInfo)
+    const [crumbs_name, setCrumbs_name] = useState({
+        name: 'Active_sales',
+        route: '/certified-sales'
+    })
+    // console.log('proInfo', proInfo)
     useEffect(() => {
         console.log(proInfo)
     }, [proInfo])
 
     useEffect(() => {
-        const crumbs_index =window.localStorage.getItem('crumbs_index')
-        if(crumbs_index){
+        const crumbs_index = JSON.parse(window.localStorage.getItem('crumbs_index'))
+        if (crumbs_index) {
             setCrumbs_name(crumbs_index)
         }
     }, [])
@@ -97,9 +98,9 @@ export default function Index() {
     return (
         <>
             <Crumbs list={[{
-                name: crumbs_name,
+                name: crumbs_name.name,
                 onClick: () => {
-                    history.push('/certified-sales')
+                    history.push(crumbs_name.route)
                 }
             }, {
                 name: 'Bounce Project',
