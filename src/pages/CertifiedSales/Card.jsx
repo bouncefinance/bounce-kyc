@@ -162,7 +162,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                     {!isVote && (
                         <>
                             <Button type='white' value='Learn More' width='168px' onClick={() => {
-                                history.push(`/learn-more/${poolId}`)
+                                history.push(`/learn-more/${pool.id}`)
                             }} />
                             <Button type='black' value='Join Auction' width='168px' onClick={() => {
                                 setIsSupport(true)
@@ -176,21 +176,21 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                 return <>
                     <Button type='white' value='Learn More' width='168px' onClick={() => {
                         
-                        history.push(`/learn-more/${poolId}`)
+                        history.push(`/learn-more/${pool.id}`)
                     }} />
                 </>
 
             case 'Past':
                 return <>
                     <Button type='black' value='Visit Project' width='168px' onClick={() => {
-                        history.push(`/certified-sales/${poolId}`)
+                        history.push(`/certified-sales/${pool.id}`)
                     }} />
                 </>
 
             case 'proList-Active':
                 return <>
                     <Button type='white' value='Learn More' width='168px' onClick={() => {
-                        history.push(`/learn-more/${poolId}`)
+                        history.push(`/learn-more/${pool.id}`)
                     }} />
                     <Button type='black' value='Support' width='168px' onClick={() => {
                         window.localStorage.setItem('crumbs_index', JSON.stringify({
@@ -209,7 +209,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                         name: 'Voting Board',
                         route: '/project-voting-board/close'
                     }))
-                        history.push(`/learn-more/${poolId}`)
+                        history.push(`/learn-more/${pool.id}`)
                     }} />
                     {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
                         // history.push(`/certified-sales/${poolId}`)
