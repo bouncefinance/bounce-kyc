@@ -14,13 +14,13 @@ export function BOT(chainId) {
 export function BOUNCE_PRO(chainId) {
   switch (chainId) {
     case 1:
-      return '0x24c1D634e0eB54Ed61c4c6c5568f092f2a1F5924'
+      return '0xdC879146c635a9c613DEc849FaE7b383cbDB437D'
     case 4:
-      return '0x24c1D634e0eB54Ed61c4c6c5568f092f2a1F5924'
+      return '0xdC879146c635a9c613DEc849FaE7b383cbDB437D'
     case 56:
-      return '0x24c1D634e0eB54Ed61c4c6c5568f092f2a1F5924'
+      return '0xdC879146c635a9c613DEc849FaE7b383cbDB437D'
     default:
-      return '0x24c1D634e0eB54Ed61c4c6c5568f092f2a1F5924'
+      return '0xdC879146c635a9c613DEc849FaE7b383cbDB437D'
   }
 }
 

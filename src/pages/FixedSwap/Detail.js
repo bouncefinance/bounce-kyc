@@ -71,7 +71,7 @@ export const FSPoolDetail = () => {
   const {
     name, address, symbol, decimals, limit, time, fromBidAmount, fromAmount, toAmount,
     status, isMine, toBidAmount, onlyBOT,
-    claimed, toSymbol, toAddress, toDecimals,
+    claimed, toSymbol, toAddress, toDecimals, pool,
     biddenAmount, joinStatus, inWhiteList, claimAble, setClaimAble, claimAt, myBidFromAmount
   } = usePoolDetail(poolId)
 
@@ -330,11 +330,14 @@ export const FSPoolDetail = () => {
                 <ITextR style={{
                   marginTop: 8,
                   textAlign: 'left'
-                }}>{`Participant: ${onlyBOT ? 'BOT holder' : 'Public'}`}</ITextR>
+                }}>{`Participant: ${(onlyBOT && !pool.enableWhiteList) ?  'BOT holder' : ''}
+                    ${(!onlyBOT && pool.enableWhiteList) ? 'Whitelisting' : ''}
+                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder / Whitelisting': ''}
+                    ${(!onlyBOT && !pool.enableWhiteList) ? 'Public': ''}`}</ITextR>
                 <ITextR style={{
                   marginTop: 8,
                   textAlign: 'left'
-                }}>{`Requirement: ${onlyBOT ? 'BOT holder' : 'Public'}`}</ITextR>
+                }}>{`Requirement: ${(pool.enableKycList) ?  'KYC' : 'No requirement'}`}</ITextR>
               </Pool.Content>
 
               <Pool.Block style={{width: '100%'}}>
@@ -414,7 +417,7 @@ export const FSPoolDetail = () => {
                   </>
               ) : (
                   <form id="bid-fs-form" onSubmit={handleSubmit}>
-                    {renderTime(leftTime)}
+                    {status !== 'Filled' && renderTime(leftTime)}
                     <LineDivider style={{marginTop: 0}}/>
                     <Pool.topInfo>
                       <span>You have successfully bid</span>
@@ -460,9 +463,9 @@ export const FSPoolDetail = () => {
                         </>
                     )}
 
-                    {((status === 'Closed' || status === 'Filled') && !claimed && joinStatus) ?
-                        <Button disabled={!claimAble} type='button' style={{marginTop: 24}} black onClick={onClaim}>
-                          Claim your tokens
+                    {((status === 'Closed' || status === 'Filled') && joinStatus) ?
+                        <Button disabled={!claimAble || claimed} type='button' style={{marginTop: 24}} black onClick={onClaim}>
+                          {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
                           {claimLeftTime && !claimAble && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
                         </Button> : null}
                     <TipLink/>

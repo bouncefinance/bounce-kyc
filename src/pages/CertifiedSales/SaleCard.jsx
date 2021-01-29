@@ -64,9 +64,12 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
               <a href={pool.proInfo && pool.proInfo.prowebsite}>{pool.proInfo && pool.proInfo.prowebsite}</a>
 
-              <Passage
-                  title='Time Left'
-                  desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`}/>
+              {pool.status !== 'Failed' && (
+                  <Passage
+                      title='Time Left'
+                      desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`}/>
+              )}
+
 
               <div className="active_btn">
                 <Button type='white' value='Learn More' width='180px' onClick={() => {
@@ -74,7 +77,7 @@ export default function SalesCard({status, isVote, pool = {}}) {
                 }}/>
 
                 {pool.status === 'Active' && (
-                    <Button type='black' value='Join Auction' width='180px' onClick={() => {
+                    <Button disabled={pool.enableKycList && !pool.inKYC} type='black' value={pool.enableKycList && !pool.inKYC? 'KYC is missing' :'Join Auction'} width='180px' onClick={() => {
                       history.push(`/fixed-swap/${pool.id}`)
                     }}/>
                 )}
@@ -94,11 +97,16 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
               <Passage
                   title='Participant'
-                  desc='Public'/>
+                  desc={`${(pool.botHolder && !pool.enableWhiteList) ?  'BOT holder' : ''}
+                    ${(!pool.botHolder && pool.enableWhiteList) ? 'Whitelisting' : ''}
+                    ${(pool.botHolder && pool.enableWhiteList) ? 'BOT holder / Whitelisting': ''}
+                    ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public': ''}
+                    `
+                  }/>
 
               <Passage
                   title='Requirement'
-                  desc={(pool.proInfo && pool.proInfo.ifkyc === 0 && pool.proInfo && pool.proInfo.ifwhitelist === 0) ? 'None' : `${pool.proInfo && pool.proInfo.ifkyc === 1 ? 'KYC /' : ''} ${pool.proInfo && pool.proInfo.ifwhitelist === 1 ? 'White List ' : ''}`}/>
+                  desc={`${(pool.enableKycList) ?  'KYC' : 'No requirement'}`}/>
             </div>
           </div>
 

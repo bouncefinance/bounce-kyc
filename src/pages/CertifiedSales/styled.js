@@ -88,7 +88,7 @@ export const CardStyled = styled.div`
                 width: 480px;
                 span.vote{
                     display: block;
-                    width: 100px;
+                    width: fit-content;
                     height: 28px;
                     line-height: 28px;
                     text-align: center;
@@ -96,6 +96,8 @@ export const CardStyled = styled.div`
                     color: #fff;
                     font-size: 14px;
                     margin-top: 16px;
+                    display: flex;
+                    align-items: center;
                 }
                 a{
                     display: block;

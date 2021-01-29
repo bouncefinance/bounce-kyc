@@ -19,6 +19,7 @@ export const usePoolDetail = (id = 0) => {
 
     const [joinStatus, setJoinStatus] = useState(false)
     const [name, setName] = useState(null)
+    const [pool, setPool] = useState({})
     const [symbol, setSymbol] = useState('')
     const [toSymbol, setToSymbol] = useState()
     const [address, setAddress] = useState(null)
@@ -50,7 +51,7 @@ export const usePoolDetail = (id = 0) => {
 
     const checkMyFSPool = async () => {
         const fsContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
-        let myPoolIndex = await fsContract.methods.myP(account).call()
+        let myPoolIndex = await fsContract.methods.teamPool(account).call()
         if (myPoolIndex > 0) {
             myPoolIndex = myPoolIndex - 1
             const fromAmount = await fsContract.methods.amountTotal0FP(myPoolIndex).call()
@@ -84,7 +85,7 @@ export const usePoolDetail = (id = 0) => {
 
             fsContract.methods.pools(id).call().then( async (res) => {
                 console.log('pool detail:', res)
-
+                setPool(res)
                 setFromAmount(res.amountTotal0)
                 setToAmount(res.amountTotal1)
 
@@ -262,6 +263,7 @@ export const usePoolDetail = (id = 0) => {
         claimAble,
         claimAt,
         setClaimAble,
-        myBidFromAmount
+        myBidFromAmount,
+        pool
     }
 }

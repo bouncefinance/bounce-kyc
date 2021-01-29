@@ -91,6 +91,7 @@ export const usePoolList = () => {
     try {
       const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
       bounceContract.methods.getPoolCount().call().then(res => {
+        console.log('getPoolCount',res)
         for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
              console.log('pool--->', poolRes)
@@ -110,7 +111,11 @@ export const usePoolList = () => {
               pool.status = 'Failed'
             }
 
-            const  bidAmount = bounceContract.methods.myAmountSwapped0(account, i).call()
+            pool.botHolder = await bounceContract.methods.onlyBotHolderP(i).call()
+
+            pool.inKYC = await bounceContract.methods.kyclist(account).call()
+
+            const  bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
             pool.joined = isGreaterThan(bidAmount, '0')
 
             // console.log('pool', pool)
