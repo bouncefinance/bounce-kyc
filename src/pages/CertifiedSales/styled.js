@@ -2,15 +2,45 @@ import styled from 'styled-components'
 
 export const CsStyled = styled.div`
     padding-bottom: 50px;
+          width: 1100px;
+          margin: auto;
+        span{
+            padding: 4px 11px;
+            width: 110px;
+            height: 28px;
+            box-sizing: border-box;
+            border : 1px solid #ccc;
+            color: #ccc;
+
+            font-family: 'Helvetica Neue';
+            font-weight: 14px;
+            line-height: 26px;
+            text-align: center;
+
+            &.Active{
+                border : 1px solid #2DAF4A;
+                color: #2DAF4A;
+            }
+
+            &.Upcoming{
+                border : 1px solid #1D61FF;
+                color: #1D61FF;
+            }
+
+            &.Past{
+                border : 1px solid #FF0404;
+                color: #FF0404;
+            }
+    }
+
 `
 
 
 export const CardStyled = styled.div`
     width: 1100px;
-    min-height: 480px;
     margin: 0 auto;
-    margin-top: 53px;
     margin-bottom: 15px;
+    padding-top: 24px;
 
     .status{
         margin-bottom: 20px;
@@ -58,7 +88,7 @@ export const CardStyled = styled.div`
                 width: 480px;
                 span.vote{
                     display: block;
-                    width: 100px;
+                    width: fit-content;
                     height: 28px;
                     line-height: 28px;
                     text-align: center;
@@ -66,6 +96,8 @@ export const CardStyled = styled.div`
                     color: #fff;
                     font-size: 14px;
                     margin-top: 16px;
+                    display: flex;
+                    align-items: center;
                 }
                 a{
                     display: block;

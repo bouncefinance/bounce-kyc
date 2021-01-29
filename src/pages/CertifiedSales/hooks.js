@@ -5,8 +5,10 @@ import { getContract, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
 import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
+import BigNumber from "bignumber.js";
+import {isGreaterThan} from "../../utils/common";
 
-const getProjectInfo = async (proId) => {
+export const getProjectInfo = async (proId) => {
   const params = {
     id: parseInt(proId)
   }
@@ -79,17 +81,22 @@ export const useVoteList = () => {
 }
 
 export const usePoolList = () => {
-  const [list, setList] = useState([])
-  const { active, library, chainId } = useActiveWeb3React();
+  const [list, setList] = useState()
+  const [activePool, setActivePool] = useState([])
+  const [upcomingPools, setUpcomingPools] = useState([])
+  const [passPools, setPassPools] = useState([])
+  const { active, library, chainId, account } = useActiveWeb3React();
+
 
   const fetchList = () => {
     let pools = []
     try {
       const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
       bounceContract.methods.getPoolCount().call().then(res => {
+        console.log('getPoolCount',res)
         for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
-            // console.log('pool--->', poolRes)
+             console.log('pool--->', poolRes)
             const pool = poolRes
             pool.id = i
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
@@ -100,6 +107,19 @@ export const usePoolList = () => {
               const closed = closeAt - new Date()
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
+
+            const  toAmount = await bounceContract.methods.amountSwap1P(i).call()
+            if(poolRes.amountTotal1 === toAmount){
+              pool.status = 'Failed'
+            }
+
+            pool.botHolder = await bounceContract.methods.onlyBotHolderP(i).call()
+
+            pool.inKYC = await bounceContract.methods.kyclist(account).call()
+
+            const  bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
+            pool.joined = isGreaterThan(bidAmount, '0')
+
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
             // console.log('pool',pool)
@@ -116,11 +136,19 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      // fetchList()
+       fetchList()
     }
   }, [active])
 
-  return { list }
+  useEffect(() => {
+    if (list && list.length !== 0) {
+      setActivePool(list.filter(item => {return item.status === 'Active'}))
+      setUpcomingPools(list.filter(item => {return item.status === 'Upcoming'}))
+      setPassPools(list.filter(item => {return item.status === 'Failed'}))
+    }
+  }, [list])
+
+  return { list, activePool, upcomingPools, passPools }
 }
 
 export const useStatus = (id) => {

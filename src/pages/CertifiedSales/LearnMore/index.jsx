@@ -17,7 +17,7 @@ import {
     errorStatus,
     initStatus,
     pendingStatus,
-    successStatus, successVotedStatus,
+    successVotedStatus,
     TxModal
 } from "../../../components/common/TXModal";
 import { ModalLayout } from "../../components/Modal/styled";
