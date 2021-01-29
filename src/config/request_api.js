@@ -1,14 +1,24 @@
 export const HOST = 'https://account.bounce.finance:16000'
 
+// const ENV = '/api/test'
+const ENV = '/api/v1'
+
 const API_HOST = {
     HOST: HOST,
-    KYC: HOST + '/api/v1/updateuserinfo',
-    upload: HOST + '/api/v1/fileupload',
-    queryKycByAccount: HOST + '/api/v1/queryuserinfobyaccount',
-    applySale: HOST + '/api/v1/applysaleinfo',
-    queryProInfoById: HOST + '/api/v1/applysaleinfoquerybyid',
-    getOnlineURL: HOST + '/api/v1/filedownload',
-    queryProInfoByName: HOST + '/api/v1/filedownload',
+    KYC: HOST + ENV + '/updateuserinfo',
+    addKYC: HOST + ENV + '/adduserinfo',
+    sign_KYC: HOST + ENV + '/auth/updateuserinfo',
+    sign_addKYC: HOST + ENV + '/adduserinfo',
+
+    upload: HOST + ENV + '/fileupload',
+    queryKycByAccount: HOST + ENV + '/queryuserinfobyaccount',
+    applySale: HOST + ENV + '/applysaleinfo',
+    sign_applySale: HOST + ENV + '/auth/applysaleinfo',
+
+    queryProInfoById: HOST + ENV + '/applysaleinfoquerybyid',
+    getOnlineURL: HOST + ENV + '/filedownload',
+    queryProInfoByName: HOST + ENV + '/filedownload',
+    getSignToken: HOST + ENV + '/auth'
 }
 
 export default API_HOST

@@ -88,6 +88,13 @@ export const CardStyled = styled.div`
                         margin-bottom: 20px;
                     }
                 }
+
+                .active_btn{
+                    margin-top: 40px;
+                    button{
+                        margin-right: 12px;
+                    }
+                }
             }
 
             .right{

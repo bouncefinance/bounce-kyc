@@ -9,6 +9,7 @@ import axios from 'axios'
 import API from '../../config/request_api'
 import { useWeb3React } from '@web3-react/core'
 import { myContext } from '../../redux'
+import useAxios from '../../hooks/useAxios'
 
 export default function Index () {
     const { dispatch } = useContext(myContext)
@@ -17,8 +18,9 @@ export default function Index () {
     const [showInfo, setShowInfo] = useState({
         username: '',
         emailaddr: '',
-        bounceid: '0'
+        bounceid: null
     })
+    const { sign_Axios } = useAxios()
 
     useEffect(() => {
         if (!account) return
@@ -37,11 +39,11 @@ export default function Index () {
     }, [account])
 
 
-    const handelSubmit = () => {
+    const handelSubmit = async () => {
         const params = showInfo
-        if (account && params.bounceid !== '0') {
-            params.bounceid = null
-            axios.post(API.KYC, params).then(res => {
+        if (account && params.status !== '0') {
+            // params.bounceid = 0
+            sign_Axios.post(API.sign_KYC, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
 
                     dispatch({
@@ -58,18 +60,33 @@ export default function Index () {
                             }
                         }
                     })
+                } else if (res.status === 200 && res.data.code === 3) {
+                    dispatch({
+                        type: 'MODAL',
+                        value: {
+                            name: 'CONFIRM',
+                            title: 'Message',
+                            deputy: 'To submit any modifications, please check the modifications',
+                            confirm: {
+                                text: 'I Know',
+                                callback: () => {
+                                    dispatch({
+                                        type: 'MODAL',
+                                        value: null
+                                    })
+                                }
+                            }
+                        }
+                    })
                 } else {
                     dispatch({
                         type: 'MODAL',
                         value: {
                             name: 'CONFIRM',
                             title: 'Message',
-                            deputy: 'Please verify your KYC identity first',
-                            cancel: {
-                                text: 'Not Now'
-                            },
+                            deputy: 'The network is busy, please try again later',
                             confirm: {
-                                text: 'Go',
+                                text: 'Refresh',
                                 callback: () => {
                                     window.location.reload()
                                 }

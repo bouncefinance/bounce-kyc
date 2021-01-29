@@ -5,6 +5,7 @@ import icon_acs from './assets/icon-acs.svg'
 import icon_acs_sel from './assets/icon-acs-sel.svg'
 import icon_pi from './assets/icon-pi.svg'
 import icon_pi_sel from './assets/icon-pi-sel.svg'
+// console.log('icon_kyc',icon_kyc)
 
 export const HeaderTabStyled = styled.div`
     width: 100%;

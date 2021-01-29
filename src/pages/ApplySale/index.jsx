@@ -25,6 +25,7 @@ import { getContract, useActiveWeb3React } from "../../web3";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
+import useAxios from '../../hooks/useAxios'
 
 export default function Index() {
     const [modalStatus, setModalStatus] = useState(initStatus)
@@ -49,6 +50,8 @@ export default function Index() {
         allocationperwallet: 'No limits'
     })
     const [step6Data, setStep6Data] = useState({})
+
+    const { sign_Axios } = useAxios()
 
     const onApply = async (id) => {
         console.log('onApply', active)
@@ -103,14 +106,14 @@ export default function Index() {
         params.accountaddress = account
         // console.log(JSON.stringify(params))
         try {
-            axios.post(API.applySale, params).then(res => {
+            sign_Axios.post(API.sign_applySale, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
                     // console.log('onApply', res.data.data.id)
                     onApply(res.data.data.id)
 
                 } else {
                     console.log(res)
-                    alert('Information submission error, please contact the platform customer service')
+                    // alert('Information submission error, please contact the platform customer service')
                 }
             })
         } catch (error) {
