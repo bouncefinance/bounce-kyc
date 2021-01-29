@@ -8,7 +8,7 @@ const API_HOST = {
     KYC: HOST + ENV + '/updateuserinfo',
     addKYC: HOST + ENV + '/adduserinfo',
     sign_KYC: HOST + ENV + '/auth/updateuserinfo',
-    sign_addKYC: HOST + ENV + '/adduserinfo',
+    sign_addKYC: HOST + ENV + '/auth/adduserinfo',
 
     upload: HOST + ENV + '/fileupload',
     queryKycByAccount: HOST + ENV + '/queryuserinfobyaccount',
