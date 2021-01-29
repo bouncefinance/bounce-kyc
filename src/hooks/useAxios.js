@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 import fetch from 'fetch'
 import Web3 from 'web3'

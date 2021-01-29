@@ -58,8 +58,10 @@ export const useVoteList = () => {
             }
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-            pools = pools.concat(pool)
-            setList(pools)
+            if(pool.projectId!=='0'){
+              pools = pools.concat(pool)
+              setList(pools)
+            }
           })
         }
         setList(pools)

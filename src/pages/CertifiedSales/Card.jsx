@@ -193,7 +193,10 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                         history.push(`/learn-more/${poolId}`)
                     }} />
                     <Button type='black' value='Support' width='168px' onClick={() => {
-                        window.localStorage.setItem('crumbs_index', 'Voting Board')
+                        window.localStorage.setItem('crumbs_index', JSON.stringify({
+                            name: 'Voting Board',
+                            route: '/project-voting-board/active'
+                        }))
                         setIsSupport(true)
                     }} />
                 </>
@@ -202,7 +205,10 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
             case 'Failed':
                 return <>
                     <Button type='white' value='Visit Project' width='168px' onClick={() => {
-                        window.localStorage.setItem('crumbs_index', 'Voting Board')
+                       window.localStorage.setItem('crumbs_index', JSON.stringify({
+                        name: 'Voting Board',
+                        route: '/project-voting-board/close'
+                    }))
                         history.push(`/learn-more/${poolId}`)
                     }} />
                     {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
@@ -242,7 +248,9 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
                         <Passage
                             title='Time Left'
-                            desc={`${0} d : ${0} h : ${0} m : ${0} s`} />
+                            desc={status==='proList-Close'?
+                            `${0} d : ${0} h : ${0} m : ${0} s`:
+                            `${left.days} d : ${left.hours} h : ${left.minutes} m : ${left.seconds} s`} />
 
                         {progress && <Progress
                             width='480px'
