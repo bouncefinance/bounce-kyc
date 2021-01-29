@@ -26,8 +26,8 @@ import BigNumber from "bignumber.js";
 import { getPoolLeftTime } from "../../utils/time";
 import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
-import API_HOST, { HOST as host } from "../../config/request_api";
-
+import API_HOST, { HOST } from "../../config/request_api";
+import InfoBox from './LearnMore/InfoBox'
 
 export default function SalesCard({ status, poolId = 0, progress, claimFun, isVote, pool = {} }) {
     const [isSupport, setIsSupport] = useState(false)
@@ -38,6 +38,7 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
     const history = useHistory()
     const { account, library, chainId, active } = useActiveWeb3React()
     const [value, setValue] = useState()
+    const [isShowInfoBox, setIsShowInfoBox] = useState(false)
 
     const { myVotes, myVotesClaimed } = useStatus(pool.id || 0)
     //   console.log('myVotesClaimed--->', myVotesClaimed)
@@ -219,7 +220,7 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                 {/* <span>Active Sales</span> */}
             </div>
             <div className="main">
-                {pool.proInfo && pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo && pool.proInfo && pool.proInfo.proname} logo={host + '/' + pool.proInfo && pool.proInfo.prologourl} socialLink={[
+                {pool.proInfo && pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo && pool.proInfo && pool.proInfo.proname} logo={pool.proInfo && HOST + '/' + pool.proInfo.prologourl} socialLink={[
                     { name: 'facebook', link: pool.proInfo && pool.proInfo.fackbook },
                     { name: 'telegram', link: pool.proInfo && pool.proInfo.telegram },
                     { name: 'twitter', link: pool.proInfo && pool.proInfo.twitter },
@@ -248,7 +249,7 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                             total={progress.total}
                         />}
 
-                        {isSupport && status !== 'proList-Close' && <div className='support'>
+                        {/* {isSupport && status !== 'proList-Close' && <div className='support'>
                             <TextInput onValChange={(value) => {
                                 console.log('value', value)
                                 setValue(value)
@@ -261,7 +262,17 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                             <Button type='white' value='Back' width='180px' onClick={() => {
                                 setIsSupport(false)
                             }} />
-                        </div>}
+                        </div>} */}
+
+                        <div className="active_btn">
+                            <Button type='white' value='Learn More' width='180px' onClick={() => {
+                                setIsShowInfoBox(!isShowInfoBox)
+                            }} />
+
+                            <Button type='black' value='Join Auction' width='180px' onClick={() => {
+                                setIsSupport(false)
+                            }} />
+                        </div>
                     </div>
 
                     <div className="right">
@@ -282,6 +293,9 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                 {!isSupport && <div className="bottom">
                     {renderButton(pool.status)}
                 </div>}
+
+                {isShowInfoBox && pool.proInfo && <InfoBox proInfo={pool.proInfo} />}
+
             </div>
 
             <TxModal modalStatus={bidStatus} onDismiss={() => {

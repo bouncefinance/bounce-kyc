@@ -26,10 +26,10 @@ import BigNumber from "bignumber.js";
 import { getPoolLeftTime } from "../../utils/time";
 import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
-import API_HOST, {HOST} from "../../config/request_api";
+import API_HOST, { HOST } from "../../config/request_api";
 
 
-export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
+export default function Card ({ status, poolId = 0, progress, claimFun, isVote, pool }) {
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const { balance } = useTokenBalance()
@@ -150,6 +150,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                     {isVote && (
                         <>
                             <Button type='white' value='Learn More' width='168px' onClick={() => {
+                                window.localStorage.setItem('ca')
                                 history.push(`/learn-more/${pool.id}`)
                             }} />
                             <Button type='black' value='Support' width='168px' onClick={() => {
@@ -174,6 +175,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
             case 'Upcoming':
                 return <>
                     <Button type='white' value='Learn More' width='168px' onClick={() => {
+                        
                         history.push(`/learn-more/${poolId}`)
                     }} />
                 </>
@@ -191,6 +193,10 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                         history.push(`/learn-more/${poolId}`)
                     }} />
                     <Button type='black' value='Support' width='168px' onClick={() => {
+                        window.localStorage.setItem('crumbs_index', JSON.stringify({
+                            name: 'Voting Board',
+                            route: '/project-voting-board/active'
+                        }))
                         setIsSupport(true)
                     }} />
                 </>
@@ -199,6 +205,10 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
             case 'Failed':
                 return <>
                     <Button type='white' value='Visit Project' width='168px' onClick={() => {
+                       window.localStorage.setItem('crumbs_index', JSON.stringify({
+                        name: 'Voting Board',
+                        route: '/project-voting-board/close'
+                    }))
                         history.push(`/learn-more/${poolId}`)
                     }} />
                     {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
@@ -219,7 +229,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 {/* <span>Active Sales</span> */}
             </div>
             <div className="main">
-                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={HOST+'/'+pool.proInfo.prologourl} socialLink={[
+                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={HOST + '/' + pool.proInfo.prologourl} socialLink={[
                     { name: 'facebook', link: pool.proInfo.fackbook },
                     { name: 'telegram', link: pool.proInfo.telegram },
                     { name: 'twitter', link: pool.proInfo.twitter },
@@ -238,12 +248,14 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
                         <Passage
                             title='Time Left'
-                            desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`} />
+                            desc={status==='proList-Close'?
+                            `${0} d : ${0} h : ${0} m : ${0} s`:
+                            `${left.days} d : ${left.hours} h : ${left.minutes} m : ${left.seconds} s`} />
 
                         {progress && <Progress
                             width='480px'
                             status={pool.status}
-                            plan={new BigNumber(pool.totalVotes).dividedBy('200000000000000000000').dividedBy('100')}
+                            plan={new BigNumber(weiToNum(pool.totalVotes)).dividedBy('300')}
                             value={`${weiToNum(pool.totalVotes)} BOT`}
                             total={progress.total}
                         />}

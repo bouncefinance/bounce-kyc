@@ -12,6 +12,7 @@ const iconMap = {
 }
 
 export default function CardHeader({ title = 'Untitled', socialLink = [], logo }) {
+    // console.log(logo)
     return (
         <CardHeaderStyled>
             <div className="title">
