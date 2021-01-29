@@ -43,10 +43,20 @@ export default function Index() {
 
     // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
     const [isSupport, setIsSupport] = useState(false)
+    const [curTab, setCurTab] = useState(0)
+    const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
+    const [crumbs_name, setCrumbs_name] = useState('Active_sales')
     console.log('proInfo', proInfo)
     useEffect(() => {
         console.log(proInfo)
     }, [proInfo])
+
+    useEffect(() => {
+        const crumbs_index =window.localStorage.getItem('crumbs_index')
+        if(crumbs_index){
+            setCrumbs_name(crumbs_index)
+        }
+    }, [])
 
     const onVote = async () => {
         setSupporting(false)
@@ -87,7 +97,7 @@ export default function Index() {
     return (
         <>
             <Crumbs list={[{
-                name: 'Active sales',
+                name: crumbs_name,
                 onClick: () => {
                     history.push('/certified-sales')
                 }
@@ -110,7 +120,7 @@ export default function Index() {
                             title='Project summary'
                             desc={proInfo && proInfo.prosummary} />
 
-                        <a href={proInfo && proInfo.whitepaperlink}>{proInfo && proInfo.whitepaperlink}</a>
+                        <a href={proInfo && proInfo.prowebsite}>{proInfo && proInfo.prowebsite}</a>
 
                         {isSupport && <div className='support'>
                             <div className="progress">

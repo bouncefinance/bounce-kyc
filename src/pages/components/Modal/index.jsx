@@ -5,6 +5,7 @@ import { ModalLayout } from './styled'
 import { WalletConnect } from '../../../components/WalletConnect'
 import Confirm from './Confirm'
 import Support from './Support'
+import KYC_TIP from './KYC_TIP'
 
 export const ModalContent = styled.span`
   font-family: IBM Plex Mono;
@@ -31,7 +32,7 @@ export const ModalTitle = styled.span`
   text-align: left;
 `
 
-export default function Index() {
+export default function Index () {
     const { state, dispatch } = useContext(myContext)
 
     const handelCancel = () => {
@@ -49,7 +50,6 @@ export default function Index() {
         switch (showModal.name) {
             case 'CONFIRM':
                 const { title, desc, tip, isCancel, cancel, confirm, deputy } = showModal
-                console.log(showModal)
                 return <Confirm
                     title={title}
                     desc={desc}
@@ -60,9 +60,9 @@ export default function Index() {
                     confirm={confirm}
                 />
 
-            case 'KYC':
-                console.log('kYc')
-                return <></>
+            case 'KYC_TIP':
+                const { confirm: confirm_kyc } = showModal
+                return <KYC_TIP cancel={handelCancel} confirm={confirm_kyc} />
 
             case 'SUPPORT':
                 return <Support cancel={handelCancel} />
