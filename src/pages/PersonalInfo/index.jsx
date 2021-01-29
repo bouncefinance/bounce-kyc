@@ -42,7 +42,7 @@ export default function Index() {
     const handelSubmit = async () => {
         const params = showInfo
         if (account && params.status === 1) {
-            params.bounceid = null
+            // params.bounceid = 0
             sign_Axios.post(API.sign_KYC, params).then(res => {
                 if (res.status === 200 && res.data.code === 1) {
 
@@ -56,6 +56,24 @@ export default function Index() {
                                 text: 'Confirm',
                                 callback: () => {
                                     window.location.reload()
+                                }
+                            }
+                        }
+                    })
+                } else if (res.status === 200 && res.data.code === 3) {
+                    dispatch({
+                        type: 'MODAL',
+                        value: {
+                            name: 'CONFIRM',
+                            title: 'Message',
+                            deputy: 'To submit any modifications, please check the modifications',
+                            confirm: {
+                                text: 'I Know',
+                                callback: () => {
+                                    dispatch({
+                                        type: 'MODAL',
+                                        value: null
+                                    })
                                 }
                             }
                         }
