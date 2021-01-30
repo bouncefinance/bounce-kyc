@@ -57,7 +57,7 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
           <div className="middle">
             <div className="left">
-              {pool.status === 'Failed'  && pool.joined && <span className='vote'>You participated</span>}
+              {pool.status === 'Failed' && pool.joined && <span className='vote'>You participated</span>}
               <Passage
                   title='Project details'
                   desc={pool.proInfo && pool.proInfo.prosummary}/>
@@ -77,9 +77,11 @@ export default function SalesCard({status, isVote, pool = {}}) {
                 }}/>
 
                 {pool.status === 'Active' && (
-                    <Button disabled={pool.enableKycList && !pool.inKYC} type='black' value={pool.enableKycList && !pool.inKYC? 'KYC is missing' :'Join Auction'} width='180px' onClick={() => {
-                      history.push(`/fixed-swap/${pool.id}`)
-                    }}/>
+                    <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
+                            value={pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width='180px'
+                            onClick={() => {
+                              history.push(`/fixed-swap/${pool.id}`)
+                            }}/>
                 )}
 
                 {pool.status === 'Failed' && (
@@ -97,16 +99,17 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
               <Passage
                   title='Participant'
-                  desc={`${(pool.botHolder && !pool.enableWhiteList) ?  'BOT holder' : ''}
+                  desc={`
+                    ${(pool.botHolder && !pool.enableWhiteList) ? 'BOT holder' : ''}
                     ${(!pool.botHolder && pool.enableWhiteList) ? 'Whitelisting' : ''}
-                    ${(pool.botHolder && pool.enableWhiteList) ? 'BOT holder / Whitelisting': ''}
-                    ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public': ''}
+                    ${(pool.botHolder && pool.enableWhiteList) ? 'BOT holder , Whitelisting' : ''}
+                    ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public' : ''}
                     `
                   }/>
 
               <Passage
                   title='Requirement'
-                  desc={`${(pool.enableKycList) ?  'KYC' : 'No requirement'}`}/>
+                  desc={`${(pool.enableKycList) ? 'KYC' : 'No requirement'}`}/>
             </div>
           </div>
 

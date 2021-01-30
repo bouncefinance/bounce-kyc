@@ -332,7 +332,7 @@ export const FSPoolDetail = () => {
                   textAlign: 'left'
                 }}>{`Participant: ${(onlyBOT && !pool.enableWhiteList) ?  'BOT holder' : ''}
                     ${(!onlyBOT && pool.enableWhiteList) ? 'Whitelisting' : ''}
-                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder / Whitelisting': ''}
+                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder , Whitelisting': ''}
                     ${(!onlyBOT && !pool.enableWhiteList) ? 'Public': ''}`}</ITextR>
                 <ITextR style={{
                   marginTop: 8,
@@ -456,9 +456,9 @@ export const FSPoolDetail = () => {
 
                           <Button
                               style={{marginTop: 50}}
-                              disabled={status !== 'Live' || !validateForm(errors) || !bidAmount || !inWhiteList}
+                              disabled={status !== 'Live' || !validateForm(errors) || !bidAmount || (!inWhiteList && pool.enableWhiteList)}
                               black
-                          >{!inWhiteList? 'You are not in the whitelist': 'GO'}
+                          >{(!inWhiteList && pool.enableWhiteList)? 'You are not in the whitelist': 'GO'}
                           </Button>
                         </>
                     )}

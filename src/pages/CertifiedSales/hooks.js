@@ -6,7 +6,10 @@ import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
 import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
 import BigNumber from "bignumber.js";
-import {isGreaterThan} from "../../utils/common";
+import {isEqualTo, isGreaterThan} from "../../utils/common";
+import bounceERC20 from "../../web3/abi/bounceERC20.json";
+import {weiToNum} from "../../utils/numberTransform";
+
 
 export const getProjectInfo = async (proId) => {
   const params = {
@@ -35,7 +38,7 @@ export const getProjectInfo = async (proId) => {
 
 export const useVoteList = () => {
   const [list, setList] = useState()
-  const { active, library, chainId } = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
 
   const fetchList = () => {
     let pools = []
@@ -57,7 +60,20 @@ export const useVoteList = () => {
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
             // console.log('pool', pool)
-            pool.proInfo = await getProjectInfo(pool.projectId)
+            const proInfo = await getProjectInfo(pool.projectId)
+
+            pool.proInfo = proInfo
+            try {
+              const tokenContract = getContract(library, bounceERC20.abi, proInfo.tokencontractaddress)
+              const decimals = await tokenContract.methods.decimals().call()
+              const allowance = await tokenContract.methods.allowance(account, BOUNCE_PRO(chainId)).call()
+              pool.approved = isGreaterThan(weiToNum(allowance, parseInt(decimals)), proInfo.amountoftoken)
+              console.log('approved allowance', allowance)
+              console.log('approved', pool.approved)
+
+            }catch (e){
+              console.log('allowance error', e)
+            }
             if(pool.projectId!=='0'){
               pools = pools.concat(pool)
               setList(pools)
