@@ -162,7 +162,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                     {!isVote && (
                         <>
                             <Button type='white' value='Learn More' width='168px' onClick={() => {
-                                history.push(`/learn-more/${poolId}`)
+                                history.push(`/learn-more/${pool.id}`)
                             }} />
                             <Button type='black' value='Join Auction' width='168px' onClick={() => {
                                 setIsSupport(true)
