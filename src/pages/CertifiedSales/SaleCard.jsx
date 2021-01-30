@@ -64,10 +64,16 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
               <a href={pool.proInfo && pool.proInfo.prowebsite}>{pool.proInfo && pool.proInfo.prowebsite}</a>
 
-              {pool.status !== 'Failed' && (
+              {pool.status === 'Active' && (
                   <Passage
-                      title={pool.status === 'Active' ? 'time left' : 'date'}
+                      title={ 'time left'}
                       desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`}/>
+              )}
+
+              {pool.status === 'Upcoming' && (
+                  <Passage
+                      title={ 'date'}
+                      desc={`Feb 5th 2021`}/>
               )}
 
 
