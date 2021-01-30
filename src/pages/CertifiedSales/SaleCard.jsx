@@ -66,7 +66,7 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
               {pool.status !== 'Failed' && (
                   <Passage
-                      title='Time Left'
+                      title={pool.status === 'Active' ? 'time left' : 'date'}
                       desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`}/>
               )}
 

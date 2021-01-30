@@ -7,7 +7,7 @@ import loading from "../../assets/icons/loading.svg";
 
 export default function Index() {
   const {list, activePool, upcomingPools, passPools} = usePoolList()
-  // console.log(list)
+   console.log('list',JSON.stringify(list))
   return (
       <CsStyled>
         {!list || list.length === 0 ? (
