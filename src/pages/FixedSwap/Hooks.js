@@ -168,11 +168,13 @@ export const usePoolDetail = (id = 0) => {
                             fsContract.methods.filledAtP(id).call().then((filledAt) => {
                                 console.log('filledAtP:', filledAt)
                                 const claimTime = (new BigNumber(filledAt).plus(res.claimDelaySec).toString())
+                                console.log('claimTime------>',new Date() - claimTime * 1000 > 0)
                                 if(new Date() - claimTime * 1000 > 0){
                                     console.log('claimTime1:', filledAt)
                                     setClaimAble(true)
                                 }else {
                                     setClaimAt(claimTime)
+                                    setClaimAble(false)
                                     console.log('claimTime2:', filledAt)
                                 }
                             })

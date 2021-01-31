@@ -86,7 +86,7 @@ export const FSPoolDetail = () => {
 
   useEffect(() => {
     console.log('limit--->',biddenAmount, limit)
-    if (biddenAmount && limit && isGreaterThan(limit, '0') && isEqualTo(biddenAmount, limit)) {
+    if (biddenAmount && limit && isGreaterThan(limit, '0') && isGreaterThan(biddenAmount, limit)) {
       errors.amount = 'You have reached your maximum allocation per wallet.'
       setErrors(errors)
     }
@@ -125,7 +125,7 @@ export const FSPoolDetail = () => {
         setClaimAble(true)
         console.log('setClaimTime')
       } else {
-        setClaimAble(true)
+        //setClaimAble(true)
         console.log('setClaimTime1')
         clearInterval(timer)
       }
@@ -466,7 +466,7 @@ export const FSPoolDetail = () => {
                     {((status === 'Closed' || status === 'Filled') && joinStatus) ?
                         <Button disabled={!claimAble || claimed} type='button' style={{marginTop: 24}} black onClick={onClaim}>
                           {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
-                          {claimLeftTime && !claimAble && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                          {(claimLeftTime && !claimAble) && `${claimAble} ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
                         </Button> : null}
                     <TipLink/>
                   </form>
