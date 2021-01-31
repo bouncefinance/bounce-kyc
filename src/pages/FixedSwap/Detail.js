@@ -246,7 +246,7 @@ export const FSPoolDetail = () => {
         const amountValue = value.replace(/[^\d.]/g, '')
         setBidAmount(amountValue)
         console.log('wei amount', numToWei(amountValue, decimals))
-        if (!ethBalance || (ethBalance && isGreaterThan(numToWei(amountValue, decimals), ethBalance))) {
+        if (!ethBalance || (ethBalance && isGreaterThan(amountValue, weiToNum(ethBalance, toDecimals)))) {
           errors.amount = 'you do not have enough balance'
         }
         if (limit && isGreaterThan(limit, '0') && isGreaterThan(new BigNumber(numToWei(amountValue, toDecimals)).plus(biddenAmount), limit)) {
