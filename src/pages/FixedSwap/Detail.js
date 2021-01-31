@@ -466,7 +466,7 @@ export const FSPoolDetail = () => {
                     {((status === 'Closed' || status === 'Filled') && joinStatus) ?
                         <Button disabled={!claimAble || claimed} type='button' style={{marginTop: 24}} black onClick={onClaim}>
                           {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
-                          {(claimLeftTime && !claimAble) && `${claimAble} ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                          {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
                         </Button> : null}
                     <TipLink/>
                   </form>
