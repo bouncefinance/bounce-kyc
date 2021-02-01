@@ -1,4 +1,6 @@
 export const HOST = 'https://account.bounce.finance:16000'
+// const API = '/api/v1/'
+const API = '/api/test'
 
 // const ENV = '/api/test'
 const ENV = '/api/v1'
@@ -8,7 +10,7 @@ const API_HOST = {
     KYC: HOST + ENV + '/updateuserinfo',
     addKYC: HOST + ENV + '/adduserinfo',
     sign_KYC: HOST + ENV + '/auth/updateuserinfo',
-    sign_addKYC: HOST + ENV + '/adduserinfo',
+    sign_addKYC: HOST + ENV + '/auth/adduserinfo',
 
     upload: HOST + ENV + '/fileupload',
     queryKycByAccount: HOST + ENV + '/queryuserinfobyaccount',

@@ -15,6 +15,7 @@ const iconMap = {
 export default function CardHeader({ title = 'Untitled', socialLink = [], logo }) {
     const isXSDown = useIsSMDown();
     console.log(logo)
+    // console.log(logo)
     return (
         <CardHeaderStyled>
             <div className="title">

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const MessageFrame = styled.div`
   color: #000;
   width: 100%;
-  min-height: 60px;
   text-align: center;
   font-family: Helvetica Neue;
   font-style: normal;

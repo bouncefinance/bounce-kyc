@@ -32,7 +32,7 @@ export default function Index() {
         const activePools = list ? list.filter(item => {
           return item.status === 'Active'
         }) : null
-        console.log('activePools', activePools)
+        // console.log('activePools', activePools)
         return <>
           {!activePools || activePools.length === 0 ? (
             <EmptyLayout>
@@ -82,7 +82,7 @@ export default function Index() {
                   plan: 1,
                   status: 'success'
                 }}
-                  status='proList-Active'
+                  status='proList-Close'
                 />
               )
             })}

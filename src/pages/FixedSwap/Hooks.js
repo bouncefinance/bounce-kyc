@@ -9,6 +9,7 @@ import { BOUNCE_PRO } from "../../web3/address";
 import { isGreaterThan } from "../../utils/common";
 import { HANDLE_SHOW_CONNECT_MODAL } from "../../const";
 import {useTokenList} from "../../web3/common";
+import {getProjectInfo} from "../CertifiedSales/hooks";
 
 
 export const usePoolDetail = (id = 0) => {
@@ -18,6 +19,7 @@ export const usePoolDetail = (id = 0) => {
 
     const [joinStatus, setJoinStatus] = useState(false)
     const [name, setName] = useState(null)
+    const [pool, setPool] = useState({})
     const [symbol, setSymbol] = useState('')
     const [toSymbol, setToSymbol] = useState()
     const [address, setAddress] = useState(null)
@@ -25,26 +27,31 @@ export const usePoolDetail = (id = 0) => {
     const [decimals, setDecimals] = useState()
     const [toDecimals, setToDecimals] = useState()
     const [toAmount, setToAmount] = useState(null)
-    const [fromTotal, setFromTotal] = useState(null)
     const [limit, setLimit] = useState(null)
     const [isMine, setIsMine] = useState(false)
-    const [password, setPassword] = useState()
     const [time, setTime] = useState()
-    const [fromBidAmount, setFromBidAmount] = useState()
+    const [fromBidAmount, setFromBidAmount] = useState('0')
     const [toBidAmount, setToBidAmount] = useState()
     const [fromAmount, setFromAmount] = useState()
-    const [status, setStatus] = useState('Live')
+    const [status, setStatus] = useState()
     const [onlyBOT, setOnlyBOT] = useState(false)
     const [toTokenBalance, setToTokenBalance] = useState(0)
+    const [biddenAmount, setBiddenAmount] = useState()
+    const [inWhiteList, setInWhiteList] = useState()
+    const [myBidFromAmount, setMyBidFromAmount] = useState()
+
+
     const { Psymbol } = useActivePlatform()
     const tokenOptions = useTokenList()
+    const [claimAble, setClaimAble] = useState(false)
+    const [claimAt, setClaimAt] = useState()
 
     const [claimed, setClaimed] = useState(true)
 
 
     const checkMyFSPool = async () => {
         const fsContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
-        let myPoolIndex = await fsContract.methods.myP(account).call()
+        let myPoolIndex = await fsContract.methods.teamPool(account).call()
         if (myPoolIndex > 0) {
             myPoolIndex = myPoolIndex - 1
             const fromAmount = await fsContract.methods.amountTotal0FP(myPoolIndex).call()
@@ -78,11 +85,11 @@ export const usePoolDetail = (id = 0) => {
 
             fsContract.methods.pools(id).call().then( async (res) => {
                 console.log('pool detail:', res)
-
+                setPool(res)
                 setFromAmount(res.amountTotal0)
                 setToAmount(res.amountTotal1)
 
-                //setAddress(res)
+                setAddress(res.token0)
                 const tokenContract = getContract(library, bounceERC20.abi, res.token0)
                 tokenContract.methods.symbol().call().then((res) => {
                     console.log('query fs symbol:', res)
@@ -97,7 +104,7 @@ export const usePoolDetail = (id = 0) => {
                     return res.token1.toLowerCase() === item.key.toLowerCase()
                 })
 
-                if (res === '0x0000000000000000000000000000000000000000') {
+                if (res.token1 === '0x0000000000000000000000000000000000000000') {
                     setToAddress(null)
                     setToSymbol(Psymbol)
                     setToDecimals('18')
@@ -111,52 +118,94 @@ export const usePoolDetail = (id = 0) => {
                     setToDecimals('18')
                 }
 
+
+
                 const date = new Date(res.closeAt * 1000);
                 const now = new Date();
                 const leftTime = date - now;
 
-                setIsMine((res.beneficiary.toLowerCase() === account.toLowerCase()))
-                if (res.beneficiary.toLowerCase() === account.toLowerCase()) {
-                    let myPoolIndex = await fsContract.methods.myP(account).call()
-                    if (myPoolIndex > 0) {
-                        myPoolIndex = myPoolIndex - 1
-                        const fromAmount = res.amountTotal0
-                        const bidAmount = await fsContract.methods.amountSwap0P(myPoolIndex).call()
-                        if (fromAmount === bidAmount) {
-                            setClaimed(true)
-                        } else {
-                            setClaimed(false)
-                        }
-                    } else {
-                        setClaimed(true)
-                    }
-                }
-
                 setTime(res.closeAt)
+
+                // setIsMine((res.beneficiary.toLowerCase() === account.toLowerCase()))
+                // if (res.beneficiary.toLowerCase() === account.toLowerCase()) {
+                //     let myPoolIndex = await fsContract.methods.myP(account).call()
+                //     if (myPoolIndex > 0) {
+                //         myPoolIndex = myPoolIndex - 1
+                //         const fromAmount = res.amountTotal0
+                //         const bidAmount = await fsContract.methods.amountSwap0P(myPoolIndex).call()
+                //         if (fromAmount === bidAmount) {
+                //             setClaimed(true)
+                //         } else {
+                //             setClaimed(false)
+                //         }
+                //     } else {
+                //         setClaimed(true)
+                //     }
+                // }else {
+                //     fsContract.methods.myClaimed(account, id).call().then((res) => {
+                //         console.log('myClaimed:', res)
+                //         setClaimed(res)
+                //     })
+                // }
+
                 setToAmount(res.amountTotal1)
 
-                setStatus(leftTime > 0 ? 'Live' : 'Closed')
-                fsContract.methods.amountSwap1P(id).call().then((bidAmount) => {
-                    console.log('query fs to bid amount:', bidAmount)
-                    setToBidAmount(bidAmount)
-                    if (bidAmount === res.amountTotal1) {
-                        setStatus('Filled')
-                    }
-                })
+                const isOpen = new Date() - res.openAt * 1000 > 0
+                console.log('isOpen',isOpen)
+                if (!isOpen) {
+                    setStatus('Upcoming')
+                }else {
+                    setStatus(leftTime > 0 ? 'Live' : 'Closed')
+                    fsContract.methods.myClaimed(account, id).call().then((res) => {
+                        console.log('myClaimed:', res)
+                        setClaimed(res)
+                    })
+                    fsContract.methods.amountSwap1P(id).call().then((bidAmount) => {
+                        console.log('query pool to bid amount:', bidAmount, res.amountTotal1)
+                        setToBidAmount(bidAmount)
+                        if (bidAmount === res.amountTotal1) {
+                            setStatus('Filled')
+                            fsContract.methods.filledAtP(id).call().then((filledAt) => {
+                                console.log('filledAtP:', filledAt)
+                                const claimTime = (new BigNumber(filledAt).plus(res.claimDelaySec).toString())
+                                if(new Date() - claimTime * 1000 > 0){
+                                    console.log('claimTime1:', filledAt)
+                                    setClaimAble(true)
+                                }else {
+                                    setClaimAt(claimTime)
+                                    console.log('claimTime2:', filledAt)
+                                }
+                            })
+                        }
+                    })
+                }
+
+
+                 getProjectInfo(res.projectId).then(info =>{
+                     console.log('info',info)
+                     setName(info.proname)
+                 })
             })
 
             fsContract.methods.myAmountSwapped1(account, id).call().then((res) => {
                 console.log('query fs myAmountSwapped1:', res)
+                setBiddenAmount(res)
                 setJoinStatus(isGreaterThan(res, '0'))
             })
 
-            fsContract.methods.onlyBotHolder(id).call().then((res) => {
+            fsContract.methods.myAmountSwapped0(account, id).call().then((res) => {
+                console.log('query fs myAmountSwapped0:', res)
+                setMyBidFromAmount(res)
+                setJoinStatus(isGreaterThan(res, '0'))
+            })
+
+            fsContract.methods.onlyBotHolderP(id).call().then((res) => {
                 console.log('query fs name:', res)
                 setOnlyBOT(res)
             })
 
             fsContract.methods.amountSwap0P(id).call().then((res) => {
-                console.log('query fs to bid amount:', res)
+                console.log('query fs from bid amount:', res)
                 setFromBidAmount(res)
             })
 
@@ -166,6 +215,12 @@ export const usePoolDetail = (id = 0) => {
                 setLimit(res)
             })
 
+            fsContract.methods.whitelistP(id, account).call().then((res) => {
+                console.log('whitelistP:', res)
+                setInWhiteList(res)
+            })
+
+
 
         } catch (e) {
             console.log('getTokenInfo:', e)
@@ -173,7 +228,7 @@ export const usePoolDetail = (id = 0) => {
     }
 
     useEffect(() => {
-        if (active, chainId, account) {
+        if (active && chainId && account) {
             console.log('chainId', chainId)
             getFSPoolDetail()
         } else {
@@ -192,11 +247,9 @@ export const usePoolDetail = (id = 0) => {
         toSymbol,
         toDecimals,
         decimals,
-        fromTotal,
         toAmount,
         limit,
         time,
-        password,
         fromBidAmount,
         toBidAmount,
         fromAmount,
@@ -204,6 +257,13 @@ export const usePoolDetail = (id = 0) => {
         isMine,
         onlyBOT,
         toTokenBalance,
-        joinStatus
+        joinStatus,
+        biddenAmount,
+        inWhiteList,
+        claimAble,
+        claimAt,
+        setClaimAble,
+        myBidFromAmount,
+        pool
     }
 }

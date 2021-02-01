@@ -29,7 +29,7 @@ import { useStatus } from "./hooks";
 import API_HOST, { HOST } from "../../config/request_api";
 import {useIsSMDown} from '../../utils/themeHooks';
 
-export default function Card ({ status, poolId = 0, progress, claimFun, isVote, pool }) {
+export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const { balance } = useTokenBalance()
@@ -161,8 +161,8 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
                     {!isVote && (
                         <>
-                            <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
-                                history.push(`/learn-more/${poolId}`)
+                            <Button type='white' value='Learn More'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                                history.push(`/learn-more/${pool.id}`)
                             }} />
                             <Button type='black' value='Join Auction' width={isXSDown?"100%":"168px"} onClick={() => {
                                 setIsSupport(true)
@@ -174,26 +174,29 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
             case 'Upcoming':
                 return <>
-                    <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
-                        
-                        history.push(`/learn-more/${poolId}`)
+                    <Button type='white' value='Learn More'  width={isXSDown?"100%":"168px"}  onClick={() => {
+
+                        history.push(`/learn-more/${pool.id}`)
                     }} />
                 </>
 
             case 'Past':
                 return <>
-                    <Button type='black' value='Visit Project' width={isXSDown?"100%":"168px"} onClick={() => {
-                        history.push(`/certified-sales/${poolId}`)
+                    <Button type='black' value='Visit Project'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                        history.push(`/certified-sales/${pool.id}`)
                     }} />
                 </>
 
             case 'proList-Active':
                 return <>
-                    <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
-                        history.push(`/learn-more/${poolId}`)
+                    <Button type='white' value='Learn More'  width={isXSDown?"100%":"168px"} onClick={() => {
+                        history.push(`/learn-more/${pool.id}`)
                     }} />
-                    <Button type='black' value='Support' width={isXSDown?"100%":"168px"} onClick={() => {
-                        window.localStorage.setItem('crumbs_index', 'Voting Board')
+                    <Button type='black' value='Support'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                        window.localStorage.setItem('crumbs_index', JSON.stringify({
+                            name: 'Voting Board',
+                            route: '/project-voting-board/active'
+                        }))
                         setIsSupport(true)
                     }} />
                 </>
@@ -201,12 +204,15 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
             case 'Success':
             case 'Failed':
                 return <>
-                    <Button type='white' value='Visit Project' width={isXSDown?"100%":"168px"} onClick={() => {
-                        window.localStorage.setItem('crumbs_index', 'Voting Board')
-                        history.push(`/learn-more/${poolId}`)
+                    <Button type='white' value='Visit Project'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                        window.localStorage.setItem('crumbs_index', JSON.stringify({
+                            name: 'Voting Board',
+                            route: '/project-voting-board/close'
+                        }))
+                        history.push(`/learn-more/${pool.id}`)
                     }} />
                     {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
-                        // history.push(`/certified-sales/${poolId}`)
+                        // history.push(`/certified-sales/${pool.id}`)
                         onCliam()
                     }} />}
                 </>
@@ -242,7 +248,9 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
                         <Passage
                             title='Time Left'
-                            desc={`${0} d : ${0} h : ${0} m : ${0} s`} />
+                            desc={status === 'proList-Close' ?
+                                `${0} d : ${0} h : ${0} m : ${0} s` :
+                                `${left.days} d : ${left.hours} h : ${left.minutes} m : ${left.seconds} s`} />
 
                         {progress && <Progress
                             width={isXSDown?'100%':'480px'}
@@ -254,7 +262,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
                         {isSupport && status !== 'proList-Close' && <div className='support'>
                             <TextInput onValChange={(value) => {
-                                console.log('value', value)
+                                // console.log('value', value)
                                 setValue(value)
                             }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'} />
                             <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
@@ -275,11 +283,17 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
                         <Passage
                             title='Participant'
-                            desc='Public' />
+                            desc={`
+                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'BOT holder' : ''}
+                                    ${(!pool.botHolder && pool.proInfo.ifwhitelist) ? 'Whitelisting' : ''}
+                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'BOT holder , Whitelisting' : ''}
+                                    ${(!pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Public' : ''}
+                                    `
+                            } />
 
                         <Passage
                             title='Requirement'
-                            desc={(pool.proInfo.ifkyc === 0 && pool.proInfo.ifwhitelist === 0) ? 'None' : `${pool.proInfo.ifkyc === 1 ? 'KYC /' : ''} ${pool.proInfo.ifwhitelist === 1 ? 'White List ' : ''}`} />
+                            desc={(pool.proInfo.ifkyc === 0 && pool.proInfo.ifwhitelist === 0) ? 'None' : `${pool.proInfo.ifkyc === 1 ? 'KYC' : ''}`} />
                     </div>
                 </div>
 

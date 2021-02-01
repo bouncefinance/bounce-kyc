@@ -96,7 +96,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             />
 
             <TextInput
-                label='Token contract address (enter 0x0000000000000000000000000000000000000000 if you don’t have one yet)'
+                label='Token contract address'
                 placeholder='Paste token contract address'
                 width={isXSDown?'100%':'600px'}
                 maxLength={42}
