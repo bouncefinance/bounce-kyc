@@ -5,7 +5,6 @@ import icon_close from '../../assets/icons/icon-close-white.svg'
 const MessageFrame = styled.div`
   color: ${({ color }) => (color)};
   background-color: ${({ background }) => (background)};
-  width: 100%;
   min-height: 60px;
   font-family: IBM Plex Mono;
   font-style: normal;
@@ -54,7 +53,7 @@ const Title = styled.div`
 export const Message = ({title, content, type, link, linkTitle, warning, onClose}) =>{
   const [show, setShow] = useState(true)
   return show ?
-      <MessageFrame style={{textAlign: title? 'left': 'center'}} color={warning?'#E43F29': '#FFF'} background={type? type === 'success'? '#2DAB50' : '#E43F29': '#000'}>
+      <MessageFrame style={{textAlign: title? 'left': 'center'}} color={warning?'#E43F29': '#FFF'} background={type? type === 'success'? '#2DAB50' : '#E43F29': '#1D61FF'}>
         {title && <Title>{title}</Title>}
         {content} {link && linkTitle && <Link target="_blank" href={link}>{linkTitle}</Link>}
         <Close src={icon_close} onClick={()=>{

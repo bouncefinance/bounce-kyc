@@ -112,6 +112,9 @@ margin: auto;
 color: ${({ theme }) => (theme.grey4)};
 text-align: center;
 cursor: pointer;
+margin: auto;
+border-bottom: 1px solid transparent;
+
 /* margin-top: 16px; */
 /* margin-bottom: 40px; */
 &:hover{
@@ -305,12 +308,12 @@ Pool.Frame = styled.div`
 `
 
 Pool.Return = styled.img`
-  width: 34px;
+  width: 12px;
   position: absolute;
-  top: 12px;
-  left: 48px;
+  top: 24px;
+  left: 24px;
   height: 40px;
-  padding-right: 24px;
+  padding-right: 12px;
   border-right: 1px solid #C4C4C4;
   cursor: pointer;
   z-index: 2;
@@ -382,6 +385,7 @@ Pool.Status = styled.div`
   line-height: 15px;
   display: flex;
   align-content: center;
+  align-items: center;
   i{
     /* font-size: 36px; */
     width: 9px;
@@ -412,16 +416,11 @@ Pool.Status = styled.div`
 export const Progress = styled.div`
   width: 100%;
    height: ${({ height }) => (height ? height : '4px')};
+   
 `
 
 Progress.Value = styled.div`
  height: 100%;
-`
-
-export const Cover = styled.img`
-  width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => (height ? height : 'auto')};
-  object-fit: contain;
 `
 
 export const NFTInfo = styled.div`

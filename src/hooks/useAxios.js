@@ -39,7 +39,8 @@ export default function useAxios() {
         let config = {
             ...option,
             headers: {
-                token: token
+                token: token,
+                "Content-Type": "application/x-www-from-urlencoded"
             }
         }
 
@@ -50,7 +51,8 @@ export default function useAxios() {
             config = {
                 ...option,
                 headers: {
-                    token: token
+                    token: token,
+                    "Content-Type": "application/x-www-from-urlencoded"
                 }
             }
             res = await axios.post(host, params, config)

@@ -212,7 +212,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                         history.push(`/learn-more/${pool.id}`)
                     }} />
                     {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
-                        // history.push(`/certified-sales/${poolId}`)
+                        // history.push(`/certified-sales/${pool.id}`)
                         onCliam()
                     }} />}
                 </>

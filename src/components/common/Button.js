@@ -11,8 +11,8 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: ${({ black, theme }) => (black ? theme.black : theme.white)};
-  color: ${({ black, theme }) => (black ? theme.white : theme.black)};
+  background-color: ${({ black, theme }) => (black ? '#000' : theme.white)};
+  color: ${({ black, theme }) => (black ? '#fff' : theme.black)};
 
   &:hover{
     opacity: .8;

@@ -6,6 +6,7 @@ import { WalletConnect } from '../../../components/WalletConnect'
 import Confirm from './Confirm'
 import Support from './Support'
 import KYC_TIP from './KYC_TIP'
+import Approve from "./Approve";
 
 export const ModalContent = styled.span`
   font-family: IBM Plex Mono;
@@ -67,7 +68,9 @@ export default function Index () {
             case 'SUPPORT':
                 return <Support cancel={handelCancel} />
 
-
+            case 'APPROVE':
+                const { amount, symbol, address, projectName, onConfirm, loading, done } = showModal
+                return <Approve loading={loading} done={done} onConfirm={onConfirm} amount={amount} symbol={symbol} address={address} projectName={projectName} cancel={handelCancel} />
 
             default:
                 return <></>

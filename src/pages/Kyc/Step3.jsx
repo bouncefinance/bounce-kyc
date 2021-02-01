@@ -49,7 +49,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
         // console.log(ReqData)
         // ReqData.bounceid = 0
         ReqData.accountaddress = account
-        ReqData.status = 1 
+        ReqData.status = 1
         // const web3 = new Web3(library.provider);
         // const sign = await web3.eth.personal.sign('Welcome to Bounce!', account)
         // console.log('sign', sign)
