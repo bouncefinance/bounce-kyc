@@ -9,18 +9,31 @@ export const HomeStyled = styled.div`
         margin-top: -80px;
         display: flex;
         align-items: center;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+            flex-direction: column;
+            height: auto;
+            margin-top: 0px;
+        }
         .main{
             width: 100%;
             height: 525px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+            @media screen and (max-width: 960px){
+                flex-direction: column;
+                height: auto;
+            }
             .left{
                 width: 525px;
                 height: 525px;
                 margin-left: -100px;
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                    height: auto;
+                    margin-left: 0px;
+                }
             }
 
             .right{
@@ -28,12 +41,19 @@ export const HomeStyled = styled.div`
                 height: 340px;
                 box-sizing: border-box;
                 z-index: 1;
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                    height: auto;
+                }
                 h1{
                     font-family: 'Optima';
                     font-weight: 700;
                     font-size: 58px;
                     margin-bottom: 8px;
-
+                    @media screen and (max-width: 960px){
+                        font-size: 28px;
+                        padding:0 24px;
+                    }
                     span{
                         color: #1D61FF;
                     }
@@ -46,6 +66,9 @@ export const HomeStyled = styled.div`
                     color: rgba(256,256,256,.5);
                     margin-top: 12px;
                     line-height: 21.76px;
+                    @media screen and (max-width: 960px){
+                        padding:0 24px;
+                    }
                 }
 
                 button{
@@ -60,6 +83,9 @@ export const HomeStyled = styled.div`
                     font-size: 16px;
                     margin-top: 40px;
                     cursor: pointer;
+                    @media screen and (max-width: 960px){
+                        margin-left:24px;
+                    }
                 }
             }
         }
@@ -68,7 +94,11 @@ export const HomeStyled = styled.div`
     .page_other{
         width: 1100px;
         margin: 0 auto;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+            margin-top: 90px;
+            padding:0 24px;
+        }
         .block{
             h3{
                 font-family: 'Optima';
@@ -82,14 +112,20 @@ export const HomeStyled = styled.div`
                 justify-content: space-between;
                 width: 100%;
                 height: 132px;
-                
+                @media screen and (max-width: 960px){
+                    flex-direction: column;
+                    height: auto;
+                }
                 li{
                     width: 356px;
                     height: 100%;
                     border-left: 4px solid #1D61FF;
                     position: relative;
                     font-family:'Helvetica Neue';
-
+                    @media screen and (max-width: 960px){
+                        width: 100%;
+                        padding-bottom:16px;
+                    }
                     .bg{
                         width: 100%;
                         height: 100%;
@@ -117,6 +153,9 @@ export const HomeStyled = styled.div`
                         color: rgba(256,256,256,.6);
                         margin-left: 40px;
                         margin-top: 6px;
+                        @media screen and (max-width: 960px){
+                            font-size: 14px;
+                        }
                     }
                 }
             }
@@ -124,7 +163,9 @@ export const HomeStyled = styled.div`
 
         .Certified {
             margin-top: 140px;
-            
+            @media screen and (max-width: 960px){
+                margin-top: 80px;
+            }
             .step_list{
                 position: relative;
                 display: flex;
@@ -137,10 +178,16 @@ export const HomeStyled = styled.div`
                     border-color: rgba(256,256,256);
                     opacity: .2;
                     cursor: pointer;
-
+                    @media screen and (max-width: 960px){
+                        height: auto;
+                        width: auto;
+                        padding: 10px 60px 20px 0;
+                    }
                     h4{
                         margin-top: 24px;
-
+                        @media screen and (max-width: 960px){
+                            font-size: 16px;
+                        }
                         i{
                             display: inline-block;
                             width: 28px;
@@ -196,7 +243,10 @@ export const HomeStyled = styled.div`
                     width: 100%;
                     height: 60px;
                     display: flex;
-
+                    @media screen and (max-width: 960px){
+                        flex-direction: column;
+                        height: auto;
+                    }
                     div{
                         height: 60px;
                         line-height: 60px;
@@ -234,7 +284,10 @@ export const HomeStyled = styled.div`
         box-sizing: border-box;
         position: relative;
         margin-top: 100px;
-
+        @media screen and (max-width: 960px){
+            padding:40px 0;
+            height: auto;
+        }
         .started_bg{
             width: 100%;
             height: 100%;
@@ -254,11 +307,21 @@ export const HomeStyled = styled.div`
             align-items: center;
             justify-content: space-between;
             z-index: 2;
-
+            @media screen and (max-width: 960px){
+                width: 100%;
+                flex-direction: column;
+            }
             h3{
                 font-family: 'Optima';
                 font-weight: 700;
                 font-size: 32px;
+                @media screen and (max-width: 960px){
+                    font-size: 20px;
+                    text-align: center;
+                    padding:0 24px;
+                    line-height:34px;
+                    margin-bottom:24px
+                }
             }
 
             button{
@@ -285,17 +348,27 @@ export const HomeStyled = styled.div`
         box-sizing: border-box;
         display: flex;
         align-items: center;
-
+        @media screen and (max-width: 960px){
+            height: auto;
+        }
         .main{
             width: 1100px;
             height: 160px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
+            @media screen and (max-width: 960px){
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+            }
             h5{
                 font-size: 24px;
                 font-weight: 400;
                 margin-top: 20px;
+                @media screen and (max-width: 960px){
+                    padding:0 24px;
+                }
             }
 
             ul{
@@ -303,6 +376,10 @@ export const HomeStyled = styled.div`
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
+                @media screen and (max-width: 960px){
+                    width: auto;
+                    padding:0 24px;
+                }
                 li{
                     width: 180px;
                     height: 80px;
@@ -310,6 +387,9 @@ export const HomeStyled = styled.div`
                     text-align: center;
                     display: flex;
                     align-items: center;
+                    @media screen and (max-width: 960px){
+                        margin-left: 0;
+                    }
                 }
             }
         }
@@ -328,11 +408,18 @@ export const HomeStyled = styled.div`
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid rgba(256,256,256,.2);
+            @media screen and (max-width: 960px){
+                width: 100%;
+            }
 
             .link{
                 display: flex;
                 justify-content: flex-end;
-
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                    justify-content: space-between;
+                    padding:0 24px;
+                }
                 ul{
                     width: 150px;
                     display: flex;
@@ -343,6 +430,9 @@ export const HomeStyled = styled.div`
                     font-size: 14px;
                     color: rgba(256,256,256,.6);
                     margin-left: 100px;
+                    @media screen and (max-width: 960px){
+                        color: rgba(256,256,256,1);
+                    }
                 }
             }
         }

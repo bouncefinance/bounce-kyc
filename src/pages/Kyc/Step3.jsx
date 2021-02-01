@@ -8,6 +8,7 @@ import { myContext } from '../../redux'
 import Web3 from "web3";
 import icon_plaint from '../../assets/images/plaint.svg'
 import useAxios from '../../hooks/useAxios'
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const {sign_Axios} = useAxios()
@@ -16,7 +17,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const { active, account, library } = useWeb3React()
     const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     useEffect(() => {
         console.log(data, isNext)
         const requiredList = ['idcardno', 'idcardfronturl', 'idcardbackurl']
@@ -137,10 +138,10 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
                     handelValChange('idcardbackurl', path || null)
                 }} />
             <div className="btn_group">
-                <Button type='white' value='Back' width='164px' onClick={() => {
+                <Button type='white' value='Back'  width={isXSDown?'100%':'164px'}  onClick={() => {
                     setCurStep(curStep - 1)
                 }} />
-                <Button type='black' value='Verify' width='164px' disabled={!isNext || !active} onClick={handelSubmit} />
+                <Button type='black'  style={{ marginTop: 20}} value='Verify'  width={isXSDown?'100%':'164px'}  disabled={!isNext || !active} onClick={handelSubmit} />
             </div>
         </Form>
     )

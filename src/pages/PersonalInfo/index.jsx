@@ -10,6 +10,7 @@ import API from '../../config/request_api'
 import { useWeb3React } from '@web3-react/core'
 import { myContext } from '../../redux'
 import useAxios from '../../hooks/useAxios'
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Index () {
     const { dispatch } = useContext(myContext)
@@ -21,6 +22,7 @@ export default function Index () {
         bounceid: null
     })
     const { sign_Axios } = useAxios()
+    const isXSDown = useIsSMDown();
 
     useEffect(() => {
         if (!account) return
@@ -181,10 +183,10 @@ export default function Index () {
                             </CopyToClipboard>
                         </Text>
                         <div className="btn_group">
-                            <Button type='white' value='Cancel' width='164px' onClick={() => {
+                            <Button type='white' value='Cancel' width={isXSDown?'100%':'164px'}onClick={() => {
                                 history.goBack(-1)
                             }} />
-                            <Button type='black' value='Save' width='164px'
+                            <Button type='black' value='Save' style={{ marginTop: 20}} width={isXSDown?'100%':'164px'}
                                 disabled={showInfo.bounceid !== '0' && showInfo.emailaddr ? false : true}
                                 onClick={handelSubmit} />
                         </div>

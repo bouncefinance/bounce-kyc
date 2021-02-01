@@ -21,15 +21,7 @@ export default function MenuModal({ show = false,setMobileMenu }) {
     }
     const renderConnectBtn = () => {
 
-        return active ? <div
-            className="personal ignore"
-            onClick={() => {
-                dispatch({
-                    type: "SHOW_PER",
-                    value: !state.isShowPersonal
-                })
-            }}
-        ></div> : <Button
+        return active ? <div></div> : <Button
                 type='black'
                 width='130px'
                 height='36px'

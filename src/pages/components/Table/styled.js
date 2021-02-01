@@ -133,16 +133,24 @@ export const UploadStyled = styled.div`
         text-align: center;
         box-sizing: border-box;
         cursor: pointer;
+        @media screen and (max-width: 960px){
+            flex-direction: column;
+            height: auto;
+        }
         .left{
             height: 140px;
             border: 1px dotted rgba(0,0,0,.3);
+            
             label{
                 display: block;
                 width: 240px;
                 height: 140px;
                 position: relative;
                 cursor: pointer;
-
+                @media screen and (max-width: 960px){
+                    height: auto;
+                    width: 100%;
+                }
                 input,.upload_select,.cover{
                     position: absolute;
                     width: 100%;
@@ -166,7 +174,9 @@ export const UploadStyled = styled.div`
                         font-size: 16px;
                         font-weight: 400;
                         text-align: center;
-
+                        @media screen and (max-width: 960px){
+                            width: 100%;
+                        }
                         span{
                             color: #124CE3;
                             text-decoration: underline;
@@ -192,6 +202,9 @@ export const UploadStyled = styled.div`
                 line-height: 18px;
                 opacity: .4;
                 margin-left: 32px;
+                @media screen and (max-width: 960px){
+                    margin-left: 0px;
+                }
             }
 
             .btn_grop{
@@ -218,6 +231,9 @@ export const TextStyled = styled.div`
         font-size: 16px;
         color: rgba(0,0,0,1);
         font-weight: 400;
+        @media screen and (max-width: 960px){
+            word-break: break-all;
+        }
     }
 `
 

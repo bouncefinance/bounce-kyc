@@ -34,7 +34,7 @@ import {
 } from "../../components/common/BidModal";
 import {useLeftTime} from "../../hooks/useLeftTime";
 import {mainContext} from "../../reducer";
-import {useIsXSDown} from '../../utils/themeHooks';
+import {useIsSMDown} from '../../utils/themeHooks';
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import {AuctionTipModal} from "../../components/common/AuctionTipModal";
 import Modal from "../../components/common/Modal";
@@ -68,7 +68,7 @@ export const FSPoolDetail = () => {
     const [showTip, setShowTip] = useState()
     const [errors, setErrors] = useState({amount: ''})
 
-    const isXSDown = useIsXSDown();
+    const isXSDown = useIsSMDown();
 
     const {name, address, symbol, decimals, limit, time, fromBidAmount, fromAmount, toAmount, status, isMine, toBidAmount, onlyBOT, claimed, toSymbol, toAddress, toDecimals, joinStatus} = usePoolDetail(id)
 

@@ -15,7 +15,15 @@ export const SupportStyled = styled.div`
     height: 300px;
     background-color: #fff;
     margin: 15% auto;
-    
+    @media screen and (max-width: 960px){
+        width: 90%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     .top{
         display: flex;
         justify-content: space-between;
@@ -66,7 +74,15 @@ export const Kyc_Tip_Styled = styled.div`
     height: 350px;
     background-color: #fff;
     margin: 15% auto;
-    
+    @media screen and (max-width: 960px){
+        width: 90%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     .top{
         display: flex;
         justify-content: space-between;
@@ -114,6 +130,11 @@ export const Kyc_Tip_Styled = styled.div`
         button{
             margin-left: 12px;
         }
+        @media screen and (max-width: 960px){
+            margin-right:0;
+            justify-content: space-around;
+            padding-bottom: 20px;
+        }
     }
 
 
@@ -125,7 +146,15 @@ export const ConfirmStyled = styled.div`
     min-height: 300px;
     background-color: #fff;
     margin: 15% auto;
-
+    @media screen and (max-width: 960px){
+        width: 90%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     .top{
         display: flex;
         justify-content: space-between;

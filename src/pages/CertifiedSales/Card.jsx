@@ -27,7 +27,7 @@ import { getPoolLeftTime } from "../../utils/time";
 import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
 import API_HOST, { HOST } from "../../config/request_api";
-
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Card ({ status, poolId = 0, progress, claimFun, isVote, pool }) {
     const [isSupport, setIsSupport] = useState(false)
@@ -38,7 +38,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
     const history = useHistory()
     const { account, library, chainId, active } = useActiveWeb3React()
     const [value, setValue] = useState()
-
+    const isXSDown = useIsSMDown();
     const { myVotes, myVotesClaimed } = useStatus(pool.id)
     //   console.log('myVotesClaimed--->', myVotesClaimed)
     const [left, setLeft] = useState({
@@ -149,11 +149,11 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                 return <>
                     {isVote && (
                         <>
-                            <Button type='white' value='Learn More' width='168px' onClick={() => {
+                            <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                                 window.localStorage.setItem('ca')
                                 history.push(`/learn-more/${pool.id}`)
                             }} />
-                            <Button type='black' value='Support' width='168px' onClick={() => {
+                            <Button type='black' value='Support' width={isXSDown?"100%":"168px"} onClick={() => {
                                 setIsSupport(true)
                             }} />
                         </>
@@ -161,10 +161,10 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
                     {!isVote && (
                         <>
-                            <Button type='white' value='Learn More' width='168px' onClick={() => {
+                            <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                                 history.push(`/learn-more/${poolId}`)
                             }} />
-                            <Button type='black' value='Join Auction' width='168px' onClick={() => {
+                            <Button type='black' value='Join Auction' width={isXSDown?"100%":"168px"} onClick={() => {
                                 setIsSupport(true)
                             }} />
                         </>
@@ -174,7 +174,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
             case 'Upcoming':
                 return <>
-                    <Button type='white' value='Learn More' width='168px' onClick={() => {
+                    <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                         
                         history.push(`/learn-more/${poolId}`)
                     }} />
@@ -182,17 +182,17 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
             case 'Past':
                 return <>
-                    <Button type='black' value='Visit Project' width='168px' onClick={() => {
+                    <Button type='black' value='Visit Project' width={isXSDown?"100%":"168px"} onClick={() => {
                         history.push(`/certified-sales/${poolId}`)
                     }} />
                 </>
 
             case 'proList-Active':
                 return <>
-                    <Button type='white' value='Learn More' width='168px' onClick={() => {
+                    <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                         history.push(`/learn-more/${poolId}`)
                     }} />
-                    <Button type='black' value='Support' width='168px' onClick={() => {
+                    <Button type='black' value='Support' width={isXSDown?"100%":"168px"} onClick={() => {
                         window.localStorage.setItem('crumbs_index', 'Voting Board')
                         setIsSupport(true)
                     }} />
@@ -201,7 +201,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
             case 'Success':
             case 'Failed':
                 return <>
-                    <Button type='white' value='Visit Project' width='168px' onClick={() => {
+                    <Button type='white' value='Visit Project' width={isXSDown?"100%":"168px"} onClick={() => {
                         window.localStorage.setItem('crumbs_index', 'Voting Board')
                         history.push(`/learn-more/${poolId}`)
                     }} />
@@ -245,7 +245,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                             desc={`${0} d : ${0} h : ${0} m : ${0} s`} />
 
                         {progress && <Progress
-                            width='480px'
+                            width={isXSDown?'100%':'480px'}
                             status={pool.status}
                             plan={new BigNumber(weiToNum(pool.totalVotes)).dividedBy('300')}
                             value={`${weiToNum(pool.totalVotes)} BOT`}
@@ -259,10 +259,10 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                             }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'} />
                             <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
                                 value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
-                                width='180px' onClick={() => {
+                                width={isXSDown?"100%":"180px"} onClick={() => {
                                     setSupporting(true)
                                 }} />
-                            <Button type='white' value='Back' width='180px' onClick={() => {
+                            <Button type='white' value='Back' width={isXSDown?"100%":"180px"}  onClick={() => {
                                 setIsSupport(false)
                             }} />
                         </div>}

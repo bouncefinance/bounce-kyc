@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Step6Styled } from './styled'
 import { TextInput, Button, Upload } from '../components/Table'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 const requireList = ['contactemail', 'prologourl']
 
 export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, handelSubmit }) {
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     useEffect(() => {
         setTitle({
             title: 'Auction',
@@ -61,7 +61,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
             <TextInput
                 label='Contact email'
                 placeholder='Enter your Contact email'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step6Data.contactemail}
                 isRequire={true}
                 REG_rule={{
@@ -76,7 +76,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
             <TextInput
                 label='Additional information'
                 placeholder='Enter additional information '
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step6Data.additionalinfo}
                 maxLength={200}
                 onValueChange={(val) => {
@@ -86,7 +86,7 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
 
             <Upload
                 name='Project logo'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 desc='Supports JPG, PNG, JPEG2000, GIF, no more than 100MB, 262*262 Reccomended'
                 successCallBack={(path) => {
                     handelInputChange('prologourl', {
@@ -97,10 +97,10 @@ export default function Step6 ({ setCurStep, setTitle, step6Data, setStep6Data, 
                 }} />
 
             <div className="btn_group">
-                <Button type='white' value='Last Step' width='164px' onClick={() => {
+                <Button type='white' value='Last Step' width={isXSDown?'100%':'164px'} onClick={() => {
                     setCurStep(5)
                 }} />
-                <Button type='black' value='Submit' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black' value='Submit' style={{ marginTop: 20}} width={isXSDown?'100%':'164px'} disabled={!isNext} onClick={() => {
                     handelSubmit && handelSubmit()
                 }} />
             </div>

@@ -8,7 +8,9 @@ export const ApplySaleStyled = styled.div`
         background-color: #fff;
         margin: 0 auto;
         padding: 30px 40px;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
         .top{
             display: flex;
             justify-content: space-between;
@@ -62,6 +64,9 @@ export const StepStyled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 `
 
@@ -83,6 +88,9 @@ export const Step1Styled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 `
 
@@ -91,6 +99,9 @@ export const Step2Styled = styled.div`
         margin-top: 24px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `
@@ -101,6 +112,9 @@ export const Step3Styled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 `
 
@@ -109,6 +123,9 @@ export const Step4Styled = styled.div`
         margin-top: 24px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `
@@ -120,12 +137,18 @@ export const Step5Styled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 
     .select_group{
         width: 600px;
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 `
 
@@ -134,6 +157,9 @@ export const Step6Styled = styled.div`
         margin-top: 36px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `

@@ -28,6 +28,7 @@ import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
 import API_HOST, { HOST } from "../../config/request_api";
 import InfoBox from './LearnMore/InfoBox'
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function SalesCard({ status, poolId = 0, progress, claimFun, isVote, pool = {} }) {
     const [isSupport, setIsSupport] = useState(false)
@@ -39,6 +40,7 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
     const { account, library, chainId, active } = useActiveWeb3React()
     const [value, setValue] = useState()
     const [isShowInfoBox, setIsShowInfoBox] = useState(false)
+    const isXSDown = useIsSMDown();
 
     const { myVotes, myVotesClaimed } = useStatus(pool.id || 0)
     //   console.log('myVotesClaimed--->', myVotesClaimed)
@@ -150,10 +152,10 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                 return <>
                     {isVote && (
                         <>
-                            <Button type='white' value='Learn More' width='168px' onClick={() => {
+                            <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                                 history.push(`/learn-more/${pool.id}`)
                             }} />
-                            <Button type='black' value='Support' width='168px' onClick={() => {
+                            <Button type='black' value='Support'  width={isXSDown?"100%":"168px"} onClick={() => {
                                 setIsSupport(true)
                             }} />
                         </>
@@ -161,10 +163,10 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
 
                     {!isVote && (
                         <>
-                            <Button type='white' value='Learn More' width='168px' onClick={() => {
+                            <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                                 history.push(`/learn-more/${poolId}`)
                             }} />
-                            <Button type='black' value='Join Auction' width='168px' onClick={() => {
+                            <Button type='black' value='Join Auction' width={isXSDown?"100%":"168px"} onClick={() => {
                                 setIsSupport(true)
                             }} />
                         </>
@@ -174,24 +176,24 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
 
             case 'Upcoming':
                 return <>
-                    <Button type='white' value='Learn More' width='168px' onClick={() => {
+                    <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                         history.push(`/learn-more/${poolId}`)
                     }} />
                 </>
 
             case 'Past':
                 return <>
-                    <Button type='black' value='Visit Project' width='168px' onClick={() => {
+                    <Button type='black' value='Visit Project' width={isXSDown?"100%":"168px"} onClick={() => {
                         history.push(`/certified-sales/${poolId}`)
                     }} />
                 </>
 
             case 'proList-Active':
                 return <>
-                    <Button type='white' value='Learn More' width='168px' onClick={() => {
+                    <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
                         history.push(`/learn-more/${poolId}`)
                     }} />
-                    <Button type='black' value='Support' width='168px' onClick={() => {
+                    <Button type='black' value='Support' width={isXSDown?"100%":"168px"} onClick={() => {
                         setIsSupport(true)
                     }} />
                 </>
@@ -199,7 +201,7 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
             case 'Success':
             case 'Failed':
                 return <>
-                    <Button type='white' value='Visit Project' width='168px' onClick={() => {
+                    <Button type='white' value='Visit Project' width={isXSDown?"100%":"168px"} onClick={() => {
                         history.push(`/learn-more/${poolId}`)
                     }} />
                     {new BigNumber(myVotes).isGreaterThan('0') && !myVotesClaimed && <Button type='black' value='Claim support tokens back' width='240px' onClick={() => {
@@ -242,7 +244,7 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                             desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`} />
 
                         {progress && <Progress
-                            width='480px'
+                            width={isXSDown?'100%':'480px'}
                             status={pool.status}
                             plan={new BigNumber(pool.totalVotes).dividedBy('200000000000000000000').dividedBy('100')}
                             value={`${weiToNum(pool.totalVotes)} BOT`}
@@ -265,11 +267,11 @@ export default function SalesCard({ status, poolId = 0, progress, claimFun, isVo
                         </div>} */}
 
                         <div className="active_btn">
-                            <Button type='white' value='Learn More' width='180px' onClick={() => {
+                            <Button type='white' value='Learn More' width={isXSDown?"100%":"180px"} onClick={() => {
                                 setIsShowInfoBox(!isShowInfoBox)
                             }} />
 
-                            <Button type='black' value='Join Auction' width='180px' onClick={() => {
+                            <Button type='black' value='Join Auction' width={isXSDown?"100%":"180px"} onClick={() => {
                                 setIsSupport(false)
                             }} />
                         </div>

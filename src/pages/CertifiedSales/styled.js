@@ -11,7 +11,9 @@ export const CardStyled = styled.div`
     margin: 0 auto;
     margin-top: 53px;
     margin-bottom: 15px;
-
+    @media screen and (max-width: 960px){
+        width: 100%;
+    }
     .status{
         margin-bottom: 20px;
         span{
@@ -53,9 +55,14 @@ export const CardStyled = styled.div`
         .middle{
             display: flex;
             justify-content: space-between;
-
+            @media screen and (max-width: 960px){
+                flex-direction: column;
+            }
             .left{
                 width: 480px;
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                }
                 span.vote{
                     display: block;
                     width: 100px;
@@ -99,6 +106,9 @@ export const CardStyled = styled.div`
 
             .right{
                 width: 450px;
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                }
             }
         }
 
@@ -203,7 +213,9 @@ export const ProgressStyled = styled.div`
 export const SaleCardStyle = styled.div`
     width: 1100px;
     margin: 52px auto;
-
+    @media screen and (max-width: 960px){
+        width: 100%;
+    }
     .pro_header{
         color: #fff;
         width: 100%;

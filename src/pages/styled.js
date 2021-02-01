@@ -6,9 +6,12 @@ export const LayoutStyled = styled.div`
     background-color: #000;
     @media screen and (max-width: 960px){
         width: 100%;
-        overflow-x:hidden;
+        overflow:hidden;
     }
     .mainView{
         padding-bottom: 50px;
+        @media screen and (max-width: 960px){
+            padding-bottom: 0px;
+        }
     }
 `

@@ -8,7 +8,9 @@ export const PerInfoStyled = styled.div`
         background-color: #fff;
         padding: 30px 40px;
         box-sizing: border-box;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
         .top{
             display: flex;
             align-items: center;
@@ -55,7 +57,9 @@ export const PerInfoStyled = styled.div`
             .right{
                 width: 600px;
                 height: 310px;
-
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                }
                 .CertifiedId{
                     display: flex;
                     img{
