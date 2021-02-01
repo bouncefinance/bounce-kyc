@@ -1,9 +1,7 @@
 export const HOST = 'https://account.bounce.finance:16000'
-// const API = '/api/v1/'
-const API = '/api/test'
 
-// const ENV = '/api/test'
-const ENV = '/api/v1'
+const ENV = '/api/test'
+// const ENV = '/api/v1'
 
 const API_HOST = {
     HOST: HOST,
