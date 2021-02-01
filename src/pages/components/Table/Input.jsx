@@ -62,7 +62,7 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
     }
 
     const wrapperNumber = (str) => {
-        let reg = /[\D]+/g;
+        let reg = /[a-zA-Z]+/g;
         let str1 = str.replace(reg, "");
         return str1
     }
