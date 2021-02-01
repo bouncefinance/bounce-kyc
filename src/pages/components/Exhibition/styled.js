@@ -35,7 +35,9 @@ export const CrumbsStyled = styled.div`
     ul{
         display: flex;
         user-select: none;
-
+        @media screen and (max-width: 960px){
+            flex-wrap: wrap;
+        }
         li{
             margin-left: 5px;
             font-family: 'Helvetica Neue';

@@ -389,6 +389,7 @@ export const HomeStyled = styled.div`
                     align-items: center;
                     @media screen and (max-width: 960px){
                         margin-left: 0;
+                        width: 50%;
                     }
                 }
             }

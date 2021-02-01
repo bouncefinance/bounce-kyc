@@ -121,9 +121,12 @@ export default function Index () {
                 </div>
 
                 <div className="bottom">
+                {!isXSDown &&
                     <div className="left">
                         <img src={kyc_img} alt="" />
                     </div>
+                }
+                    
 
                     <div className="right">
                         <TextInput

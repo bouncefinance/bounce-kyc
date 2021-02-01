@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MenuModalStyled } from './styled';
 import { useHistory } from 'react-router-dom';
-import logo_sigle from '../../../assets/logo/logo-sigle.svg';
+import logo_sigle from '../../../assets/logo/logo-sigle-white.svg';
 import close from '../../../assets/icons/close-white.svg';
 import { headerMenu } from './config';
 import { myContext } from '../../../redux';
@@ -16,9 +16,6 @@ export default function MenuModal({ show = false,setMobileMenu }) {
     const { state, dispatch } = useContext(myContext);
     const { active, account } = useActiveWeb3React();
 
-    const handelClickLi = (type) => {
-       
-    }
     const renderConnectBtn = () => {
 
         return active ? <div></div> : <Button

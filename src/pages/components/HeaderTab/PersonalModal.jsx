@@ -13,6 +13,9 @@ import {BOUNCE_PRO} from "../../../web3/address";
 import {getContract} from "../../../web3";
 import bounceERC20 from "../../../web3/abi/bounceERC20.json";
 import {numToWei} from "../../../utils/numberTransform";
+import { useIsSMDown } from '../../../hooks/themeHooks';
+import logo_sigle from '../../../assets/logo/logo-sigle-black.svg';
+import close from '../../../assets/icons/close-black.svg';
 
 export default function PersonalModal({show = false, userName}) {
   const history = useHistory()
@@ -22,7 +25,7 @@ export default function PersonalModal({show = false, userName}) {
   const {list} = useVoteList()
   const [isKYC, setIsKYC] = useState(false)
   const [balance, setBalance] = useState(0)
-
+  const isSMDown = useIsSMDown();
   const myProject = list && list.filter(item => {
     return item.status === 'Active' && item.creator.toLowerCase() === account.toLowerCase()
   })[0]
@@ -163,6 +166,18 @@ export default function PersonalModal({show = false, userName}) {
 
   return (
       show && <PerModalStyled>
+        {isSMDown && 
+          <div>
+            <div className="headers">
+                <img onClick={() => { return window.location.href = '/' }}  src={logo_sigle} alt="bounce logo"  />
+                <img src={close}
+                />
+            </div>
+            <div className="personalLogo">
+              
+            </div>
+          </div>
+        }
         <div className="account">
           <div className='account_name'>
             <h5>{userName}</h5>
@@ -240,6 +255,13 @@ export default function PersonalModal({show = false, userName}) {
               </li>
           )}
         </ul>
+
+        {isSMDown && 
+          <div className="cancelBtn">
+            Close
+          </div>
+        }
+
       </PerModalStyled>
   )
 }

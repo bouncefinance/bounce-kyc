@@ -18,6 +18,9 @@ export const PerInfoStyled = styled.div`
             padding-bottom: 18px;
             border-bottom: 4px solid #000;
             margin-bottom: 24px;
+            @media screen and (max-width: 960px){
+                flex-direction: column;
+            }
 
             h1{
                 font-size: 32px;
@@ -59,6 +62,7 @@ export const PerInfoStyled = styled.div`
                 height: 310px;
                 @media screen and (max-width: 960px){
                     width: 100%;
+                    height: auto;
                 }
                 .CertifiedId{
                     display: flex;

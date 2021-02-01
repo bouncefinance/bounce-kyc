@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { InputStyled, AmountStyled, TimeInputStyled } from './styled'
+import { useIsSMDown } from '../../../hooks/themeHooks';
 
 export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, maxLength, disabled, defaultVal, placeholder, width, minHeight, marginTop, label, onChange, onValChange, onValueChange, isRequire = false, bottom }) => {
     const [val, setVal] = useState('')
     const [isError, setIsError] = useState(false)
     const [errMsg, setErrMsg] = useState('')
     const [sHeight, setSHeight] = useState('48px')
-
+    const isSMDown = useIsSMDown();
     useEffect(() => {
         if (!defaultVal) return
         setVal(defaultVal)

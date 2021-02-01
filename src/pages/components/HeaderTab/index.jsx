@@ -11,7 +11,7 @@ import HOST_API from '../../../config/request_api'
 import { useActiveWeb3React } from "../../../web3";
 import { useIsSMDown } from '../../../hooks/themeHooks';
 import menu from '../../../assets/mobile/menu.svg';
-import logo_white from '../../../assets/logo/logo-white.svg';
+import logo_white from '../../../assets/logo/logo-sigle-white.svg';
 import MenuModal from './MenuModal';
 
 export default function Index () {
@@ -145,7 +145,9 @@ export default function Index () {
                 }
                 {isSMDown && 
                     <>
+
                         <div className="right">
+                             {active && renderConnectBtn()}
                             <img src={menu} alt="" onClick={() => {setMobileMenu(true)}} className="menu"/>
                         </div>
                         {mobileMenu && <MenuModal setMobileMenu={setMobileMenu} show={mobileMenu}/>}

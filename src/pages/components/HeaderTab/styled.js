@@ -54,6 +54,9 @@ export const HeaderTabStyled = styled.div`
                 margin-left: 35px;
                 cursor: pointer;
                 background: linear-gradient(154.16deg, #306AFF 6.12%, #3E74FE 49.44%, #003BD3 89.29%);
+                @media screen and (max-width: 960px){
+                    margin-right:20px;
+                }
             }
         }
     }
@@ -69,16 +72,42 @@ export const PerModalStyled = styled.div`
     background-color: #fff;
     user-select: none;
     z-index: 99;
-
+    @media screen and (max-width: 960px){
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        right: 0;
+        bottom: 0;
+    }
+    .headers{
+        display: flex;
+        justify-content: space-between;
+        padding: 24px;
+    }
+    .personalLogo{
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        margin: 20px auto;
+        cursor: pointer;
+        background: linear-gradient(154.16deg,#306AFF 6.12%,#3E74FE 49.44%,#003BD3 89.29%);
+    }
     .account{
         padding: 12px 24px;
         font-family: 'Helvetica Neue';
 
         .account_name{
             display: flex;
+            @media screen and (max-width: 960px){
+                justify-content: center;
+            }
             h5{
                 font-weight: 700;
                 font-size: 16px;
+                @media screen and (max-width: 960px){
+                    font-size: 26px;
+                }
             }
             img{
                 width: 16px;
@@ -91,6 +120,9 @@ export const PerModalStyled = styled.div`
             display: flex;
             align-items: center;
             padding: 0;
+            @media screen and (max-width: 960px){
+                justify-content: center;
+            }
             p{
                 font-size: 14px;
                 font-weight: 500;
@@ -99,6 +131,9 @@ export const PerModalStyled = styled.div`
                 width: 150px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                @media screen and (max-width: 960px){
+                    font-size: 16px;
+                }
             }
 
             img{
@@ -107,20 +142,38 @@ export const PerModalStyled = styled.div`
             }
         }
     }
-
+    .cancelBtn{
+        width: 82%;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        margin: 60px auto 0;
+        border: 1px solid #e5e5e5;
+    }
     ul{
+        @media screen and (max-width: 960px){
+            border-top:1px solid #e5e5e5;
+            margin-top:50px;
+        }
         li{ 
             padding: 12px 24px;
             font-size: 14px;
             color: #1F191B;
             display: flex;
             cursor: pointer;
-            
+            @media screen and (max-width: 960px){
+                font-size: 18px;
+                border-bottom:1px solid #e5e5e5;
+                padding:24px;
+            }
             span{
                 font-family: 'Helvetica Neue';
                 font-weight: 500;
                 font-size: 14px;
                 color: rgba(31,25,27,.8);
+                @media screen and (max-width: 960px){
+                    font-size: 18px;
+                }
             }
 
             &:hover{

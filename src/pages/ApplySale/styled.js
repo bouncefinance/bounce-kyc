@@ -23,6 +23,9 @@ export const ApplySaleStyled = styled.div`
 
             h1{
                 font-size: 32px;
+                @media screen and (max-width: 960px){
+                    font-size: 22px;
+                }
             }
 
             p{
@@ -36,7 +39,9 @@ export const ApplySaleStyled = styled.div`
     ul.add_append{
         margin-top: 18px;
         display: flex;
-
+        @media screen and (max-width: 960px){
+            display: block;
+        }
         li{
             font-family: 'Helvetica Neue';
             font-weight: 500;
@@ -45,7 +50,11 @@ export const ApplySaleStyled = styled.div`
             margin-right: 28px;
             text-decoration: underline;
             cursor: pointer;
-
+            @media screen and (max-width: 960px){
+                display: inline-block;
+                margin-right: 0;
+                width:50%
+            }
             &.soc_active{
                 color: rgba(18,76,227,1);
             }
@@ -148,6 +157,7 @@ export const Step5Styled = styled.div`
         justify-content: space-between;
         @media screen and (max-width: 960px){
             width: 100%;
+            flex-direction: column;
         }
     }
 `

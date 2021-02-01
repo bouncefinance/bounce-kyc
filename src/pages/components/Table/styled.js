@@ -258,7 +258,10 @@ export const RadioStyled = styled.div`
             align-items: center;
             margin-right: 100px;
             cursor: pointer;
-
+            @media screen and (max-width: 960px){
+                margin-right: 0px;
+                justify-content: space-between;
+            }
             img{
                 margin-right: 12px;
             }
@@ -306,6 +309,9 @@ export const TimeInputStyled = styled.div`
 
             &:last-child{
                 margin-right: 0px;
+            }
+            @media screen and (max-width: 960px){
+                width:30%
             }
         }
     }
