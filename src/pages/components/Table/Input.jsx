@@ -54,10 +54,13 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
     const wrapperName = (str) => {
         let reg = /[0-9]+/g;
         let str1 = str.replace(reg, "");
-        if (str1 === '') return ''
+        // if (str1 === '') return ''
         let arr = str1.toLowerCase().split(" ");
         for (var i = 0; i < arr.length; i++) {
-            arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1, arr[i].length);
+            console.log('wrapperName',arr )
+            // if (arr[i][0] !== ' '){
+                arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1, arr[i].length);
+            // }
         }
         return arr.join(" ");
     }
@@ -107,10 +110,10 @@ export const TextInput = ({ unit, upperCase, name, isNumber, isName, REG_rule, m
                         }
 
                         let val = e.target.value
-                        if (isName) {
-                            val = String(val).trim()
-                            val = wrapperName(val)
-                        }
+                        // if (isName) {
+                        //     // val = String(val).trim()
+                        //     val = wrapperName(val)
+                        // }
 
                         if (isNumber) {
                             val = String(val).trim()

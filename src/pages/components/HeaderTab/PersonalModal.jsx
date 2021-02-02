@@ -31,12 +31,11 @@ import {
 } from "../../../components/common/TXModal"
 
 
-export default function PersonalModal({ show = false, userName }) {
+export default function PersonalModal({ show = false, userName, isKYC: CT_KYC }) {
   const history = useHistory()
   const { sign_Axios, Axios } = useAxios()
-  const { account, chainId, library } = useWeb3React()
+  const { account, chainId, library, active } = useWeb3React()
   const KYC_STATUS = window.localStorage.getItem('KYC_STATUS') || 0
-  const KYC_IC = window.localStorage.getItem('KYC_IC') || 0
   const { state, dispatch } = useContext(myContext);
   const { list } = useVoteList()
   const [isKYC, setIsKYC] = useState(false)
@@ -106,12 +105,12 @@ export default function PersonalModal({ show = false, userName }) {
 
 
   useEffect(async () => {
-    if (!account) return
+    if (!account || !active) return
     const isKYC = await queryIsKyc(account)
     const balance = await queryBotBalance(library, account, chainId)
     setIsKYC(isKYC)
     setBalance(balance)
-  }, [account])
+  }, [account, active])
 
   const handelClickLi = (type) => {
     if (!type) return
@@ -121,8 +120,8 @@ export default function PersonalModal({ show = false, userName }) {
       case 'PersonalInfo':
         return history.push('/PersonalInfo')
       case 'applySale':
-        console.log(isKYC, balance)
-        console.log(state)
+        // console.log(isKYC, balance)
+        // console.log(state)
         if (!isKYC) {
           return dispatch({
             type: 'MODAL',
@@ -299,8 +298,8 @@ export default function PersonalModal({ show = false, userName }) {
       <div className="account">
         <div className='account_name'>
           <h5>{userName}</h5>
-          {KYC_STATUS === '1' && KYC_IC === '1' && <img src={bule_check} alt="" />}
-          {KYC_STATUS === '1' && KYC_IC === '0' && <img
+          {KYC_STATUS === '1' && CT_KYC && <img src={bule_check} alt="" />}
+          {KYC_STATUS === '1' && !CT_KYC && <img
             onClick={() => {
               handelClickPoint()
             }}
@@ -330,7 +329,7 @@ to add your address to contract KYC list.`} />}
           <span>KYC</span>
         </li>}
 
-        {KYC_STATUS === '1' && KYC_IC === '0' && <li
+        {KYC_STATUS === '1' && !CT_KYC && <li
           onClick={() => {
             handelClickPoint()
           }}
