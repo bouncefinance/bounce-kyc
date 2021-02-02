@@ -84,7 +84,6 @@ export const usePoolDetail = (id = 0) => {
             const fsContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
 
             fsContract.methods.pools(id).call().then( async (res) => {
-                console.log('pool detail:', res)
                 setPool(res)
                 setFromAmount(res.amountTotal0)
                 setToAmount(res.amountTotal1)
@@ -92,11 +91,9 @@ export const usePoolDetail = (id = 0) => {
                 setAddress(res.token0)
                 const tokenContract = getContract(library, bounceERC20.abi, res.token0)
                 tokenContract.methods.symbol().call().then((res) => {
-                    console.log('query fs symbol:', res)
                     setSymbol(res)
                 })
                 tokenContract.methods.decimals().call().then((res) => {
-                    console.log('query fs decimals:', res)
                     setDecimals(res)
                 })
 
@@ -151,34 +148,32 @@ export const usePoolDetail = (id = 0) => {
                 setToAmount(res.amountTotal1)
 
                 const isOpen = new Date() - res.openAt * 1000 > 0
-                console.log('isOpen',isOpen)
                 if (!isOpen) {
                     setStatus('Upcoming')
                 }else {
                     setStatus(leftTime > 0 ? 'Live' : 'Closed')
                     fsContract.methods.myClaimed(account, id).call().then((res) => {
-                        console.log('myClaimed:', res)
                         setClaimed(res)
                     })
                     fsContract.methods.amountSwap1P(id).call().then((bidAmount) => {
-                        console.log('query pool to bid amount:', bidAmount, res.amountTotal1)
                         setToBidAmount(bidAmount)
-                        if (bidAmount === res.amountTotal1) {
-                            setStatus('Filled')
-                            fsContract.methods.filledAtP(id).call().then((filledAt) => {
-                                console.log('filledAtP:', filledAt)
-                                const claimTime = (new BigNumber(filledAt).plus(res.claimDelaySec).toString())
-                                console.log('claimTime------>',new Date() - claimTime * 1000 > 0)
-                                if(new Date() - claimTime * 1000 > 0){
-                                    console.log('claimTime1:', filledAt)
-                                    setClaimAble(true)
-                                }else {
-                                    setClaimAt(claimTime)
-                                    setClaimAble(false)
-                                    console.log('claimTime2:', filledAt)
-                                }
-                            })
+                        if(leftTime < 0){
+                            setClaimAble(true)
+                        }else {
+                            if (bidAmount === res.amountTotal1) {
+                                setStatus('Filled')
+                                fsContract.methods.filledAtP(id).call().then((filledAt) => {
+                                    const claimTime = (new BigNumber(filledAt).plus(res.claimDelaySec).toString())
+                                    if(new Date() - claimTime * 1000 > 0){
+                                        setClaimAble(true)
+                                    }else {
+                                        setClaimAt(claimTime)
+                                        setClaimAble(false)
+                                    }
+                                })
+                            }
                         }
+
                     })
                 }
 
