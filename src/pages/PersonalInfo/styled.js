@@ -32,6 +32,7 @@ export const PerInfoStyled = styled.div`
                     align-items: center;
                     p{
                         color: rgba(31,25,27,.4);
+                        word-break: break-all;
                     }
 
                     img{

@@ -145,6 +145,10 @@ export const HomeStyled = styled.div`
                             margin-right: 12px;
                             margin-top: 36px;
                         }
+                        @media screen and (max-width: 960px){
+                            margin-left: 20px;
+                            padding-right: 46px;
+                        }
                     }
 
                     p{
@@ -155,6 +159,7 @@ export const HomeStyled = styled.div`
                         margin-top: 6px;
                         @media screen and (max-width: 960px){
                             font-size: 14px;
+                            margin-left: 20px;
                         }
                     }
                 }
