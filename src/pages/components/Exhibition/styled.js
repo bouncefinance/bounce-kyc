@@ -16,6 +16,9 @@ export const PassageStyled = styled.div`
         color: #000;
         font-size: 16px;
         margin-top: 8px;
+        @media screen and (max-width: 960px){
+            word-break: break-all;
+        }
     }
 `
 
@@ -26,11 +29,15 @@ export const CrumbsStyled = styled.div`
     color: #fff;
     box-sizing: border-box;
     padding-top: 45px;
-
+    @media screen and (max-width: 960px){
+        width: 100%;
+    }
     ul{
         display: flex;
         user-select: none;
-
+        @media screen and (max-width: 960px){
+            flex-wrap: wrap;
+        }
         li{
             margin-left: 5px;
             font-family: 'Helvetica Neue';

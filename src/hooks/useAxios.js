@@ -61,10 +61,19 @@ export default function useAxios() {
         return res
     }
 
+    const Axios_Post =async (host, params, option = {}) => {
+        const res = await axios.post(host, params, option)
+        return res
+    }
+
     return {
         sign_Axios: {
             get: null,
             post: sign_Axios_Post
+        },
+        Axios: {
+            get: null,
+            post: Axios_Post
         }
     }
 }

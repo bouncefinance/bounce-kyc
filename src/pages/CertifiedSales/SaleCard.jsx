@@ -12,13 +12,13 @@ import {getPoolLeftTime} from "../../utils/time";
 import {HOST} from "../../config/request_api";
 import InfoBox from './LearnMore/InfoBox'
 import BigNumber from "bignumber.js";
-
+import {useIsSMDown} from '../../utils/themeHooks';
 export default function SalesCard({status, isVote, pool = {}}) {
   const [bidStatus, setBidStatus] = useState(initStatus)
   // const { dispatch } = useContext(myContext)
   const history = useHistory()
   const [isShowInfoBox, setIsShowInfoBox] = useState(false)
-
+  const isXSDown = useIsSMDown();
   //   console.log('myVotesClaimed--->', myVotesClaimed)
   const [left, setLeft] = useState({
     days: 0,
@@ -78,20 +78,20 @@ export default function SalesCard({status, isVote, pool = {}}) {
 
 
               <div className="active_btn">
-                <Button type='white' value='Learn More' width='180px' onClick={() => {
+                <Button type='white' value='Learn More' width={isXSDown?'100%':'180px'} onClick={() => {
                   setIsShowInfoBox(!isShowInfoBox)
                 }}/>
 
                 {pool.status === 'Active' && (
                     <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
-                            value={pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width='180px'
+                            value={pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width={isXSDown?'100%':'180px'}
                             onClick={() => {
                               history.push(`/fixed-swap/${pool.id}`)
                             }}/>
                 )}
 
                 {pool.status === 'Failed' && (
-                    <Button type='black' value='Show Result' width='180px' onClick={() => {
+                    <Button type='black' value='Show Result' width={isXSDown?'100%':'180px'} onClick={() => {
                       history.push(`/fixed-swap/${pool.id}`)
                     }}/>
                 )}

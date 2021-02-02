@@ -7,9 +7,11 @@ import Step3 from './Step3'
 import { useWeb3React } from '@web3-react/core'
 import { myContext } from '../../redux'
 import Crumbs from '../components/Exhibition/Crumbs'
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Index() {
-    const { active } = useWeb3React()
+    const { active } = useWeb3React();
+    const isXSDown = useIsSMDown();
     const { dispatch } = useContext(myContext)
     const [curStep, setCurStep] = useState(1)
     const [ReqData, setReqData] = useState({
@@ -42,9 +44,11 @@ export default function Index() {
                     <p>{curStep} / 3</p>
                 </div>
                 <div className="bottom">
-                    <div className="left">
-                        <img src={image_kyc} alt="image_kyc" />
-                    </div>
+                    {!isXSDown &&
+                        <div className="left">
+                            <img src={image_kyc} alt="image_kyc" />
+                        </div>
+                    }
                     <div className="right">
                         {curStep === 1 && <Step1 curStep={curStep} setCurStep={setCurStep} ReqData={ReqData} setReqData={setReqData} />}
                         {curStep === 2 && <Step2 curStep={curStep} setCurStep={setCurStep} ReqData={ReqData} setReqData={setReqData} />}

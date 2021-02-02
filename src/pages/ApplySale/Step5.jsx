@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Step5Styled } from './styled'
 import { TextInput, TimeInput, AmountInput, Radio, Select, Button } from '../components/Table'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 const requireList = ['auctiontype', 'amountoftoken', 'pricepertoken', 'allocationperwallet', 'auctiontime', 'teamwallet', 'ifkyc', 'ifwhitelist']
 
 export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data }) {
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     useEffect(() => {
         setTitle({
             title: 'Auction',
@@ -58,7 +58,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
 
             <Select
                 label='Auction type'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 options={[
                     { name: 'Fixed swap auction' },
                     { name: 'Sealed-bid auction' },
@@ -81,7 +81,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
             <TextInput
                 label='Amount of tokens for auction'
                 placeholder='Enter the amount of token you want to auction'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step5Data.amountoftoken}
                 isRequire={true}
                 isNumber={true}
@@ -97,7 +97,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
             <TextInput
                 label='Price per token'
                 placeholder='Enter price per token'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step5Data.pricepertoken}
                 isRequire={true}
                 isNumber={true}
@@ -114,7 +114,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                     {
                         name: 'USDT',
                         append: <AmountInput
-                            width='100px'
+                            width={isXSDown?'100%':'100px'}
                             placeholder={'Amount'}
                             defaultVal={
                                 step5Data.allocationperwallet !== 'No limits' && parseFloat(step5Data.allocationperwallet)
@@ -147,7 +147,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
 
             <TimeInput
                 label='Auction time'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step5Data.auctiontime}
                 onChange={(time) => {
                     handelInputChange('auctiontime', time)
@@ -160,7 +160,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                 maxLength={64}
                 label='Team wallet to receive auction fund'
                 placeholder='Enter team wallet address to receive fund'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step5Data.teamwallet}
                 isRequire={true}
                 REG_rule={{
@@ -175,7 +175,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
             <div className="select_group">
                 <Select
                     label='KYC'
-                    width='294px'
+                    width={isXSDown?'100%':'294px'}
                     options={[
                         { name: 'Yes', value: 1 },
                         { name: 'No', value: 0 },
@@ -196,7 +196,7 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
 
                 <Select
                     label='Whitelisting'
-                    width='294px'
+                    width={isXSDown?'100%':'294px'}
                     options={[
                         { name: 'Yes', value: 1 },
                         { name: 'No', value: 0 },
@@ -218,10 +218,10 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
 
 
             <div className="btn_group">
-                <Button type='white' value='Last Step' width='164px' onClick={() => {
+                <Button type='white' value='Last Step' width={isXSDown?'100%':'164px'} onClick={() => {
                     setCurStep(4)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black' value='Next Step'  style={{ marginTop: 20}}  width={isXSDown?'100%':'164px'} disabled={!isNext} onClick={() => {
                     setCurStep(6)
                     console.log(step5Data)
                 }} />

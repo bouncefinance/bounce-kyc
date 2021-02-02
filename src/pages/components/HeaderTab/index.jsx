@@ -9,7 +9,10 @@ import { Button } from '../Table'
 import axios from 'axios'
 import HOST_API from '../../../config/request_api'
 import { useActiveWeb3React } from "../../../web3";
-
+import { useIsSMDown } from '../../../hooks/themeHooks';
+import menu from '../../../assets/mobile/menu.svg';
+import logo_white from '../../../assets/logo/logo-sigle-white.svg';
+import MenuModal from './MenuModal';
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
@@ -17,14 +20,11 @@ export default function Index() {
     const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
     // console.log(curTab)
     const { active, account } = useActiveWeb3React()
-    const [userName, setUserName] = useState('undefined')
+    const [userName, setUserName] = useState('undefined');
+    const [mobileMenu, setMobileMenu] = useState(false);
+    const isSMDown = useIsSMDown();
 
     useEffect(() => {
-        const width = window.document.documentElement.clientWidth
-        if (width < 750) {
-            alert('Please use desktop version! Phone version coming soon')
-        }
-
         // 设置cookie
         const isShowTip = getCookie('isShowTip')
         console.log(isShowTip)
@@ -106,44 +106,56 @@ export default function Index() {
         <HeaderTabStyled>
             <div className="container">
                 <div className="left">
-                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={logo_black} alt="bounce logo" />
+                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={isSMDown?logo_white:logo_black} alt="bounce logo" />
                 </div>
-                <div className="right">
-                    <ul>
-                        {headerMenu.map((item, index) => {
-                            return <li
-                                key={index}
-                                className={item.route && curTab && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
-                                onClick={() => {
-                                    if (item.isConfirm) {
-                                        dispatch({
-                                            type: 'MODAL',
-                                            value: {
-                                                name: 'CONFIRM',
-                                                title: 'Bounce Decentralized',
-                                                deputy: 'You will be directed to Bounce Decentralized platform',
-                                                cancel: {
-                                                    text: 'Not Now'
-                                                },
-                                                confirm: {
-                                                    text: 'Confirm',
-                                                    callback: () => {
-                                                        window.open(item.link)
+                {!isSMDown && 
+                    <div className="right">
+                        <ul>
+                            {headerMenu.map((item, index) => {
+                                return <li
+                                    key={index}
+                                    className={item.route && curTab && curTab.indexOf(item.route) !== -1 ? 'active' : ''}
+                                    onClick={() => {
+                                        if (item.isConfirm) {
+                                            dispatch({
+                                                type: 'MODAL',
+                                                value: {
+                                                    name: 'CONFIRM',
+                                                    title: 'Bounce Decentralized',
+                                                    deputy: 'You will be directed to Bounce Decentralized platform',
+                                                    cancel: {
+                                                        text: 'Not Now'
+                                                    },
+                                                    confirm: {
+                                                        text: 'Confirm',
+                                                        callback: () => {
+                                                            window.open(item.link)
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        })
-                                    } else if (item.route) {
-                                        history.push(item.route)
-                                    }
-                                    setCurTab(item.route)
-                                }}>
-                                <h5>{item.name}</h5>
-                            </li>
-                        })}
-                    </ul>
-                    {renderConnectBtn()}
-                </div>
+                                            })
+                                        } else if (item.route) {
+                                            history.push(item.route)
+                                        }
+                                        setCurTab(item.route)
+                                    }}>
+                                    <h5>{item.name}</h5>
+                                </li>
+                            })}
+                        </ul>
+                        {renderConnectBtn()}
+                    </div>
+                }
+                {isSMDown && 
+                    <>
+
+                        <div className="right">
+                             {active && renderConnectBtn()}
+                            <img src={menu} alt="" onClick={() => {setMobileMenu(true)}} className="menu"/>
+                        </div>
+                        {mobileMenu && <MenuModal setMobileMenu={setMobileMenu} show={mobileMenu}/>}
+                    </>
+                }
                 <PersonalModal show={state.isShowPersonal} userName={userName} />
             </div>
         </HeaderTabStyled>

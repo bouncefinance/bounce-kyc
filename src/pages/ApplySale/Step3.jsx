@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Step3Styled } from './styled'
 import { TextInput, Button } from '../components/Table'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 const requireList = ['teambio']
 
 export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data }) {
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     useEffect(() => {
         setTitle({
             title: 'Team',
@@ -51,7 +51,7 @@ export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data })
             <TextInput
                 label='Team'
                 placeholder='Enter short bio about your team'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 minHeight='140px'
                 marginTop='0px'
                 maxLength={500}
@@ -63,10 +63,10 @@ export default function Step3({ setCurStep, setTitle, step3Data, setStep3Data })
             />
 
             <div className="btn_group">
-                <Button type='white' value='Last Step' width='164px' onClick={() => {
+                <Button type='white' value='Last Step' width={isXSDown?'100%':'164px'} onClick={() => {
                     setCurStep(2)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black' style={{ marginTop: 20}} value='Next Step' width={isXSDown?'100%':'164px'} disabled={!isNext} onClick={() => {
                     setCurStep(4)
                 }} />
             </div>

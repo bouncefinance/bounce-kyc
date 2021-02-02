@@ -2,35 +2,42 @@ import styled from 'styled-components'
 
 export const CsStyled = styled.div`
     padding-bottom: 50px;
-          width: 1100px;
-          margin: auto;
-        span{
-            padding: 4px 11px;
-            width: 110px;
-            height: 28px;
-            box-sizing: border-box;
-            border : 1px solid #ccc;
-            color: #ccc;
+    width: 1100px;
+    margin: auto;
+    @media screen and (max-width: 960px){
+        width: calc( 100% - 48px);
+        padding: 0 24px;
+    }
+    span{
+        padding: 4px 11px;
+        width: 110px;
+        height: 28px;
+        box-sizing: border-box;
+        border : 1px solid #ccc;
+        color: #ccc;
 
-            font-family: 'Helvetica Neue';
-            font-weight: 14px;
-            line-height: 26px;
-            text-align: center;
+        font-family: 'Helvetica Neue';
+        font-weight: 14px;
+        line-height: 26px;
+        text-align: center;
 
-            &.Active{
-                border : 1px solid #2DAF4A;
-                color: #2DAF4A;
+        &.Active{
+            border : 1px solid #2DAF4A;
+            color: #2DAF4A;
+        }
+
+        &.Upcoming{
+            border : 1px solid #1D61FF;
+            color: #1D61FF;
+            @media screen and (max-width: 960px){
+                width: 100% ;
             }
+        }
 
-            &.Upcoming{
-                border : 1px solid #1D61FF;
-                color: #1D61FF;
-            }
-
-            &.Past{
-                border : 1px solid #FF0404;
-                color: #FF0404;
-            }
+        &.Past{
+            border : 1px solid #FF0404;
+            color: #FF0404;
+        }
     }
 
 `
@@ -40,6 +47,11 @@ export const CardStyled = styled.div`
     width: 1100px;
     margin: 0 auto;
     margin-bottom: 15px;
+    @media screen and (max-width: 960px){
+        width: 100%;
+        padding:0;
+        margin: 20px auto;
+    }
     padding-top: 24px;
 
     .status{
@@ -83,9 +95,14 @@ export const CardStyled = styled.div`
         .middle{
             display: flex;
             justify-content: space-between;
-
+            @media screen and (max-width: 960px){
+                flex-direction: column;
+            }
             .left{
                 width: 480px;
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                }
                 span.vote{
                     width: fit-content;
                     height: 28px;
@@ -131,6 +148,9 @@ export const CardStyled = styled.div`
 
             .right{
                 width: 450px;
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                }
             }
         }
 
@@ -235,7 +255,9 @@ export const ProgressStyled = styled.div`
 export const SaleCardStyle = styled.div`
     width: 1100px;
     margin: 52px auto;
-
+    @media screen and (max-width: 960px){
+        width: 100%;
+    }
     .pro_header{
         color: #fff;
         width: 100%;

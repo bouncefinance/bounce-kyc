@@ -3,7 +3,10 @@ import styled from 'styled-components'
 export const ProjectListStyle = styled.div`
     width: 1100px;
     margin: 52px auto;
-
+    @media screen and (max-width: 960px){
+        width: calc(100% - 48px);
+        margin: 52px 24px;
+    }
     .pro_header{
         color: #fff;
         width: 100%;

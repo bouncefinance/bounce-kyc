@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Address,
   ITextR,
@@ -9,19 +9,19 @@ import {
   renderTime
 } from "../../components/common/Layout";
 import icon_return from '../../assets/images/icon-return.svg'
-import {usePoolDetail} from "./Hooks";
-import {fromWei, getProgress, numToWei, weiDiv, weiToNum, weiToNumber} from "../../utils/numberTransform";
+import { usePoolDetail } from "./Hooks";
+import { fromWei, getProgress, numToWei, weiDiv, weiToNum, weiToNumber } from "../../utils/numberTransform";
 import classNames from "classnames";
-import {useParams} from 'react-router-dom';
-import {Form, Input} from "../../components/common/Form";
+import { useParams } from 'react-router-dom';
+import { Form, Input } from "../../components/common/Form";
 import icon_max from "../../assets/icons/icon-max.svg";
-import {Button} from "../../components/common/Button";
-import {useEthBalance, useTokenBalance, useTokenList} from "../../web3/common";
-import {getContract, useActiveWeb3React} from "../../web3";
+import { Button } from "../../components/common/Button";
+import { useEthBalance, useTokenBalance, useTokenList } from "../../web3/common";
+import { getContract, useActiveWeb3React } from "../../web3";
 import fixSwap from "../../web3/abi/BouncePro.json";
-import {BOUNCE_PRO} from "../../web3/address";
+import { BOUNCE_PRO } from "../../web3/address";
 import Web3 from 'web3'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {
   BidModal,
   initStatus,
@@ -31,19 +31,20 @@ import {
   cancelStatus,
   claimSuccessStatus
 } from "../../components/common/BidModal";
-import {useLeftTime} from "../../hooks/useLeftTime";
-import {useIsXSDown} from '../../utils/themeHooks';
+import { useLeftTime } from "../../hooks/useLeftTime";
+import { mainContext } from "../../reducer";
+import { useIsSMDown,useIsXSDown } from '../../utils/themeHooks'
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
-import {AuctionTipModal} from "../../components/common/AuctionTipModal";
+import { AuctionTipModal } from "../../components/common/AuctionTipModal";
 import Modal from "../../components/common/Modal";
-import {Message} from "../../components/common/message";
-import {TipLink} from "../../components/common/TipLink";
-import {CREATOR_CLAIMED_MESSAGE} from "../../const";
-import {validateForm} from "../../utils/form";
-import {isEqualTo, isGreaterThan} from "../../utils/common";
+import { Message } from "../../components/common/message";
+import { TipLink } from "../../components/common/TipLink";
+import { CREATOR_CLAIMED_MESSAGE } from "../../const";
+import { validateForm } from "../../utils/form";
+import { isEqualTo, isGreaterThan } from "../../utils/common";
 import BigNumber from "bignumber.js";
 
-const {toWei} = Web3.utils
+const { toWei } = Web3.utils
 
 const bidSuccessStatus = {
   status: 3,
@@ -53,16 +54,16 @@ const bidSuccessStatus = {
 
 
 export const FSPoolDetail = () => {
-  const {poolId} = useParams()
+  const { poolId } = useParams()
   const history = useHistory()
-  const {account, library, chainId} = useActiveWeb3React()
-  const {balance} = useTokenBalance()
-  const {setTime, leftTime} = useLeftTime()
+  const { account, library, chainId } = useActiveWeb3React()
+  const { balance } = useTokenBalance()
+  const { setTime, leftTime } = useLeftTime()
   const claimTime = useLeftTime()
   const [bidAmount, setBidAmount] = useState()
   const [bidStatus, setBidStatus] = useState(initStatus)
   const [showTip, setShowTip] = useState()
-  const [errors, setErrors] = useState({amount: ''})
+  const [errors, setErrors] = useState({ amount: '' })
 
   const isXSDown = useIsXSDown();
   const setClaimTime = claimTime.setTime
@@ -75,7 +76,7 @@ export const FSPoolDetail = () => {
     biddenAmount, joinStatus, inWhiteList, claimAble, setClaimAble, claimAt, myBidFromAmount
   } = usePoolDetail(poolId)
 
-  const {ethBalance} = useEthBalance(toAddress)
+  const { ethBalance } = useEthBalance(toAddress)
 
   useEffect(() => {
     if (onlyBOT && isGreaterThan(toWei('0.1'), balance) && !bidAmount) {
@@ -85,7 +86,7 @@ export const FSPoolDetail = () => {
   }, [onlyBOT, balance, bidAmount, account])
 
   useEffect(() => {
-    console.log('limit--->',biddenAmount, limit)
+    console.log('limit--->', biddenAmount, limit)
     if (biddenAmount && limit && isGreaterThan(limit, '0') && isGreaterThan(biddenAmount, limit)) {
       errors.amount = 'You have reached your maximum allocation per wallet.'
       setErrors(errors)
@@ -114,7 +115,7 @@ export const FSPoolDetail = () => {
   let claimTimer = null
   useEffect(() => {
     claimTimer = setInterval(() => {
-      console.log('claimTime',claimAt)
+      console.log('claimTime', claimAt)
       const date = new Date(claimAt * 1000);
       const now = new Date();
       const lefttime = date - now;
@@ -151,25 +152,25 @@ export const FSPoolDetail = () => {
     try {
       if (toAddress) {
         await tokenContract.methods.approve(
-            BOUNCE_PRO(chainId),
-            weiAmount,
+          BOUNCE_PRO(chainId),
+          weiAmount,
         )
-            .send({from: account});
+          .send({ from: account });
         setBidStatus(confirmStatus);
       }
       bounceContract.methods.swap(
-          poolId,
-          weiAmount)
-          .send({from: account, value: toAddress ? 0 : weiAmount})
-          .on('transactionHash', hash => {
-            setBidStatus(pendingStatus)
-          })
-          .on('receipt', (_, receipt) => {
-            setBidStatus(bidSuccessStatus)
-          })
-          .on('error', (err, receipt) => {
-            setBidStatus(errorStatus)
-          })
+        poolId,
+        weiAmount)
+        .send({ from: account, value: toAddress ? 0 : weiAmount })
+        .on('transactionHash', hash => {
+          setBidStatus(pendingStatus)
+        })
+        .on('receipt', (_, receipt) => {
+          setBidStatus(bidSuccessStatus)
+        })
+        .on('error', (err, receipt) => {
+          setBidStatus(errorStatus)
+        })
     } catch (e) {
       if (e.code === 4001) {
         setBidStatus(cancelStatus)
@@ -188,19 +189,19 @@ export const FSPoolDetail = () => {
     setBidStatus(confirmStatus);
     try {
       bounceContract.methods.claim()
-          .send({from: account})
-          .on('transactionHash', hash => {
-            setBidStatus(pendingStatus)
-          })
-          .on('receipt', (_, receipt) => {
-            console.log('bid fixed swap receipt:', receipt)
-            setBidStatus(claimSuccessStatus)
-          })
-          .on('error', (err, receipt) => {
-            setBidStatus(errorStatus)
-          })
+        .send({ from: account })
+        .on('transactionHash', hash => {
+          setBidStatus(pendingStatus)
+        })
+        .on('receipt', (_, receipt) => {
+          console.log('bid fixed swap receipt:', receipt)
+          setBidStatus(claimSuccessStatus)
+        })
+        .on('error', (err, receipt) => {
+          setBidStatus(errorStatus)
+        })
     } catch (e) {
-      console.log('onCreatorClaim',e)
+      console.log('onCreatorClaim', e)
       if (e.code === 4001) {
         setBidStatus(cancelStatus)
       } else {
@@ -216,17 +217,17 @@ export const FSPoolDetail = () => {
     setBidStatus(confirmStatus);
     try {
       bounceContract.methods.userClaim(poolId)
-          .send({from: account})
-          .on('transactionHash', hash => {
-            setBidStatus(pendingStatus)
-          })
-          .on('receipt', (_, receipt) => {
-            console.log('bid fixed swap receipt:', receipt)
-            setBidStatus(claimSuccessStatus)
-          })
-          .on('error', (err, receipt) => {
-            setBidStatus(errorStatus)
-          })
+        .send({ from: account })
+        .on('transactionHash', hash => {
+          setBidStatus(pendingStatus)
+        })
+        .on('receipt', (_, receipt) => {
+          console.log('bid fixed swap receipt:', receipt)
+          setBidStatus(claimSuccessStatus)
+        })
+        .on('error', (err, receipt) => {
+          setBidStatus(errorStatus)
+        })
     } catch (e) {
       if (e.code === 4001) {
         setBidStatus(cancelStatus)
@@ -239,7 +240,7 @@ export const FSPoolDetail = () => {
 
   const handleChange = async event => {
     event.preventDefault();
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     switch (name) {
       case "amount":
         errors.amount = ''
@@ -269,232 +270,232 @@ export const FSPoolDetail = () => {
   }
 
   return (
-      <LayoutFrame style={{
-        marginTop: 27,
-        paddingBottom: 56,
-        paddingLeft: isXSDown ? '20px' : '0',
-        paddingRight: isXSDown ? '20px' : '0'
-      }}>
-        {isMine ?
-            <>
-              {status === 'Live' && (
-                  <Message type={'success'}
-                           content={'The auction is still live, please wait patiently until your auction is filled or closed.'}/>
-              )}
-              {status === 'Filled' && (
-                  <Message type={'success'}
-                           content={'Congratulations! Your auction is complete. All your tokens are auctioned and your fund is automatically sent to your wallet.'}/>
-              )}
-              {status === 'Closed' && !claimed && (
-                  <Message type={'error'}
-                           content={'Unfortunately, your pool is not fully filled and closed. Please claim back the unswapped tokens manually.'}/>
-              )}
-              {status === 'Closed' && claimed && (
-                  <Message type={'success'}
-                           content={CREATOR_CLAIMED_MESSAGE}/>
-              )}
-            </>
-            : null}
+    <LayoutFrame style={{
+      marginTop: 27,
+      paddingBottom: 56,
+      paddingLeft: isXSDown ? '20px' : '0',
+      paddingRight: isXSDown ? '20px' : '0'
+    }}>
+      {isMine ?
+        <>
+          {status === 'Live' && (
+            <Message type={'success'}
+              content={'The auction is still live, please wait patiently until your auction is filled or closed.'} />
+          )}
+          {status === 'Filled' && (
+            <Message type={'success'}
+              content={'Congratulations! Your auction is complete. All your tokens are auctioned and your fund is automatically sent to your wallet.'} />
+          )}
+          {status === 'Closed' && !claimed && (
+            <Message type={'error'}
+              content={'Unfortunately, your pool is not fully filled and closed. Please claim back the unswapped tokens manually.'} />
+          )}
+          {status === 'Closed' && claimed && (
+            <Message type={'success'}
+              content={CREATOR_CLAIMED_MESSAGE} />
+          )}
+        </>
+        : null}
 
 
-        {!isMine ?
-            <>
-              {status === 'Live' && joinStatus && (
-                  <Message type={'success'}
-                           content={'You have successfully bidded and your can claim your swapped tokens when auction is finished. You can now make more bids.'}/>
-              )}
-              {status !== 'Live' && (
-                  <Message content={'This auction is finished, please visit other live auctions.'}/>
-              )}
-            </>
-            : null}
+      {!isMine ?
+        <>
+          {status === 'Live' && joinStatus && (
+            <Message type={'success'}
+              content={'You have successfully bidded and your can claim your swapped tokens when auction is finished. You can now make more bids.'} />
+          )}
+          {status !== 'Live' && (
+            <Message content={'This auction is finished, please visit other live auctions.'} />
+          )}
+        </>
+        : null}
 
 
-        <Pool.Return onClick={() => {
-          history.goBack()
-        }} src={icon_return}/>
-        <LayoutFrame width={'1072px'} style={{padding: '24px 0', margin: 'auto', marginTop: 0}}>
-          <Pool.Mode>Fixed-Swap</Pool.Mode>
-          <Pool.Header><span>{name}</span></Pool.Header>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Address style={{wordBreak: isXSDown ? 'break-all' : 'normal'}}>{address}</Address>
-          </div>
-          <Pool.Content style={{marginTop: 40}}>
+      <Pool.Return onClick={() => {
+        history.goBack()
+      }} src={icon_return} />
+      <LayoutFrame width={'1072px'} style={{ padding: '24px 0', margin: 'auto', marginTop: 0 }}>
+        <Pool.Mode>Fixed-Swap</Pool.Mode>
+        <Pool.Header><span>{name}</span></Pool.Header>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Address style={{ wordBreak: isXSDown ? 'break-all' : 'normal' }}>{address}</Address>
+        </div>
+        <Pool.Content style={{ marginTop: 40 }}>
 
-            <Pool.Content width={isXSDown ? '100%' : '456px'} style={{marginTop: 0}}>
+          <Pool.Content width={isXSDown ? '100%' : '456px'} style={{ marginTop: 0 }}>
 
-              <Pool.Content width={isXSDown ? '100%' : '456px'}
-                            style={{marginTop: 0, flexDirection: 'column'}}>
-                <Pool.Status style={{width: 'fit-content'}} className={classNames('status', status)}><i
-                    className={status}/>{status}</Pool.Status>
-                <ITextR style={{
-                  marginTop: 8,
-                  textAlign: 'left'
-                }}>{`Participant: ${(onlyBOT && !pool.enableWhiteList) ?  'BOT holder' : ''}
+            <Pool.Content width={isXSDown ? '100%' : '456px'}
+              style={{ marginTop: 0, flexDirection: 'column' }}>
+              <Pool.Status style={{ width: 'fit-content' }} className={classNames('status', status)}><i
+                className={status} />{status}</Pool.Status>
+              <ITextR style={{
+                marginTop: 8,
+                textAlign: 'left'
+              }}>{`Participant: ${(onlyBOT && !pool.enableWhiteList) ? 'BOT holder' : ''}
                     ${(!onlyBOT && pool.enableWhiteList) ? 'Whitelisting' : ''}
-                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder , Whitelisting': ''}
-                    ${(!onlyBOT && !pool.enableWhiteList) ? 'Public': ''}`}</ITextR>
-                <ITextR style={{
-                  marginTop: 8,
-                  textAlign: 'left'
-                }}>{`Requirement: ${(pool.enableKycList) ?  'KYC' : 'No requirement'}`}</ITextR>
-              </Pool.Content>
-
-              <Pool.Block style={{width: '100%'}}>
-                <span>Fixed Swap Ratio</span>
-                <span>{fromAmount && toAmount && `1 ${toSymbol} = ${(weiDiv(fromWei(fromAmount, decimals), fromWei(toAmount, toDecimals)))} ${symbol && symbol}`}</span>
-              </Pool.Block>
-
-              <Pool.Block style={{width: isXSDown ? '100%' : '200px'}}>
-                <span>Total Allocation</span>
-                <span>{fromAmount && weiToNum(fromAmount, decimals, 6)} {symbol}</span>
-              </Pool.Block>
-
-              <Pool.Block style={{width: isXSDown ? '100%' : '200px'}}>
-                <span>Maximum Allocation per wallet</span>
-                <span>{limit && (limit == 0 ? 'No limit' : `${weiToNumber(limit)} ${toSymbol}`)}</span>
-              </Pool.Block>
-
-              <OText5 style={{
-                width: 480,
-                marginTop: 40,
-                fontSize: 12,
-                fontFamily: 'IBM Plex Mono',
-                fontWeight: 500
-              }}>Auction progress: {toBidAmount && weiToNumber(toBidAmount, toDecimals)} {toSymbol}
-                <span
-                    style={{opacity: .3}}> / {toAmount && weiToNumber(toAmount, toDecimals)} {toSymbol}</span>
-              </OText5>
-              {toBidAmount && toAmount && (
-                  <Progress style={{marginTop: 16}} height={'5px'}
-                            className={classNames('progress', toBidAmount === toAmount ? 'Filled' : status)}>
-                    <Progress.Value style={{width: `${getProgress(toBidAmount, toAmount)}%`}}
-                                    className={classNames('progress-value', toBidAmount === toAmount ? 'Filled' : status)}/>
-                  </Progress>
-              )}
-
+                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder , Whitelisting' : ''}
+                    ${(!onlyBOT && !pool.enableWhiteList) ? 'Public' : ''}`}</ITextR>
+              <ITextR style={{
+                marginTop: 8,
+                textAlign: 'left'
+              }}>{`Requirement: ${(pool.enableKycList) ? 'KYC' : 'No requirement'}`}</ITextR>
             </Pool.Content>
 
-            <Pool.Content width={'auto'}
-                          style={{
-                            height: 'auto',
-                            width: isXSDown ? '100%' : '480px',
-                            flexDirection: 'column',
-                            padding: isXSDown ? '48px 20px' : '48px 56px',
-                            justifyContent: 'center',
-                            marginTop: 0,
-                            backgroundColor: 'rgba(248, 248, 251, 1)'
-                          }}>
+            <Pool.Block style={{ width: '100%' }}>
+              <span>Fixed Swap Ratio</span>
+              <span>{fromAmount && toAmount && `1 ${toSymbol} = ${(weiDiv(fromWei(fromAmount, decimals), fromWei(toAmount, toDecimals)))} ${symbol && symbol}`}</span>
+            </Pool.Block>
 
-              {status === 'Live' && (
-                  <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>Join Auction</OText2>
-              )}
+            <Pool.Block style={{ width: isXSDown ? '100%' : '200px' }}>
+              <span>Total Allocation</span>
+              <span>{fromAmount && weiToNum(fromAmount, decimals, 6)} {symbol}</span>
+            </Pool.Block>
 
-              {status === 'Closed' && (
-                  <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>Auction is Closed</OText2>
-              )}
+            <Pool.Block style={{ width: isXSDown ? '100%' : '200px' }}>
+              <span>Maximum Allocation per wallet</span>
+              <span>{limit && (limit == 0 ? 'No limit' : `${weiToNumber(limit)} ${toSymbol}`)}</span>
+            </Pool.Block>
 
-              {status === 'Filled' && (
-                  <OText2 style={{textAlign: 'center', marginTop: 0, fontSize: 26}}>The Auction Filled</OText2>
-              )}
-
-              {isMine ? (
-                  <>
-                    <OText2 style={{textAlign: 'center', marginTop: 8}}>My Pool</OText2>
-                    {renderTime(leftTime)}
-                    <Pool.Meta>
-                      <div>Total amount:</div>
-                      <div>{`${toAmount && weiToNumber(toAmount, toDecimals)} ${toSymbol}`}</div>
-                    </Pool.Meta>
-
-                    <Pool.Meta>
-                      <div>Successful bid amount:</div>
-                      <div>{toBidAmount && `${weiToNumber(toBidAmount, toDecimals)} ${toSymbol}`}</div>
-                    </Pool.Meta>
-
-                    {(status === 'Closed' && !claimed) ?
-                        <Button black onClick={onCreatorClaim}>Claim your tokens</Button> : null}
-                  </>
-              ) : (
-                  <form id="bid-fs-form" onSubmit={handleSubmit}>
-                    {status !== 'Filled' && renderTime(leftTime)}
-                    <LineDivider style={{marginTop: 0}}/>
-                    <Pool.topInfo>
-                      <span>You have successfully bid</span>
-                      <span>{`${(myBidFromAmount && decimals) ? weiToNumber(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
-                    </Pool.topInfo>
-
-                    {status === 'Live' && (
-                        <>
-                          <Pool.topInfo>
-                            <span>Your Bid Amount</span>
-                            <span>{`Balance: ${ethBalance ? weiToNumber(ethBalance, toDecimals) : '--'}`} {toSymbol}</span>
-                          </Pool.topInfo>
-                          <Form
-                              error={errors.amount}
-                              top={'0px'} width={'100%'}
-                              input={<Input
-                                  style={{
-                                    padding: '8px 0',
-                                    color: '#1F191B',
-                                    fontSize: 16,
-                                    lineHeight: '20px',
-                                    fontFamily: 'Helvetica Neue',
-                                    fontWeight: "bold"
-                                  }}
-                                  name={'amount'}
-                                  placeholder={'Bid Amount'}
-                                  disabled={(onlyBOT && isGreaterThan(toWei('0.1'), balance)) ||
-                                  (limit && biddenAmount && isGreaterThan(limit, '0') &&  isEqualTo(limit, biddenAmount))}
-                                  value={bidAmount}
-                                  onChange={handleChange}
-                              />} name={' '} addonAfter={(<img onClick={() => {
-                            console.log('set max amount', ethBalance)
-                            setBidAmount(fromWei(ethBalance, toDecimals))
-                          }} src={icon_max}/>)}
-                          />
-
-                          <Button
-                              style={{marginTop: 50}}
-                              disabled={status !== 'Live' || !validateForm(errors) || !bidAmount || (!inWhiteList && pool.enableWhiteList)}
-                              black
-                          >{(!inWhiteList && pool.enableWhiteList)? 'You are not in the whitelist': 'GO'}
-                          </Button>
-                        </>
-                    )}
-
-                    {((status === 'Closed' || status === 'Filled') && joinStatus) ?
-                        <Button disabled={!claimAble || claimed} type='button' style={{marginTop: 24}} black onClick={onClaim}>
-                          {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
-                          {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
-                        </Button> : null}
-                    <TipLink/>
-                  </form>
-              )}
-
-            </Pool.Content>
+            <OText5 style={{
+              width: 480,
+              marginTop: 40,
+              fontSize: 12,
+              fontFamily: 'IBM Plex Mono',
+              fontWeight: 500
+            }}>Auction progress: {toBidAmount && weiToNumber(toBidAmount, toDecimals)} {toSymbol}
+              <span
+                style={{ opacity: .3 }}> / {toAmount && weiToNumber(toAmount, toDecimals)} {toSymbol}</span>
+            </OText5>
+            {toBidAmount && toAmount && (
+              <Progress style={{ marginTop: 16 }} height={'5px'}
+                className={classNames('progress', toBidAmount === toAmount ? 'Filled' : status)}>
+                <Progress.Value style={{ width: `${getProgress(toBidAmount, toAmount)}%` }}
+                  className={classNames('progress-value', toBidAmount === toAmount ? 'Filled' : status)} />
+              </Progress>
+            )}
 
           </Pool.Content>
 
+          <Pool.Content width={'auto'}
+            style={{
+              height: 'auto',
+              width: isXSDown ? '100%' : '480px',
+              flexDirection: 'column',
+              padding: isXSDown ? '48px 20px' : '48px 56px',
+              justifyContent: 'center',
+              marginTop: 0,
+              backgroundColor: 'rgba(248, 248, 251, 1)'
+            }}>
 
-        </LayoutFrame>
+            {status === 'Live' && (
+              <OText2 style={{ textAlign: 'center', marginTop: 0, fontSize: 26 }}>Join Auction</OText2>
+            )}
 
+            {status === 'Closed' && (
+              <OText2 style={{ textAlign: 'center', marginTop: 0, fontSize: 26 }}>Auction is Closed</OText2>
+            )}
 
-        <BidModal modalStatus={bidStatus} onDismiss={() => {
-          setBidStatus(initStatus)
-        }}/>
+            {status === 'Filled' && (
+              <OText2 style={{ textAlign: 'center', marginTop: 0, fontSize: 26 }}>The Auction Filled</OText2>
+            )}
 
-        <Modal
-            closeable
-            isOpen={showTip}
-            onDismiss={() => {
-              setShowTip(false)
-            }}
-            maxWidth={'450px'}
-        >
-          <AuctionTipModal type={0} auction={onBid}/>
-        </Modal>
+            {isMine ? (
+              <>
+                <OText2 style={{ textAlign: 'center', marginTop: 8 }}>My Pool</OText2>
+                {renderTime(leftTime)}
+                <Pool.Meta>
+                  <div>Total amount:</div>
+                  <div>{`${toAmount && weiToNumber(toAmount, toDecimals)} ${toSymbol}`}</div>
+                </Pool.Meta>
+
+                <Pool.Meta>
+                  <div>Successful bid amount:</div>
+                  <div>{toBidAmount && `${weiToNumber(toBidAmount, toDecimals)} ${toSymbol}`}</div>
+                </Pool.Meta>
+
+                {(status === 'Closed' && !claimed) ?
+                  <Button black onClick={onCreatorClaim}>Claim your tokens</Button> : null}
+              </>
+            ) : (
+                <form id="bid-fs-form" onSubmit={handleSubmit}>
+                  {status !== 'Filled' && renderTime(leftTime)}
+                  <LineDivider style={{ marginTop: 0 }} />
+                  <Pool.topInfo>
+                    <span>You have successfully bid</span>
+                    <span>{`${(myBidFromAmount && decimals) ? weiToNumber(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
+                  </Pool.topInfo>
+
+                  {status === 'Live' && (
+                    <>
+                      <Pool.topInfo>
+                        <span>Your Bid Amount</span>
+                        <span>{`Balance: ${ethBalance ? weiToNumber(ethBalance, toDecimals) : '--'}`} {toSymbol}</span>
+                      </Pool.topInfo>
+                      <Form
+                        error={errors.amount}
+                        top={'0px'} width={'100%'}
+                        input={<Input
+                          style={{
+                            padding: '8px 0',
+                            color: '#1F191B',
+                            fontSize: 16,
+                            lineHeight: '20px',
+                            fontFamily: 'Helvetica Neue',
+                            fontWeight: "bold"
+                          }}
+                          name={'amount'}
+                          placeholder={'Bid Amount'}
+                          disabled={(onlyBOT && isGreaterThan(toWei('0.1'), balance)) ||
+                            (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
+                          value={bidAmount}
+                          onChange={handleChange}
+                        />} name={' '} addonAfter={(<img onClick={() => {
+                          console.log('set max amount', ethBalance)
+                          setBidAmount(fromWei(ethBalance, toDecimals))
+                        }} src={icon_max} />)}
+                      />
+
+                      <Button
+                        style={{ marginTop: 50 }}
+                        disabled={status !== 'Live' || !validateForm(errors) || !bidAmount || (!inWhiteList && pool.enableWhiteList)}
+                        black
+                      >{(!inWhiteList && pool.enableWhiteList) ? 'You are not in the whitelist' : 'GO'}
+                      </Button>
+                    </>
+                  )}
+
+                  {((status === 'Closed' || status === 'Filled') && joinStatus) ?
+                    <Button disabled={!claimAble || claimed} type='button' style={{ marginTop: 24 }} black onClick={onClaim}>
+                      {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
+                      {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                    </Button> : null}
+                  <TipLink />
+                </form>
+              )}
+
+          </Pool.Content>
+
+        </Pool.Content>
+
 
       </LayoutFrame>
+
+
+      <BidModal modalStatus={bidStatus} onDismiss={() => {
+        setBidStatus(initStatus)
+      }} />
+
+      <Modal
+        closeable
+        isOpen={showTip}
+        onDismiss={() => {
+          setShowTip(false)
+        }}
+        maxWidth={'450px'}
+      >
+        <AuctionTipModal type={0} auction={onBid} />
+      </Modal>
+
+    </LayoutFrame>
   )
 }

@@ -19,6 +19,7 @@ import twitter from '../../assets/icons/index-twitter.svg'
 import telegram from '../../assets/icons/index-telegram.svg'
 
 import video from '../../assets/video/index.mp4'
+import { useIsSMDown } from '../../hooks/themeHooks';
 
 const CertifiedSalesSteps = [{
     title: 'Certified sale application',
@@ -38,15 +39,15 @@ export default function Index() {
     const [curCertifiedSalesSteps, setCurCertifiedSalesSteps] = useState(0)
     const [stepIsHover, setStepIsHover] = useState(false)
     const history = useHistory()
-
+    const isSMDown = useIsSMDown();
     return (
         <HomeStyled>
             <div className="page_wrapper page_one">
                 <div className="main">
                     <div className="left">
                         <video
-                            width='525px'
-                            height='525px'
+                            width={isSMDown?'100%':'525px'}
+                            height={isSMDown?'100%':'525px'}
                             muted
                             src={video}
                             autoPlay='autoPlay'
@@ -186,7 +187,7 @@ export default function Index() {
 
             <div className="footer">
                 <div className="main">
-                    <img src={logo_white} alt="" />
+                    {!isSMDown && <img src={logo_white} alt="" />}
                     <div className="link">
                         <ul>
                             <li>
