@@ -148,7 +148,6 @@ export const UploadStyled = styled.div`
                 position: relative;
                 cursor: pointer;
                 @media screen and (max-width: 960px){
-                    height: auto;
                     width: 100%;
                 }
                 input,.upload_select,.cover{
