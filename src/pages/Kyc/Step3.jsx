@@ -19,6 +19,7 @@ import {
     successVotedStatus,
     TxModal
 } from "../../components/common/TXModal";
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const { sign_Axios } = useAxios()
@@ -29,6 +30,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const [isNext, setIsNext] = useState(false)
     const [bidStatus, setBidStatus] = useState(initStatus)
 
+    const isXSDown = useIsSMDown();
     useEffect(() => {
         console.log(data, isNext)
         const requiredList = ['idcardno', 'idcardfronturl', 'idcardbackurl']
@@ -176,53 +178,47 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     }
 
     return (
-        <>
-            <Form title={'ID confirmation'} marginTop='24px'>
-                <div className="tip" style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginTop: 8
-                }}>
-                    <img src={icon_plaint} alt="" />
-                    <p style={{
-                        fontSize: 12,
-                        marginLeft: 6
-                    }}>This information is used to identity verification only, and will be kept secure by Bounce</p>
-                </div>
+        <Form title={'ID confirmation'} marginTop='24px'>
+            <div className="tip" style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: 8
+            }}>
+                <img src={icon_plaint} alt="" />
+                <p style={{
+                    fontSize: 12,
+                    marginLeft: 6
+                }}>This information is used to identity verification only, and will be kept secure by Bounce</p>
+            </div>
 
-                <TextInput
-                    label='Passport Number'
-                    placeholder='Enter your passport number'
-                    isRequire={true}
-                    onValueChange={(data) => {
-                        handelValChange('idcardno', data.value)
-                        console.log(data)
-                    }} />
-                <Upload
-                    title='Passport photo'
-                    name='idcardfronturl'
-                    desc='Please upload passport photo of page with ID number '
-                    successCallBack={(path) => {
-                        handelValChange('idcardfronturl', path || null)
-                    }} />
-                <Upload
-                    title='Selfie'
-                    name='idcardbackurl'
-                    desc='Please upload a photo of yourself to match with passport '
-                    successCallBack={(path) => {
-                        handelValChange('idcardbackurl', path || null)
-                    }} />
-                <div className="btn_group">
-                    <Button type='white' value='Back' width='164px' onClick={() => {
-                        setCurStep(curStep - 1)
-                    }} />
-                    <Button type='black' value='Verify' width='164px' disabled={!isNext || !active} onClick={handelSubmit} />
-                </div>
-            </Form>
-
-            <TxModal modalStatus={bidStatus} onDismiss={() => {
-                setBidStatus(initStatus)
-            }} />
-        </>
+            <TextInput
+                label='Passport Number'
+                placeholder='Enter your passport number'
+                isRequire={true}
+                onValueChange={(data) => {
+                    handelValChange('idcardno', data.value)
+                    console.log(data)
+                }} />
+            <Upload
+                title='Passport photo'
+                name='idcardfronturl'
+                desc='Please upload passport photo of page with ID number '
+                successCallBack={(path) => {
+                    handelValChange('idcardfronturl', path || null)
+                }} />
+            <Upload
+             title='Selfie'
+                name='idcardbackurl'
+                desc='Please upload a photo of yourself to match with passport '
+                successCallBack={(path) => {
+                    handelValChange('idcardbackurl', path || null)
+                }} />
+            <div className="btn_group">
+                <Button type='white' value='Back'  width={isXSDown?'100%':'164px'}  onClick={() => {
+                    setCurStep(curStep - 1)
+                }} />
+                <Button type='black'  style={{ marginTop: 20}} value='Verify'  width={isXSDown?'100%':'164px'}  disabled={!isNext || !active} onClick={handelSubmit} />
+            </div>
+        </Form>
     )
 }

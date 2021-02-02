@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { TextInput, Form, Button, Select } from '../components/Table'
 import country from '../../config/country.json'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
 
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     const requiredList = ['1_residentialaddr', '2_countryother']
     const requiredList_json = requiredList
         .sort((a1, a2) => {
@@ -59,7 +59,7 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
             }} /> */}
             <Select
                 label='Country / Region'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 options={country}
                 isRequire={true}
                 // defaultVal={{
@@ -90,7 +90,7 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
             <TextInput
                 label='Postal Code'
                 placeholder='Enter your Postal Code'
-                width='294px'
+                width={isXSDown?'100%':'294px'}
                 name='idtype'
                 defaultVal={ReqData && ReqData.idtype}
                 onValueChange={(data) => {
@@ -101,7 +101,7 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
             <TextInput
                 label='City'
                 placeholder='Enter your city'
-                width='294px'
+                width={isXSDown?'100%':'294px'}
                 isRequire={true}
                 name='2_countryother'
                 defaultVal={ReqData && ReqData.countryother}
@@ -112,10 +112,10 @@ export default function Step2({ curStep, setCurStep, ReqData, setReqData }) {
             />
 
             <div className="btn_group">
-                <Button type='white' value='Back' width='164px' onClick={() => {
+                <Button type='white' value='Back' width={isXSDown?'100%':'164px'} onClick={() => {
                     setCurStep(curStep - 1)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black' value='Next Step'  style={{ marginTop: 20}} width={isXSDown?'100%':'164px'} disabled={!isNext} onClick={() => {
                     setCurStep(curStep + 1)
                 }} />
             </div>

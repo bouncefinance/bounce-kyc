@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Step2Styled } from './styled'
 import { TextInput, Button } from '../components/Table'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 
 const requireList = ['prosummary', 'techhighlight']
 
@@ -9,7 +9,7 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
 
 
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     const wrapperToUpperCase = (str) => {
         return String(str).toUpperCase()
     }
@@ -55,7 +55,7 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
             <TextInput
                 label='Project Summary'
                 placeholder='Enter your project Summary (Limit to 100 characters)'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 marginTop='0px'
                 defaultVal={step2Data.prosummary}
                 isRequire={true}
@@ -68,7 +68,7 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
             <TextInput
                 label='Technical highlight'
                 placeholder='Enter your project Technical highlight(Limit to 500 characters)'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 maxLength={500}
                 defaultVal={step2Data.techhighlight}
                 isRequire={true}
@@ -80,7 +80,7 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
             <TextInput
                 label='Architecture'
                 placeholder='Enter your architecture'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step2Data.architecture}
                 isRequire={false}
                 maxLength={500}
@@ -97,10 +97,10 @@ export default function Step2({ setCurStep, setTitle, step2Data, setStep2Data })
             </ul>
 
             <div className="btn_group">
-                <Button type='white' value='Last Step' width='164px' onClick={() => {
+                <Button type='white' value='Last Step' width={isXSDown?'100%':'164px'} onClick={() => {
                     setCurStep(1)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black'  style={{ marginTop: 20}}  value='Next Step' width={isXSDown?'100%':'164px'} disabled={!isNext} onClick={() => {
                     setCurStep(3)
                 }} />
             </div>

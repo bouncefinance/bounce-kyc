@@ -15,7 +15,7 @@ export const Select = ({ isRequire, label, width, options = [], onChange, defaul
     useEffect(() => {
         if (options.length === 0 && !defaultVal && selOption) return
 
-        console.log(options,defaultVal )
+        // console.log(options,defaultVal )
         options.forEach((item, index) => {
             if (defaultVal && ((defaultVal.name !== undefined && item.name === defaultVal.name) || (defaultVal.value !== undefined && item.value === defaultVal.value))) {
                 return setSelOption(index)

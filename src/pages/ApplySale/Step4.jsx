@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Step4Styled } from './styled'
 import { TextInput, Button } from '../components/Table'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 const requireList = ['totalsupply', 'circulatingsupply', 'tokenticketer', 'tokencontractaddress', 'tokendistribution', 'tokenlookupschedule']
 
 export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }) {
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     useEffect(() => {
         setTitle({
             title: 'Token metrics',
@@ -54,7 +54,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             <TextInput
                 label='Total supply'
                 placeholder='Enter your Total supply'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step4Data.totalsupply}
                 isRequire={true}
                 isNumber={true}
@@ -70,7 +70,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             <TextInput
                 label='Initial circulating supply'
                 placeholder='Enter initial circulating supply'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step4Data.circulatingsupply}
                 isRequire={true}
                 isNumber={true}
@@ -86,7 +86,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             <TextInput
                 label='Token ticketer'
                 placeholder='Enter token ticketer'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 defaultVal={step4Data.tokenticketer}
                 isRequire={true}
                 upperCase={true}
@@ -98,7 +98,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             <TextInput
                 label='Token contract address'
                 placeholder='Paste token contract address'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 maxLength={42}
                 defaultVal={step4Data.tokencontractaddress}
                 isRequire={true}
@@ -115,7 +115,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             <TextInput
                 label='Token distribution'
                 placeholder='describe your token distribution max 300 character'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 minHeight='80px'
                 maxLength={300}
                 defaultVal={step4Data.tokendistribution}
@@ -128,7 +128,7 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             <TextInput
                 label='Token lockup schedule'
                 placeholder='describe your token lockup schedule max 300 character'
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 minHeight='80px'
                 maxLength={300}
                 defaultVal={step4Data.tokenlookupschedule}
@@ -139,10 +139,10 @@ export default function Step4 ({ setCurStep, setTitle, step4Data, setStep4Data }
             />
 
             <div className="btn_group">
-                <Button type='white' value='Last Step' width='164px' onClick={() => {
+                <Button type='white' value='Last Step' width={isXSDown?'100%':'164px'}  onClick={() => {
                     setCurStep(3)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black'  style={{ marginTop: 20}} value='Next Step' width={isXSDown?'100%':'164px'}  disabled={!isNext} onClick={() => {
                     setCurStep(5)
                     console.log(step4Data)
                 }} />

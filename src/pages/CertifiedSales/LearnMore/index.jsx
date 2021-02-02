@@ -28,7 +28,7 @@ import {BOT, BOUNCE_PRO_VOTING} from "../../../web3/address";
 import BounceProVoting from "../../../web3/abi/BounceProVoting.json";
 import {HOST} from '../../../config/request_api'
 import InfoBox from './InfoBox'
-
+import {useIsSMDown} from '../../../utils/themeHooks';
 
 export default function Index() {
   const history = useHistory()
@@ -40,7 +40,7 @@ export default function Index() {
   const [value, setValue] = useState()
   const [bidStatus, setBidStatus] = useState(initStatus)
   const {account, library, chainId, active} = useActiveWeb3React()
-
+  const isXSDown = useIsSMDown();
   // const { prosummary, whitepaperlink, protheme, techhighlight, architecture } = useVoteListByPoolId(poolId)
   const [isSupport, setIsSupport] = useState(false)
   const [crumbs_name, setCrumbs_name] = useState({
@@ -142,10 +142,10 @@ export default function Index() {
                 {pool.status === 'Active' &&
                 <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
                         value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
-                        width='180px' onClick={() => {
+                        width={isXSDown?'100%':'180px'} onClick={() => {
                   setSupporting(true)
                 }}/>}
-                <Button type='white' value='Back' width='180px' onClick={() => {
+                <Button type='white' value='Back' width={isXSDown?'100%':'180px'} onClick={() => {
                   setIsSupport(false)
                 }}/>
 
@@ -164,7 +164,7 @@ export default function Index() {
 
           </div>
           {!isSupport && pool.status === 'Active' && <div className='btn_group'>
-            <Button type='black' value='Support' width='180px' onClick={() => {
+            <Button type='black' value='Support' width={isXSDown?'100%':'180px'} onClick={() => {
               setIsSupport(true)
             }}/>
           </div>}

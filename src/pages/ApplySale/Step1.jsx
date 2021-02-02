@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Step1Styled } from './styled'
 import { TextInput, Button } from '../components/Table'
-
+import {useIsSMDown} from '../../utils/themeHooks';
 const SocialConfig = ['Twitter', 'Medium', 'Telegram', 'Facebook']
 const requireList = ['proname', 'prowebsite', 'protheme', 'whitepaperlink', 'githublink']
 
@@ -11,7 +11,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
     const history = useHistory()
     const [socialLink, setSocialLink] = useState([])
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     const wrapperToUpperCase = (str) => {
         return String(str).toUpperCase()
     }
@@ -70,7 +70,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 placeholder='Enter your project name'
                 defaultVal={step1Data.proname}
                 isRequire={true}
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 onValueChange={(val) => {
                     handelInputChange('proname', val)
                 }}
@@ -82,7 +82,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 placeholder='Enter your project website'
                 defaultVal={step1Data.prowebsite}
                 isRequire={true}
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 onValueChange={(val) => {
                     handelInputChange('prowebsite', val)
                 }}
@@ -98,7 +98,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 placeholder='For Example: Defi , Public Chain'
                 defaultVal={step1Data.protheme}
                 isRequire={true}
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 onValueChange={(val) => {
                     handelInputChange('protheme', val)
                 }}
@@ -109,7 +109,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 placeholder=' Enter your whitepaper link'
                 defaultVal={step1Data.whitepaperlink}
                 isRequire={true}
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 REG_rule={{
                     reg: /http(s)?:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/,
                     msg: 'Please enter a standard Whitepaper link'
@@ -125,7 +125,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                 placeholder='Paste github link'
                 defaultVal={step1Data.githublink}
                 isRequire={true}
-                width='600px'
+                width={isXSDown?'100%':'600px'}
                 maxLength={100}
                 REG_rule={{
                     reg: /http(s)?:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/,
@@ -144,7 +144,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
                     label={`${item} link`}
                     placeholder={`Paste ${item} link`}
                     defaultVal={step1Data[item]}
-                    width='600px'
+                    width={isXSDown?'100%':'600px'}
                     isRequire={false}
                     maxLength={100}
                     REG_rule={{
@@ -173,10 +173,10 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
             </ul>
 
             <div className="btn_group">
-                <Button type='white' value='Cancel' width='164px' onClick={() => {
+                <Button type='white' value='Cancel' width={isXSDown?'100%':'164px'} onClick={() => {
                     history.goBack(-1)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button  style={{ marginTop: 20}}  type='black' value='Next Step' width={isXSDown?'100%':'164px'} disabled={!isNext} onClick={() => {
                     setCurStep(2)
                 }} />
             </div>
