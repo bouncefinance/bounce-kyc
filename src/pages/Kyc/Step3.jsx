@@ -5,18 +5,31 @@ import axios from 'axios'
 import { useWeb3React } from '@web3-react/core'
 import API_HOST from '../../config/request_api'
 import { myContext } from '../../redux'
-import Web3 from "web3";
+import { BOUNCE_PRO } from "../../web3/address";
 import icon_plaint from '../../assets/images/plaint.svg'
 import useAxios from '../../hooks/useAxios'
+import { getContract } from "../../web3";
+import BouncePro from "../../web3/abi/BouncePro.json";
+import {
+    cancelStatus,
+    confirmStatus,
+    errorStatus,
+    initStatus,
+    pendingStatus,
+    successVotedStatus,
+    TxModal
+} from "../../components/common/TXModal";
 import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
-    const {sign_Axios} = useAxios()
+    const { sign_Axios } = useAxios()
     const history = useHistory()
     const { dispatch } = useContext(myContext)
-    const { active, account, library } = useWeb3React()
+    const { active, account, library, chainId } = useWeb3React()
     const [data, setData] = useState({})
     const [isNext, setIsNext] = useState(false)
+    const [bidStatus, setBidStatus] = useState(initStatus)
+
     const isXSDown = useIsSMDown();
     useEffect(() => {
         console.log(data, isNext)
@@ -47,8 +60,20 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
 
 
     const handelSubmit = async () => {
-        // console.log(ReqData)
-        // ReqData.bounceid = 0
+
+        // accountaddress: "0x2d3fff58da3346dce601f6db8eec57906cdb17be"
+        // bounceid: 14560289
+        // emailaddr: ""
+        // id: 291
+        // ifincontract: 0
+        // signaturestr: "0x88a0f3de78661d47e281c6f3c0670d24a2b74588d6bd69be5c187b847336182467a7df36c76c612006524a42887cc31f1537ad6dcc4367fb711ca712f4e775ab1b"
+        // status: 1
+        // username: "Eqw"
+
+
+
+        ReqData.bounceid = 0
+
         ReqData.accountaddress = account
         ReqData.status = 1
         // const web3 = new Web3(library.provider);
@@ -56,26 +81,77 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
         // console.log('sign', sign)
         sign_Axios.post(API_HOST.sign_addKYC, ReqData).then(res => {
             if (res.status === 200 && res.data.code === 1) {
-                dispatch({
-                    type: 'MODAL',
-                    value: {
-                        name: 'CONFIRM',
-                        title: 'Message',
-                        deputy: 'The information review has been submitted successfully. Please wait for the approval of the review',
-                        confirm: {
-                            text: 'Confirm',
-                            callback: () => {
+                const signaturestr = res.data.data.signaturestr
+
+                const BouncePro_CT = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+                setBidStatus(confirmStatus);
+                try {
+                    BouncePro_CT.methods.registerKyc(signaturestr).send({ from: account })
+                        .on('transactionHash', hash => {
+                            setBidStatus(pendingStatus)
+                        })
+                        .on('receipt', async (_, receipt) => {
+                            console.log('bid fixed swap receipt:', receipt)
+                            // setBidStatus(successVotedStatus)
+                            const params_2 = {
+                                ...res.data.data,
+                                ifincontract: 1
+                            }
+                            const res_2 = await sign_Axios.post(API_HOST.sign_KYC, params_2)
+                            if (res_2.status === 200 && res_2.data.code === 1) {
                                 dispatch({
                                     type: 'MODAL',
-                                    value: null
+                                    value: {
+                                        name: 'CONFIRM',
+                                        title: 'Message',
+                                        deputy: 'The information review has been submitted successfully. Please wait for the approval of the review',
+                                        confirm: {
+                                            text: 'Confirm',
+                                            callback: () => {
+                                                dispatch({
+                                                    type: 'MODAL',
+                                                    value: null
+                                                })
+                                                history.push('/')
+                                                // window.location.reload()
+                                            }
+                                        }
+                                    }
                                 })
-                                history.push('/')
-                                // window.location.reload()
+                            } else {
+                                dispatch({
+                                    type: 'MODAL',
+                                    value: {
+                                        name: 'CONFIRM',
+                                        title: 'ERROR MESSAGE',
+                                        deputy: res_2.data.msg,
+                                        confirm: {
+                                            text: 'Confirm',
+                                            callback: () => {
+                                                dispatch({
+                                                    type: 'MODAL',
+                                                    value: null
+                                                })
+                                                history.push('/')
+                                                // window.location.reload()
+                                            }
+                                        }
+                                    }
+                                })
                             }
-                        }
+
+                        })
+                        .on('error', (err, receipt) => {
+                            setBidStatus(errorStatus)
+                        })
+                } catch (error) {
+                    if (error.code === 4001) {
+                        setBidStatus(cancelStatus)
+                    } else {
+                        setBidStatus(errorStatus)
                     }
-                })
-            }else {
+                }
+            } else {
                 dispatch({
                     type: 'MODAL',
                     value: {

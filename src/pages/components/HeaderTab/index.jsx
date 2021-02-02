@@ -14,7 +14,7 @@ import menu from '../../../assets/mobile/menu.svg';
 import logo_white from '../../../assets/logo/logo-sigle-white.svg';
 import MenuModal from './MenuModal';
 
-export default function Index () {
+export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
@@ -88,14 +88,17 @@ export default function Index () {
         axios.post(HOST_API.queryKycByAccount, params).then(res => {
             // console.log(res)
             if (res.status === 200 && res.data.code === 1) {
-                const { status, username } = res.data.data
+                const { status, username, ifincontract } = res.data.data
                 window.localStorage.setItem('KYC_STATUS', status)
+                window.localStorage.setItem('KYC_IC', ifincontract)
                 setUserName(username)
             } else {
                 window.localStorage.setItem('KYC_STATUS', 0)
+                window.localStorage.setItem('KYC_IC', 0)
             }
         }).catch(err => {
             window.localStorage.setItem('KYC_STATUS', 0)
+            window.localStorage.setItem('KYC_IC', 0)
         })
     }
 
@@ -167,7 +170,7 @@ export default function Index () {
 
 
 
-function getCookie (cname) {
+function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {
