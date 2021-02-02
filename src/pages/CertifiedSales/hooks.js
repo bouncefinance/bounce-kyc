@@ -209,7 +209,7 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      fetchList()
+      //fetchList()
     }
   }, [active])
 
