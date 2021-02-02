@@ -8,7 +8,9 @@ export const KycStyled = styled.div`
         margin: 0 auto;
         background-color: #fff;
         padding: 30px 40px;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
         .top{
             display: flex;
             justify-content: space-between;
@@ -33,11 +35,16 @@ export const KycStyled = styled.div`
             align-items: center;
             .right{
                 width: 600px;
-
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                }
                 .btn_group{
                     margin-top: 26px;
                     button{
                         margin-right: 12px;
+                    }
+                    @media screen and (max-width: 960px){
+                        width: 100%;
                     }
                 }
             }

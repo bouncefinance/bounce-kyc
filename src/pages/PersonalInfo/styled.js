@@ -8,7 +8,9 @@ export const PerInfoStyled = styled.div`
         background-color: #fff;
         padding: 30px 40px;
         box-sizing: border-box;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
         .top{
             display: flex;
             align-items: center;
@@ -16,6 +18,9 @@ export const PerInfoStyled = styled.div`
             padding-bottom: 18px;
             border-bottom: 4px solid #000;
             margin-bottom: 24px;
+            @media screen and (max-width: 960px){
+                flex-direction: column;
+            }
 
             h1{
                 font-size: 32px;
@@ -27,6 +32,7 @@ export const PerInfoStyled = styled.div`
                     align-items: center;
                     p{
                         color: rgba(31,25,27,.4);
+                        word-break: break-all;
                     }
 
                     img{
@@ -55,7 +61,10 @@ export const PerInfoStyled = styled.div`
             .right{
                 width: 600px;
                 height: 310px;
-
+                @media screen and (max-width: 960px){
+                    width: 100%;
+                    height: auto;
+                }
                 .CertifiedId{
                     display: flex;
                     img{

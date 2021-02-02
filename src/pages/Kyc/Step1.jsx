@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { TextInput, Form, Button } from '../components/Table'
+import {useIsSMDown} from '../../utils/themeHooks';
 
 export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
     const history = useHistory()
     const [isNext, setIsNext] = useState(false)
-
+    const isXSDown = useIsSMDown();
     const requiredList = ['1_username', '3_lastname', '4_birthday']
     const requiredList_json = requiredList
         .sort((a1, a2) => {
@@ -55,7 +56,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
         <Form title={'Basic Info'}>
             <TextInput
                 label='First Name'
-                width='294px'
+                width={isXSDown?'100%':'294px'}
                 placeholder='Enter first name'
                 name='1_username'
                 defaultVal={ReqData && ReqData.username}
@@ -68,7 +69,7 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
             />
             <TextInput
                 label='Middle Name (if applicable)'
-                width='294px'
+                width={isXSDown?'100%':'294px'}
                 placeholder='Enter middle name'
                 name='2_middlename'
                 defaultVal={ReqData && ReqData.middlename}
@@ -109,10 +110,10 @@ export default function Step1({ curStep, setCurStep, ReqData, setReqData }) {
             />
 
             <div className="btn_group">
-                <Button type='white' value='Cancel' width='164px' onClick={() => {
+                <Button type='white' value='Cancel'  width={isXSDown?'100%':'164px'}  onClick={() => {
                     history.goBack(-1)
                 }} />
-                <Button type='black' value='Next Step' width='164px' disabled={!isNext} onClick={() => {
+                <Button type='black' value='Next Step' style={{ marginTop: 20}}  width={isXSDown?'100%':'164px'}  disabled={!isNext} onClick={() => {
                     setCurStep(curStep + 1)
                 }} />
             </div>

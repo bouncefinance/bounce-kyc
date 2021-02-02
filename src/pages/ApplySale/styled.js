@@ -8,7 +8,9 @@ export const ApplySaleStyled = styled.div`
         background-color: #fff;
         margin: 0 auto;
         padding: 30px 40px;
-
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
         .top{
             display: flex;
             justify-content: space-between;
@@ -21,6 +23,9 @@ export const ApplySaleStyled = styled.div`
 
             h1{
                 font-size: 32px;
+                @media screen and (max-width: 960px){
+                    font-size: 22px;
+                }
             }
 
             p{
@@ -34,7 +39,9 @@ export const ApplySaleStyled = styled.div`
     ul.add_append{
         margin-top: 18px;
         display: flex;
-
+        @media screen and (max-width: 960px){
+            display: block;
+        }
         li{
             font-family: 'Helvetica Neue';
             font-weight: 500;
@@ -43,7 +50,11 @@ export const ApplySaleStyled = styled.div`
             margin-right: 28px;
             text-decoration: underline;
             cursor: pointer;
-
+            @media screen and (max-width: 960px){
+                display: inline-block;
+                margin-right: 0;
+                width:50%
+            }
             &.soc_active{
                 color: rgba(18,76,227,1);
             }
@@ -61,6 +72,9 @@ export const StepStyled = styled.div`
         margin-top: 24px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `
@@ -83,6 +97,9 @@ export const Step1Styled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 `
 
@@ -91,6 +108,9 @@ export const Step2Styled = styled.div`
         margin-top: 24px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `
@@ -101,6 +121,9 @@ export const Step3Styled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 `
 
@@ -109,6 +132,9 @@ export const Step4Styled = styled.div`
         margin-top: 24px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `
@@ -120,12 +146,19 @@ export const Step5Styled = styled.div`
         button{
             margin-right: 12px;
         }
+        @media screen and (max-width: 960px){
+            width: 100%;
+        }
     }
 
     .select_group{
         width: 600px;
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width: 960px){
+            width: 100%;
+            flex-direction: column;
+        }
     }
 `
 
@@ -134,6 +167,9 @@ export const Step6Styled = styled.div`
         margin-top: 36px;
         button{
             margin-right: 12px;
+        }
+        @media screen and (max-width: 960px){
+            width: 100%;
         }
     }
 `

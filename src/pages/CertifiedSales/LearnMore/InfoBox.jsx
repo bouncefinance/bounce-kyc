@@ -1,23 +1,24 @@
 import React, { useState } from 'react'
 import { InfoBoxStyle } from './styled'
 import { Passage } from '../../components/Exhibition'
-
+import {useIsSMDown} from '../../../utils/themeHooks';
 export default function InfoBox({ proInfo }) {
 
     const [curTab, setCurTab] = useState(0)
     const tabMenu = ['Project Info', 'Team Info', 'Token Metrics']
+    const isXSDown = useIsSMDown();
 
     const renderInfo = (tab) => {
         switch (tab) {
             case 'Project Info':
                 return <>
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Technical highlight'
                         desc={proInfo && proInfo.techhighlight} />
 
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Architecture'
                         desc={proInfo && proInfo.architecture} />
                 </>
@@ -26,7 +27,7 @@ export default function InfoBox({ proInfo }) {
             case 'Team Info':
                 return <>
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Team'
                         desc={proInfo && proInfo.teambio} />
                 </>
@@ -34,32 +35,32 @@ export default function InfoBox({ proInfo }) {
             case 'Token Metrics':
                 return <>
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Total supply'
                         desc={proInfo && proInfo.totalsupply} />
 
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Initial circulating supply'
                         desc={proInfo && proInfo.circulatingsupply} />
 
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Token ticketer'
                         desc={proInfo && proInfo.tokenticketer} />
 
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Token contract address'
                         desc={proInfo && proInfo.tokencontractaddress} />
 
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Token distribution'
                         desc={proInfo && proInfo.tokendistribution} />
 
                     <Passage
-                        width='480px'
+                        width={isXSDown ? '100%' : '480px'}
                         title='Token lockup schedule'
                         desc={proInfo && proInfo.tokenlookupschedule} />
                 </>

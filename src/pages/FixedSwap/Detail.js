@@ -32,7 +32,8 @@ import {
   claimSuccessStatus
 } from "../../components/common/BidModal";
 import {useLeftTime} from "../../hooks/useLeftTime";
-import {useIsXSDown} from '../../utils/themeHooks';
+import {mainContext} from "../../reducer";
+import {useIsSMDown} from '../../utils/themeHooks';
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import {AuctionTipModal} from "../../components/common/AuctionTipModal";
 import Modal from "../../components/common/Modal";
