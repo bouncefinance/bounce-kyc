@@ -151,6 +151,26 @@ export default function Step3({ curStep, setCurStep, ReqData, setReqData }) {
                         setBidStatus(errorStatus)
                     }
                 }
+            }else if(res.status === 200 && res.data.code !== -1){
+                dispatch({
+                    type: 'MODAL',
+                    value: {
+                        name: 'CONFIRM',
+                        title: 'Warning!',
+                        deputy: `code: ${res.data.code}  msg: ${res.data.msg}`,
+                        confirm: {
+                            text: 'Confirm',
+                            callback: () => {
+                                dispatch({
+                                    type: 'MODAL',
+                                    value: null
+                                })
+                                window.location.href = '/'
+                                // window.location.reload()
+                            }
+                        }
+                    }
+                })
             }
         }).catch(err => {
             console.log(err)
