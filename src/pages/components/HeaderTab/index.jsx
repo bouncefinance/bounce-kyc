@@ -84,7 +84,7 @@ export default function Index() {
     }
 
     const checkKYC = async (account) => {
-        console.log('tag---->',account, active)
+        console.log('tag---->', account, active)
         const params = {
             "accountaddress": account
         }
@@ -109,10 +109,10 @@ export default function Index() {
         try {
             const BouncePro_CT = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
             const isKYC = await BouncePro_CT.methods.kyclist(account).call()
-            console.log('isKYC',isKYC)
-             setIsKYC(isKYC)
+            // console.log('isKYC',isKYC)
+            setIsKYC(isKYC)
         } catch (error) {
-            console.log('isKYC',error)
+            console.log('isKYC', error)
         }
     }
 
@@ -170,7 +170,7 @@ export default function Index() {
                         {mobileMenu && <MenuModal setMobileMenu={setMobileMenu} show={mobileMenu} />}
                     </>
                 }
-                <PersonalModal show={state.isShowPersonal} userName={userName} isKYC={isKYC}/>
+                <PersonalModal show={state.isShowPersonal} userName={userName} isKYC={isKYC} />
             </div>
         </HeaderTabStyled>
     )
