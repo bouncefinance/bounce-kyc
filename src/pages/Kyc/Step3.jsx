@@ -103,8 +103,8 @@ export default function Step3({ curStep, setCurStep, ReqData, setReqData }) {
                                     type: 'MODAL',
                                     value: {
                                         name: 'CONFIRM',
-                                        title: 'Message',
-                                        deputy: 'The information review has been submitted successfully. Please wait for the approval of the review',
+                                        title: 'Congratulations!',
+                                        deputy: 'You have successfully passed the KYC and you name is blue marked in your account',
                                         confirm: {
                                             text: 'Confirm',
                                             callback: () => {
@@ -151,26 +151,6 @@ export default function Step3({ curStep, setCurStep, ReqData, setReqData }) {
                         setBidStatus(errorStatus)
                     }
                 }
-            } else {
-                dispatch({
-                    type: 'MODAL',
-                    value: {
-                        name: 'CONFIRM',
-                        title: 'Message',
-                        deputy: 'Your application is under review and will be reviewed within one working day. Please do not submit it twice',
-                        confirm: {
-                            text: 'Confirm',
-                            callback: () => {
-                                dispatch({
-                                    type: 'MODAL',
-                                    value: null
-                                })
-                                window.location.href = '/'
-                                // window.location.reload()
-                            }
-                        }
-                    }
-                })
             }
         }).catch(err => {
             console.log(err)
