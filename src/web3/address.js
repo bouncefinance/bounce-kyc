@@ -1,3 +1,16 @@
+export function AUCTION(chainId) {
+  switch (chainId) {
+    case 1:
+      return '0xa9b1eb5908cfc3cdf91f9b8b3a74108598009096'
+    case 4:
+      return '0x5e26fa0fe067d28aae8aff2fb85ac2e693bd9efa'
+    case 56:
+      return '0x48DC0190dF5ece990c649A7A07bA19D3650a9572'
+    default:
+      return '0x5bEaBAEBB3146685Dd74176f68a0721F91297D37'
+  }
+}
+
 export function BOT(chainId) {
   switch (chainId) {
     case 1:

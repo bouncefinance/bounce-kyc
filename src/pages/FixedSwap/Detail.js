@@ -19,7 +19,7 @@ import { Button } from "../../components/common/Button";
 import { useEthBalance, useTokenBalance, useTokenList } from "../../web3/common";
 import { getContract, useActiveWeb3React } from "../../web3";
 import fixSwap from "../../web3/abi/BouncePro.json";
-import { BOUNCE_PRO } from "../../web3/address";
+import {AUCTION, BOUNCE_PRO} from "../../web3/address";
 import Web3 from 'web3'
 import { useHistory } from 'react-router-dom'
 import {
@@ -32,8 +32,7 @@ import {
   claimSuccessStatus
 } from "../../components/common/BidModal";
 import { useLeftTime } from "../../hooks/useLeftTime";
-import { mainContext } from "../../reducer";
-import { useIsSMDown,useIsXSDown } from '../../utils/themeHooks'
+import { useIsXSDown } from '../../utils/themeHooks'
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { AuctionTipModal } from "../../components/common/AuctionTipModal";
 import Modal from "../../components/common/Modal";
@@ -58,6 +57,7 @@ export const FSPoolDetail = () => {
   const history = useHistory()
   const { account, library, chainId } = useActiveWeb3React()
   const { balance } = useTokenBalance()
+  const  AuctionAmount = useTokenBalance(AUCTION(chainId))
   const { setTime, leftTime } = useLeftTime()
   const claimTime = useLeftTime()
   const [bidAmount, setBidAmount] = useState()
@@ -79,7 +79,7 @@ export const FSPoolDetail = () => {
   const { ethBalance } = useEthBalance(toAddress)
 
   useEffect(() => {
-    if (onlyBOT && isGreaterThan(toWei('0.1'), balance) && !bidAmount) {
+    if (onlyBOT && isGreaterThan(toWei('0.1'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
       errors.amount = 'Sorry! You are not qualified as bot holder.'
       setErrors(errors)
     }
@@ -445,7 +445,7 @@ export const FSPoolDetail = () => {
                           }}
                           name={'amount'}
                           placeholder={'Bid Amount'}
-                          disabled={(onlyBOT && isGreaterThan(toWei('0.1'), balance)) ||
+                          disabled={(onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
                             (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
                           value={bidAmount}
                           onChange={handleChange}
