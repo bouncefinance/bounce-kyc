@@ -8,26 +8,29 @@ import { myContext } from '../../../redux'
 import { Button } from '../Table'
 import axios from 'axios'
 import HOST_API from '../../../config/request_api'
-import { useActiveWeb3React } from "../../../web3";
+import { useActiveWeb3React, getContract } from "../../../web3";
 import { useIsSMDown } from '../../../hooks/themeHooks';
 import menu from '../../../assets/mobile/menu.svg';
 import logo_white from '../../../assets/logo/logo-sigle-white.svg';
 import MenuModal from './MenuModal';
+import BouncePro from "../../../web3/abi/BouncePro.json";
+import { BOUNCE_PRO } from "../../../web3/address";
 
 export default function Index() {
     const { state, dispatch } = useContext(myContext)
     const history = useHistory()
     const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
     // console.log(curTab)
-    const { active, account } = useActiveWeb3React()
+    const { active, account, library, chainId } = useActiveWeb3React()
     const [userName, setUserName] = useState('undefined');
     const [mobileMenu, setMobileMenu] = useState(false);
+    const [isKYC, setIsKYC] = useState(false)
     const isSMDown = useIsSMDown();
 
     useEffect(() => {
         // 设置cookie
         const isShowTip = getCookie('isShowTip')
-        console.log(isShowTip)
+        // console.log(isShowTip)
         if (isShowTip === '') {
             dispatch({
                 type: 'MODAL',
@@ -50,9 +53,9 @@ export default function Index() {
     }, [])
 
     useEffect(() => {
-        if (!account) return
+        if (!account || !active) return
         checkKYC(account)
-    }, [account])
+    }, [account, active])
 
     const renderConnectBtn = () => {
 
@@ -80,7 +83,8 @@ export default function Index() {
             />
     }
 
-    const checkKYC = (account) => {
+    const checkKYC = async (account) => {
+        console.log('tag---->', account, active)
         const params = {
             "accountaddress": account
         }
@@ -88,27 +92,38 @@ export default function Index() {
         axios.post(HOST_API.queryKycByAccount, params).then(res => {
             // console.log(res)
             if (res.status === 200 && res.data.code === 1) {
-                const { status, username, ifincontract } = res.data.data
+                // const { status, username, ifincontract } = res.data.data
+                const { status, username } = res.data.data
                 window.localStorage.setItem('KYC_STATUS', status)
-                window.localStorage.setItem('KYC_IC', ifincontract)
+                // window.localStorage.setItem('KYC_IC', ifincontract)
                 setUserName(username)
             } else {
                 window.localStorage.setItem('KYC_STATUS', 0)
-                window.localStorage.setItem('KYC_IC', 0)
+                // window.localStorage.setItem('KYC_IC', 0)
             }
         }).catch(err => {
             window.localStorage.setItem('KYC_STATUS', 0)
-            window.localStorage.setItem('KYC_IC', 0)
+            // window.localStorage.setItem('KYC_IC', 0)
         })
+
+        try {
+            const BouncePro_CT = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+            const isKYC = await BouncePro_CT.methods.kyclist(account).call()
+            // const isKYC = await BouncePro_CT.methods.kyclist('0x3be12399f904f6b1658d16c27f94688c2e23c2df').call()
+            console.log('isKYC', isKYC)
+            setIsKYC(isKYC)
+        } catch (error) {
+            console.log('isKYC', error)
+        }
     }
 
     return (
         <HeaderTabStyled>
             <div className="container">
                 <div className="left">
-                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={isSMDown?logo_white:logo_black} alt="bounce logo" />
+                    <img style={{ cursor: 'pointer' }} onClick={() => { return window.location.href = '/' }} src={isSMDown ? logo_white : logo_black} alt="bounce logo" />
                 </div>
-                {!isSMDown && 
+                {!isSMDown &&
                     <div className="right">
                         <ul>
                             {headerMenu.map((item, index) => {
@@ -146,17 +161,17 @@ export default function Index() {
                         {renderConnectBtn()}
                     </div>
                 }
-                {isSMDown && 
+                {isSMDown &&
                     <>
 
                         <div className="right">
-                             {active && renderConnectBtn()}
-                            <img src={menu} alt="" onClick={() => {setMobileMenu(true)}} className="menu"/>
+                            {active && renderConnectBtn()}
+                            <img src={menu} alt="" onClick={() => { setMobileMenu(true) }} className="menu" />
                         </div>
-                        {mobileMenu && <MenuModal setMobileMenu={setMobileMenu} show={mobileMenu}/>}
+                        {mobileMenu && <MenuModal setMobileMenu={setMobileMenu} show={mobileMenu} />}
                     </>
                 }
-                <PersonalModal show={state.isShowPersonal} userName={userName} />
+                <PersonalModal show={state.isShowPersonal} userName={userName} isKYC={isKYC} />
             </div>
         </HeaderTabStyled>
     )

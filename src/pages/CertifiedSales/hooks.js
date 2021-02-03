@@ -5,8 +5,7 @@ import { getContract, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
 import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
-import BigNumber from "bignumber.js";
-import { isEqualTo, isGreaterThan } from "../../utils/common";
+import { isGreaterThan } from "../../utils/common";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { weiToNum } from "../../utils/numberTransform";
 

@@ -31,12 +31,11 @@ import {
 } from "../../../components/common/TXModal"
 
 
-export default function PersonalModal({ show = false, userName }) {
+export default function PersonalModal({ show = false, userName, isKYC: CT_KYC }) {
   const history = useHistory()
   const { sign_Axios, Axios } = useAxios()
-  const { account, chainId, library } = useWeb3React()
+  const { account, chainId, library, active } = useWeb3React()
   const KYC_STATUS = window.localStorage.getItem('KYC_STATUS') || 0
-  const KYC_IC = window.localStorage.getItem('KYC_IC') || 0
   const { state, dispatch } = useContext(myContext);
   const { list } = useVoteList()
   const [isKYC, setIsKYC] = useState(false)
@@ -106,12 +105,12 @@ export default function PersonalModal({ show = false, userName }) {
 
 
   useEffect(async () => {
-    if (!account) return
+    if (!account || !active) return
     const isKYC = await queryIsKyc(account)
     const balance = await queryBotBalance(library, account, chainId)
     setIsKYC(isKYC)
     setBalance(balance)
-  }, [account])
+  }, [account, active])
 
   const handelClickLi = (type) => {
     if (!type) return
@@ -121,8 +120,8 @@ export default function PersonalModal({ show = false, userName }) {
       case 'PersonalInfo':
         return history.push('/PersonalInfo')
       case 'applySale':
-        console.log(isKYC, balance)
-        console.log(state)
+        // console.log(isKYC, balance)
+        // console.log(state)
         if (!isKYC) {
           return dispatch({
             type: 'MODAL',
@@ -196,7 +195,7 @@ export default function PersonalModal({ show = false, userName }) {
             })
             .on('receipt', async (_, receipt) => {
               console.log('bid fixed swap receipt:', receipt)
-              // setBidStatus(successVotedStatus)
+              setBidStatus(successVotedStatus)
               const params_2 = {
                 ...res.data.data,
                 ifincontract: 1
@@ -216,7 +215,7 @@ export default function PersonalModal({ show = false, userName }) {
                           type: 'MODAL',
                           value: null
                         })
-                        history.push('/')
+                        window.location.href = '/'
                         // window.location.reload()
                       }
                     }
@@ -236,7 +235,7 @@ export default function PersonalModal({ show = false, userName }) {
                           type: 'MODAL',
                           value: null
                         })
-                        history.push('/')
+                        window.location.href = '/'
                         // window.location.reload()
                       }
                     }
@@ -269,7 +268,7 @@ export default function PersonalModal({ show = false, userName }) {
                   type: 'MODAL',
                   value: null
                 })
-                history.push('/')
+                window.location.href = '/'
                 // window.location.reload()
               }
             }
@@ -282,121 +281,125 @@ export default function PersonalModal({ show = false, userName }) {
   }
 
   return (
-    show && <PerModalStyled>
-      {isSMDown &&
-        <div>
-          <div className="headers">
-            <img onClick={() => { return window.location.href = '/' }} src={logo_sigle} alt="bounce logo" />
-            <img src={close}
-            />
-          </div>
-          <div className="personalLogo">
+    <>
+      {show && <PerModalStyled>
+        {isSMDown &&
+          <div>
+            <div className="headers">
+              <img onClick={() => { return window.location.href = '/' }} src={logo_sigle} alt="bounce logo" />
+              <img src={close}
+              />
+            </div>
+            <div className="personalLogo">
 
+            </div>
+          </div>
+        }
+
+        <div className="account">
+          <div className='account_name'>
+            <h5>{userName}</h5>
+            {KYC_STATUS === '1' && CT_KYC && <img src={bule_check} alt="" />}
+            {KYC_STATUS === '1' && !CT_KYC && <img
+              onClick={() => {
+                handelClickPoint()
+              }}
+              style={{
+                cursor: 'pointer',
+              }} src={icon_point} alt="" title={`You have complete the KYC process and
+now please interact with Bounce contract
+to add your address to contract KYC list.`} />}
+          </div>
+          <div className="account_address">
+            <p>{account || '0x00'} </p>
+            <CopyToClipboard
+              text={account}
+              onCopy={() => {
+              }}>
+              <img className='ignore' src={copy_icon} alt="" />
+            </CopyToClipboard>
           </div>
         </div>
-      }
+        <ul>
+          {KYC_STATUS !== '1' && <li
+            onClick={() => {
+              handelClickLi('kyc')
+            }}
+          >
+            <i className='kyc'></i>
+            <span>KYC</span>
+          </li>}
 
-      <div className="account">
-        <div className='account_name'>
-          <h5>{userName}</h5>
-          {KYC_STATUS === '1' && KYC_IC === '1' && <img src={bule_check} alt="" />}
-          {KYC_STATUS === '1' && KYC_IC === '0' && <img
+          {KYC_STATUS === '1' && !CT_KYC && <li
             onClick={() => {
               handelClickPoint()
             }}
-            style={{
-              cursor: 'pointer',
-            }} src={icon_point} alt="" title={`You have complete the KYC process and
-now please interact with Bounce contract
-to add your address to contract KYC list.`} />}
-        </div>
-        <div className="account_address">
-          <p>{account || '0x00'} </p>
-          <CopyToClipboard
-            text={account}
-            onCopy={() => {
-            }}>
-            <img className='ignore' src={copy_icon} alt="" />
-          </CopyToClipboard>
-        </div>
-      </div>
-      <ul>
-        {KYC_STATUS !== '1' && <li
-          onClick={() => {
-            handelClickLi('kyc')
-          }}
-        >
-          <i className='kyc'></i>
-          <span>KYC</span>
-        </li>}
-
-        {KYC_STATUS === '1' && KYC_IC === '0' && <li
-          onClick={() => {
-            handelClickPoint()
-          }}
-        >
-          <i className='kyc'></i>
-          <span>KYC interaction</span>
-        </li>}
-
-        <li onClick={() => {
-          handelClickLi('PersonalInfo')
-        }}>
-          <i className='pi'></i>
-          <span>Personal Info</span>
-        </li>
-
-
-        {!myProject && !activeProject && (
-          <li
-            onClick={() => {
-              handelClickLi('applySale')
-            }}
           >
-            <i className='acs'></i>
-            <span>{'Apply Certified Sale'}</span>
-          </li>)}
-        {myProject && (
-          <li
-            onClick={() => {
-              handelClickLi('applySale')
-            }}
-          >
-            <i className='acs'></i>
-            <span>{'Check Status'}</span>
+            <i className='kyc'></i>
+            <span>KYC interaction</span>
+          </li>}
+
+          <li onClick={() => {
+            handelClickLi('PersonalInfo')
+          }}>
+            <i className='pi'></i>
+            <span>Personal Info</span>
           </li>
-        )}
-        {activeProject && (
-          <li
-            onClick={() => {
-              dispatch({
-                type: 'MODAL',
-                value: {
-                  name: 'APPROVE',
-                  amount: activeProject.proInfo.amountoftoken,
-                  symbol: activeProject.proInfo.tokenticketer,
-                  projectName: activeProject.proInfo.proname,
-                  cancel: {
-                    text: 'I Know'
-                  },
-                  onConfirm: () => {
-                    onApprove(activeProject.proInfo.amountoftoken, activeProject.proInfo.tokencontractaddress)
+
+
+          {!myProject && !activeProject && (
+            <li
+              onClick={() => {
+                handelClickLi('applySale')
+              }}
+            >
+              <i className='acs'></i>
+              <span>{'Apply Certified Sale'}</span>
+            </li>)}
+          {myProject && (
+            <li
+              onClick={() => {
+                handelClickLi('applySale')
+              }}
+            >
+              <i className='acs'></i>
+              <span>{'Check Status'}</span>
+            </li>
+          )}
+          {activeProject && (
+            <li
+              onClick={() => {
+                dispatch({
+                  type: 'MODAL',
+                  value: {
+                    name: 'APPROVE',
+                    amount: activeProject.proInfo.amountoftoken,
+                    symbol: activeProject.proInfo.tokenticketer,
+                    projectName: activeProject.proInfo.proname,
+                    cancel: {
+                      text: 'I Know'
+                    },
+                    onConfirm: () => {
+                      onApprove(activeProject.proInfo.amountoftoken, activeProject.proInfo.tokencontractaddress)
+                    }
                   }
-                }
-              })
-            }}
-          >
-            <i className='acs'></i>
-            <span>{'Approve'} {activeProject && activeProject.proInfo.proname}</span>
-          </li>
-        )}
-      </ul>
-      {isSMDown &&
-        <div className="cancelBtn">
-          Close
+                })
+              }}
+            >
+              <i className='acs'></i>
+              <span>{'Approve'} {activeProject && activeProject.proInfo.proname}</span>
+            </li>
+          )}
+        </ul>
+        {isSMDown &&
+          <div className="cancelBtn">
+            Close
         </div>
-      }
-
-    </PerModalStyled>
+        }
+      </PerModalStyled>}
+      <TxModal modalStatus={bidStatus} onDismiss={() => {
+        setBidStatus(initStatus)
+      }} />
+    </>
   )
 }
