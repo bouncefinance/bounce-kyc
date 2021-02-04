@@ -152,7 +152,7 @@ export const usePoolList = () => {
   //     "updated_at": "2021-01-28T03:23:48Z"
   //   }
   // }])
-   const [list, setList] = useState([])
+   const [list, setList] = useState()
 
   const [activePool, setActivePool] = useState([])
   const [upcomingPools, setUpcomingPools] = useState([])
