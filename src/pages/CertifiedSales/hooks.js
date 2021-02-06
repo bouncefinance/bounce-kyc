@@ -97,6 +97,26 @@ export const useVoteList = () => {
 
 export const usePoolList = () => {
   const upItem = [{
+    accountaddress: "0x14fe1c6adb626a8235b079d4ff66c6b0a3a2e68a",
+    additionalinfo: "",
+    allocationperwallet: "No limits",
+    amountoftoken: "400",
+    architecture: "Merkle Tree based sidechain",
+    attachmenturl: "",
+    auctiontime: "3600",
+    auctiontype: "NFT Lottery",
+    circulatingsupply: "400",
+    closeAt: "1613230468",
+    code: 1,
+    contactemail: "sam@umb.network",
+    created_at: "2021-02-06T15:33:44Z",
+    creator: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
+    fackbook: "",
+    githublink: "https://github.com/umbrella-network",
+    id: 39,
+    enableWhiteList: 1,
+    medium: "",
+    pricepertoken: "250",
     projectId: "39",
     prologourl: "622af34d40944eeeb8f1e2e3377842d2.png",
     proname: "Umbrella Network",
@@ -117,8 +137,9 @@ export const usePoolList = () => {
     twitter: "https://twitter.com/UmbNetwork",
     updated_at: "2021-02-06T15:33:44Z",
     votePassed: true,
-    whitepaperlink: "https://www.umb.network/wp-content/uploads/2021/02/umb_litepaper_design_v3.1.pdf",
-
+    "botHolder": true,
+    "inKYC": true,
+    "joined": false,
     "proInfo": {
       'accountaddress': "0x14fe1c6adb626a8235b079d4ff66c6b0a3a2e68a",
       "allocationperwallet": "No limits",
