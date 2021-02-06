@@ -150,7 +150,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                     {isVote && (
                         <>
                             <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
-                                window.localStorage.setItem('ca')
+                                // window.localStorage.setItem('ca')
                                 history.push(`/learn-more/${pool.id}`)
                             }} />
                             <Button type='black' value='Support' width={isXSDown?"100%":"168px"} onClick={() => {
