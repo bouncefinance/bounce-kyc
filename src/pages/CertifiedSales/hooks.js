@@ -140,6 +140,7 @@ export const usePoolList = () => {
     "botHolder": true,
     "inKYC": true,
     "joined": false,
+    status: 'Upcoming',
     "proInfo": {
       'accountaddress': "0x14fe1c6adb626a8235b079d4ff66c6b0a3a2e68a",
       "allocationperwallet": "No limits",
