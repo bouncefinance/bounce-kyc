@@ -2,12 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {
   Address,
-  ITextR,
   LayoutFrame,
   LineDivider,
   OText3,
-  OText5,
-  Pool, Progress,
+  Pool,
   renderTime
 } from '../../components/common/Layout';
 import icon_return from '../../assets/images/icon-return.svg'
@@ -26,7 +24,7 @@ import {
 import {useLeftTime} from '../../hooks/useLeftTime';
 import {fromWei, getProgress, weiDiv, weiToNum, weiToNumber} from '../../utils/numberTransform';
 import {Button} from "../../components/common/Button";
-import {BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from '../../web3/address';
+import {AUCTION, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from '../../web3/address';
 import {getContract, useActivePlatform, useActiveWeb3React} from '../../web3';
 import LotteryERC1155ABI from "../../web3/abi/bounceERC1155.json";
 import BounceLotteryNFTPro from "../../web3/abi/BounceLotteryNFTPro.json";
@@ -37,9 +35,11 @@ import {BIDDER_CLAIMED_MESSAGE, CREATOR_CLAIMED_MESSAGE} from "../../const";
 import {PoolCover} from "../../components/common/DetailCover";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import {approveStatus} from "../CertifiedSales/ApplyModal";
-import {formatAmount} from "../../utils/format";
 import {useInKYC} from "../CertifiedSales/hooks";
 import {useTokenBalance} from "../../hooks/useBalance";
+import Web3 from 'web3'
+
+const {toWei} = Web3.utils
 
 
 BigNumber.config({EXPONENTIAL_AT: [-30, 30]})
@@ -49,6 +49,8 @@ export const LotteryNFTDetail = ({token2}) => {
   const {id} = useParams();
 
   const {account, library, chainId} = useActiveWeb3React();
+  const AuctionAmount = useTokenBalance(AUCTION(chainId))
+  const {balance} = useTokenBalance()
 
   const {
     name, address, isLive, time, price, winner, inWhitelist,
@@ -61,11 +63,9 @@ export const LotteryNFTDetail = ({token2}) => {
   const [display, setDisplay] = useState('');
   const {setTime, leftTime} = useLeftTime();
   const isXSDown = useIsXSDown();
-  const {Psymbol} = useActivePlatform()
   const KYCed = useInKYC()
-  const {balance} = useTokenBalance(toAddress)
+  const ToBalance = useTokenBalance(toAddress)
   console.log('balance', balance)
-  const {btnContent, setBtnContent} = useLeftTime();
 
   let timer = null;
   useEffect(() => {
@@ -115,12 +115,12 @@ export const LotteryNFTDetail = ({token2}) => {
     }
   }, [setTime, time, isMine, isJoined, isWinner, isLive]);
 
-  useEffect(()=>{
+  useEffect(() => {
 
   }, [])
 
   const renderButtonText = () => {
-    console.log('status---->',status)
+    console.log('status---->', status)
 
     let text = '';
     if (isLive) {
@@ -129,20 +129,22 @@ export const LotteryNFTDetail = ({token2}) => {
       } else {
         if (isJoined) {
           text = 'You are in the draw...';
-        }else if(pool && curPlayer === pool.maxPlayer){
+        }else if(onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)){
+          text = 'You are not qualified as bot holder'
+        }else if (pool && curPlayer === pool.maxPlayer) {
           text = 'Max participants reached'
-        }else if (!KYCed){
+        } else if (!KYCed) {
           text = 'KYC is missing'
         } else if (!inWhitelist) {
           text = 'You are not in the whitelist';
-        }else if( price && balance && isGreaterThan(price, balance)){
+        } else if (price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) {
           text = `You don’t have enough ${toSymbol}`
-        }else {
+        } else {
           text = 'GO';
         }
       }
     } else {
-      if(isJoined){
+      if (isJoined) {
         if (isWinner && !claimed) {
           text = 'Claim your tokens';
         } else if (!isWinner && !claimed) {
@@ -150,8 +152,8 @@ export const LotteryNFTDetail = ({token2}) => {
         } else {
           text = 'You already claimed your tokens'
         }
-      }else {
-          text = `You didn't join`
+      } else {
+        text = `You didn't join`
       }
 
     }
@@ -203,7 +205,7 @@ export const LotteryNFTDetail = ({token2}) => {
             BOUNCE_PRO_LOTTERY_NFT_PRO(chainId),
             price
         )
-            .send({ from: account });
+            .send({from: account});
       }
       setBidStatus(confirmStatus);
       contract.methods.bet(parseInt(id))
@@ -359,7 +361,14 @@ export const LotteryNFTDetail = ({token2}) => {
                 <div>{curPlayer} / {pool && pool.maxPlayer}</div>
               </Pool.Meta>
 
-              <Button disabled={ (status === 'Closed' && !isJoined) ||(status === 'Closed' && isJoined && !claimed)||isJoined || !KYCed || (price && balance && isGreaterThan(price, balance)) || (pool && curPlayer === pool.maxPlayer) || (!inWhitelist && pool.enableWhiteList)} black style={{width: '100%', marginTop: '30px'}}
+              <Button disabled={(status === 'Closed' && !isJoined) ||
+              (status === 'Closed' && isJoined && !claimed) ||
+              isJoined ||
+              !KYCed ||
+              (price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) ||
+              (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
+              (pool && curPlayer === pool.maxPlayer) ||
+              (!inWhitelist && pool.enableWhiteList)} black style={{width: '100%', marginTop: '30px'}}
                       onClick={handleClick}>
                 {renderButtonText()}
               </Button>
