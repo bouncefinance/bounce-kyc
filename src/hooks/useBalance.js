@@ -4,6 +4,7 @@ import bounceERC20 from "../web3/abi/bounceERC20.json";
 import {BOT} from "../web3/address";
 
 export const useTokenBalance = (address) => {
+  console.log('address------>1',address)
   const { active, account, library, chainId } = useActiveWeb3React();
   const [balance, setBalance] = useState(null)
 

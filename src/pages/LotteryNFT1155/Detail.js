@@ -39,6 +39,7 @@ import {useInKYC} from "../CertifiedSales/hooks";
 import {useTokenBalance} from "../../hooks/useBalance";
 import Web3 from 'web3'
 import styled from 'styled-components'
+import {useEthBalance} from "../../web3/common";
 const {toWei} = Web3.utils
 
 const Extra = styled.div`
@@ -68,7 +69,7 @@ export const LotteryNFTDetail = ({token2}) => {
   const {setTime, leftTime} = useLeftTime();
   const isXSDown = useIsXSDown();
   const KYCed = useInKYC()
-  const ToBalance = useTokenBalance(toAddress)
+  const ToBalance = useEthBalance(toAddress)
   console.log('balance', balance)
 
   let timer = null;
@@ -133,11 +134,11 @@ export const LotteryNFTDetail = ({token2}) => {
       } else {
         if (isJoined) {
           text = 'You are in the draw...';
+        }else if (pool && curPlayer === pool.maxPlayer) {
+          text = 'Max participants reached'
         } else if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) {
           text = 'You are not qualified as bot holder'
-        } else if (pool && curPlayer === pool.maxPlayer) {
-          text = 'Max participants reached'
-        } else if (pool.enableKycList && !KYCed) {
+        }  else if (pool.enableKycList && !KYCed) {
           text = 'KYC is missing'
         } else if (pool.enableWhiteList && !inWhitelist) {
           text = 'You are not in the whitelist';
@@ -321,8 +322,7 @@ export const LotteryNFTDetail = ({token2}) => {
           }}>{address}
           </Address>
 
-          <Pool.Mode>Token ID: {tokenId}</Pool.Mode>
-
+          {tokenId && <Pool.Mode>Token ID: {tokenId}</Pool.Mode>}
 
           <Pool.Content style={{marginTop: 40}}>
 
@@ -374,13 +374,13 @@ export const LotteryNFTDetail = ({token2}) => {
               </Pool.Meta>
 
               <Button disabled={(status === 'Closed' && !isJoined) ||
-              (status === 'Closed' && isJoined && !claimed) ||
-              isJoined ||
-              (pool.enableKycList && !KYCed) ||
-              (price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) ||
-              (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
-              (pool && curPlayer === pool.maxPlayer) ||
-              (!inWhitelist && pool.enableWhiteList)} black style={{width: '100%', marginTop: '30px'}}
+              (status === 'Closed' && isJoined && claimed) ||
+              (status === 'Live' && isJoined) ||
+              (status === 'Live' && pool.enableKycList && !KYCed) ||
+              (status === 'Live' && price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) ||
+              (status === 'Live' && onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
+              (status === 'Live' && pool && curPlayer === pool.maxPlayer) ||
+              (status === 'Live' && !inWhitelist && pool.enableWhiteList)} black style={{width: '100%', marginTop: '30px'}}
                       onClick={handleClick}>
                 {renderButtonText()}
               </Button>
