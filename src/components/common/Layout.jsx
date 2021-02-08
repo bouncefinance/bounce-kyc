@@ -188,7 +188,7 @@ Pool.Meta = styled.div`
     height: fit-content;
   div:nth-child(1){
      color: ${({theme}) => (theme.grey4)};
-
+      font-weight: bold;
   }
   div:nth-child(2){
      color: ${({theme}) => (theme.black)};

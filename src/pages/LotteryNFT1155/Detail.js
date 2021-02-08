@@ -129,14 +129,13 @@ export const LotteryNFTDetail = ({token2}) => {
       } else {
         if (isJoined) {
           text = 'You are in the draw...';
+        }else if(pool && curPlayer === pool.maxPlayer){
+          text = 'Max participants reached'
         }else if (!KYCed){
           text = 'KYC is missing'
         } else if (!inWhitelist) {
           text = 'You are not in the whitelist';
-        }else if(pool && curPlayer === pool.maxPlayer){
-          text = 'Max participants reached'
         }else if( price && balance && isGreaterThan(price, balance)){
-          console.log('not en')
           text = `You don’t have enough ${toSymbol}`
         }else {
           text = 'GO';
@@ -301,7 +300,9 @@ export const LotteryNFTDetail = ({token2}) => {
         }} src={icon_return}/>
         <LayoutFrame width={'1072px'} style={{padding: '40px 0', margin: 'auto', marginTop: 32}}>
           <Pool.Mode>Lotteries</Pool.Mode>
-          <Pool.Header><span>{name}</span></Pool.Header>
+          <Pool.Header>
+            <span>{name}</span>
+          </Pool.Header>
           <Address style={{
             wordBreak: isXSDown ? 'break-all' : 'normal',
             marginBottom: 16,
@@ -330,6 +331,17 @@ export const LotteryNFTDetail = ({token2}) => {
               <OText3 style={{textAlign: 'center', margin: '0 auto'}}>{display}</OText3>
               {renderTime(leftTime)}
               <LineDivider style={{width: '100%'}}/>
+              <Pool.Meta style={{width: '100%', marginTop: '16px'}}>
+                <div>Participant :</div>
+                <div>{`${(onlyBOT && !pool.enableWhiteList) ? 'BOT holder' : ''}
+                    ${(!onlyBOT && pool.enableWhiteList) ? 'Whitelisting' : ''}
+                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder , Whitelisting' : ''}
+                    ${(!onlyBOT && !pool.enableWhiteList) ? 'Public' : ''}`}</div>
+              </Pool.Meta>
+              <Pool.Meta style={{width: '100%', marginTop: '16px'}}>
+                <div>Requirement :</div>
+                <div>{(pool.enableKycList) ? 'KYC' : 'No requirement'}</div>
+              </Pool.Meta>
               <Pool.Meta style={{width: '100%', marginTop: '16px'}}>
                 <div>Ticket Size :</div>
                 <div>1 Ticket = 1NFT</div>

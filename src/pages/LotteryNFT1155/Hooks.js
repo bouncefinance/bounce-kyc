@@ -37,6 +37,7 @@ export const usePoolDetail = (id = 0) => {
   const [toAddress, setToAddress] = useState()
   const [tokenId, setTokenId] = useState()
   const [cover, setCover] = useState()
+  const [onlyBOT, setOnlyBOT] = useState()
 
 
 
@@ -75,6 +76,10 @@ export const usePoolDetail = (id = 0) => {
       getProjectInfo(poolRes.projectId).then(info =>{
         console.log('info',info)
         setName(info.proname)
+      })
+
+      lotteryNFTContract.methods.onlyBotHolderP(id).call().then(res =>{
+        setOnlyBOT(res)
       })
 
       setAddress(poolRes.token0);
@@ -230,6 +235,6 @@ export const usePoolDetail = (id = 0) => {
     name, address, isLive, time, price, winner, participate, playStatus, claimed, inWhitelist,
     isMine, isWinner, isJoined, pool, curPlayer, symbol,
     toDecimals, toSymbol, status, setStatus,
-     toAddress, tokenId, cover
+     toAddress, tokenId, cover, onlyBOT
   }
 }

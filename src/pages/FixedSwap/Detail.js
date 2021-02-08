@@ -79,7 +79,7 @@ export const FSPoolDetail = () => {
   const { ethBalance } = useEthBalance(toAddress)
 
   useEffect(() => {
-    if (onlyBOT && isGreaterThan(toWei('0.1'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
+    if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
       errors.amount = 'Sorry! You are not qualified as bot holder.'
       setErrors(errors)
     }
