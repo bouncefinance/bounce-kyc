@@ -376,7 +376,7 @@ export const LotteryNFTDetail = ({token2}) => {
               <Button disabled={(status === 'Closed' && !isJoined) ||
               (status === 'Closed' && isJoined && !claimed) ||
               isJoined ||
-              !KYCed ||
+              (pool.pool.enableKycList && !KYCed) ||
               (price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) ||
               (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
               (pool && curPlayer === pool.maxPlayer) ||
