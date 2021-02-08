@@ -93,13 +93,21 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
                 <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
                   value={pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width={isXSDown ? '100%' : '180px'}
                   onClick={() => {
-                    history.push(`/fixed-swap/${pool.id}`)
+                    if(pool.type === 'FIXED_SWAP'){
+                      history.push(`/fixed-swap/${pool.id}`)
+                    }else if(pool.type === 'LOTTERY_NFT'){
+                      history.push(`/lottery-nft/${pool.id}`)
+                    }
                   }} />
               )}
 
               {pool.status === 'Failed' && (
                 <Button type='black' value='Show Result' width={isXSDown ? '100%' : '180px'} onClick={() => {
-                  history.push(`/fixed-swap/${pool.id}`)
+                  if(pool.type === 'FIXED_SWAP'){
+                    history.push(`/fixed-swap/${pool.id}`)
+                  }else if(pool.type === 'LOTTERY_NFT'){
+                    history.push(`/lottery-nft/${pool.id}`)
+                  }
                 }} />
               )}
             </div>

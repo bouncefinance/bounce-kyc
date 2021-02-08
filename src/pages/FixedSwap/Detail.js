@@ -326,8 +326,8 @@ export const FSPoolDetail = () => {
 
             <Pool.Content width={isXSDown ? '100%' : '456px'}
               style={{ marginTop: 0, flexDirection: 'column' }}>
-              <Pool.Status style={{ width: 'fit-content' }} className={classNames('status', status)}><i
-                className={status} />{status}</Pool.Status>
+              <Pool.Status style={{ width: 'fit-content' }} className={classNames('status', status)}>
+                <i className={status} />{status}</Pool.Status>
               <ITextR style={{
                 marginTop: 8,
                 textAlign: 'left'

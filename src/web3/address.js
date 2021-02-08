@@ -37,6 +37,19 @@ export function BOUNCE_PRO(chainId) {
   }
 }
 
+export function BOUNCE_PRO_LOTTERY_NFT_PRO(chainId) {
+  switch (chainId) {
+    case 1:
+      return '0xa025903568870Bea80C23D002245faF624abBc00'
+    case 4:
+      return '0xa025903568870Bea80C23D002245faF624abBc00'
+    case 56:
+      return '0xa025903568870Bea80C23D002245faF624abBc00'
+    default:
+      return '0xa025903568870Bea80C23D002245faF624abBc00'
+  }
+}
+
 export function BOUNCE_PRO_VOTING(chainId) {
   switch (chainId) {
     case 1:
