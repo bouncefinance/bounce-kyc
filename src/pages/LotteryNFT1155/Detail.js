@@ -128,7 +128,7 @@ export const LotteryNFTDetail = ({token2}) => {
     console.log('status---->', status)
 
     let text = '';
-    if (isLive) {
+    if (status === 'Live') {
       if (isMine) {
         text = ''
       } else {
@@ -148,7 +148,7 @@ export const LotteryNFTDetail = ({token2}) => {
           text = 'GO';
         }
       }
-    } else {
+    } else if (status === 'Closed') {
       if (isJoined) {
         if (isWinner && !claimed) {
           text = 'Claim your tokens';
@@ -157,8 +157,10 @@ export const LotteryNFTDetail = ({token2}) => {
         } else {
           text = 'You already claimed your tokens'
         }
-      } else {
+      } else if(status) {
         text = `You didn't join`
+      }else {
+        text = `Loading`
       }
 
     }
@@ -358,7 +360,7 @@ export const LotteryNFTDetail = ({token2}) => {
               </Pool.Meta>
               <Pool.Meta style={{width: '100%', marginTop: '16px'}}>
                 <div>Ticket Size :</div>
-                <div>1 Ticket = 1NFT</div>
+                <div>1 Ticket = 1 NFT</div>
               </Pool.Meta>
               <Pool.Meta style={{width: '100%', marginTop: '16px'}}>
                 <div>Ticket Price :</div>
