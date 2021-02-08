@@ -38,8 +38,12 @@ import {approveStatus} from "../CertifiedSales/ApplyModal";
 import {useInKYC} from "../CertifiedSales/hooks";
 import {useTokenBalance} from "../../hooks/useBalance";
 import Web3 from 'web3'
-
+import styled from 'styled-components'
 const {toWei} = Web3.utils
+
+const Extra = styled.div`
+  
+`
 
 
 BigNumber.config({EXPONENTIAL_AT: [-30, 30]})
@@ -129,13 +133,13 @@ export const LotteryNFTDetail = ({token2}) => {
       } else {
         if (isJoined) {
           text = 'You are in the draw...';
-        }else if(onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)){
+        } else if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) {
           text = 'You are not qualified as bot holder'
-        }else if (pool && curPlayer === pool.maxPlayer) {
+        } else if (pool && curPlayer === pool.maxPlayer) {
           text = 'Max participants reached'
-        } else if (!KYCed) {
+        } else if (pool.enableKycList && !KYCed) {
           text = 'KYC is missing'
-        } else if (!inWhitelist) {
+        } else if (pool.enableWhiteList && !inWhitelist) {
           text = 'You are not in the whitelist';
         } else if (price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) {
           text = `You don’t have enough ${toSymbol}`
@@ -300,6 +304,11 @@ export const LotteryNFTDetail = ({token2}) => {
         <Pool.Return onClick={() => {
           history.goBack()
         }} src={icon_return}/>
+
+        <Extra>
+
+        </Extra>
+
         <LayoutFrame width={'1072px'} style={{padding: '40px 0', margin: 'auto', marginTop: 32}}>
           <Pool.Mode>Lotteries</Pool.Mode>
           <Pool.Header>
@@ -309,7 +318,11 @@ export const LotteryNFTDetail = ({token2}) => {
             wordBreak: isXSDown ? 'break-all' : 'normal',
             marginBottom: 16,
             display: 'flex'
-          }}>{address}</Address>
+          }}>{address}
+          </Address>
+
+          <Pool.Mode>Token ID: {tokenId}</Pool.Mode>
+
 
           <Pool.Content style={{marginTop: 40}}>
 
@@ -328,7 +341,6 @@ export const LotteryNFTDetail = ({token2}) => {
               }} className={classNames('status', status)}>
                 • {status}
               </Pool.Status>}
-
 
               <OText3 style={{textAlign: 'center', margin: '0 auto'}}>{display}</OText3>
               {renderTime(leftTime)}

@@ -10,7 +10,6 @@ import {getProjectInfo} from "../CertifiedSales/hooks";
 import BigNumber from "bignumber.js";
 import {useTokenList} from "../../web3/common";
 
-
 export const usePoolDetail = (id = 0) => {
   const { active, account, library, chainId } = useActiveWeb3React();
   //const { state, dispatch } = useContext(myContext);
@@ -74,7 +73,7 @@ export const usePoolDetail = (id = 0) => {
 
 
       getProjectInfo(poolRes.projectId).then(info =>{
-        console.log('info',info)
+        console.log('pool info---->',info)
         setName(info.proname)
       })
 
