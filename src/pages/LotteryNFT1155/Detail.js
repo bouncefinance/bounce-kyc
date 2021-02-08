@@ -166,7 +166,7 @@ export const LotteryNFTDetail = ({token2}) => {
   }
 
   const handleClaim = async () => {
-    const contract = getContract(library, LotteryERC1155ABI.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(chainId));
+    const contract = getContract(library, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(chainId));
     let method;
     if (playStatus === '1') {
       method = 'creatorClaim';
