@@ -237,7 +237,7 @@ export const usePoolList = () => {
 
     try {
       lotteryNFTContract.methods.getPoolCount().call().then(res => {
-        console.log('getPoolCount', res)
+        console.log('get lottery PoolCount', res)
         for (let i = 0; i < res; i++) {
           lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
@@ -292,7 +292,7 @@ export const usePoolList = () => {
         return item.status === 'Active' && item.id !== 0
       }))
       setUpcomingPools(list.filter(item => {
-        return item.status === 'Upcoming' && item.id !== 0
+        return item.status === 'Upcoming' && item.id
       }))
       setPassPools(list.filter(item => {
         return item.status === 'Failed' && item.id !== 0
