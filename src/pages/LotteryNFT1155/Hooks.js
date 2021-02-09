@@ -189,8 +189,9 @@ export const usePoolDetail = (id = 0) => {
           (err, events) => { console.log(events) }
       )
       console.log('uri',uris)
-      const tokenURl = uris.filter(item => { return  item.returnValues.id == tokenId}).map(item => {return item.returnValues.value})[0]
-      console.log('tokenURl', tokenURl)
+      let tokenURl = uris.filter(item => { return  item.returnValues.id == tokenId}).map(item => {return item.returnValues.value})
+      tokenURl = tokenURl[tokenURl.length-1]
+      console.log('tokenURl----->', tokenURl)
       const res = await fetch(tokenURl)
       const result = await res.json();
       console.log('token json', result)
