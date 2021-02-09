@@ -7,12 +7,12 @@ import { HANDLE_SHOW_CONNECT_MODAL } from "../../const";
 import BounceLotteryNFTPro from "../../web3/abi/BounceLotteryNFTPro.json";
 import bounceERC1155 from "../../web3/abi/bounceERC1155.json";
 import {getProjectInfo} from "../CertifiedSales/hooks";
-import BigNumber from "bignumber.js";
 import {useTokenList} from "../../web3/common";
+import {myContext} from "../../redux";
 
 export const usePoolDetail = (id = 0) => {
   const { active, account, library, chainId } = useActiveWeb3React();
-  //const { state, dispatch } = useContext(myContext);
+  const { state, dispatch } = useContext(myContext);
   const tokenOptions = useTokenList()
 
   const [name, setName] = useState(null)
@@ -181,12 +181,12 @@ export const usePoolDetail = (id = 0) => {
       const contract = getContract(library, bounceERC1155.abi, address)
       console.log('contract',contract)
       const  uris = await contract.getPastEvents(
-          'URI', // 过滤事件参数，这里获取全部事件
+          'URI',
           {
-            fromBlock: 0, // 起始块
-            toBlock: 'latest' // 终止块
+            fromBlock: 0,
+            toBlock: 'latest'
           },
-          (err, events) => { console.log(events) } // 回调函数
+          (err, events) => { console.log(events) }
       )
       console.log('uri',uris)
       const tokenURl = uris.filter(item => { return  item.returnValues.id == tokenId}).map(item => {return item.returnValues.value})[0]
@@ -209,9 +209,12 @@ export const usePoolDetail = (id = 0) => {
     if (active) {
       getLotteryNFTDetail()
     } else {
-      //dispatch({ type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: true });
+      dispatch({
+        type: 'CONNECT_WALLET',
+        value: true
+      })
     }
-  }, [active])
+  }, [active, account])
 
   useEffect(() => {
     if (active && account) {
