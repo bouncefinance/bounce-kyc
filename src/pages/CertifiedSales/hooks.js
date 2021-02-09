@@ -182,7 +182,7 @@ export const usePoolList = () => {
   const [list, setList] = useState()
 
   const [activePool, setActivePool] = useState([])
-  const [upcomingPools, setUpcomingPools] = useState(upItem)
+  const [upcomingPools, setUpcomingPools] = useState()
   const [passPools, setPassPools] = useState([])
   const { active, library, chainId, account } = useActiveWeb3React();
 
@@ -291,9 +291,9 @@ export const usePoolList = () => {
       setActivePool(list.filter(item => {
         return item.status === 'Active' && item.id !== 0
       }))
-      // setUpcomingPools(list.filter(item => {
-      //   return item.status === 'Upcoming' && item.id !== 0
-      // }), ...upItem)
+      setUpcomingPools(list.filter(item => {
+        return item.status === 'Upcoming' && item.id !== 0
+      }))
       setPassPools(list.filter(item => {
         return item.status === 'Failed' && item.id !== 0
       }))
