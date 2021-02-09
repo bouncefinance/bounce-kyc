@@ -289,13 +289,13 @@ export const usePoolList = () => {
     console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
-        return item.status === 'Active'
+        return item.status === 'Active' && item.id !== 0
       }))
       setUpcomingPools(list.filter(item => {
-        return item.status === 'Upcoming'
+        return item.status === 'Upcoming' && item.id !== 0
       }))
       setPassPools(list.filter(item => {
-        return item.status === 'Failed'
+        return item.status === 'Failed' && item.id !== 0
       }))
     }
   }, [list])
