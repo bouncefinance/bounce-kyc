@@ -28,7 +28,7 @@ import {AUCTION, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from '../../web3/addres
 import {getContract, useActivePlatform, useActiveWeb3React} from '../../web3';
 import LotteryERC1155ABI from "../../web3/abi/bounceERC1155.json";
 import BounceLotteryNFTPro from "../../web3/abi/BounceLotteryNFTPro.json";
-import {useIsXSDown} from '../../utils/themeHooks'
+import {useIsSMDown, useIsXSDown} from '../../utils/themeHooks'
 import {Message} from "../../components/common/message";
 import {isEqualTo, isGreaterThan} from "../../utils/common";
 import {BIDDER_CLAIMED_MESSAGE, CREATOR_CLAIMED_MESSAGE} from "../../const";
@@ -68,6 +68,8 @@ export const LotteryNFTDetail = ({token2}) => {
   const [display, setDisplay] = useState('');
   const {setTime, leftTime} = useLeftTime();
   const isXSDown = useIsXSDown();
+  const isSMDown = useIsSMDown();
+
   const KYCed = useInKYC()
   const ToBalance = useEthBalance(toAddress)
   console.log('balance', balance)
@@ -326,7 +328,7 @@ export const LotteryNFTDetail = ({token2}) => {
 
           {tokenId && <Pool.Mode>Token ID: {tokenId}</Pool.Mode>}
 
-          <Pool.Content style={{marginTop: 40}}>
+          <Pool.Content style={{marginTop: 40, flexDirection: isSMDown? 'column': 'row'}}>
 
             <Pool.Content width={isXSDown ? '100%' : '432px'} style={{marginTop: 0, height: 'revert'}}>
               <PoolCover cover={cover} link={cover}/>
@@ -334,7 +336,7 @@ export const LotteryNFTDetail = ({token2}) => {
             <Pool.Content width={isXSDown ? '100%' : '432px'}
                           style={{
                             backgroundColor: 'rgba(0, 0, 0, 0.04)', flexDirection: 'column',
-                            padding: isXSDown ? '48px 20px' : '48px 56px', position: 'relative', margin: '0 auto',
+                            padding: isXSDown ? '48px 20px' : '48px 56px', position: 'relative',
                             alignItems: 'center', justifyContent: 'flex-start'
                           }}
             >
