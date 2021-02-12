@@ -98,6 +98,8 @@ export const useVoteList = () => {
 
 export const usePoolList = () => {
   const upItem = [{
+    notReady: true,
+    time: 'February 25th 2021',
     accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
     additionalinfo: "https://defiwizard.xyz",
     allocationperwallet: "40 USDT",
@@ -105,7 +107,7 @@ export const usePoolList = () => {
     architecture: "",
     attachmenturl: "",
     auctiontime: "3600",
-    auctiontype: "Fixed Swap",
+    auctiontype: "Fixed rate swap",
     circulatingsupply: "300000",
     closeAt: "1613230468",
     code: 1,
@@ -140,6 +142,7 @@ export const usePoolList = () => {
     "botHolder": true,
     "inKYC": true,
     "joined": false,
+    "enableKycList": true,
     status: 'Upcoming',
     "proInfo": {
       "id": 44,
@@ -164,13 +167,13 @@ export const usePoolList = () => {
       "tokencontractaddress": "0x7dee45dff03ec7137979586ca20a2f4917bac9fa",
       "tokendistribution": "https://defiwizard.xyz/token",
       "tokenlookupschedule": "Seed: 25% initial, 25% 4/6/8 weeks after\nPrivate: 33% initial, 33% 3/6 weeks after",
-      "auctiontype": "ERC20 Lottery",
+      "auctiontype": "Fixed rate swap",
       "amountoftoken": "20000",
       "pricepertoken": "2.5",
       "allocationperwallet": "40 USDT",
       "auctiontime": "3600",
       "teamwallet": "0x843f54fBf268Dabe93F16E366433E16204944b1a",
-      "ifkyc": 0,
+      "ifkyc": 1,
       "ifwhitelist": 1,
       "contactemail": "infor@defiwizard.xyz",
       "additionalinfo": "https://defiwizard.xyz/",
