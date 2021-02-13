@@ -59,7 +59,7 @@ export const useVoteList = () => {
               const closed = closeAt - new Date()
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
-            // console.log('pool', pool)
+             console.log('pool', pool)
             const proInfo = await getProjectInfo(pool.projectId)
             pool.botHolder = true
             pool.proInfo = proInfo
@@ -98,29 +98,31 @@ export const useVoteList = () => {
 
 export const usePoolList = () => {
   const upItem = [{
-    accountaddress: "0x14fe1c6adb626a8235b079d4ff66c6b0a3a2e68a",
-    additionalinfo: "",
-    allocationperwallet: "No limits",
-    amountoftoken: "400",
-    architecture: "Merkle Tree based sidechain",
+    notReady: true,
+    time: 'February 25th 2021',
+    accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
+    additionalinfo: "https://defiwizard.xyz",
+    allocationperwallet: "40 USDT",
+    amountoftoken: "20000",
+    architecture: "",
     attachmenturl: "",
     auctiontime: "3600",
-    auctiontype: "NFT Lottery",
-    circulatingsupply: "400",
+    auctiontype: "Fixed rate swap",
+    circulatingsupply: "300000",
     closeAt: "1613230468",
     code: 1,
-    contactemail: "sam@umb.network",
+    contactemail: "infor@defiwizard.xyz",
     created_at: "2021-02-06T15:33:44Z",
-    creator: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
+    creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
     fackbook: "",
-    githublink: "https://github.com/umbrella-network",
-    id: 39,
+    githublink: "https://github.com/DefiWizard",
+    id: 44,
     enableWhiteList: 1,
-    medium: "",
-    pricepertoken: "250",
-    projectId: "39",
-    prologourl: "622af34d40944eeeb8f1e2e3377842d2.png",
-    proname: "Umbrella Network",
+    medium: "https://defi-wizard.medium.com",
+    pricepertoken: "2.5",
+    projectId: "44",
+    prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
+    proname: "DeFi Wizard",
     prosummary: "Community Owned, Layer 2 Oracle",
     protheme: "Layer 2 Oracle, defi",
     prowebsite: "https://www.umb.network/",
@@ -140,43 +142,44 @@ export const usePoolList = () => {
     "botHolder": true,
     "inKYC": true,
     "joined": false,
+    "enableKycList": true,
     status: 'Upcoming',
     "proInfo": {
-      'accountaddress': "0x14fe1c6adb626a8235b079d4ff66c6b0a3a2e68a",
-      "allocationperwallet": "No limits",
-      "amountoftoken": "400",
-      'architecture': "Merkle Tree based sidechain",
-      'attachmenturl': "",
-      'auctiontime': "3600",
-      'auctiontype': "NFT Lottery",
-      'circulatingsupply': "400",
-      'code': 1,
-      'contactemail': "sam@umb.network",
-      'created_at': "2021-02-06T15:33:44Z",
-      'fackbook': "",
-      'githublink': "https://github.com/umbrella-network",
-      'id': 39,
-      'ifkyc': 1,
-      'ifwhitelist': 1,
-      'medium': "",
-      'pricepertoken': "250",
-      'prologourl': "622af34d40944eeeb8f1e2e3377842d2.png",
-      'proname': "Umbrella Network",
-      'prosummary': "Community Owned, Layer 2 Oracle",
-      'protheme': "Layer 2 Oracle, defi",
-      'prowebsite': "https://www.umb.network/",
-      'teambio': "The Umbrella Network Team has worked together for the past 10 years building high performance applications primarily in the digital advertising market. Most recently, they build a transparency solution for the digital advertising industry using the Ethereum blockchain.",
-      'teamwallet': "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
-      'techhighlight': "Reduce cost of on chain data exponentially",
-      'telegram': "https://t.me/umbrellanet",
-      'tokencontractaddress': "0xAcE942e89a84c50294832eD7B24CF2db42E95127",
-      'tokendistribution': "unlock promptly after sale",
-      'tokenlookupschedule': "Unlock promptly",
-      'tokenticketer': "LCF",
-      'totalsupply': "400",
-      'twitter': "https://twitter.com/UmbNetwork",
-      'updated_at': "2021-02-06T15:33:44Z",
-      'whitepaperlink': "https://www.umb.network/wp-content/uploads/2021/02/umb_litepaper_design_v3.1.pdf"
+      "id": 44,
+      "accountaddress": "0x843f54fbf268dabe93f16e366433e16204944b1a",
+      "proname": "DeFi Wizard",
+      "prowebsite": "https://defiwizard.xyz/",
+      "protheme": "DeFi",
+      "whitepaperlink": "https://defi-wizard.medium.com/introducing-defi-wizard-55979d7b6506",
+      "githublink": "https://github.com/DefiWizard/",
+      "twitter": "https://twitter.com/defi_wizard",
+      "medium": "https://defi-wizard.medium.com/",
+      "fackbook": "",
+      "telegram": "https://t.me/defi_wizard",
+      "prosummary": "Multi-chain DeFi Legosmade simple. One-click wizard to Create token, staking, yield farming legos.",
+      "techhighlight": "Multi-chain DeFi Legosmade simple. One-click wizard to Create audited ERC20 / BEP20 / EDST token. staking, yield farming contract for LP tokens.",
+      "architecture": "",
+      "attachmenturl": "",
+      "teambio": "Team has vast experience in development with more than a decade experience with programming full-stack and started working on smart-contracts in 2017 bull-market to create lots of crowd sale and vesting contracts for ICOs.",
+      "totalsupply": "1000000",
+      "circulatingsupply": "300000",
+      "tokenticketer": "DWZ",
+      "tokencontractaddress": "0x7dee45dff03ec7137979586ca20a2f4917bac9fa",
+      "tokendistribution": "https://defiwizard.xyz/token",
+      "tokenlookupschedule": "Seed: 25% initial, 25% 4/6/8 weeks after\nPrivate: 33% initial, 33% 3/6 weeks after",
+      "auctiontype": "Fixed rate swap",
+      "amountoftoken": "20000",
+      "pricepertoken": "2.5",
+      "allocationperwallet": "40 USDT",
+      "auctiontime": "3600",
+      "teamwallet": "0x843f54fBf268Dabe93F16E366433E16204944b1a",
+      "ifkyc": 1,
+      "ifwhitelist": 1,
+      "contactemail": "infor@defiwizard.xyz",
+      "additionalinfo": "https://defiwizard.xyz/",
+      "prologourl": "0be84b556b7a5662ea32bf0357a6dec0.png",
+      "created_at": "2021-02-07T03:25:59Z",
+      "updated_at": "2021-02-07T03:25:59Z"
     }
   }]
   const [list, setList] = useState()
@@ -191,7 +194,7 @@ export const usePoolList = () => {
     const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
     const lotteryNFTContract = getContract(library, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(chainId));
 
-    let pools = []
+    let pools = upItem
     try {
       bounceContract.methods.getPoolCount().call().then(res => {
         console.log('getPoolCount', res)

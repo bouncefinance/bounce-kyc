@@ -70,11 +70,16 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
                 desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`} />
             )}
 
-            {pool.status === 'Upcoming' && (
+            {pool.status === 'Upcoming' && !pool.notReady && (
               <Passage
                 title={'Auction will start in'}
                 desc={`${left.days}d : ${left.hours}h : ${left.minutes}m : ${left.seconds}s`} />
-                // desc={`February 9th 2021`} />
+            )}
+
+            {pool.status === 'Upcoming' && pool.notReady && (
+                <Passage
+                    title={'Auction will start in'}
+                    desc={`${pool.time}`} />
             )}
 
             {/* {pool.status === 'Upcoming' && (
