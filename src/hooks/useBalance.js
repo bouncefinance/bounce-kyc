@@ -4,12 +4,11 @@ import bounceERC20 from "../web3/abi/bounceERC20.json";
 import {BOT} from "../web3/address";
 
 export const useTokenBalance = (address) => {
+  console.log('address------>1',address)
   const { active, account, library, chainId } = useActiveWeb3React();
   const [balance, setBalance] = useState(null)
 
-
   useEffect(() => {
-
     async function getBalance() {
       try {
         const tokenContract = getContract(library, bounceERC20.abi, address ? address : BOT(chainId))
@@ -27,7 +26,7 @@ export const useTokenBalance = (address) => {
       setBalance(null)
     }
 
-  }, [active, account, chainId])
+  }, [active, account, chainId, address])
 
 
   return { balance }

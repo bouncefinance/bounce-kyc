@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { getContract, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
-import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
+import {BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from "../../web3/address";
 import { isGreaterThan } from "../../utils/common";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { weiToNum } from "../../utils/numberTransform";
+import BounceLotteryNFTPro from "../../web3/abi/BounceLotteryNFTPro.json";
 
 
 export const getProjectInfo = async (proId) => {
@@ -123,7 +124,6 @@ export const usePoolList = () => {
     prosummary: "Community Owned, Layer 2 Oracle",
     protheme: "Layer 2 Oracle, defi",
     prowebsite: "https://www.umb.network/",
-    status: "Success",
     teambio: "The Umbrella Network Team has worked together for the past 10 years building high performance applications primarily in the digital advertising market. Most recently, they build a transparency solution for the digital advertising industry using the Ethereum blockchain.",
     teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
     techhighlight: "Reduce cost of on chain data exponentially",
@@ -182,21 +182,24 @@ export const usePoolList = () => {
   const [list, setList] = useState()
 
   const [activePool, setActivePool] = useState([])
-  const [upcomingPools, setUpcomingPools] = useState(upItem)
+  const [upcomingPools, setUpcomingPools] = useState()
   const [passPools, setPassPools] = useState([])
   const { active, library, chainId, account } = useActiveWeb3React();
 
 
   const fetchList = () => {
+    const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+    const lotteryNFTContract = getContract(library, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(chainId));
+
     let pools = []
     try {
-      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
       bounceContract.methods.getPoolCount().call().then(res => {
         console.log('getPoolCount', res)
-        for (let i = 0; i < res; i++) {
+        for (let i = 1; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
             const pool = poolRes
+            pool.type = 'FIXED_SWAP'
             pool.id = i
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
@@ -226,7 +229,50 @@ export const usePoolList = () => {
             setList(pools)
           })
         }
-        setList(pools)
+        //setList(pools)
+      })
+    } catch (e) {
+      console.log('fetchList error', e)
+    }
+
+    try {
+      lotteryNFTContract.methods.getPoolCount().call().then(res => {
+        console.log('get lottery PoolCount', res)
+        for (let i = 1; i < res; i++) {
+          lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
+            console.log('pool--->', poolRes)
+            const pool = poolRes
+            pool.type = 'LOTTERY_NFT'
+            pool.id = i
+            const isOpen = new Date() - poolRes.openAt * 1000 > 0
+            if (!isOpen) {
+              pool.status = 'Upcoming'
+            } else {
+              const closeAt = new Date(poolRes.closeAt * 1000)
+              const closed = closeAt - new Date()
+              pool.status = closed > 0 ? 'Active' : 'Failed'
+            }
+
+            const curPlayer = await lotteryNFTContract.methods.curPlayerP(i).call()
+            if (poolRes.maxPlayer === curPlayer) {
+              pool.status = 'Failed'
+            }
+
+            pool.botHolder = await lotteryNFTContract.methods.onlyBotHolderP(i).call()
+
+            pool.inKYC = await bounceContract.methods.kyclist(account).call()
+
+            // const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
+            // pool.joined = isGreaterThan(bidAmount, '0')
+
+            // console.log('pool', pool)
+            pool.proInfo = await getProjectInfo(pool.projectId)
+            // console.log('pool',pool)
+            pools = pools.concat(pool)
+            setList(pools)
+          })
+        }
+        //setList(pools)
       })
     } catch (e) {
       console.log('fetchList error', e)
@@ -243,19 +289,21 @@ export const usePoolList = () => {
     console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
-        return item.status === 'Active' && item.id !== 0
+        return item.status === 'Active'
       }))
-      // setUpcomingPools(list.filter(item => {
-      //   return item.status === 'Upcoming' && item.id !== 0
-      // }), ...upItem)
+      setUpcomingPools(list.filter(item => {
+        return item.status === 'Upcoming'
+      }))
       setPassPools(list.filter(item => {
-        return item.status === 'Failed' && item.id !== 0
+        return item.status === 'Failed'
       }))
     }
   }, [list])
 
   return { list, activePool, upcomingPools, passPools }
 }
+
+
 
 export const useStatus = (id) => {
   const { active, library, chainId, account } = useActiveWeb3React();
@@ -325,4 +373,22 @@ export const useVoteListByPoolId = (poolId) => {
   }, [active])
 
   return poolInfo
+}
+
+export const useInKYC = () =>{
+
+  const [KYCed, setKYCed] = useState(false)
+  const { active, library, chainId, account } = useActiveWeb3React();
+
+  useEffect(()=>{
+    if(active && account){
+      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+      bounceContract.methods.kyclist(account).call().then(res =>{
+        setKYCed(res)
+      })
+    }
+
+  },[active, account])
+
+  return KYCed
 }
