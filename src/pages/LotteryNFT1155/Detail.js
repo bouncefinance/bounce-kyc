@@ -351,9 +351,9 @@ export const LotteryNFTDetail = ({token2}) => {
               <LineDivider style={{width: '100%'}}/>
               <Pool.Meta style={{width: '100%', marginTop: '16px'}}>
                 <div>Participant :</div>
-                <div>{`${(onlyBOT && !pool.enableWhiteList) ? 'BOT holder' : ''}
+                <div>{`${(onlyBOT && !pool.enableWhiteList) ? 'Auction holder' : ''}
                     ${(!onlyBOT && pool.enableWhiteList) ? 'Whitelisting' : ''}
-                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder , Whitelisting' : ''}
+                    ${(onlyBOT && pool.enableWhiteList) ? 'Auction holder , Whitelisting' : ''}
                     ${(!onlyBOT && !pool.enableWhiteList) ? 'Public' : ''}`}</div>
               </Pool.Meta>
               <Pool.Meta style={{width: '100%', marginTop: '16px'}}>

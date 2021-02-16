@@ -11,7 +11,7 @@ export default function Support({ cancel, onConfirm, amount }) {
                 <img src={cancel_img} alt="" onClick={cancel} />
             </div>
             <div className="main">
-                <h2>{amount} BOT</h2>
+                <h2>{amount} Auction</h2>
                 <p>Are you sure you want to support for Bounce Project?</p>
             </div>
             <div className="bottom">

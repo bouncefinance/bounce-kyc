@@ -1,7 +1,7 @@
 import {getContract, useActiveWeb3React} from "../web3";
 import {useEffect, useState} from "react";
 import bounceERC20 from "../web3/abi/bounceERC20.json";
-import {BOT} from "../web3/address";
+import {AUCTION, BOT} from "../web3/address";
 
 export const useTokenBalance = (address) => {
   console.log('address------>1',address)
@@ -11,7 +11,7 @@ export const useTokenBalance = (address) => {
   useEffect(() => {
     async function getBalance() {
       try {
-        const tokenContract = getContract(library, bounceERC20.abi, address ? address : BOT(chainId))
+        const tokenContract = getContract(library, bounceERC20.abi, address ? address : AUCTION(chainId))
         const balance = await tokenContract.methods.balanceOf(account).call()
         setBalance(balance)
       } catch (e) {

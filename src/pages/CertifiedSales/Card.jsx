@@ -16,7 +16,7 @@ import {
     pendingStatus,
     cancelStatus, successVotedStatus, successVoteClaimedStatus
 } from "../../components/common/TXModal";
-import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
+import {AUCTION, BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
 import BounceProVoting from '../../web3/abi/BounceProVoting.json'
 import { numToWei, weiToNum } from "../../utils/numberTransform";
@@ -65,7 +65,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
 
     const onVote = async () => {
         setSupporting(false)
-        const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+        const tokenContract = getContract(library, bounceERC20.abi, AUCTION(chainId))
         const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
         const weiAmount = numToWei(value);
 
@@ -256,7 +256,7 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                             width={isXSDown ? '100%' : '480px'}
                             status={pool.status}
                             plan={new BigNumber(weiToNum(pool.totalVotes)).dividedBy('300')}
-                            value={`${weiToNum(pool.totalVotes)} BOT`}
+                            value={`${weiToNum(pool.totalVotes)} Auction`}
                             total={progress.total}
                         />}
 
@@ -264,9 +264,9 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                             <TextInput onValChange={(value) => {
                                 // console.log('value', value)
                                 setValue(value)
-                            }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'} />
+                            }} placeholder={`Enter your vote amount (${weiToNum(balance)} Auction)`} width='100%' bottom={'10px'} />
                             <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
-                                value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
+                                value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient Auction` : 'Support'}
                                 width={isXSDown ? "100%" : "180px"} onClick={() => {
                                     setSupporting(true)
                                 }} />
@@ -284,9 +284,9 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                         <Passage
                             title='Participant'
                             desc={`
-                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'BOT holder' : ''}
+                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Auction holder' : ''}
                                     ${(!pool.botHolder && pool.proInfo.ifwhitelist) ? 'Whitelisting' : ''}
-                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'BOT holder , Whitelisting' : ''}
+                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'Auction holder , Whitelisting' : ''}
                                     ${(!pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Public' : ''}
                                     `
                             } />

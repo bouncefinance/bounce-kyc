@@ -24,7 +24,7 @@ import {ModalLayout} from "../../components/Modal/styled";
 import Support from "../../components/Modal/Support";
 import {getContract, useActiveWeb3React} from "../../../web3";
 import bounceERC20 from "../../../web3/abi/bounceERC20.json";
-import {BOT, BOUNCE_PRO_VOTING} from "../../../web3/address";
+import {AUCTION, BOT, BOUNCE_PRO_VOTING} from "../../../web3/address";
 import BounceProVoting from "../../../web3/abi/BounceProVoting.json";
 import {HOST} from '../../../config/request_api'
 import InfoBox from './InfoBox'
@@ -61,7 +61,7 @@ export default function Index() {
 
   const onVote = async () => {
     setSupporting(false)
-    const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+    const tokenContract = getContract(library, bounceERC20.abi, AUCTION(chainId))
     const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
     const weiAmount = numToWei(value);
 
@@ -131,17 +131,17 @@ export default function Index() {
                       title='Support from community:'
                       status={pool && pool.status}
                       plan={pool && new BigNumber(pool.totalVotes).dividedBy('200000000000000000000').dividedBy('100')}
-                      value={pool && `${weiToNum(pool.totalVotes)} BOT`}
+                      value={pool && `${weiToNum(pool.totalVotes)} Auction`}
                       total={pool && pool.total}
                   />
                 </div>
                 <TextInput onValChange={(value) => {
                   console.log('value', value)
                   setValue(value)
-                }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'}/>
+                }} placeholder={`Enter your vote amount (${weiToNum(balance)} Auction)`} width='100%' bottom={'10px'}/>
                 {pool.status === 'Active' &&
                 <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
-                        value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
+                        value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient Auction` : 'Support'}
                         width={isXSDown?'100%':'180px'} onClick={() => {
                   setSupporting(true)
                 }}/>}
