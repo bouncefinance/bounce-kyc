@@ -445,7 +445,7 @@ export const FSPoolDetail = () => {
                           }}
                           name={'amount'}
                           placeholder={'Bid Amount'}
-                          disabled={(onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
+                          disabled={(onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
                             (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
                           value={bidAmount}
                           onChange={handleChange}

@@ -138,7 +138,7 @@ export const LotteryNFTDetail = ({token2}) => {
           text = 'You are in the draw...';
         }else if (pool && curPlayer === pool.maxPlayer) {
           text = 'Max participants reached'
-        } else if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) {
+        } else if (onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) {
           text = 'You are not qualified as bot holder'
         }  else if (pool.enableKycList && !KYCed) {
           text = 'KYC is missing'
@@ -382,7 +382,7 @@ export const LotteryNFTDetail = ({token2}) => {
               (status === 'Live' && isJoined) ||
               (status === 'Live' && pool.enableKycList && !KYCed) ||
               (status === 'Live' && price && ToBalance.balance && isGreaterThan(price, ToBalance.balance)) ||
-              (status === 'Live' && onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
+              (status === 'Live' && onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
               (status === 'Live' && pool && curPlayer === pool.maxPlayer) ||
               (status === 'Live' && !inWhitelist && pool.enableWhiteList)} black style={{width: '100%', marginTop: '30px'}}
                       onClick={handleClick}>
