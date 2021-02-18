@@ -99,7 +99,7 @@ export const useVoteList = () => {
 export const usePoolList = () => {
   const upItem = [{
     notReady: true,
-    time: 'February 25th 2021',
+    time: 'March 1st 2021',
     accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
     additionalinfo: "https://defiwizard.xyz",
     allocationperwallet: "40 USDT",
