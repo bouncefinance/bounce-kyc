@@ -16,7 +16,7 @@ import {
     pendingStatus,
     cancelStatus, successVotedStatus, successVoteClaimedStatus
 } from "../../components/common/TXModal";
-import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
+import {AUCTION, BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
 import BounceProVoting from '../../web3/abi/BounceProVoting.json'
 import { numToWei, weiToNum } from "../../utils/numberTransform";
@@ -27,9 +27,9 @@ import { getPoolLeftTime } from "../../utils/time";
 import { useTokenBalance } from "../../hooks/useBalance";
 import { useStatus } from "./hooks";
 import API_HOST, { HOST } from "../../config/request_api";
-import {useIsSMDown} from '../../utils/themeHooks';
+import { useIsSMDown } from '../../utils/themeHooks';
 
-export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
+export default function Card ({ status, poolId = 0, progress, claimFun, isVote, pool }) {
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const { balance } = useTokenBalance()
@@ -65,7 +65,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
     const onVote = async () => {
         setSupporting(false)
-        const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+        const tokenContract = getContract(library, bounceERC20.abi, AUCTION(chainId))
         const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
         const weiAmount = numToWei(value);
 
@@ -149,11 +149,11 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 return <>
                     {isVote && (
                         <>
-                            <Button type='white' value='Learn More' width={isXSDown?"100%":"168px"} onClick={() => {
-                                window.localStorage.setItem('ca')
+                            <Button type='white' value='Learn More' width={isXSDown ? "100%" : "168px"} onClick={() => {
+                                // window.localStorage.setItem('ca')
                                 history.push(`/learn-more/${pool.id}`)
                             }} />
-                            <Button type='black' value='Support' width={isXSDown?"100%":"168px"} onClick={() => {
+                            <Button type='black' value='Support' width={isXSDown ? "100%" : "168px"} onClick={() => {
                                 setIsSupport(true)
                             }} />
                         </>
@@ -161,10 +161,10 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
                     {!isVote && (
                         <>
-                            <Button type='white' value='Learn More'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                            <Button type='white' value='Learn More' width={isXSDown ? "100%" : "168px"} onClick={() => {
                                 history.push(`/learn-more/${pool.id}`)
                             }} />
-                            <Button type='black' value='Join Auction' width={isXSDown?"100%":"168px"} onClick={() => {
+                            <Button type='black' value='Join Auction' width={isXSDown ? "100%" : "168px"} onClick={() => {
                                 setIsSupport(true)
                             }} />
                         </>
@@ -174,7 +174,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
             case 'Upcoming':
                 return <>
-                    <Button type='white' value='Learn More'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                    <Button type='white' value='Learn More' width={isXSDown ? "100%" : "168px"} onClick={() => {
 
                         history.push(`/learn-more/${pool.id}`)
                     }} />
@@ -182,17 +182,17 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
 
             case 'Past':
                 return <>
-                    <Button type='black' value='Visit Project'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                    <Button type='black' value='Visit Project' width={isXSDown ? "100%" : "168px"} onClick={() => {
                         history.push(`/certified-sales/${pool.id}`)
                     }} />
                 </>
 
             case 'proList-Active':
                 return <>
-                    <Button type='white' value='Learn More'  width={isXSDown?"100%":"168px"} onClick={() => {
+                    <Button type='white' value='Learn More' width={isXSDown ? "100%" : "168px"} onClick={() => {
                         history.push(`/learn-more/${pool.id}`)
                     }} />
-                    <Button type='black' value='Support'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                    <Button type='black' value='Support' width={isXSDown ? "100%" : "168px"} onClick={() => {
                         window.localStorage.setItem('crumbs_index', JSON.stringify({
                             name: 'Voting Board',
                             route: '/project-voting-board/active'
@@ -204,7 +204,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
             case 'Success':
             case 'Failed':
                 return <>
-                    <Button type='white' value='Visit Project'  width={isXSDown?"100%":"168px"}  onClick={() => {
+                    <Button type='white' value='Visit Project' width={isXSDown ? "100%" : "168px"} onClick={() => {
                         window.localStorage.setItem('crumbs_index', JSON.stringify({
                             name: 'Voting Board',
                             route: '/project-voting-board/close'
@@ -244,7 +244,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                             title='Project details'
                             desc={pool.proInfo.prosummary} />
 
-                        <a href="http://activeprojectname.com">{pool.proInfo.prowebsite}</a>
+                        <a href={pool.proInfo.prowebsite}>{pool.proInfo.prowebsite}</a>
 
                         <Passage
                             title='Time Left'
@@ -253,10 +253,10 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                                 `${left.days} d : ${left.hours} h : ${left.minutes} m : ${left.seconds} s`} />
 
                         {progress && <Progress
-                            width={isXSDown?'100%':'480px'}
+                            width={isXSDown ? '100%' : '480px'}
                             status={pool.status}
                             plan={new BigNumber(weiToNum(pool.totalVotes)).dividedBy('300')}
-                            value={`${weiToNum(pool.totalVotes)} BOT`}
+                            value={`${weiToNum(pool.totalVotes)} Auction`}
                             total={progress.total}
                         />}
 
@@ -264,13 +264,13 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                             <TextInput onValChange={(value) => {
                                 // console.log('value', value)
                                 setValue(value)
-                            }} placeholder={`Enter your vote amount ${weiToNum(balance)} BOT`} width='100%' bottom={'10px'} />
+                            }} placeholder={`Enter your vote amount (${weiToNum(balance)} Auction)`} width='100%' bottom={'10px'} />
                             <Button disabled={new BigNumber(numToWei(value)).isGreaterThan(balance)} type='black'
-                                value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient BOT` : 'Support'}
-                                width={isXSDown?"100%":"180px"} onClick={() => {
+                                value={new BigNumber(numToWei(value)).isGreaterThan(balance) ? `Insufficient Auction` : 'Support'}
+                                width={isXSDown ? "100%" : "180px"} onClick={() => {
                                     setSupporting(true)
                                 }} />
-                            <Button type='white' value='Back' width={isXSDown?"100%":"180px"}  onClick={() => {
+                            <Button type='white' value='Back' width={isXSDown ? "100%" : "180px"} onClick={() => {
                                 setIsSupport(false)
                             }} />
                         </div>}
@@ -284,9 +284,9 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                         <Passage
                             title='Participant'
                             desc={`
-                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'BOT holder' : ''}
+                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Auction holder' : ''}
                                     ${(!pool.botHolder && pool.proInfo.ifwhitelist) ? 'Whitelisting' : ''}
-                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'BOT holder , Whitelisting' : ''}
+                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'Auction holder , Whitelisting' : ''}
                                     ${(!pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Public' : ''}
                                     `
                             } />

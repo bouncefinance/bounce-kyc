@@ -63,6 +63,8 @@ export default function Step5({ setCurStep, setTitle, step5Data, setStep5Data })
                     { name: 'Fixed swap auction' },
                     { name: 'Sealed-bid auction' },
                     { name: 'Dutch auction' },
+                    { name: 'ERC20 Lottery' },
+                    { name: 'NFT Lottery' },
                 ]}
 
                 defaultVal={{

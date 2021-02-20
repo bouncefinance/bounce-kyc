@@ -14,7 +14,7 @@ import {
   cancelStatus
 } from "./ApplyModal";
 import {getContract, useActiveWeb3React} from "../../web3";
-import {BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
+import {AUCTION, BOUNCE_PRO_VOTING} from "../../web3/address";
 import Web3 from "web3";
 
 export const Apply = () => {
@@ -27,12 +27,12 @@ export const Apply = () => {
     setModalStatus(approveStatus);
 
     try {
-      const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+      const tokenContract = getContract(library, bounceERC20.abi, AUCTION(chainId))
       const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
 
       const result = await tokenContract.methods.approve(
         BOUNCE_PRO_VOTING(chainId),
-        '300000000000000000',
+        '60000000000000000000',
       )
         .send({ from: account });
       setModalStatus(confirmStatus);

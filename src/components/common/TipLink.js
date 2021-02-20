@@ -22,7 +22,7 @@ const Link = styled.a`
 export const TipLink = ({content, link, linkTitle}) => {
   return (
       <MessageFrame>
-        Have problems with Joining?  <Link target="_blank" href={'https://docs.bounce.finance/'}>{'Click here to read instructions'}</Link>
+        Have problems with Joining?  <Link target="_blank" href={'https://bouncefinance.medium.com/bounce-certified-auction-participation-guide-a74223f7ce4f'}>{'Click here to read instructions'}</Link>
       </MessageFrame>
   )
 }
