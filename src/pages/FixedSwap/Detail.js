@@ -79,7 +79,7 @@ export const FSPoolDetail = () => {
   const { ethBalance } = useEthBalance(toAddress)
 
   useEffect(() => {
-    if (onlyBOT && isGreaterThan(toWei('0.1'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
+    if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
       errors.amount = 'Sorry! You are not qualified as bot holder.'
       setErrors(errors)
     }
@@ -326,14 +326,14 @@ export const FSPoolDetail = () => {
 
             <Pool.Content width={isXSDown ? '100%' : '456px'}
               style={{ marginTop: 0, flexDirection: 'column' }}>
-              <Pool.Status style={{ width: 'fit-content' }} className={classNames('status', status)}><i
-                className={status} />{status}</Pool.Status>
+              <Pool.Status style={{ width: 'fit-content' }} className={classNames('status', status)}>
+                <i className={status} />{status}</Pool.Status>
               <ITextR style={{
                 marginTop: 8,
                 textAlign: 'left'
-              }}>{`Participant: ${(onlyBOT && !pool.enableWhiteList) ? 'BOT holder' : ''}
+              }}>{`Participant: ${(onlyBOT && !pool.enableWhiteList) ? 'Auction holder' : ''}
                     ${(!onlyBOT && pool.enableWhiteList) ? 'Whitelisting' : ''}
-                    ${(onlyBOT && pool.enableWhiteList) ? 'BOT holder , Whitelisting' : ''}
+                    ${(onlyBOT && pool.enableWhiteList) ? 'Auction holder , Whitelisting' : ''}
                     ${(!onlyBOT && !pool.enableWhiteList) ? 'Public' : ''}`}</ITextR>
               <ITextR style={{
                 marginTop: 8,
@@ -445,7 +445,7 @@ export const FSPoolDetail = () => {
                           }}
                           name={'amount'}
                           placeholder={'Bid Amount'}
-                          disabled={(onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
+                          disabled={(onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
                             (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
                           value={bidAmount}
                           onChange={handleChange}

@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { getContract, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
-import { BOUNCE_PRO_VOTING, BOUNCE_PRO } from "../../web3/address";
+import {BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from "../../web3/address";
 import { isGreaterThan } from "../../utils/common";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { weiToNum } from "../../utils/numberTransform";
+import BounceLotteryNFTPro from "../../web3/abi/BounceLotteryNFTPro.json";
 
 
 export const getProjectInfo = async (proId) => {
@@ -58,7 +59,7 @@ export const useVoteList = () => {
               const closed = closeAt - new Date()
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
-            // console.log('pool', pool)
+             console.log('pool', pool)
             const proInfo = await getProjectInfo(pool.projectId)
             pool.botHolder = true
             pool.proInfo = proInfo
@@ -96,80 +97,112 @@ export const useVoteList = () => {
 }
 
 export const usePoolList = () => {
-  const [list, setList] = useState([{
-    "projectId": "10",
-    "beneficiary": "0xf71708c59be7e32b9ff2aa174f07311869c6bf0c",
-    "token0": "0xad4f86a25bbc20ffb751f2fac312a0b4d8f88c64",
-    "token1": "0x101194a3ff67f83a05b3e15afa52d45d588614ca",
-    "amountTotal0": "10000000000000000000000",
-    "amountTotal1": "1000000000000000000",
-    "openAt": "1612454400",
-    "closeAt": "1612454400",
-    "claimDelaySec": "600",
-    "enableWhiteList": true,
-    "enableKycList": true,
-    "id": 0,
-    "status": "Upcoming",
+  const upItem = [{
+    notReady: true,
+    time: 'March 1st 2021',
+    accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
+    additionalinfo: "https://defiwizard.xyz",
+    allocationperwallet: "40 USDT",
+    amountoftoken: "20000",
+    architecture: "",
+    attachmenturl: "",
+    auctiontime: "3600",
+    auctiontype: "Fixed rate swap",
+    circulatingsupply: "300000",
+    closeAt: "1613230468",
+    code: 1,
+    contactemail: "infor@defiwizard.xyz",
+    created_at: "2021-02-06T15:33:44Z",
+    creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
+    fackbook: "",
+    githublink: "https://github.com/DefiWizard",
+    id: 44,
+    enableWhiteList: 1,
+    medium: "https://defi-wizard.medium.com",
+    pricepertoken: "2.5",
+    projectId: "44",
+    prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
+    proname: "DeFi Wizard",
+    prosummary: "Community Owned, Layer 2 Oracle",
+    protheme: "Layer 2 Oracle, defi",
+    prowebsite: "https://www.umb.network/",
+    teambio: "The Umbrella Network Team has worked together for the past 10 years building high performance applications primarily in the digital advertising market. Most recently, they build a transparency solution for the digital advertising industry using the Ethereum blockchain.",
+    teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
+    techhighlight: "Reduce cost of on chain data exponentially",
+    telegram: "https://t.me/umbrellanet",
+    tokencontractaddress: "0xAcE942e89a84c50294832eD7B24CF2db42E95127",
+    tokendistribution: "unlock promptly after sale",
+    tokenlookupschedule: "Unlock promptly",
+    tokenticketer: "LCF",
+    totalVotes: 300,
+    totalsupply: "400",
+    twitter: "https://twitter.com/UmbNetwork",
+    updated_at: "2021-02-06T15:33:44Z",
+    votePassed: true,
     "botHolder": true,
     "inKYC": true,
     "joined": false,
+    "enableKycList": true,
+    status: 'Upcoming',
     "proInfo": {
-      "code": 1,
-      "id": 12,
-      "accountaddress": "0xf71708c59be7e32b9ff2aa174f07311869c6bf0c",
-      "proname": "OptionRoom",
-      "prowebsite": "https://optionroom.finance",
-      "protheme": "Oracle, Forcast Markets",
-      "whitepaperlink": "https://github.com/OptionRoom/OptionRoom-Whitepaper/blob/main/OptionRoom_Whitepaper.pdf",
-      "githublink": "https://github.com/OptionRoom/",
-      "twitter": "https://twitter.com/option_room",
-      "medium": "https://optionroom.medium.com/",
+      "id": 44,
+      "accountaddress": "0x843f54fbf268dabe93f16e366433e16204944b1a",
+      "proname": "DeFi Wizard",
+      "prowebsite": "https://defiwizard.xyz/",
+      "protheme": "DeFi",
+      "whitepaperlink": "https://defi-wizard.medium.com/introducing-defi-wizard-55979d7b6506",
+      "githublink": "https://github.com/DefiWizard/",
+      "twitter": "https://twitter.com/defi_wizard",
+      "medium": "https://defi-wizard.medium.com/",
       "fackbook": "",
-      "telegram": "https://t.me/OptionRoom",
-      "prosummary": "OptionRoom is a user governed oracle and\nforecast protocol built on Polkadot.",
-      "techhighlight": "Substrate-based Oracle as a Service and Limitless Forecast Market protocol built on Polkadot",
-      "architecture": "Solidity, Substrate",
+      "telegram": "https://t.me/defi_wizard",
+      "prosummary": "Multi-chain DeFi Legosmade simple. One-click wizard to Create token, staking, yield farming legos.",
+      "techhighlight": "Multi-chain DeFi Legosmade simple. One-click wizard to Create audited ERC20 / BEP20 / EDST token. staking, yield farming contract for LP tokens.",
+      "architecture": "",
       "attachmenturl": "",
-      "teambio": "A team of diversified technical backgrounds with most team members having over 8 years of experience.",
-      "totalsupply": "100000000",
-      "circulatingsupply": "9200000",
-      "tokenticketer": "ROOM",
-      "tokencontractaddress": "0xad4f86a25bbc20ffb751f2fac312a0b4d8f88c64",
-      "tokendistribution": "Seed round: 11%\nPrivate round: 20%\nPublic round: 2%\nProtocol rewards: 38%\nTeam: 10%\nFoundation: 14.67%\nLiquidity: 4.33%",
-      "tokenlookupschedule": "Seed round: 20% on listing, 0% month 2 then 0.25% daily starting from month 3\nPrivate round: 25% on listing, 0% month 2 then 0.5% per day starting from month 3\nTeam: 1 year cliff with 1 year vesting thereafter \nFoundation: 1 year cliff with 1 year vesting thereafter\nLiquidity: Locked for 1 year",
-      "auctiontype": "Fixed swap auction",
-      "amountoftoken": "1000000",
-      "pricepertoken": "5",
-      "allocationperwallet": "1000 USDT",
-      "auctiontime": "86400",
-      "teamwallet": "0x8362E92D23e2db6023414CD47e95FC0DD65f7530",
+      "teambio": "Team has vast experience in development with more than a decade experience with programming full-stack and started working on smart-contracts in 2017 bull-market to create lots of crowd sale and vesting contracts for ICOs.",
+      "totalsupply": "1000000",
+      "circulatingsupply": "300000",
+      "tokenticketer": "DWZ",
+      "tokencontractaddress": "0x7dee45dff03ec7137979586ca20a2f4917bac9fa",
+      "tokendistribution": "https://defiwizard.xyz/token",
+      "tokenlookupschedule": "Seed: 25% initial, 25% 4/6/8 weeks after\nPrivate: 33% initial, 33% 3/6 weeks after",
+      "auctiontype": "Fixed rate swap",
+      "amountoftoken": "20000",
+      "pricepertoken": "2.5",
+      "allocationperwallet": "40 USDT",
+      "auctiontime": "3600",
+      "teamwallet": "0x843f54fBf268Dabe93F16E366433E16204944b1a",
       "ifkyc": 1,
       "ifwhitelist": 1,
-      "contactemail": "marsel@optionroom.finance",
-      "additionalinfo": "",
-      "prologourl": "8db8a531836aab5bb1e49059f15a0520.png",
-      "created_at": "2021-01-28T03:23:48Z",
-      "updated_at": "2021-01-28T03:23:48Z"
+      "contactemail": "infor@defiwizard.xyz",
+      "additionalinfo": "https://defiwizard.xyz/",
+      "prologourl": "0be84b556b7a5662ea32bf0357a6dec0.png",
+      "created_at": "2021-02-07T03:25:59Z",
+      "updated_at": "2021-02-07T03:25:59Z"
     }
-  }])
-  // const [list, setList] = useState([])
+  }]
+  const [list, setList] = useState()
 
   const [activePool, setActivePool] = useState([])
-  const [upcomingPools, setUpcomingPools] = useState([])
+  const [upcomingPools, setUpcomingPools] = useState()
   const [passPools, setPassPools] = useState([])
   const { active, library, chainId, account } = useActiveWeb3React();
 
 
   const fetchList = () => {
-    let pools = []
+    const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+    const lotteryNFTContract = getContract(library, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(chainId));
+
+    let pools = upItem
     try {
-      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
       bounceContract.methods.getPoolCount().call().then(res => {
         console.log('getPoolCount', res)
-        for (let i = 0; i < res; i++) {
+        for (let i = 1; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
             const pool = poolRes
+            pool.type = 'FIXED_SWAP'
             pool.id = i
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
@@ -199,7 +232,50 @@ export const usePoolList = () => {
             setList(pools)
           })
         }
-        setList(pools)
+        //setList(pools)
+      })
+    } catch (e) {
+      console.log('fetchList error', e)
+    }
+
+    try {
+      lotteryNFTContract.methods.getPoolCount().call().then(res => {
+        console.log('get lottery PoolCount', res)
+        for (let i = 1; i < res; i++) {
+          lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
+            console.log('pool--->', poolRes)
+            const pool = poolRes
+            pool.type = 'LOTTERY_NFT'
+            pool.id = i
+            const isOpen = new Date() - poolRes.openAt * 1000 > 0
+            if (!isOpen) {
+              pool.status = 'Upcoming'
+            } else {
+              const closeAt = new Date(poolRes.closeAt * 1000)
+              const closed = closeAt - new Date()
+              pool.status = closed > 0 ? 'Active' : 'Failed'
+            }
+
+            const curPlayer = await lotteryNFTContract.methods.curPlayerP(i).call()
+            if (poolRes.maxPlayer === curPlayer) {
+              pool.status = 'Failed'
+            }
+
+            pool.botHolder = await lotteryNFTContract.methods.onlyBotHolderP(i).call()
+
+            pool.inKYC = await bounceContract.methods.kyclist(account).call()
+
+            // const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
+            // pool.joined = isGreaterThan(bidAmount, '0')
+
+            // console.log('pool', pool)
+            pool.proInfo = await getProjectInfo(pool.projectId)
+            // console.log('pool',pool)
+            pools = pools.concat(pool)
+            setList(pools)
+          })
+        }
+        //setList(pools)
       })
     } catch (e) {
       console.log('fetchList error', e)
@@ -208,11 +284,12 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      //fetchList()
+      fetchList()
     }
   }, [active])
 
   useEffect(() => {
+    console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
         return item.status === 'Active'
@@ -228,6 +305,8 @@ export const usePoolList = () => {
 
   return { list, activePool, upcomingPools, passPools }
 }
+
+
 
 export const useStatus = (id) => {
   const { active, library, chainId, account } = useActiveWeb3React();
@@ -297,4 +376,22 @@ export const useVoteListByPoolId = (poolId) => {
   }, [active])
 
   return poolInfo
+}
+
+export const useInKYC = () =>{
+
+  const [KYCed, setKYCed] = useState(false)
+  const { active, library, chainId, account } = useActiveWeb3React();
+
+  useEffect(()=>{
+    if(active && account){
+      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+      bounceContract.methods.kyclist(account).call().then(res =>{
+        setKYCed(res)
+      })
+    }
+
+  },[active, account])
+
+  return KYCed
 }

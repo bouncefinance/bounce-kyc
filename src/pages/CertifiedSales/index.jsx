@@ -7,7 +7,8 @@ import loading from "../../assets/icons/loading.svg";
 
 export default function Index() {
   const {list, activePool, upcomingPools, passPools} = usePoolList()
-   console.log('list',JSON.stringify(list))
+  console.log('upcomingPools',upcomingPools)
+   console.log('list',(list))
   return (
       <CsStyled>
         {!list || list.length === 0 ? (
@@ -30,8 +31,8 @@ export default function Index() {
               </div>}
 
               {<div style={{paddingBottom: 53}}>
-                {upcomingPools.length > 0 && <span className='Upcoming'>Upcoming Sales</span>}
-                {upcomingPools.sort((item1, item2) => {
+                {upcomingPools && upcomingPools.length > 0 && <span className='Upcoming'>Upcoming Sales</span>}
+                {upcomingPools && upcomingPools.sort((item1, item2) => {
                   // console.log('sort', item1, item2)
                   return item2.id - item1.id
                 }).map((item, index) => {

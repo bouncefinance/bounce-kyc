@@ -23,11 +23,11 @@ import {
 } from "../CertifiedSales/ApplyModal";
 import { getContract, useActiveWeb3React } from "../../web3";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
-import { BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
+import {AUCTION, BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import useAxios from '../../hooks/useAxios'
 
-export default function Index() {
+export default function Index () {
     const [modalStatus, setModalStatus] = useState(initStatus)
     const history = useHistory()
     const { account, library, chainId, active } = useActiveWeb3React()
@@ -58,12 +58,12 @@ export default function Index() {
         setModalStatus(approveStatus);
 
         try {
-            const tokenContract = getContract(library, bounceERC20.abi, BOT(chainId))
+            const tokenContract = getContract(library, bounceERC20.abi, AUCTION(chainId))
             const bounceContract = getContract(library, BounceProVoting.abi, BOUNCE_PRO_VOTING(chainId))
 
             const result = await tokenContract.methods.approve(
                 BOUNCE_PRO_VOTING(chainId),
-                '300000000000000000',
+                '60000000000000000000',
             )
                 .send({ from: account });
             setModalStatus(confirmStatus);
@@ -111,8 +111,24 @@ export default function Index() {
                     // console.log('onApply', res.data.data.id)
                     onApply(res.data.data.id)
 
-                } else {
-                    console.log(res)
+                } else if (res.status === 200 && res.data.code === 0) {
+                    dispatch({
+                        type: 'MODAL',
+                        value: {
+                            name: 'CONFIRM',
+                            title: 'Message',
+                            deputy: `ErrorCode: ${res.data.code} Msg: ${res.data.msg}`,
+                            confirm: {
+                                text: 'Confirm',
+                                callback: () => {
+                                    dispatch({
+                                        type: 'MODAL',
+                                        value: null
+                                    })
+                                }
+                            }
+                        }
+                    })
                     // alert('Information submission error, please contact the platform customer service')
                 }
             })

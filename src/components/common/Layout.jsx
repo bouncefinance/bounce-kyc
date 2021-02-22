@@ -77,13 +77,11 @@ font-size: 12px;
 `
 
 
-
-
 export const LayoutFrame = styled.div`
   margin: 0 auto;
   flex-wrap: wrap;
-  width: ${({ width }) => (width ? width : '1280px')};
-  background-color: ${({ theme }) => (theme.white)};
+  width: ${({width}) => (width ? width : '1280px')};
+  background-color: ${({theme}) => (theme.white)};
   position: relative;
   background-color: #ffffff;
   @media (max-width: 767px) {
@@ -92,7 +90,7 @@ export const LayoutFrame = styled.div`
 `
 
 export const PoolFrame = styled.div`
-  width: ${({ width }) => (width ? width : '1280px')};
+  width: ${({width}) => (width ? width : '1280px')};
   padding: 40px 100px;
   position: relative;
   background-color: #fff;
@@ -109,7 +107,7 @@ width: fit-content;
 font-size: 14px;
 line-height: 18px;
 margin: auto;
-color: ${({ theme }) => (theme.grey4)};
+color: ${({theme}) => (theme.grey4)};
 text-align: center;
 cursor: pointer;
 margin: auto;
@@ -118,7 +116,7 @@ border-bottom: 1px solid transparent;
 /* margin-top: 16px; */
 /* margin-bottom: 40px; */
 &:hover{
-    color: ${({ theme }) => (theme.black)};
+    color: ${({theme}) => (theme.black)};
     border-bottom: 1px solid #000;
 };
 @media (max-width: 767px) {
@@ -145,7 +143,7 @@ export const TokenFrame = styled.div`
 
 export const Pool = styled.div`
 
-.status.Live1 {
+.status.Live {
     color: #36C98E;
   }
 `
@@ -170,7 +168,7 @@ Pool.Divider = styled.div`
 export const LineDivider = styled.div`
   height: 4px;
   background-color: #000;
-  width: ${({ width }) => (width)};
+  width: ${({width}) => (width)};
   `
 Pool.RevertDivider = styled.div`
   height: 2px;
@@ -189,11 +187,11 @@ Pool.Meta = styled.div`
     align-items: center;
     height: fit-content;
   div:nth-child(1){
-     color: ${({ theme }) => (theme.grey4)};
-
+     color: ${({theme}) => (theme.grey4)};
+      font-weight: bold;
   }
   div:nth-child(2){
-     color: ${({ theme }) => (theme.black)};
+     color: ${({theme}) => (theme.black)};
   }
 `
 
@@ -236,7 +234,7 @@ Pool.Mode = styled.div`
   font-size: 12px;
   flex: 1;
   line-height: 15px;
-  text-align: ${({ align }) => (align)};
+  text-align: ${({align}) => (align)};
   text-align: center;
   @media (max-width: 767px) {
     font-size: 14px;
@@ -255,7 +253,7 @@ Pool.Close = styled.img`
 `
 
 Pool.Content = styled.div`
-  width: ${({ width }) => (width ? width : '100%')};
+  width: ${({width}) => (width ? width : '100%')};
   height: fit-content;
   display: flex;
   justify-content: space-between;
@@ -331,7 +329,7 @@ Pool.Block = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-bottom: 1px solid ${({ theme }) => (theme.grey3)};
+  border-bottom: 1px solid ${({theme}) => (theme.grey3)};
   text-align: left;
   position: relative;
   span:nth-child(1){
@@ -374,7 +372,7 @@ Pool.Time = styled.span`
   font-size: 12px;
   line-height: 16px;
   min-width: 28px;
-  color: ${({ theme }) => (theme.grey5)};
+  color: ${({theme}) => (theme.grey5)};
 `
 
 Pool.Status = styled.div`
@@ -386,13 +384,31 @@ Pool.Status = styled.div`
   display: flex;
   align-content: center;
   align-items: center;
+  padding: 2px 12px ;
+  color: #ffffff;
+  
+  &.Upcoming{
+      background-color: #1D61FF;
+      color: #ffffff;
+    }
+  &.Live{
+      background-color: #36C98E;
+  }
+
+  &.Filled{
+      background-color: #728AE0;
+  }  
+  
+  &.Closed {
+    background-color: rgba(211, 211, 218, 1)
+  }
+  
   i{
     /* font-size: 36px; */
     width: 9px;
     height: 9px;
     border-radius: 50%;
     background-color: rgb(0,0,0,.5);
-    margin-right: 8px;
 
     &.Live{
       background-color: #36C98E;
@@ -409,13 +425,22 @@ Pool.Status = styled.div`
     &.Unsuccessfully{
       background-color: rgba(0, 0, 0, 0.4);
     }
+    
+    &.Unsuccessfully{
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    &.Upcoming{
+      background-color: #1D61FF;
+    }
+    
   }
 `
 
 
 export const Progress = styled.div`
   width: 100%;
-   height: ${({ height }) => (height ? height : '4px')};
+   height: ${({height}) => (height ? height : '4px')};
    
 `
 
@@ -434,14 +459,13 @@ export const NFTInfo = styled.div`
 `
 
 
-
 NFTInfo.Artist = styled.span`
   font-family: IBM Plex Mono;
 font-style: normal;
 font-weight: normal;
 font-size: 12px;
 line-height: 16px;
-color: ${({ theme }) => (theme.grey5)};
+color: ${({theme}) => (theme.grey5)};
 `
 
 NFTInfo.Title = styled.span`

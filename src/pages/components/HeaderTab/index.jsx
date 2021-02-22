@@ -108,10 +108,17 @@ export default function Index() {
 
         try {
             const BouncePro_CT = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+<<<<<<< HEAD
             const isKYC = await BouncePro_CT.methods.kyclist(account).call()
             // const isKYC = await BouncePro_CT.methods.kyclist('0x1bB05AC6f7807928D7F5eb436F9b3ea3B4899886').call()
             console.log('isKYC', chainId,isKYC)
             setIsKYC(isKYC)
+=======
+            BouncePro_CT.methods.kyclist(account).call().then(res =>{
+                console.log('isKYC', res)
+                setIsKYC(res)
+            })
+>>>>>>> 07ff707526ff5066e306c1a3e0397141cc53a2fc
         } catch (error) {
             console.log('isKYC', error)
         }
