@@ -143,7 +143,7 @@ export const usePoolList = () => {
         twitter: "",
         updated_at: "2021-02-06T15:33:44Z",
         votePassed: true,
-        "botHolder": false,
+        "botHolder": true,
         "inKYC": false,
         "joined": false,
         "enableKycList": false,

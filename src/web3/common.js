@@ -17,7 +17,7 @@ export const useTokenList = () => {
   const { Psymbol } = useActivePlatform()
 
   return [{
-    key: '0x0000000000000000000000000000000000000000',
+    key: chainId === 56? '0x2170ed0880ac9a755fd29b2688956bd959f933f8':'0x0000000000000000000000000000000000000000',
     value: <TokenFrame><img alt="" src={icon_eth} /><span>{Psymbol}</span></TokenFrame>,
     symbol: Psymbol,
     decimals: '18'
