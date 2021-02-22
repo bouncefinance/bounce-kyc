@@ -16,7 +16,7 @@ import {
     pendingStatus,
     cancelStatus, successVotedStatus, successVoteClaimedStatus
 } from "../../components/common/TXModal";
-import {AUCTION, BOT, BOUNCE_PRO_VOTING} from "../../web3/address";
+import { AUCTION, BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
 import BounceProVoting from '../../web3/abi/BounceProVoting.json'
 import { numToWei, weiToNum } from "../../utils/numberTransform";
@@ -29,7 +29,8 @@ import { useStatus } from "./hooks";
 import API_HOST, { HOST } from "../../config/request_api";
 import { useIsSMDown } from '../../utils/themeHooks';
 
-export default function Card ({ status, poolId = 0, progress, claimFun, isVote, pool }) {
+export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
+    console.log('P_console', progress)
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const { balance } = useTokenBalance()
@@ -252,13 +253,20 @@ export default function Card ({ status, poolId = 0, progress, claimFun, isVote, 
                                 `${0} d : ${0} h : ${0} m : ${0} s` :
                                 `${left.days} d : ${left.hours} h : ${left.minutes} m : ${left.seconds} s`} />
 
-                        {progress && <Progress
+                        {parseInt(pool.closeAt) < 1614336400 ? (progress && <Progress
                             width={isXSDown ? '100%' : '480px'}
                             status={pool.status}
                             plan={new BigNumber(weiToNum(pool.totalVotes)).dividedBy('300')}
+                            value={`${weiToNum(pool.totalVotes)} BOT`}
+                            total={progress.total}
+                        />) : (progress && <Progress
+                            width={isXSDown ? '100%' : '480px'}
+                            status={pool.status}
+                            plan={new BigNumber(weiToNum(pool.totalVotes)).dividedBy('30000')}
                             value={`${weiToNum(pool.totalVotes)} Auction`}
                             total={progress.total}
-                        />}
+                        />)}
+
 
                         {isSupport && status !== 'proList-Close' && <div className='support'>
                             <TextInput onValChange={(value) => {
