@@ -285,11 +285,11 @@ export const usePoolList = () => {
     let pools = upItem
     try {
       bounceContract.methods.getPoolCount().call().then(res => {
-        console.log('getPoolCount', res)
+        console.log('getPoolCount--->',curChainId, res)
         if(res === '0'){
           setList(upItem)
         }
-        for (let i = 1; i < res; i++) {
+        for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
             const pool = poolRes
@@ -333,7 +333,7 @@ export const usePoolList = () => {
     try {
       lotteryNFTContract.methods.getPoolCount().call().then(res => {
         console.log('get lottery PoolCount', res)
-        for (let i = 1; i < res; i++) {
+        for (let i = 0; i < res; i++) {
           lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
             const pool = poolRes
@@ -377,13 +377,13 @@ export const usePoolList = () => {
   useEffect(() => {
     if (active) {
       fetchList(getETHDefaultLibrary(), 1)
-      //fetchList(getBNBDefaultLibrary(), 56)
+      fetchList(getBNBDefaultLibrary(), 56)
     }
   }, [active])
 
   useEffect(() => {
     console.log('list---》', list)
-    if (list && list.length !== 0) {
+    if (list) {
       setActivePool(list.filter(item => {
         return item.status === 'Active'
       }))
