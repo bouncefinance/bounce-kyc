@@ -58,11 +58,9 @@ export default function Index() {
     }, [account, active])
 
     const renderConnectBtn = () => {
-
         return active ? <div
             className="personal ignore"
             onClick={() => {
-                if ( chainId !== 1 && chainId !== 4) return
                 dispatch({
                     type: "SHOW_PER",
                     value: !state.isShowPersonal
@@ -75,7 +73,7 @@ export default function Index() {
                 value='Connect Wallet'
                 style={{ fontSize: 14, marginLeft: '32px' }}
                 onClick={() => {
-                    if (active === undefined || (chainId !== 1 && chainId !== 4)) return
+                    if (active === undefined) return
                     dispatch({
                         type: 'CONNECT_WALLET',
                         value: true
