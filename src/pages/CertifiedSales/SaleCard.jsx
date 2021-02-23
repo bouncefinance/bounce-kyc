@@ -13,8 +13,10 @@ import { HOST } from "../../config/request_api";
 import InfoBox from './LearnMore/InfoBox'
 import BigNumber from "bignumber.js";
 import { useIsSMDown } from '../../utils/themeHooks';
+import {useActiveWeb3React} from "../../web3";
 export default function SalesCard ({ status, isVote, pool = {} }) {
   const [bidStatus, setBidStatus] = useState(initStatus)
+  const {chainId} = useActiveWeb3React()
   // const { dispatch } = useContext(myContext)
   const history = useHistory()
   const [isShowInfoBox, setIsShowInfoBox] = useState(false)
@@ -96,7 +98,7 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
 
               {pool.status === 'Active' && (
                 <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
-                  value={pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width={isXSDown ? '100%' : '180px'}
+                  value={pool.chainId !== chainId?  pool.chainId === 56? 'Switch to BSC' : 'Switch to ETH' : pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width={isXSDown ? '100%' : '180px'}
                   onClick={() => {
                     if(pool.type === 'FIXED_SWAP'){
                       history.push(`/fixed-swap/${pool.id}`)
