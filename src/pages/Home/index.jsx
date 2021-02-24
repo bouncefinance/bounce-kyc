@@ -84,6 +84,20 @@ export default function Index() {
                         <p><span>KYC checks</span> / <span>White list sales</span> / <span>Decentralized auction managed by community DAO</span></p>
 
                         <button onClick={() => {
+                            if (chainId !== 1 && chainId !== 4) {
+                                return dispatch({
+                                    type: 'MODAL',
+                                    value: {
+                                        name: 'CONFIRM',
+                                        title: 'Bounce Decentralized',
+                                        deputy: 'Please switch to Ethereum Mainnet to apply',
+                                        cancel: {
+                                            text: 'Not Now'
+                                        }
+                                    }
+                                })
+                            }
+
                             if (!isKYC) {
                                 return dispatch({
                                     type: 'MODAL',
