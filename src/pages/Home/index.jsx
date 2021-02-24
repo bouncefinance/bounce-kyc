@@ -1,5 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { HomeStyled } from './styled'
+import { useWeb3React } from '@web3-react/core'
+import { myContext } from '../../redux';
+import { queryIsKyc } from '../../config/utils/END_FUN'
+import { queryBotBalance } from '../../config/utils/BOT_FUN'
+import { useVoteList } from "../CertifiedSales/hooks";
 import lattice from '../../assets/images/lattice.svg'
 import bule_check from '../../assets/images/bule-check.svg'
 import bule_star from '../../assets/images/bule-star.svg'
@@ -38,16 +43,34 @@ const CertifiedSalesSteps = [{
 export default function Index() {
     const [curCertifiedSalesSteps, setCurCertifiedSalesSteps] = useState(0)
     const [stepIsHover, setStepIsHover] = useState(false)
+    const { account, chainId, library, active } = useWeb3React()
     const history = useHistory()
     const isSMDown = useIsSMDown();
+    const [isKYC, setIsKYC] = useState(false)
+    const [balance, setBalance] = useState(0)
+    const { state, dispatch } = useContext(myContext);
+    const { list } = useVoteList()
+    
+    const myProject = list && list.filter(item => {
+        return item.status === 'Active' && item.creator && account && item.creator.toLowerCase() === account.toLowerCase()
+    })[0]
+
+    useEffect(async () => {
+        if (!account || !active) return
+        const isKYC = await queryIsKyc(account)
+        const balance = await queryBotBalance(library, account, chainId)
+        setIsKYC(isKYC)
+        setBalance(balance)
+    }, [account, active])
+
     return (
         <HomeStyled>
             <div className="page_wrapper page_one">
                 <div className="main">
                     <div className="left">
                         <video
-                            width={isSMDown?'100%':'525px'}
-                            height={isSMDown?'100%':'525px'}
+                            width={isSMDown ? '100%' : '525px'}
+                            height={isSMDown ? '100%' : '525px'}
                             muted
                             src={video}
                             autoPlay='autoPlay'
@@ -60,7 +83,60 @@ export default function Index() {
                         <p>Bounce Certified empowers the community to curate a select group of high-quality projects to conduct their public sale on the same robust and secure platform behind Bounce Finance.</p>
                         <p><span>KYC checks</span> / <span>White list sales</span> / <span>Decentralized auction managed by community DAO</span></p>
 
-                        <button onClick={() => { history.push('/applySale') }}>Apply for certified sale</button>
+                        <button onClick={() => {
+                            if (!isKYC) {
+                                return dispatch({
+                                    type: 'MODAL',
+                                    value: {
+                                        name: 'CONFIRM',
+                                        title: 'Bounce Decentralized',
+                                        deputy: 'You are not KYC certified, please authenticate before adding the vote',
+                                        cancel: {
+                                            text: 'Not Now'
+                                        },
+                                        confirm: {
+                                            text: 'Go',
+                                            callback: () => {
+                                                dispatch({ type: 'MODAL', value: null })
+                                                history.push('/kyc')
+                                            }
+                                        }
+                                    }
+                                })
+                            } else if (balance < 60) {
+                                return dispatch({
+                                    type: 'MODAL',
+                                    value: {
+                                        name: 'CONFIRM',
+                                        title: 'Bounce Certified Fee',
+                                        deputy: `If you want to add a project vote, you must have more than 60 AUCTION. Your current balance is ${Number(balance)}, so you cannot create it`,
+                                        cancel: {
+                                            text: 'I Know'
+                                        }
+                                    }
+                                })
+                            } else if (myProject) {
+                                return dispatch({
+                                    type: 'MODAL',
+                                    value: {
+                                        name: 'CONFIRM',
+                                        title: 'Bounce Decentralized',
+                                        deputy: `You currently have a project running and cannot create two running pools`,
+                                        cancel: {
+                                            text: 'I Know'
+                                        },
+                                        confirm: {
+                                            text: 'Show My Project',
+                                            callback: () => {
+                                                return history.push(`/learn-more/${myProject.id}`)
+                                            }
+                                        }
+                                    }
+                                })
+                            } else {
+                                return history.push('/applySale')
+                            }
+                        }}>Apply for certified sale</button>
                     </div>
                 </div>
             </div>
