@@ -58,7 +58,6 @@ export default function Index() {
     }, [account, active])
 
     const renderConnectBtn = () => {
-
         return active ? <div
             className="personal ignore"
             onClick={() => {
