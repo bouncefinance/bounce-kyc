@@ -139,7 +139,7 @@ export const LotteryNFTDetail = ({token2}) => {
         }else if (pool && curPlayer === pool.maxPlayer) {
           text = 'Max participants reached'
         } else if (onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) {
-          text = 'You are not qualified as bot holder'
+          text = 'You are not qualified as auction holder'
         }  else if (pool.enableKycList && !KYCed) {
           text = 'KYC is missing'
         } else if (pool.enableWhiteList && !inWhitelist) {

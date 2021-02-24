@@ -50,7 +50,7 @@ export default function Index() {
     const [balance, setBalance] = useState(0)
     const { state, dispatch } = useContext(myContext);
     const { list } = useVoteList()
-    
+
     const myProject = list && list.filter(item => {
         return item.status === 'Active' && item.creator && account && item.creator.toLowerCase() === account.toLowerCase()
     })[0]
@@ -207,7 +207,7 @@ export default function Index() {
 
                             <div>
                                 <i>3</i>
-                                BOT token holder exclusive sales
+                                Auction token holder exclusive sales
                             </div>
                         </li>
                         <li>
