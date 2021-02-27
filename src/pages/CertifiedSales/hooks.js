@@ -365,11 +365,10 @@ export const usePoolList = () => {
   const [passPools, setPassPools] = useState([])
 
 
-  const fetchList = (curLibrary, curChainId) => {
+  const fetchList = (curLibrary, curChainId ,pools) => {
     const bounceContract = getContract(curLibrary, BouncePro.abi, BOUNCE_PRO(curChainId))
     const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
     console.log('curLibrary', curLibrary)
-    let pools = upItem
 
     try {
       bounceContract.methods.getPoolCount().call().then(res => {
@@ -407,9 +406,10 @@ export const usePoolList = () => {
 
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-            
-            pools.push(pool)
-            // setList(pools)
+
+            pools.push(JSON.parse(JSON.stringify(pool)))
+            console.log('pools---->', pools)
+            setList(pools)
           })
         }
         //setList(pools)
@@ -448,8 +448,7 @@ export const usePoolList = () => {
                 // console.log('pool', pool)
                 pool.proInfo = await getProjectInfo(pool.projectId)
                 // console.log('pool',pool)
-                pools.push(pool)
-
+                 pools = pools.concat(pool)
                 console.log('L_console', pools)
                 setList(pools)
               })
@@ -467,8 +466,9 @@ export const usePoolList = () => {
 
   useEffect(() => {
     if (active) {
-      fetchList(getETHDefaultLibrary(), 1)
-      fetchList(getBNBDefaultLibrary(), 56)
+      let pools = upItem
+      fetchList(getETHDefaultLibrary(), 1, pools)
+      fetchList(getBNBDefaultLibrary(), 56, pools)
     }
   }, [active])
 
@@ -578,7 +578,6 @@ export const useInKYC = () => {
         setKYCed(res)
       })
     }
-
   }, [active, account])
 
   return KYCed
