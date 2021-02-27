@@ -479,6 +479,9 @@ export const usePoolList = () => {
     console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
+        if(item.projectId === '52'){
+          item.botHolder = true
+        }
         return item.status === 'Active'
       }))
       setUpcomingPools(list.filter(item => {
@@ -489,6 +492,9 @@ export const usePoolList = () => {
         return item.status === 'Upcoming'
       }))
       setPassPools(list.filter(item => {
+        if(item.projectId === '52'){
+          item.botHolder = true
+        }
         return item.status === 'Failed'
       }))
     }

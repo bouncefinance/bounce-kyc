@@ -34,7 +34,7 @@ export default function Index() {
                 {upcomingPools && upcomingPools.length > 0 && <span className='Upcoming'>Upcoming Sales</span>}
                 {upcomingPools && upcomingPools.sort((item1, item2) => {
                   // console.log('sort', item1, item2)
-                  return item2.id - item1.id
+                  return item1.id - item2.id
                 }).map((item, index) => {
                   return (
                       <SaleCard key={index} pool={item} status='Upcoming'/>
