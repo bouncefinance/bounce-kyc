@@ -125,7 +125,7 @@ export const FSPoolDetail = () => {
       })
     }
     // console.log('K_console', route)
-  }, [])
+  }, [chainId])
 
   useEffect(() => {
     if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
