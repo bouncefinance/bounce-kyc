@@ -485,7 +485,7 @@ export const usePoolList = () => {
         return item.status === 'Active'
       }))
       setUpcomingPools(list.filter(item => {
-        console.log('K_console',item)
+        // console.log('K_console',item)
         if(item.projectId === '52'){
           item.botHolder = true
         }

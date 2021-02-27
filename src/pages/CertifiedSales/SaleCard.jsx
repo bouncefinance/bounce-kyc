@@ -35,7 +35,7 @@ export default function SalesCard({ status, isVote, pool = {} }) {
     console.log('pool left', pool)
     if (pool) {
       timer = setInterval(() => {
-        const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt)
+        const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt) 
         setLeft(left)
       }, 1000)
       return () => {
@@ -98,15 +98,24 @@ export default function SalesCard({ status, isVote, pool = {} }) {
                 setIsShowInfoBox(!isShowInfoBox)
               }} />
 
-              {pool.status === 'Active' && (
+              {/* {pool.status === 'Active' && ( */}
+              {pool.status === 'Upcoming' && (
                 <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
                   value={pool.chainId !== chainId ? pool.chainId === 56 ? 'Switch to BSC' : 'Switch to ETH' : pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'}
                   width={isXSDown ? '100%' : '180px'}
                   onClick={() => {
                     if (pool.type === 'FIXED_SWAP') {
-                      history.push(`/fixed-swap/${pool.id}`)
+                      if(pool.chainId===56){
+                        history.push(`/bsc/fixed-swap/${pool.id}`)
+                      }else{
+                        history.push(`/fixed-swap/${pool.id}`)
+                      }
                     } else if (pool.type === 'LOTTERY_NFT') {
-                      history.push(`/lottery-nft/${pool.id}`)
+                      if(pool.chainId===56){
+                        history.push(`/bsc/lottery-nft/${pool.id}`)
+                      }else{
+                        history.push(`/lottery-nft/${pool.id}`)
+                      }
                     }
                   }} />
               )}
