@@ -360,12 +360,14 @@ export const usePoolList = () => {
       }]
   const [list, setList] = useState()
 
+  let pools = upItem
+
   const [activePool, setActivePool] = useState([])
   const [upcomingPools, setUpcomingPools] = useState()
   const [passPools, setPassPools] = useState([])
 
 
-  const fetchList = (curLibrary, curChainId ,pools) => {
+  const fetchList = async (curLibrary, curChainId) => {
     const bounceContract = getContract(curLibrary, BouncePro.abi, BOUNCE_PRO(curChainId))
     const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
     console.log('curLibrary', curLibrary)
@@ -383,6 +385,8 @@ export const usePoolList = () => {
             pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
+            // poolRes.openAt = poolRes.openAt - (4.5 * 60 * 60)
+            // poolRes.closeAt = poolRes.closeAt - (5 * 60 * 60 + 28 * 60)
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
               pool.status = 'Upcoming'
@@ -406,10 +410,14 @@ export const usePoolList = () => {
 
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-            if(curChainId === 56){
+            if (curChainId === 56) {
               pool.proInfo.auctiontype = 'Fixed Swap Auction on Binance Smart Chain'
             }
-            pools.push(JSON.parse(JSON.stringify(pool)))
+
+            if (pool.projectId === '52') {
+              pool.botHolder = true
+            }
+            pools = pools.concat(pool)
             console.log('pools---->', pools)
             setList(pools)
           })
@@ -417,60 +425,63 @@ export const usePoolList = () => {
         //setList(pools)
       }).then(() => {
         console.log('L_console', pools)
-        try {
-          lotteryNFTContract.methods.getPoolCount().call().then(res => {
-            console.log('get lottery PoolCount', res)
-            for (let i = 1; i < res; i++) {
-              lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
-                console.log('pool--->', poolRes)
-                const pool = poolRes
-                pool.type = 'LOTTERY_NFT'
-                pool.id = i
-                const isOpen = new Date() - poolRes.openAt * 1000 > 0
-                if (!isOpen) {
-                  pool.status = 'Upcoming'
-                } else {
-                  const closeAt = new Date(poolRes.closeAt * 1000)
-                  const closed = closeAt - new Date()
-                  pool.status = closed > 0 ? 'Active' : 'Failed'
-                }
 
-                const curPlayer = await lotteryNFTContract.methods.curPlayerP(i).call()
-                if (poolRes.maxPlayer === curPlayer) {
-                  pool.status = 'Failed'
-                }
+      })
+    } catch (e) {
+      console.log('fetchList error', e)
+    }
 
-                pool.botHolder = await lotteryNFTContract.methods.onlyBotHolderP(i).call()
-
-                pool.inKYC = await bounceContract.methods.kyclist(account).call()
-
-                // const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
-                // pool.joined = isGreaterThan(bidAmount, '0')
-
-                // console.log('pool', pool)
-                pool.proInfo = await getProjectInfo(pool.projectId)
-                // console.log('pool',pool)
-                 pools = pools.concat(pool)
-                console.log('L_console', pools)
-                setList(pools)
-              })
+    try {
+      lotteryNFTContract.methods.getPoolCount().call().then(res => {
+        console.log('get lottery PoolCount', res)
+        for (let i = 1; i < res; i++) {
+          lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
+            console.log('pool--->', poolRes)
+            const pool = poolRes
+            pool.type = 'LOTTERY_NFT'
+            pool.id = i
+            const isOpen = new Date() - poolRes.openAt * 1000 > 0
+            if (!isOpen) {
+              pool.status = 'Upcoming'
+            } else {
+              const closeAt = new Date(poolRes.closeAt * 1000)
+              const closed = closeAt - new Date()
+              pool.status = closed > 0 ? 'Active' : 'Failed'
             }
 
+            const curPlayer = await lotteryNFTContract.methods.curPlayerP(i).call()
+            if (poolRes.maxPlayer === curPlayer) {
+              pool.status = 'Failed'
+            }
+
+            pool.botHolder = await lotteryNFTContract.methods.onlyBotHolderP(i).call()
+
+            pool.inKYC = await bounceContract.methods.kyclist(account).call()
+
+            // const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
+            // pool.joined = isGreaterThan(bidAmount, '0')
+
+            // console.log('pool', pool)
+            pool.proInfo = await getProjectInfo(pool.projectId)
+            // console.log('pool',pool)
+            pools = pools.concat(pool)
+            console.log('L_console', pools)
+            setList(pools)
           })
-        } catch (e) {
-          console.log('fetchList error', e)
         }
+
       })
     } catch (e) {
       console.log('fetchList error', e)
     }
   }
 
-  useEffect(() => {
+  useEffect(async() => {
     if (active) {
-      let pools = upItem
-      fetchList(getETHDefaultLibrary(), 1, pools)
-      fetchList(getBNBDefaultLibrary(), 56, pools)
+      // await fetchList(getETHDefaultLibrary(), 1, pools)
+      // await fetchList(getBNBDefaultLibrary(), 56, pools)
+      await fetchList(getETHDefaultLibrary(), 1)
+      await fetchList(getBNBDefaultLibrary(), 56)
     }
   }, [active])
 
@@ -479,24 +490,18 @@ export const usePoolList = () => {
     console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
-        if(item.projectId === '52'){
-          item.botHolder = true
-        }
         return item.status === 'Active'
       }))
       setUpcomingPools(list.filter(item => {
         // console.log('K_console',item)
-        if(item.projectId === '52'){
-          item.botHolder = true
-        }
         return item.status === 'Upcoming'
       }))
       setPassPools(list.filter(item => {
-        if(item.projectId === '52'){
-          item.botHolder = true
-        }
         return item.status === 'Failed'
       }))
+
+      
+      
     }
   }, [list])
 

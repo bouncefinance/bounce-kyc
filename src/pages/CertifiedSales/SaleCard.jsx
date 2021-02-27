@@ -98,8 +98,8 @@ export default function SalesCard({ status, isVote, pool = {} }) {
                 setIsShowInfoBox(!isShowInfoBox)
               }} />
 
-              {/* {pool.status === 'Active' && ( */}
-              {pool.status === 'Upcoming' && (
+              {pool.status === 'Active' && (
+              // {pool.status === 'Upcoming' && (
                 <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
                   value={pool.chainId !== chainId ? pool.chainId === 56 ? 'Switch to BSC' : 'Switch to ETH' : pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'}
                   width={isXSDown ? '100%' : '180px'}
