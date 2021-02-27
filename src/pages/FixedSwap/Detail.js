@@ -81,6 +81,7 @@ export const FSPoolDetail = () => {
   const { ethBalance } = useEthBalance(toAddress)
 
   useEffect(() => {
+    if(!chainId) return
     const pathname = window.location.pathname
     const index = pathname.indexOf('/bsc')
     if (index !== -1 && chainId !== 56) {

@@ -76,6 +76,7 @@ export const LotteryNFTDetail = ({token2}) => {
   console.log('balance', balance)
 
   useEffect(() => {
+    if(!chainId) return
     const pathname = window.location.pathname
     const index = pathname.indexOf('/bsc')
     if (index !== -1 && chainId !== 56) {
