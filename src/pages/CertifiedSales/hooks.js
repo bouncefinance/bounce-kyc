@@ -406,7 +406,9 @@ export const usePoolList = () => {
 
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-
+            if(curChainId === 56){
+              pool.proInfo.auctiontype = 'Fixed Swap Auction on Binance Smart Chain'
+            }
             pools.push(JSON.parse(JSON.stringify(pool)))
             console.log('pools---->', pools)
             setList(pools)
