@@ -123,9 +123,17 @@ export default function SalesCard({ status, isVote, pool = {} }) {
               {pool.status === 'Failed' && (
                 <Button type='black' value='Show Result' width={isXSDown ? '100%' : '180px'} onClick={() => {
                   if (pool.type === 'FIXED_SWAP') {
-                    history.push(`/fixed-swap/${pool.id}`)
+                    if(pool.chainId===56){
+                      history.push(`/bsc/fixed-swap/${pool.id}`)
+                    }else{
+                      history.push(`/fixed-swap/${pool.id}`)
+                    }
                   } else if (pool.type === 'LOTTERY_NFT') {
-                    history.push(`/lottery-nft/${pool.id}`)
+                    if(pool.chainId===56){
+                      history.push(`/bsc/lottery-nft/${pool.id}`)
+                    }else{
+                      history.push(`/lottery-nft/${pool.id}`)
+                    }
                   }
                 }} />
               )}

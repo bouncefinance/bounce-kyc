@@ -103,6 +103,26 @@ export const FSPoolDetail = () => {
           }
         }
       })
+    } else if (index === -1 && chainId === 56) {
+      dispatch({
+        type: 'MODAL',
+        value: {
+          name: 'CONFIRM',
+          title: 'Bounce Certified Warning',
+          deputy: `The current pool exists on the ETH chain, please switch network to ETH operation.`,
+          confirm: {
+            text: 'Confirm',
+            callback: () => {
+
+              dispatch({
+                type: 'MODAL',
+                value: null
+              })
+              history.goBack(-1)
+            }
+          }
+        }
+      })
     }
     // console.log('K_console', route)
   }, [])
