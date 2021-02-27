@@ -1,13 +1,13 @@
 import axios from 'axios';
 import API from '../../config/request_api'
-import {useEffect, useState} from 'react';
-import {getBNBDefaultLibrary, getContract, getETHDefaultLibrary, useActiveWeb3React} from "../../web3";
+import { useEffect, useState } from 'react';
+import { getBNBDefaultLibrary, getContract, getETHDefaultLibrary, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
-import {BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from "../../web3/address";
-import {isGreaterThan} from "../../utils/common";
+import { BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO } from "../../web3/address";
+import { isGreaterThan } from "../../utils/common";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
-import {weiToNum} from "../../utils/numberTransform";
+import { weiToNum } from "../../utils/numberTransform";
 import BounceLotteryNFTPro from "../../web3/abi/BounceLotteryNFTPro.json";
 
 
@@ -38,7 +38,7 @@ export const getProjectInfo = async (proId) => {
 
 export const useVoteList = () => {
   const [list, setList] = useState()
-  const {active, library, chainId, account} = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
 
   const fetchList = () => {
     let pools = []
@@ -93,101 +93,103 @@ export const useVoteList = () => {
     }
   }, [active])
 
-  return {list}
+  return { list }
 }
 
 export const usePoolList = () => {
-  const {active, library, chainId, account} = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
 
   const upItem =
-      [{
-        chainId: 56,
-        notReady: true,
-        time: 'Feb 27th 2021',
-        accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
-        additionalinfo: " https://antimatter.finance/",
-        allocationperwallet: "40 USDT",
-        amountoftoken: "20000",
-        architecture: "",
-        attachmenturl: "",
-        auctiontime: "3600",
-        auctiontype: "Fixed rate swap",
-        circulatingsupply: "7000000",
-        closeAt: "1613230468",
-        code: 1,
-        contactemail: "infor@defiwizard.xyz",
-        created_at: "2021-02-06T15:33:44Z",
-        creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
-        fackbook: "",
-        githublink: "",
-        id: 44,
-        enableWhiteList: 1,
-        medium: "https://defi-wizard.medium.com",
-        pricepertoken: "2.5",
-        projectId: "44",
-        prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
-        proname: "Antimatter",
-        prosummary: "Community Owned, Layer 2 Oracle",
-        protheme: "Defi, perpetual option",
-        prowebsite: "https://antimatter.finance/",
-        teambio: "Jack Lu\n" +
-            "Robert Hu",
-        teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
-        techhighlight: "",
-        telegram: "https://t.me/antimatterchat",
-        tokencontractaddress: "Secret",
-        tokendistribution: "unlock promptly after sale",
-        tokenlookupschedule: "Unlock promptly",
-        tokenticketer: "MATTER",
-        totalVotes: 300,
-        totalsupply: "100000000",
-        twitter: "",
-        updated_at: "2021-02-06T15:33:44Z",
-        votePassed: true,
-        "botHolder": true,
-        "inKYC": false,
-        "joined": false,
-        "enableKycList": false,
-        status: 'Upcoming',
-        "proInfo": {
-          "id": 44,
-          "accountaddress": "0x843f54fbf268dabe93f16e366433e16204944b1a",
-          "proname": "Antimatter",
-          "prowebsite": "https://antimatter.finance/",
-          "protheme": "Defi, perpetual option",
-          "whitepaperlink": "",
-          "githublink": "",
-          "twitter": "https://twitter.com/antimatterdefi",
-          "medium": "https://antimatterdefi.medium.com/",
-          "fackbook": "",
-          "telegram": "https://t.me/antimatterchat",
-          "prosummary": "Antimatter is an innovative lightweight on-chain and cross-chain DeFi perpetual options protocol based on a polarized token mechanism.",
-          "techhighlight": "To build financial products for mass adoption, Antimatter will aim for simplicity and normalization as the main priority for every product released. The initial Antimatter product will be an ETH perpetual put option product where anyone can short and long at any given time with secondary market opportunities (market-making and arbitrage).",
-          "architecture": "Ethereum, Binance Smart Chain, Huobi Ecochain",
-          "attachmenturl": "",
-          "teambio": "Jack Lu\n" +
-              "Robert Hu",
-          "totalsupply": "100000000",
-          "circulatingsupply": "7000000",
-          "tokenticketer": "MATTER",
-          "tokencontractaddress": "Secret",
-          "tokendistribution": "https://antimatterdefi.medium.com/introducing-the-matter-token-3fc593e1282d",
-          "tokenlookupschedule": "https://antimatterdefi.medium.com/introducing-the-matter-token-3fc593e1282d",
-          "auctiontype": "Fixed rate swap on Binance Smart Chain",
-          "amountoftoken": "20000",
-          "pricepertoken": "0.05",
-          "allocationperwallet": "100 USDT",
-          "auctiontime": "3600",
-          "teamwallet": "0x843f54fBf268Dabe93F16E366433E16204944b1a",
-          "ifkyc": 0,
-          "ifwhitelist": 1,
-          "contactemail": "",
-          "additionalinfo": "",
-          "prologourl": "https://raw.githubusercontent.com/antimatter-finance/antimatter-finance.github.io/main/antimatter_icon.png",
-          "created_at": "2021-02-07T03:25:59Z",
-          "updated_at": "2021-02-07T03:25:59Z"
-        }
-      },{
+    [
+      //   {
+      //   chainId: 56,
+      //   notReady: true,
+      //   time: 'Feb 27th 2021',
+      //   accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
+      //   additionalinfo: " https://antimatter.finance/",
+      //   allocationperwallet: "40 USDT",
+      //   amountoftoken: "20000",
+      //   architecture: "",
+      //   attachmenturl: "",
+      //   auctiontime: "3600",
+      //   auctiontype: "Fixed rate swap",
+      //   circulatingsupply: "7000000",
+      //   closeAt: "1613230468",
+      //   code: 1,
+      //   contactemail: "infor@defiwizard.xyz",
+      //   created_at: "2021-02-06T15:33:44Z",
+      //   creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
+      //   fackbook: "",
+      //   githublink: "",
+      //   id: 44,
+      //   enableWhiteList: 1,
+      //   medium: "https://defi-wizard.medium.com",
+      //   pricepertoken: "2.5",
+      //   projectId: "44",
+      //   prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
+      //   proname: "Antimatter",
+      //   prosummary: "Community Owned, Layer 2 Oracle",
+      //   protheme: "Defi, perpetual option",
+      //   prowebsite: "https://antimatter.finance/",
+      //   teambio: "Jack Lu\n" +
+      //       "Robert Hu",
+      //   teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
+      //   techhighlight: "",
+      //   telegram: "https://t.me/antimatterchat",
+      //   tokencontractaddress: "Secret",
+      //   tokendistribution: "unlock promptly after sale",
+      //   tokenlookupschedule: "Unlock promptly",
+      //   tokenticketer: "MATTER",
+      //   totalVotes: 300,
+      //   totalsupply: "100000000",
+      //   twitter: "",
+      //   updated_at: "2021-02-06T15:33:44Z",
+      //   votePassed: true,
+      //   "botHolder": true,
+      //   "inKYC": false,
+      //   "joined": false,
+      //   "enableKycList": false,
+      //   status: 'Upcoming',
+      //   "proInfo": {
+      //     "id": 44,
+      //     "accountaddress": "0x843f54fbf268dabe93f16e366433e16204944b1a",
+      //     "proname": "Antimatter",
+      //     "prowebsite": "https://antimatter.finance/",
+      //     "protheme": "Defi, perpetual option",
+      //     "whitepaperlink": "",
+      //     "githublink": "",
+      //     "twitter": "https://twitter.com/antimatterdefi",
+      //     "medium": "https://antimatterdefi.medium.com/",
+      //     "fackbook": "",
+      //     "telegram": "https://t.me/antimatterchat",
+      //     "prosummary": "Antimatter is an innovative lightweight on-chain and cross-chain DeFi perpetual options protocol based on a polarized token mechanism.",
+      //     "techhighlight": "To build financial products for mass adoption, Antimatter will aim for simplicity and normalization as the main priority for every product released. The initial Antimatter product will be an ETH perpetual put option product where anyone can short and long at any given time with secondary market opportunities (market-making and arbitrage).",
+      //     "architecture": "Ethereum, Binance Smart Chain, Huobi Ecochain",
+      //     "attachmenturl": "",
+      //     "teambio": "Jack Lu\n" +
+      //         "Robert Hu",
+      //     "totalsupply": "100000000",
+      //     "circulatingsupply": "7000000",
+      //     "tokenticketer": "MATTER",
+      //     "tokencontractaddress": "Secret",
+      //     "tokendistribution": "https://antimatterdefi.medium.com/introducing-the-matter-token-3fc593e1282d",
+      //     "tokenlookupschedule": "https://antimatterdefi.medium.com/introducing-the-matter-token-3fc593e1282d",
+      //     "auctiontype": "Fixed rate swap on Binance Smart Chain",
+      //     "amountoftoken": "20000",
+      //     "pricepertoken": "0.05",
+      //     "allocationperwallet": "100 USDT",
+      //     "auctiontime": "3600",
+      //     "teamwallet": "0x843f54fBf268Dabe93F16E366433E16204944b1a",
+      //     "ifkyc": 0,
+      //     "ifwhitelist": 1,
+      //     "contactemail": "",
+      //     "additionalinfo": "",
+      //     "prologourl": "https://raw.githubusercontent.com/antimatter-finance/antimatter-finance.github.io/main/antimatter_icon.png",
+      //     "created_at": "2021-02-07T03:25:59Z",
+      //     "updated_at": "2021-02-07T03:25:59Z"
+      //   }
+      // },
+      {
         notReady: true,
         time: 'March 1st 2021',
         accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
@@ -271,7 +273,7 @@ export const usePoolList = () => {
           "created_at": "2021-02-07T03:25:59Z",
           "updated_at": "2021-02-07T03:25:59Z"
         }
-      },{
+      }, {
         notReady: true,
         time: 'TBD',
         accountaddress: "0xcc99283b21a34e0f1c1cdefe30815f0af60942ba",
@@ -318,7 +320,7 @@ export const usePoolList = () => {
         "joined": false,
         "enableKycList": true,
         status: 'Upcoming',
-        "proInfo":  {
+        "proInfo": {
           "id": 49,
           "accountaddress": "0xcc99283b21a34e0f1c1cdefe30815f0af60942ba",
           "proname": "Convergence Finance",
@@ -368,10 +370,11 @@ export const usePoolList = () => {
     const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
     console.log('curLibrary', curLibrary)
     let pools = upItem
+
     try {
       bounceContract.methods.getPoolCount().call().then(res => {
-        console.log('getPoolCount--->',curChainId, res)
-        if(res === '0'){
+        console.log('getPoolCount--->', curChainId, res)
+        if (res === '0') {
           setList(upItem)
         }
         for (let i = 1; i < res; i++) {
@@ -404,55 +407,58 @@ export const usePoolList = () => {
 
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-            // console.log('pool',pool)
-            pools = pools.concat(pool)
-            setList(pools)
+            
+            pools.push(pool)
+            // setList(pools)
           })
         }
         //setList(pools)
-      })
-    } catch (e) {
-      console.log('fetchList error', e)
-    }
+      }).then(() => {
+        console.log('L_console', pools)
+        try {
+          lotteryNFTContract.methods.getPoolCount().call().then(res => {
+            console.log('get lottery PoolCount', res)
+            for (let i = 1; i < res; i++) {
+              lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
+                console.log('pool--->', poolRes)
+                const pool = poolRes
+                pool.type = 'LOTTERY_NFT'
+                pool.id = i
+                const isOpen = new Date() - poolRes.openAt * 1000 > 0
+                if (!isOpen) {
+                  pool.status = 'Upcoming'
+                } else {
+                  const closeAt = new Date(poolRes.closeAt * 1000)
+                  const closed = closeAt - new Date()
+                  pool.status = closed > 0 ? 'Active' : 'Failed'
+                }
 
-    try {
-      lotteryNFTContract.methods.getPoolCount().call().then(res => {
-        console.log('get lottery PoolCount', res)
-        for (let i = 1; i < res; i++) {
-          lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
-            console.log('pool--->', poolRes)
-            const pool = poolRes
-            pool.type = 'LOTTERY_NFT'
-            pool.id = i
-            const isOpen = new Date() - poolRes.openAt * 1000 > 0
-            if (!isOpen) {
-              pool.status = 'Upcoming'
-            } else {
-              const closeAt = new Date(poolRes.closeAt * 1000)
-              const closed = closeAt - new Date()
-              pool.status = closed > 0 ? 'Active' : 'Failed'
+                const curPlayer = await lotteryNFTContract.methods.curPlayerP(i).call()
+                if (poolRes.maxPlayer === curPlayer) {
+                  pool.status = 'Failed'
+                }
+
+                pool.botHolder = await lotteryNFTContract.methods.onlyBotHolderP(i).call()
+
+                pool.inKYC = await bounceContract.methods.kyclist(account).call()
+
+                // const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
+                // pool.joined = isGreaterThan(bidAmount, '0')
+
+                // console.log('pool', pool)
+                pool.proInfo = await getProjectInfo(pool.projectId)
+                // console.log('pool',pool)
+                pools.push(pool)
+
+                console.log('L_console', pools)
+                setList(pools)
+              })
             }
 
-            const curPlayer = await lotteryNFTContract.methods.curPlayerP(i).call()
-            if (poolRes.maxPlayer === curPlayer) {
-              pool.status = 'Failed'
-            }
-
-            pool.botHolder = await lotteryNFTContract.methods.onlyBotHolderP(i).call()
-
-            pool.inKYC = await bounceContract.methods.kyclist(account).call()
-
-            // const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
-            // pool.joined = isGreaterThan(bidAmount, '0')
-
-            // console.log('pool', pool)
-            pool.proInfo = await getProjectInfo(pool.projectId)
-            // console.log('pool',pool)
-            pools = pools.concat(pool)
-            setList(pools)
           })
+        } catch (e) {
+          console.log('fetchList error', e)
         }
-        //setList(pools)
       })
     } catch (e) {
       console.log('fetchList error', e)
@@ -467,12 +473,17 @@ export const usePoolList = () => {
   }, [active])
 
   useEffect(() => {
+
     console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
         return item.status === 'Active'
       }))
       setUpcomingPools(list.filter(item => {
+        console.log('K_console',item)
+        if(item.projectId === '52'){
+          item.botHolder = true
+        }
         return item.status === 'Upcoming'
       }))
       setPassPools(list.filter(item => {
@@ -481,12 +492,12 @@ export const usePoolList = () => {
     }
   }, [list])
 
-  return {list, activePool, upcomingPools, passPools}
+  return { list, activePool, upcomingPools, passPools }
 }
 
 
 export const useStatus = (id) => {
-  const {active, library, chainId, account} = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
   const [myVotes, setMyVotes] = useState()
   const [myVotesClaimed, setMyVotesClaimed] = useState(true)
 
@@ -512,13 +523,13 @@ export const useStatus = (id) => {
     }
   }, [active])
 
-  return {myVotes, myVotesClaimed}
+  return { myVotes, myVotesClaimed }
 }
 
 
 export const useVoteListByPoolId = (poolId) => {
   const [poolInfo, setPoolInfo] = useState({})
-  const {active, library, chainId} = useActiveWeb3React();
+  const { active, library, chainId } = useActiveWeb3React();
 
   const fetchList = () => {
     try {
@@ -558,7 +569,7 @@ export const useVoteListByPoolId = (poolId) => {
 export const useInKYC = () => {
 
   const [KYCed, setKYCed] = useState(false)
-  const {active, library, chainId, account} = useActiveWeb3React();
+  const { active, library, chainId, account } = useActiveWeb3React();
 
   useEffect(() => {
     if (active && account) {
