@@ -45,7 +45,7 @@ export default function Index() {
           {<div style={{ paddingBottom: 53 }}>
             {passPools.length > 0 && <span className='Past'>Past Sales</span>}
             {passPools.sort((item1, item2) => {
-              return item2.id - item1.id
+              return item1.id - item2.id
             }).map((item, index) => {
               return (
                 <SaleCard key={index} pool={item} status='Past' />

@@ -385,8 +385,10 @@ export const usePoolList = () => {
             pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
-            // poolRes.openAt = poolRes.openAt - (4.5 * 60 * 60)
-            // poolRes.closeAt = poolRes.closeAt - (5 * 60 * 60 + 28 * 60)
+
+            // poolRes.openAt = poolRes.openAt - (3 * 60 * 60+12*60)
+            // poolRes.closeAt = poolRes.closeAt - (4 * 60 * 60 + 15  * 60)
+
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
               pool.status = 'Upcoming'
