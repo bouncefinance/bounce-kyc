@@ -380,7 +380,7 @@ export const usePoolList = () => {
           bounceContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
             const pool = poolRes
-            pool.chainId = chainId
+            pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
