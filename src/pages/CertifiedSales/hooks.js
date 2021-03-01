@@ -387,7 +387,7 @@ export const usePoolList = () => {
             pool.type = 'FIXED_SWAP'
             pool.id = i
 
-            // poolRes.openAt = poolRes.openAt - (13*60)
+            poolRes.openAt = poolRes.openAt - (10*60*60+33*60)
             // poolRes.closeAt = poolRes.closeAt - (4 * 60 * 60 + 15  * 60)
 
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
