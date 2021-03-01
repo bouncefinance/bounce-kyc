@@ -70,7 +70,7 @@ export const FSPoolDetail = () => {
   const isXSDown = useIsXSDown();
   const setClaimTime = claimTime.setTime
   const claimLeftTime = claimTime.leftTime
-  console.log('claimLeftTime', claimLeftTime)
+  // console.log('claimLeftTime', claimLeftTime)
   const {
     name, address, symbol, decimals, limit, time, fromBidAmount, fromAmount, toAmount,
     status, isMine, toBidAmount, onlyBOT,
@@ -136,14 +136,14 @@ export const FSPoolDetail = () => {
   // }, [onlyBOT, balance, bidAmount, account])
 
   useEffect(() => {
-    console.log('J_console',onlyBOT, AuctionAmount, bidAmount, account)
+    // console.log('J_console',onlyBOT, AuctionAmount, bidAmount, account)
     if (onlyBOT  && isGreaterThan(toWei('60'), AuctionAmount.balance) && !bidAmount) {
       errors.amount = 'Sorry! You are not qualified as Auction holder.'
       setErrors(errors)
     }else{
       setErrors({ amount: '' })
     }
-  }, [onlyBOT, AuctionAmount, bidAmount, account])
+  }, [onlyBOT, bidAmount, account])
 
   useEffect(() => {
     console.log('limit--->', biddenAmount, limit)
@@ -242,7 +242,7 @@ export const FSPoolDetail = () => {
   }
 
 
-  console.log('poolid--->', poolId)
+  // console.log('poolid--->', poolId)
 
   const onCreatorClaim = async () => {
     const bounceContract = getContract(library, fixSwap.abi, BOUNCE_PRO(chainId))

@@ -150,7 +150,7 @@ export const usePoolDetail = (id = 0) => {
                 const isOpen = new Date() - res.openAt * 1000 > 0
                 if (!isOpen) {
                     setStatus('Upcoming')
-                    // setStatus('Live')
+                    // setStatus('Live')    
                 }else {
                     setStatus(leftTime > 0 ? 'Live' : 'Closed')
                     fsContract.methods.myClaimed(account, id).call().then((res) => {
