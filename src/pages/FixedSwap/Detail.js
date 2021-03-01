@@ -19,7 +19,7 @@ import { Button } from "../../components/common/Button";
 import { useEthBalance, useTokenBalance, useTokenList } from "../../web3/common";
 import { getContract, useActiveWeb3React } from "../../web3";
 import fixSwap from "../../web3/abi/BouncePro.json";
-import {AUCTION, BOUNCE_PRO} from "../../web3/address";
+import { AUCTION, BOUNCE_PRO } from "../../web3/address";
 import Web3 from 'web3'
 import { useHistory } from 'react-router-dom'
 import {
@@ -42,6 +42,7 @@ import { CREATOR_CLAIMED_MESSAGE } from "../../const";
 import { validateForm } from "../../utils/form";
 import { isEqualTo, isGreaterThan } from "../../utils/common";
 import BigNumber from "bignumber.js";
+import { myContext } from '../../redux'
 
 const { toWei } = Web3.utils
 
@@ -57,13 +58,14 @@ export const FSPoolDetail = () => {
   const history = useHistory()
   const { account, library, chainId } = useActiveWeb3React()
   const { balance } = useTokenBalance()
-  const  AuctionAmount = useTokenBalance(AUCTION(chainId))
+  const AuctionAmount = useTokenBalance(AUCTION(chainId))
   const { setTime, leftTime } = useLeftTime()
   const claimTime = useLeftTime()
   const [bidAmount, setBidAmount] = useState()
   const [bidStatus, setBidStatus] = useState(initStatus)
   const [showTip, setShowTip] = useState()
   const [errors, setErrors] = useState({ amount: '' })
+  const { state, dispatch } = useContext(myContext)
 
   const isXSDown = useIsXSDown();
   const setClaimTime = claimTime.setTime
@@ -77,6 +79,54 @@ export const FSPoolDetail = () => {
   } = usePoolDetail(poolId)
 
   const { ethBalance } = useEthBalance(toAddress)
+
+  useEffect(() => {
+    if(!chainId) return
+    const pathname = window.location.pathname
+    const index = pathname.indexOf('/bsc')
+    if (index !== -1 && chainId !== 56) {
+      dispatch({
+        type: 'MODAL',
+        value: {
+          name: 'CONFIRM',
+          title: 'Bounce Certified Warning',
+          deputy: `The current pool exists on the BSC chain, please switch network to BSC operation.`,
+          confirm: {
+            text: 'Confirm',
+            callback: () => {
+
+              dispatch({
+                type: 'MODAL',
+                value: null
+              })
+              history.goBack(-1)
+            }
+          }
+        }
+      })
+    } else if (index === -1 && chainId === 56) {
+      dispatch({
+        type: 'MODAL',
+        value: {
+          name: 'CONFIRM',
+          title: 'Bounce Certified Warning',
+          deputy: `The current pool exists on the ETH chain, please switch network to ETH operation.`,
+          confirm: {
+            text: 'Confirm',
+            callback: () => {
+
+              dispatch({
+                type: 'MODAL',
+                value: null
+              })
+              history.goBack(-1)
+            }
+          }
+        }
+      })
+    }
+    // console.log('K_console', route)
+  }, [chainId])
 
   useEffect(() => {
     if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {

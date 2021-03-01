@@ -230,7 +230,7 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                 {/* <span>Active Sales</span> */}
             </div>
             <div className="main">
-                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={HOST + '/' + pool.proInfo.prologourl} socialLink={[
+                {pool.proInfo && <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={pool.proInfo.prologourl.startsWith('https://')? pool.proInfo.prologourl :HOST + '/' + pool.proInfo.prologourl} socialLink={[
                     { name: 'facebook', link: pool.proInfo.fackbook },
                     { name: 'telegram', link: pool.proInfo.telegram },
                     { name: 'twitter', link: pool.proInfo.twitter },

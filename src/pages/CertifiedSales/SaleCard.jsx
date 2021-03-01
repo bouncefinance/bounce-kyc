@@ -13,8 +13,11 @@ import { HOST } from "../../config/request_api";
 import InfoBox from './LearnMore/InfoBox'
 import BigNumber from "bignumber.js";
 import { useIsSMDown } from '../../utils/themeHooks';
-export default function SalesCard ({ status, isVote, pool = {} }) {
+import { useActiveWeb3React } from "../../web3";
+
+export default function SalesCard({ status, isVote, pool = {} }) {
   const [bidStatus, setBidStatus] = useState(initStatus)
+  const { chainId } = useActiveWeb3React()
   // const { dispatch } = useContext(myContext)
   const history = useHistory()
   const [isShowInfoBox, setIsShowInfoBox] = useState(false)
@@ -32,7 +35,7 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
     console.log('pool left', pool)
     if (pool) {
       timer = setInterval(() => {
-        const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt)
+        const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt) 
         setLeft(left)
       }, 1000)
       return () => {
@@ -47,7 +50,8 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
       <div className="main">
         {pool.proInfo && pool.proInfo &&
           <CardHeader title={pool && pool.proInfo && pool.proInfo && pool.proInfo && pool.proInfo.proname}
-            logo={pool.proInfo && HOST + '/' + pool.proInfo.prologourl} socialLink={[
+            logo={pool.proInfo && pool.proInfo.prologourl.startsWith('https://') ? pool.proInfo.prologourl : HOST + '/' + pool.proInfo.prologourl}
+            socialLink={[
               { name: 'facebook', link: pool.proInfo && pool.proInfo.fackbook },
               { name: 'telegram', link: pool.proInfo && pool.proInfo.telegram },
               { name: 'twitter', link: pool.proInfo && pool.proInfo.twitter },
@@ -77,9 +81,9 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
             )}
 
             {pool.status === 'Upcoming' && pool.notReady && (
-                <Passage
-                    title={'Auction will start in'}
-                    desc={`${pool.time}`} />
+              <Passage
+                title={'Auction will start in'}
+                desc={`${pool.time}`} />
             )}
 
             {/* {pool.status === 'Upcoming' && (
@@ -95,23 +99,41 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
               }} />
 
               {pool.status === 'Active' && (
+              // {pool.status === 'Upcoming' && (
                 <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
-                  value={pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'} width={isXSDown ? '100%' : '180px'}
+                  value={pool.chainId !== chainId ? pool.chainId === 56 ? 'Switch to BSC' : 'Switch to ETH' : pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'}
+                  width={isXSDown ? '100%' : '180px'}
                   onClick={() => {
-                    if(pool.type === 'FIXED_SWAP'){
-                      history.push(`/fixed-swap/${pool.id}`)
-                    }else if(pool.type === 'LOTTERY_NFT'){
-                      history.push(`/lottery-nft/${pool.id}`)
+                    if (pool.type === 'FIXED_SWAP') {
+                      if(pool.chainId===56){
+                        history.push(`/bsc/fixed-swap/${pool.id}`)
+                      }else{
+                        history.push(`/fixed-swap/${pool.id}`)
+                      }
+                    } else if (pool.type === 'LOTTERY_NFT') {
+                      if(pool.chainId===56){
+                        history.push(`/bsc/lottery-nft/${pool.id}`)
+                      }else{
+                        history.push(`/lottery-nft/${pool.id}`)
+                      }
                     }
                   }} />
               )}
 
               {pool.status === 'Failed' && (
                 <Button type='black' value='Show Result' width={isXSDown ? '100%' : '180px'} onClick={() => {
-                  if(pool.type === 'FIXED_SWAP'){
-                    history.push(`/fixed-swap/${pool.id}`)
-                  }else if(pool.type === 'LOTTERY_NFT'){
-                    history.push(`/lottery-nft/${pool.id}`)
+                  if (pool.type === 'FIXED_SWAP') {
+                    if(pool.chainId===56){
+                      history.push(`/bsc/fixed-swap/${pool.id}`)
+                    }else{
+                      history.push(`/fixed-swap/${pool.id}`)
+                    }
+                  } else if (pool.type === 'LOTTERY_NFT') {
+                    if(pool.chainId===56){
+                      history.push(`/bsc/lottery-nft/${pool.id}`)
+                    }else{
+                      history.push(`/lottery-nft/${pool.id}`)
+                    }
                   }
                 }} />
               )}
@@ -120,8 +142,10 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
 
           <div className="right">
             <Passage
+              color={pool.chainId === 56 ? '#f0b90e' : ''}
               title='Auction Type'
-              desc={pool.proInfo && pool.proInfo.auctiontype} />
+              desc={pool.proInfo && pool.proInfo.auctiontype}
+            />
 
             <Passage
               title='Participant'

@@ -5,7 +5,7 @@ export function AUCTION(chainId) {
     case 4:
       return '0x5e26fa0fe067d28aae8aff2fb85ac2e693bd9efa'
     case 56:
-      return '0x48DC0190dF5ece990c649A7A07bA19D3650a9572'
+      return '0x1188d953aFC697C031851169EEf640F23ac8529C'
     default:
       return '0x5bEaBAEBB3146685Dd74176f68a0721F91297D37'
   }
@@ -31,7 +31,7 @@ export function BOUNCE_PRO(chainId) {
     case 4:
       return '0xdC879146c635a9c613DEc849FaE7b383cbDB437D'
     case 56:
-      return '0xdC879146c635a9c613DEc849FaE7b383cbDB437D'
+      return '0x7ac4E78a51bd6970925Bce4EAdE47985C819292B'
     default:
       return '0x6fe40f415448d930166f9110D3bBe2146383bC66'
   }

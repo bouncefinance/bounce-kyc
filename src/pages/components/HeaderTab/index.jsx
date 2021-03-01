@@ -58,23 +58,35 @@ export default function Index() {
     }, [account, active])
 
     const renderConnectBtn = () => {
-
         return active ? <div
             className="personal ignore"
             onClick={() => {
+                if (chainId !== 1 && chainId !== 4) {
+                    return dispatch({
+                        type: 'MODAL',
+                        value: {
+                            name: 'CONFIRM',
+                            title: 'Bounce Certified Warning',
+                            deputy: `If the auction requires KYC identification, please switch to Ethereum Mainnet to complete KYC before participating in the auction `,
+                            cancel: {
+                                text: 'I Know'
+                            }
+                        }
+                    })
+                }
                 dispatch({
                     type: "SHOW_PER",
                     value: !state.isShowPersonal
                 })
             }}
-        ></div> : <Button
+        /> : <Button
                 type='black'
                 width='130px'
                 height='36px'
                 value='Connect Wallet'
                 style={{ fontSize: 14, marginLeft: '32px' }}
                 onClick={() => {
-                    if (active === undefined) return
+                    // if (active === undefined || (chainId !== 1 && chainId !== 4)) return
                     dispatch({
                         type: 'CONNECT_WALLET',
                         value: true
@@ -108,7 +120,7 @@ export default function Index() {
 
         try {
             const BouncePro_CT = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
-            BouncePro_CT.methods.kyclist(account).call().then(res =>{
+            BouncePro_CT.methods.kyclist(account).call().then(res => {
                 console.log('isKYC', res)
                 setIsKYC(res)
             })

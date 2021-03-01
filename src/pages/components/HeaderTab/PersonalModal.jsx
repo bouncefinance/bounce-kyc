@@ -44,11 +44,11 @@ export default function PersonalModal({ show = false, userName, isKYC: CT_KYC })
 
   const isSMDown = useIsSMDown();
   const myProject = list && list.filter(item => {
-    return item.status === 'Active' && item.creator.toLowerCase() === account.toLowerCase()
+    return item.status === 'Active' && item.creator && account && item.creator.toLowerCase() === account.toLowerCase()
   })[0]
 
   const activeProject = list && list.filter(item => {
-    return item.status === 'Success' && !item.approved && item.creator.toLowerCase() === account.toLowerCase()
+    return item.status === 'Success' && !item.approved && item.creator && account && item.creator.toLowerCase() === account.toLowerCase()
   })[0]
   // console.log('activeProject', activeProject)
 
@@ -141,13 +141,13 @@ export default function PersonalModal({ show = false, userName, isKYC: CT_KYC })
               }
             }
           })
-        } else if (balance < 0.3) {
+        } else if (balance < 60) {
           return dispatch({
             type: 'MODAL',
             value: {
               name: 'CONFIRM',
               title: 'Bounce Certified Fee',
-              deputy: `If you want to add a project vote, you must have more than 0.3 BOT. Your current balance is ${Number(balance)}, so you cannot create it`,
+              deputy: `If you want to add a project vote, you must have more than 60 AUCTION. Your current balance is ${Number(balance)}, so you cannot create it`,
               cancel: {
                 text: 'I Know'
               }

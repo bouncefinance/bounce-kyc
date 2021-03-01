@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {
   Address,
@@ -40,6 +40,7 @@ import {useTokenBalance} from "../../hooks/useBalance";
 import Web3 from 'web3'
 import styled from 'styled-components'
 import {useEthBalance} from "../../web3/common";
+import { myContext } from '../../redux'
 const {toWei} = Web3.utils
 
 const Extra = styled.div`
@@ -56,7 +57,7 @@ export const LotteryNFTDetail = ({token2}) => {
   const {account, library, chainId} = useActiveWeb3React();
   const AuctionAmount = useTokenBalance(AUCTION(chainId))
   const {balance} = useTokenBalance()
-
+  const { state, dispatch } = useContext(myContext)
   const {
     name, address, isLive, time, price, winner, inWhitelist,
     toDecimals, playStatus, isMine, claimed, status, setStatus,
@@ -73,6 +74,54 @@ export const LotteryNFTDetail = ({token2}) => {
   const KYCed = useInKYC()
   const ToBalance = useEthBalance(toAddress)
   console.log('balance', balance)
+
+  useEffect(() => {
+    if(!chainId) return
+    const pathname = window.location.pathname
+    const index = pathname.indexOf('/bsc')
+    if (index !== -1 && chainId !== 56) {
+      dispatch({
+        type: 'MODAL',
+        value: {
+          name: 'CONFIRM',
+          title: 'Bounce Certified Warning',
+          deputy: `The current pool exists on the BSC chain, please switch network to BSC operation.`,
+          confirm: {
+            text: 'Confirm',
+            callback: () => {
+
+              dispatch({
+                type: 'MODAL',
+                value: null
+              })
+              history.goBack(-1)
+            }
+          }
+        }
+      })
+    } else if (index === -1 && chainId === 56) {
+      dispatch({
+        type: 'MODAL',
+        value: {
+          name: 'CONFIRM',
+          title: 'Bounce Certified Warning',
+          deputy: `The current pool exists on the ETH chain, please switch network to ETH operation.`,
+          confirm: {
+            text: 'Confirm',
+            callback: () => {
+
+              dispatch({
+                type: 'MODAL',
+                value: null
+              })
+              history.goBack(-1)
+            }
+          }
+        }
+      })
+    }
+    // console.log('K_console', route)
+  }, [chainId])
 
   let timer = null;
   useEffect(() => {
@@ -139,7 +188,7 @@ export const LotteryNFTDetail = ({token2}) => {
         }else if (pool && curPlayer === pool.maxPlayer) {
           text = 'Max participants reached'
         } else if (onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) {
-          text = 'You are not qualified as bot holder'
+          text = 'You are not qualified as auction holder'
         }  else if (pool.enableKycList && !KYCed) {
           text = 'KYC is missing'
         } else if (pool.enableWhiteList && !inWhitelist) {
