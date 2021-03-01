@@ -81,7 +81,7 @@ export const FSPoolDetail = () => {
   const { ethBalance } = useEthBalance(toAddress)
 
   useEffect(() => {
-    if(!chainId) return
+    if (!chainId) return
     const pathname = window.location.pathname
     const index = pathname.indexOf('/bsc')
     if (index !== -1 && chainId !== 56) {
@@ -128,9 +128,16 @@ export const FSPoolDetail = () => {
     // console.log('K_console', route)
   }, [chainId])
 
+  // useEffect(() => {
+  //   if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
+  //     errors.amount = 'Sorry! You are not qualified as bot holder.'
+  //     setErrors(errors)
+  //   }
+  // }, [onlyBOT, balance, bidAmount, account])
+
   useEffect(() => {
-    if (onlyBOT && isGreaterThan(toWei('0.3'), balance) && isGreaterThan(toWei('30'), AuctionAmount.balance) && !bidAmount) {
-      errors.amount = 'Sorry! You are not qualified as bot holder.'
+    if (onlyBOT  && isGreaterThan(toWei('60'), AuctionAmount.balance) && !bidAmount) {
+      errors.amount = 'Sorry! You are not qualified as Auction holder.'
       setErrors(errors)
     }
   }, [onlyBOT, balance, bidAmount, account])
@@ -495,7 +502,7 @@ export const FSPoolDetail = () => {
                           }}
                           name={'amount'}
                           placeholder={'Bid Amount'}
-                          disabled={(onlyBOT && isGreaterThan(toWei('30'), AuctionAmount.balance)) ||
+                          disabled={(onlyBOT && isGreaterThan(toWei('60'), AuctionAmount.balance)) ||
                             (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
                           value={bidAmount}
                           onChange={handleChange}
