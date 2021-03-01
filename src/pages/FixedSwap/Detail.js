@@ -137,7 +137,7 @@ export const FSPoolDetail = () => {
 
   useEffect(() => {
     // console.log('J_console',onlyBOT, AuctionAmount, bidAmount, account)
-    if (onlyBOT  && isGreaterThan(toWei('60'), AuctionAmount.balance) && !bidAmount) {
+    if (onlyBOT  && isGreaterThan(toWei('0'), AuctionAmount.balance) && !bidAmount) {
       errors.amount = 'Sorry! You are not qualified as Auction holder.'
       setErrors(errors)
     }else{
@@ -505,7 +505,7 @@ export const FSPoolDetail = () => {
                           }}
                           name={'amount'}
                           placeholder={'Bid Amount'}
-                          disabled={(onlyBOT && isGreaterThan(toWei('60'), AuctionAmount.balance)) ||
+                          disabled={(onlyBOT && isGreaterThan(toWei('0'), AuctionAmount.balance)) ||
                             (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
                           value={bidAmount}
                           onChange={handleChange}

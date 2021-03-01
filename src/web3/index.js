@@ -14,7 +14,7 @@ export const useActiveWeb3React = () => {
 }
 
 export const getETHDefaultLibrary = () => {
-    const provider = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/3f6f55ba1ee540328662f8496ddbc228')).currentProvider
+    const provider = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/64ce9c9d9d304d058ad0ce7ad22f67af')).currentProvider
     const library = {}
     library.provider = provider
     return library
