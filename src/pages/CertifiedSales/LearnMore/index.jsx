@@ -108,7 +108,7 @@ export default function Index() {
       }]} />
       <LearnMoreStyle>
         {pool.proInfo &&
-          <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={pool.proInfo.prologourl.startsWith('https://')? pool.proInfo.prologourl: HOST + '/' + pool.proInfo.prologourl}
+          <CardHeader title={pool && pool.proInfo && pool.proInfo.proname} logo={pool.proInfo.prologourl.startsWith('https://') ? pool.proInfo.prologourl : HOST + '/' + pool.proInfo.prologourl}
             socialLink={[
               { name: 'facebook', link: pool.proInfo.fackbook },
               { name: 'telegram', link: pool.proInfo.telegram },
