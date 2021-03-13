@@ -35,7 +35,7 @@ export default function Index() {
         const activePools = list ? list.filter(item => {
           return item.status === 'Active'
         }) : null
-        // console.log('activePools', activePools)
+        console.log('activePools', list)
         return <>
           {!activePools || activePools.length === 0 ? (
             <EmptyLayout>
@@ -65,7 +65,7 @@ export default function Index() {
         </>
 
       case 'close':
-        return null
+        // return null
         const closedPools = list ? list.filter(item => {
           return item.status === 'Failed' || item.status === 'Success'
         }) : null
@@ -105,19 +105,19 @@ export default function Index() {
             return <li
               key={index}
               onClick={() => {
-                if (item.status === 'Close') {
-                  return dispatch({
-                      type: 'MODAL',
-                      value: {
-                          name: 'CONFIRM',
-                          title: 'Bounce Decentralized',
-                          deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
-                          cancel: {
-                              text: 'I Know'
-                          }
-                      }
-                  })
-              }
+              //   if (item.status === 'Close') {
+              //     return dispatch({
+              //         type: 'MODAL',
+              //         value: {
+              //             name: 'CONFIRM',
+              //             title: 'Bounce Decentralized',
+              //             deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
+              //             cancel: {
+              //                 text: 'I Know'
+              //             }
+              //         }
+              //     })
+              // }
                 history.push(item.route)
                 setCurPro(index)
               }}

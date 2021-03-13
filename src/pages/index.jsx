@@ -43,8 +43,8 @@ export default function Index() {
                     <Route path='/kyc' exact component={Kyc} />
                     <Route path='/applySale' exact component={ApplySale} />
                     <Route path='/PersonalInfo' exact component={PersonalInfo} />
-                    {/* <Route path='/certified-sales' exact component={CertifiedSales} /> */}
-                    {/* <Route path='/certified-sales/:poolId' exact component={Detail} /> */}
+                    <Route path='/certified-sales' exact component={CertifiedSales} />
+                    <Route path='/certified-sales/:poolId' exact component={Detail} />
                     <Route path='/learn-more/:poolId' exact component={LearnMore} />
                     <Route path='/fixed-swap/:poolId' exact component={FSPoolDetail} />
                     <Route path='/bsc/fixed-swap/:poolId' exact component={FSPoolDetail} />
