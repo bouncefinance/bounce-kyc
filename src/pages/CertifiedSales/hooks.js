@@ -39,6 +39,7 @@ export const getProjectInfo = async (proId) => {
 export const useVoteList = () => {
   const [list, setList] = useState()
   const { active, library, chainId, account } = useActiveWeb3React();
+  console.log('library',library)
 
   const fetchList = () => {
     let pools = []
@@ -101,91 +102,92 @@ export const usePoolList = () => {
 
   const upItem =
     [
-      {
-        notReady: true,
-        time: 'TBD',
-        accountaddress: "0xcc99283b21a34e0f1c1cdefe30815f0af60942ba",
-        additionalinfo: "https://defiwizard.xyz",
-        allocationperwallet: "40 USDT",
-        amountoftoken: "20000",
-        architecture: "",
-        attachmenturl: "",
-        auctiontime: "3600",
-        auctiontype: "Fixed rate swap",
-        circulatingsupply: "300000",
-        closeAt: "1613230468",
-        code: 1,
-        contactemail: "infor@defiwizard.xyz",
-        created_at: "2021-02-06T15:33:44Z",
-        creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
-        fackbook: "",
-        githublink: "https://github.com/DefiWizard",
-        id: 44,
-        enableWhiteList: 1,
-        medium: "https://defi-wizard.medium.com",
-        pricepertoken: "2.5",
-        projectId: "44",
-        prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
-        proname: "DeFi Wizard",
-        prosummary: "Community Owned, Layer 2 Oracle",
-        protheme: "Layer 2 Oracle, defi",
-        prowebsite: "https://www.umb.network/",
-        teambio: "The Umbrella Network Team has worked together for the past 10 years building high performance applications primarily in the digital advertising market. Most recently, they build a transparency solution for the digital advertising industry using the Ethereum blockchain.",
-        teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
-        techhighlight: "Reduce cost of on chain data exponentially",
-        telegram: "https://t.me/umbrellanet",
-        tokencontractaddress: "0xAcE942e89a84c50294832eD7B24CF2db42E95127",
-        tokendistribution: "unlock promptly after sale",
-        tokenlookupschedule: "Unlock promptly",
-        tokenticketer: "LCF",
-        totalVotes: 300,
-        totalsupply: "400",
-        twitter: "https://twitter.com/UmbNetwork",
-        updated_at: "2021-02-06T15:33:44Z",
-        votePassed: true,
-        "botHolder": true,
-        "inKYC": true,
-        "joined": false,
-        "enableKycList": true,
-        status: 'Upcoming',
-        "proInfo": {
-          "id": 49,
-          "accountaddress": "0xcc99283b21a34e0f1c1cdefe30815f0af60942ba",
-          "proname": "Convergence Finance",
-          "prowebsite": "https://www.conv.finance",
-          "protheme": "Defi, AMM",
-          "whitepaperlink": "https://drive.google.com/drive/folders/1dttpDtIWXnFaFLwGdIyFb1RhGHh3tuCA?usp=sharing",
-          "githublink": "https://github.com/Convergence-Finance",
-          "twitter": "https://twitter.com/ConvergenceFin ",
-          "medium": "https://medium.com/@ConvergenceFinance ",
-          "fackbook": "",
-          "telegram": "https://t.me/convergencefinanceofficial",
-          "prosummary": "The decentralized interchangeable assets protocol. Converge legacy finance with DeFi.\n",
-          "techhighlight": "The relationship between traditional finance and new DeFi is getting closer. Security tokens and traditional finance benefit from real world asset exposure and recognised legal ownership rights; DeFi and utility tokens benefit from high liquidity, radical innovation, and creative composability. Convergence protocol bridges these two worlds via the Convergence token bridge layer and Convergence AMM. Convergence will enable seamless swapping between wrapped security tokens and utility tokens",
-          "architecture": "",
-          "attachmenturl": "",
-          "teambio": "Oscar Yeung - Co-Founder \u0026 COO at Liquefy; Former Global Markets at Deutsche Bank Leverage DCM; Partner of BlackHorse Group, early stage digital asset venture capital firm; Venture partner of EONXI; Graduated from N.Y.U Stern School of Business \n\nIvan Yeung - Senior Product Manager at Liquefy; Former IBM Biotechnology team; Product lead at autonomous driving startup; Graduated from Simon Fraser University from School of Computing Science\n\n",
-          "totalsupply": "10,000,000,000",
-          "circulatingsupply": "448,000,000",
-          "tokenticketer": "CONV",
-          "tokencontractaddress": "000000000000000000000000000000000000000000",
-          "tokendistribution": "See token metrics",
-          "tokenlookupschedule": "See token metrics",
-          "auctiontype": "Sealed-bid auction",
-          "amountoftoken": "30000000",
-          "pricepertoken": "0.004",
-          "allocationperwallet": "500 USDT",
-          "auctiontime": "86400",
-          "teamwallet": "0xCc99283B21A34E0F1c1cdEfe30815F0AF60942bA",
-          "ifkyc": 1,
-          "ifwhitelist": 1,
-          "contactemail": "oscar@conv.finance",
-          "additionalinfo": "",
-          "prologourl": "4c0909bf8015106092d742e3ba06d081.jpeg",
-          "created_at": "2021-02-19T10:46:38Z",
-          "updated_at": "2021-02-19T10:46:38Z"
-        }
-      }]
+      // {
+      //   notReady: true,
+      //   time: 'TBD',
+      //   accountaddress: "0xcc99283b21a34e0f1c1cdefe30815f0af60942ba",
+      //   additionalinfo: "https://defiwizard.xyz",
+      //   allocationperwallet: "40 USDT",
+      //   amountoftoken: "20000",
+      //   architecture: "",
+      //   attachmenturl: "",
+      //   auctiontime: "3600",
+      //   auctiontype: "Fixed rate swap",
+      //   circulatingsupply: "300000",
+      //   closeAt: "1613230468",
+      //   code: 1,
+      //   contactemail: "infor@defiwizard.xyz",
+      //   created_at: "2021-02-06T15:33:44Z",
+      //   creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
+      //   fackbook: "",
+      //   githublink: "https://github.com/DefiWizard",
+      //   id: 44,
+      //   enableWhiteList: 1,
+      //   medium: "https://defi-wizard.medium.com",
+      //   pricepertoken: "2.5",
+      //   projectId: "44",
+      //   prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
+      //   proname: "DeFi Wizard",
+      //   prosummary: "Community Owned, Layer 2 Oracle",
+      //   protheme: "Layer 2 Oracle, defi",
+      //   prowebsite: "https://www.umb.network/",
+      //   teambio: "The Umbrella Network Team has worked together for the past 10 years building high performance applications primarily in the digital advertising market. Most recently, they build a transparency solution for the digital advertising industry using the Ethereum blockchain.",
+      //   teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
+      //   techhighlight: "Reduce cost of on chain data exponentially",
+      //   telegram: "https://t.me/umbrellanet",
+      //   tokencontractaddress: "0xAcE942e89a84c50294832eD7B24CF2db42E95127",
+      //   tokendistribution: "unlock promptly after sale",
+      //   tokenlookupschedule: "Unlock promptly",
+      //   tokenticketer: "LCF",
+      //   totalVotes: 300,
+      //   totalsupply: "400",
+      //   twitter: "https://twitter.com/UmbNetwork",
+      //   updated_at: "2021-02-06T15:33:44Z",
+      //   votePassed: true,
+      //   "botHolder": true,
+      //   "inKYC": true,
+      //   "joined": false,
+      //   "enableKycList": true,
+      //   status: 'Upcoming',
+      //   "proInfo": {
+      //     "id": 49,
+      //     "accountaddress": "0xcc99283b21a34e0f1c1cdefe30815f0af60942ba",
+      //     "proname": "Convergence Finance",
+      //     "prowebsite": "https://www.conv.finance",
+      //     "protheme": "Defi, AMM",
+      //     "whitepaperlink": "https://drive.google.com/drive/folders/1dttpDtIWXnFaFLwGdIyFb1RhGHh3tuCA?usp=sharing",
+      //     "githublink": "https://github.com/Convergence-Finance",
+      //     "twitter": "https://twitter.com/ConvergenceFin ",
+      //     "medium": "https://medium.com/@ConvergenceFinance ",
+      //     "fackbook": "",
+      //     "telegram": "https://t.me/convergencefinanceofficial",
+      //     "prosummary": "The decentralized interchangeable assets protocol. Converge legacy finance with DeFi.\n",
+      //     "techhighlight": "The relationship between traditional finance and new DeFi is getting closer. Security tokens and traditional finance benefit from real world asset exposure and recognised legal ownership rights; DeFi and utility tokens benefit from high liquidity, radical innovation, and creative composability. Convergence protocol bridges these two worlds via the Convergence token bridge layer and Convergence AMM. Convergence will enable seamless swapping between wrapped security tokens and utility tokens",
+      //     "architecture": "",
+      //     "attachmenturl": "",
+      //     "teambio": "Oscar Yeung - Co-Founder \u0026 COO at Liquefy; Former Global Markets at Deutsche Bank Leverage DCM; Partner of BlackHorse Group, early stage digital asset venture capital firm; Venture partner of EONXI; Graduated from N.Y.U Stern School of Business \n\nIvan Yeung - Senior Product Manager at Liquefy; Former IBM Biotechnology team; Product lead at autonomous driving startup; Graduated from Simon Fraser University from School of Computing Science\n\n",
+      //     "totalsupply": "10,000,000,000",
+      //     "circulatingsupply": "448,000,000",
+      //     "tokenticketer": "CONV",
+      //     "tokencontractaddress": "000000000000000000000000000000000000000000",
+      //     "tokendistribution": "See token metrics",
+      //     "tokenlookupschedule": "See token metrics",
+      //     "auctiontype": "Sealed-bid auction",
+      //     "amountoftoken": "30000000",
+      //     "pricepertoken": "0.004",
+      //     "allocationperwallet": "500 USDT",
+      //     "auctiontime": "86400",
+      //     "teamwallet": "0xCc99283B21A34E0F1c1cdEfe30815F0AF60942bA",
+      //     "ifkyc": 1,
+      //     "ifwhitelist": 1,
+      //     "contactemail": "oscar@conv.finance",
+      //     "additionalinfo": "",
+      //     "prologourl": "4c0909bf8015106092d742e3ba06d081.jpeg",
+      //     "created_at": "2021-02-19T10:46:38Z",
+      //     "updated_at": "2021-02-19T10:46:38Z"
+      //   }
+      // }
+    ]
   const [list, setList] = useState()
 
   let pools = upItem
@@ -196,9 +198,12 @@ export const usePoolList = () => {
 
 
   const fetchList = async (curLibrary, curChainId) => {
+    if(curChainId===1){
+      curLibrary = library
+    }
     const bounceContract = getContract(curLibrary, BouncePro.abi, BOUNCE_PRO(curChainId))
     const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
-    console.log('curLibrary', curLibrary)
+    // console.log('curLibrary', curLibrary)
 
     try {
       bounceContract.methods.getPoolCount().call().then(res => {

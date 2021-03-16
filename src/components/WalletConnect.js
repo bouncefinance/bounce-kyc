@@ -23,6 +23,7 @@ const RPC_URLS = {
     4: "https://rinkeby.infura.io/v3/8f6d3d5d7a1442a38d9e8050c31c1884"
 };
 
+
 const walletconnect = new WalletConnectConnector({
     rpc: { 1: RPC_URLS[1] },
     bridge: "https://bridge.walletconnect.org",
