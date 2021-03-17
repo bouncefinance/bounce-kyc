@@ -49,11 +49,14 @@ jobs:
 
 workflows:
   version: 2.1
-  bounce_frontend_app:
+  bounce_kyc:
     jobs:
       # stage
       - approve-stage:
           type: approval
+          filters:
+             branches:
+               only: [ stage ]
       - build-stage:
           context:
             - bounce_build_stage
