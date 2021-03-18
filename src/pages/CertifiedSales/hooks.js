@@ -151,7 +151,7 @@ export const usePoolList = () => {
       {
         notReady: true,
         time: 'March 23',
-        "botHolder": true,
+        "botHolder": false,
         "inKYC": true,
         "joined": false,
         "enableKycList": true,
