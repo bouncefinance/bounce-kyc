@@ -109,6 +109,7 @@ export const usePoolList = () => {
         "inKYC": true,
         "joined": false,
         "enableKycList": true,
+        "enableWhiteList": false,
         status: 'Upcoming',
         "proInfo": {
           accountaddress: "0xe154740c2a7c1574a6c89d87f6094b3889f70082",
@@ -119,7 +120,6 @@ export const usePoolList = () => {
           attachmenturl: "",
           auctiontime: "86400",
           auctiontype: "Fixed swap auction",
-          circulatingsupply: "9750000",
           contactemail: "Jessie@wah.art",
           created_at: "2021-03-13T11:18:57Z",
           fackbook: "",
@@ -145,9 +145,56 @@ export const usePoolList = () => {
           totalsupply: "100,000,000",
           twitter: "https://twitter.com/fm_gallery",
           updated_at: "2021-03-13T11:18:57Z",
-          whitepaperlink: "https://wah.art/uploads/FM_White_paper_v1.2.10.pdf,"
+          whitepaperlink: "https://wah.art/uploads/fm_white_paper_v1.32.pdf"
         }
-      }
+      },
+      {
+        notReady: true,
+        time: 'March 23',
+        "botHolder": true,
+        "inKYC": true,
+        "joined": false,
+        "enableKycList": true,
+        "enableWhiteList": true,
+        status: 'Upcoming',
+        "proInfo": {
+          accountaddress: "0x46b671543f1b8391d2d051d348c8f536a33e5149",
+          additionalinfo: "",
+          allocationperwallet: "150 USDT",
+          amountoftoken: "120000",
+          architecture: "Polkadot",
+          attachmenturl: "",
+          auctiontime: "3600",
+          auctiontype: "Fixed swap auction",
+          circulatingsupply: "3,140,000",
+          contactemail: "support@stonedefi.io",
+          created_at: "2021-03-16T03:37:43Z",
+          fackbook: "",
+          githublink: "https://github.com/stonedefi",
+          id: 90,
+          ifkyc: 1,
+          ifwhitelist: 1,
+          medium: "https://stonedefi.medium.com",
+          pricepertoken: "0.25",
+          prologourl: "b6d59eed128dc11dc854a2706000aabd.png",
+          proname: "STONE DeFi",
+          prosummary: "Stone is the only yield management protocol focused on creating Rock↵Solid Yield for users in DeFi.",
+          protheme: "DeFi",
+          prowebsite: "https://www.stonedefi.io/",
+          teambio: "To bootstrap the technical development, RockX team and a↵few individuals from the DeFi community working to launch↵the alpha and public version of Stone protocol for the↵community and committed to lead the technical development↵for the next two years before the community decides the next↵steps. RockX is a development house with experience in↵blockchain development and running various blockchain↵validators, such as Polkadot, Terra, Solana, Oasis. ",
+          teamwallet: "0x7B01e4dF14a6Db7C8308e68Ea3Ea26af3C8cED49",
+          techhighlight: "Stone is positioned as the anchor yield aggregation platform that aims to expand the current DeFi yield market including the yields from staking assets. Stone has the vision to be the global yield marketplace with the inclusion of multi-chain PoS assets. To leverage the capability of substrate and Polkadot, Stone is also looking to provide more innovative products based on a wide range of yield-bearing assets to users across multiple blockchains.",
+          telegram: "https://t.me/stonefortress",
+          tokencontractaddress: "0xe63d6B308BCe0F6193AeC6b7E6eBa005f41e36AB",
+          tokendistribution: "Token Sale - 12%↵Marketing & Partnership - 3%↵Protocol Reserve - 12%↵Tech Development - 15%↵Yield Farming Reserve - 55%↵Community Contributors - 3%",
+          tokenlookupschedule: "Seed- 15% unlock @TGE, quarter release for next 12 months.↵Private- 25% unlock @TGE, quarter release for next 12 months.↵Community Contributor- 1month after TGE, unlock daily for 12 months.↵Marketing&Partnership- 1month after TGE, unlock daily for 12 months.↵Tech Dev- 6months after TGE, release semi",
+          tokenticketer: "STN",
+          totalsupply: "100,000,000",
+          twitter: "https://twitter.com/DefiStone?s=20",
+          updated_at: "2021-03-16T03:37:43Z",
+          whitepaperlink: "https://www.stonedefi.io/file/stone_litepaper.pdf",
+        }
+      },
     ]
   const [list, setList] = useState()
 
@@ -159,9 +206,11 @@ export const usePoolList = () => {
 
 
   const fetchList = async (curLibrary, curChainId) => {
+
     if (curChainId === 1) {
       curLibrary = library
     }
+
     const bounceContract = getContract(curLibrary, BouncePro.abi, BOUNCE_PRO(curChainId))
     const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
     // console.log('curLibrary', curLibrary)
