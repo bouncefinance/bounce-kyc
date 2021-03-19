@@ -150,9 +150,9 @@ export default function SalesCard({ status, isVote, pool = {} }) {
             <Passage
               title='Participant'
               desc={`
-                    ${(pool.botHolder && !pool.enableWhiteList) ? 'Auction holder': ''}
+                    ${(pool.botHolder && !pool.enableWhiteList) ? 'AUCTION holder': ''}
                     ${(!pool.botHolder && pool.enableWhiteList) ? 'Whitelisting' : ''}
-                    ${(pool.botHolder && pool.enableWhiteList) ? 'Auction holder , Whitelisting' : ''}
+                    ${(pool.botHolder && pool.enableWhiteList) ? 'AUCTION holder , Whitelisting' : ''}
                     ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public' : ''}
                     `
               } />

@@ -292,9 +292,9 @@ export default function Card({ status, poolId = 0, progress, claimFun, isVote, p
                         <Passage
                             title='Participant'
                             desc={`
-                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Auction holder' : ''}
+                                    ${(pool.botHolder && !pool.proInfo.ifwhitelist) ? 'AUCTION holder' : ''}
                                     ${(!pool.botHolder && pool.proInfo.ifwhitelist) ? 'Whitelisting' : ''}
-                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'Auction holder , Whitelisting' : ''}
+                                    ${(pool.botHolder && pool.proInfo.ifwhitelist) ? 'AUCTION holder , Whitelisting' : ''}
                                     ${(!pool.botHolder && !pool.proInfo.ifwhitelist) ? 'Public' : ''}
                                     `
                             } />
