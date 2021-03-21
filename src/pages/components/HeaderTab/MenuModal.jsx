@@ -15,6 +15,7 @@ export default function MenuModal({ show = false,setMobileMenu }) {
     const [curTab, setCurTab] = useState(history.location.pathname === '/' ? '/home' : history.location.pathname)
     const { state, dispatch } = useContext(myContext);
     const { active, account } = useActiveWeb3React();
+    
 
     const renderConnectBtn = () => {
 

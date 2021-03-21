@@ -42,6 +42,12 @@ export const useTokenList = () => {
     value: <TokenFrame><img alt="" src={yfi_icon} /><span>YFI</span></TokenFrame>,
     symbol: 'YFI',
     decimals: '18'
+  },{
+    key: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+    value: <TokenFrame><img alt="" src={icon_eth} /><span>{Psymbol}</span></TokenFrame>,
+    symbol: Psymbol,
+    decimals: '18'
+
   }]
 }
 

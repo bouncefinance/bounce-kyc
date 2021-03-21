@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .VSCodeCounter
+.eslintcache
 
 # testing
 /coverage
@@ -23,5 +24,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.eslintcache
-.VSCodeCounter

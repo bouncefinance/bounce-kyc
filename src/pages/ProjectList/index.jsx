@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import { myContext } from '../../redux'
 import { ProjectListStyle } from './styled'
 import Card from '../CertifiedSales/Card'
 import { useVoteList } from "../CertifiedSales/hooks";
@@ -17,6 +18,7 @@ const proTabs = [{
 }]
 
 export default function Index() {
+  const { state, dispatch } = useContext(myContext)
   const history = useHistory()
   const { type } = useParams()
   const { list } = useVoteList()
@@ -27,12 +29,13 @@ export default function Index() {
   }, [list])
 
   const renderProList = () => {
+
     switch (type) {
       case 'active':
         const activePools = list ? list.filter(item => {
           return item.status === 'Active'
         }) : null
-        // console.log('activePools', activePools)
+        console.log('activePools', list)
         return <>
           {!activePools || activePools.length === 0 ? (
             <EmptyLayout>
@@ -62,6 +65,7 @@ export default function Index() {
         </>
 
       case 'close':
+        // return null
         const closedPools = list ? list.filter(item => {
           return item.status === 'Failed' || item.status === 'Success'
         }) : null
@@ -101,6 +105,19 @@ export default function Index() {
             return <li
               key={index}
               onClick={() => {
+              //   if (item.status === 'Close') {
+              //     return dispatch({
+              //         type: 'MODAL',
+              //         value: {
+              //             name: 'CONFIRM',
+              //             title: 'Bounce Decentralized',
+              //             deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
+              //             cancel: {
+              //                 text: 'I Know'
+              //             }
+              //         }
+              //     })
+              // }
                 history.push(item.route)
                 setCurPro(index)
               }}

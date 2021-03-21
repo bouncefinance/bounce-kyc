@@ -1,10 +1,10 @@
 import axios from 'axios';
 import API from '../../config/request_api'
 import { useEffect, useState } from 'react';
-import { getContract, useActiveWeb3React } from "../../web3";
+import { getBNBDefaultLibrary, getContract, getETHDefaultLibrary, useActiveWeb3React } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
-import {BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO} from "../../web3/address";
+import { BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO } from "../../web3/address";
 import { isGreaterThan } from "../../utils/common";
 import bounceERC20 from "../../web3/abi/bounceERC20.json";
 import { weiToNum } from "../../utils/numberTransform";
@@ -39,6 +39,7 @@ export const getProjectInfo = async (proId) => {
 export const useVoteList = () => {
   const [list, setList] = useState()
   const { active, library, chainId, account } = useActiveWeb3React();
+  console.log('library', library)
 
   const fetchList = () => {
     let pools = []
@@ -59,7 +60,7 @@ export const useVoteList = () => {
               const closed = closeAt - new Date()
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
-             console.log('pool', pool)
+            console.log('pool', pool)
             const proInfo = await getProjectInfo(pool.projectId)
             pool.botHolder = true
             pool.proInfo = proInfo
@@ -97,113 +98,187 @@ export const useVoteList = () => {
 }
 
 export const usePoolList = () => {
-  const upItem = [{
-    notReady: true,
-    time: 'March 1st 2021',
-    accountaddress: "0x843f54fbf268dabe93f16e366433e16204944b1a",
-    additionalinfo: "https://defiwizard.xyz",
-    allocationperwallet: "40 USDT",
-    amountoftoken: "20000",
-    architecture: "",
-    attachmenturl: "",
-    auctiontime: "3600",
-    auctiontype: "Fixed rate swap",
-    circulatingsupply: "300000",
-    closeAt: "1613230468",
-    code: 1,
-    contactemail: "infor@defiwizard.xyz",
-    created_at: "2021-02-06T15:33:44Z",
-    creator: "0x843f54fBf268Dabe93F16E366433E16204944b1a",
-    fackbook: "",
-    githublink: "https://github.com/DefiWizard",
-    id: 44,
-    enableWhiteList: 1,
-    medium: "https://defi-wizard.medium.com",
-    pricepertoken: "2.5",
-    projectId: "44",
-    prologourl: "0be84b556b7a5662ea32bf0357a6dec0.png",
-    proname: "DeFi Wizard",
-    prosummary: "Community Owned, Layer 2 Oracle",
-    protheme: "Layer 2 Oracle, defi",
-    prowebsite: "https://www.umb.network/",
-    teambio: "The Umbrella Network Team has worked together for the past 10 years building high performance applications primarily in the digital advertising market. Most recently, they build a transparency solution for the digital advertising industry using the Ethereum blockchain.",
-    teamwallet: "0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a",
-    techhighlight: "Reduce cost of on chain data exponentially",
-    telegram: "https://t.me/umbrellanet",
-    tokencontractaddress: "0xAcE942e89a84c50294832eD7B24CF2db42E95127",
-    tokendistribution: "unlock promptly after sale",
-    tokenlookupschedule: "Unlock promptly",
-    tokenticketer: "LCF",
-    totalVotes: 300,
-    totalsupply: "400",
-    twitter: "https://twitter.com/UmbNetwork",
-    updated_at: "2021-02-06T15:33:44Z",
-    votePassed: true,
-    "botHolder": true,
-    "inKYC": true,
-    "joined": false,
-    "enableKycList": true,
-    status: 'Upcoming',
-    "proInfo": {
-      "id": 44,
-      "accountaddress": "0x843f54fbf268dabe93f16e366433e16204944b1a",
-      "proname": "DeFi Wizard",
-      "prowebsite": "https://defiwizard.xyz/",
-      "protheme": "DeFi",
-      "whitepaperlink": "https://defi-wizard.medium.com/introducing-defi-wizard-55979d7b6506",
-      "githublink": "https://github.com/DefiWizard/",
-      "twitter": "https://twitter.com/defi_wizard",
-      "medium": "https://defi-wizard.medium.com/",
-      "fackbook": "",
-      "telegram": "https://t.me/defi_wizard",
-      "prosummary": "Multi-chain DeFi Legosmade simple. One-click wizard to Create token, staking, yield farming legos.",
-      "techhighlight": "Multi-chain DeFi Legosmade simple. One-click wizard to Create audited ERC20 / BEP20 / EDST token. staking, yield farming contract for LP tokens.",
-      "architecture": "",
-      "attachmenturl": "",
-      "teambio": "Team has vast experience in development with more than a decade experience with programming full-stack and started working on smart-contracts in 2017 bull-market to create lots of crowd sale and vesting contracts for ICOs.",
-      "totalsupply": "1000000",
-      "circulatingsupply": "300000",
-      "tokenticketer": "DWZ",
-      "tokencontractaddress": "0x7dee45dff03ec7137979586ca20a2f4917bac9fa",
-      "tokendistribution": "https://defiwizard.xyz/token",
-      "tokenlookupschedule": "Seed: 25% initial, 25% 4/6/8 weeks after\nPrivate: 33% initial, 33% 3/6 weeks after",
-      "auctiontype": "Fixed rate swap",
-      "amountoftoken": "20000",
-      "pricepertoken": "2.5",
-      "allocationperwallet": "40 USDT",
-      "auctiontime": "3600",
-      "teamwallet": "0x843f54fBf268Dabe93F16E366433E16204944b1a",
-      "ifkyc": 1,
-      "ifwhitelist": 1,
-      "contactemail": "infor@defiwizard.xyz",
-      "additionalinfo": "https://defiwizard.xyz/",
-      "prologourl": "0be84b556b7a5662ea32bf0357a6dec0.png",
-      "created_at": "2021-02-07T03:25:59Z",
-      "updated_at": "2021-02-07T03:25:59Z"
+  const { active, library, chainId, account } = useActiveWeb3React();
+
+  const upItem =
+    [
+    //   {
+    //   notReady: true,
+    //   time: 'March 22',
+    //   "botHolder": false,
+    //   "inKYC": true,
+    //   "joined": false,
+    //   "enableKycList": true,
+    //   "enableWhiteList": true,
+    //   status: 'Upcoming',
+    //   "proInfo": {
+    //     accountaddress: "0x65e48050f924ce5b6b4d4a8d4e4240048b38d057",
+    //     additionalinfo: "",
+    //     allocationperwallet: "50 USDT",
+    //     amountoftoken: "3000",
+    //     architecture: "DAO-as-a-Service Infrastructure for on-chain governance.",
+    //     attachmenturl: "",
+    //     auctiontime: "86400",
+    //     auctiontype: "ERC20 Lottery",
+    //     circulatingsupply: "1500000",
+    //     contactemail: "steve@dorafactory.org",
+    //     created_at: "2021-03-17T17:34:36Z",
+    //     fackbook: "",
+    //     githublink: "https://github.com/w3f/Open-Grants-Program/pull/227",
+    //     id: 98,
+    //     ifkyc: 1,
+    //     ifwhitelist: 1,
+    //     medium: "https://dorafactory.medium.com/",
+    //     pricepertoken: "10",
+    //     prologourl: "0b8c4c54d75101a50ecf16223848e370.png",
+    //     proname: "Dora Factory",
+    //     prosummary: "Dora Factory is a programmable DAO-as-a-Service open infrastructure on Substrate.",
+    //     protheme: "Polkadot, DAO, infrastructure",
+    //     prowebsite: "https://dorafactory.org",
+    //     teambio: "Eric Nobita, Architect of Dora Factory ↵Steve Ngok, Oracle of Dora Factory↵Penny Wang, Operation Head↵↵↵The three are the founding team of Dora Factory. ↵Besides this, they're also partners at DoraHacks and DoraHacks Ventures.↵DoraHacks is a global hacker community and DV is the venture arm. ↵DoraHacks Ventures is a seed money startup accelerator that nurtures exciting post hackathon hacker projects.↵",
+    //     teamwallet: "0x65E48050f924cE5B6B4D4a8D4e4240048b38D057",
+    //     techhighlight: "Crucial schemes like quadratic voting, bonding curve fundraising, all cool features regrading on-chain governance can be built on this infrastructure as pallets by the developers, and they can be rewarded in a SaaS model when DAOs launched on Dora Factory deploy them. ",
+    //     telegram: "https://t.me/dorafactory",
+    //     tokencontractaddress: "0x65E48050f924cE5B6B4D4a8D4e4240048b38D057",
+    //     tokendistribution: "Total Dorayaki supply↵10,000,000↵↵Private Placement↵2,000,000↵↵Dorayaki Public Sale↵600,000↵↵Initial Liquidity↵700,000↵↵Dora Factory Team↵1,000,000↵↵DoraHacks↵1,000,000↵↵DORA Foundation Reserve↵2,500,000↵↵Dora Factory Open Grant↵1,500,000↵↵Dora Factory Community Grant ↵700,000",
+    //     tokenlookupschedule: "Private Placement: 20-30% unlock at TGE, the rest will linearly unlock in 1 year. ↵Public Sale & Initial Liquidity: 100% unlock at TGE.↵Team & DoraHacks : 0% unlock at TGE, the rest will linearly unlock in 2 years. ↵Others: reserved for future use.",
+    //     tokenticketer: "DORA",
+    //     totalsupply: "10000000",
+    //     twitter: "https://twitter.com/DoraFactory",
+    //     updated_at: "2021-03-17T17:34:36Z",
+    //     whitepaperlink: "https://bit.ly/2Q8OlTb",
+    //   }
+    // },
+    {
+      notReady: true,
+      time: 'March 22',
+      "botHolder": true,
+      "inKYC": true,
+      "joined": false,
+      "enableKycList": true,
+      "enableWhiteList": false,
+      status: 'Upcoming',
+      "proInfo": {
+        accountaddress: "0xe154740c2a7c1574a6c89d87f6094b3889f70082",
+        additionalinfo: "",
+        allocationperwallet: "300 USDT",
+        amountoftoken: "600000",
+        architecture: "NA",
+        attachmenturl: "",
+        auctiontime: "86400",
+        auctiontype: "Fixed swap auction",
+        contactemail: "Jessie@wah.art",
+        created_at: "2021-03-13T11:18:57Z",
+        fackbook: "",
+        githublink: "https://na.com",
+        id: 88,
+        ifkyc: 0,
+        ifwhitelist: 1,
+        medium: "https://medium.com/fm-gallery",
+        pricepertoken: "0.15",
+        prologourl: "07c5d4d490c09bef9ef5ba27d9efe8e7.png",
+        proname: "FM Gallery",
+        prosummary: "FM Gallery is a blockchain-based distribution platform for NFT artworks.",
+        protheme: "NFT",
+        prowebsite: "https://wah.art/",
+        teambio: "↵Flora “FM” Peng，Founder of FM Gallery, is an experienced practitioner in the art industry. She is also the largest NFT influencer in the Chinese-speaking community with over 20k followers on Clubhouse and over 1 million followers across social media",
+        teamwallet: "0xD087E4758F70725279C26200F5CD597b31BEab72",
+        techhighlight: "We are developed on ethereum blockchain",
+        telegram: "https://t.me/fmgalleryeng",
+        tokencontractaddress: "0xD67eB8a95A38F89ba0D418fA90ce4AB396D4F1C2",
+        tokendistribution: "1. Team and Advisors – 20% ↵2. Ecosystem Fund/Community Governance – 15% ↵3. Private Sale and Seed Investors –15% ↵4. Community – 50%",
+        tokenlookupschedule: "TGE vesting around 9%",
+        tokenticketer: "WAH",
+        totalsupply: "100,000,000",
+        twitter: "https://twitter.com/fm_gallery",
+        updated_at: "2021-03-13T11:18:57Z",
+        whitepaperlink: "https://wah.art/uploads/fm_white_paper_v1.32.pdf"
+      }
+    },
+    {
+      notReady: true,
+      time: 'March 23',
+      "botHolder": false,
+      "inKYC": true,
+      "joined": false,
+      "enableKycList": true,
+      "enableWhiteList": true,
+      status: 'Upcoming',
+      "proInfo": {
+        accountaddress: "0x46b671543f1b8391d2d051d348c8f536a33e5149",
+        additionalinfo: "",
+        allocationperwallet: "150 USDT",
+        amountoftoken: "120000",
+        architecture: "Polkadot",
+        attachmenturl: "",
+        auctiontime: "3600",
+        auctiontype: "Fixed swap auction",
+        circulatingsupply: "3,140,000",
+        contactemail: "support@stonedefi.io",
+        created_at: "2021-03-16T03:37:43Z",
+        fackbook: "",
+        githublink: "https://github.com/stonedefi",
+        id: 90,
+        ifkyc: 1,
+        ifwhitelist: 1,
+        medium: "https://stonedefi.medium.com",
+        pricepertoken: "0.25",
+        prologourl: "b6d59eed128dc11dc854a2706000aabd.png",
+        proname: "STONE DeFi",
+        prosummary: "Stone is the only yield management protocol focused on creating Rock↵Solid Yield for users in DeFi.",
+        protheme: "DeFi",
+        prowebsite: "https://www.stonedefi.io/",
+        teambio: "To bootstrap the technical development, RockX team and a↵few individuals from the DeFi community working to launch↵the alpha and public version of Stone protocol for the↵community and committed to lead the technical development↵for the next two years before the community decides the next↵steps. RockX is a development house with experience in↵blockchain development and running various blockchain↵validators, such as Polkadot, Terra, Solana, Oasis. ",
+        teamwallet: "0x7B01e4dF14a6Db7C8308e68Ea3Ea26af3C8cED49",
+        techhighlight: "Stone is positioned as the anchor yield aggregation platform that aims to expand the current DeFi yield market including the yields from staking assets. Stone has the vision to be the global yield marketplace with the inclusion of multi-chain PoS assets. To leverage the capability of substrate and Polkadot, Stone is also looking to provide more innovative products based on a wide range of yield-bearing assets to users across multiple blockchains.",
+        telegram: "https://t.me/stonefortress",
+        tokencontractaddress: "0xe63d6B308BCe0F6193AeC6b7E6eBa005f41e36AB",
+        tokendistribution: "Token Sale - 12%↵Marketing & Partnership - 3%↵Protocol Reserve - 12%↵Tech Development - 15%↵Yield Farming Reserve - 55%↵Community Contributors - 3%",
+        tokenlookupschedule: "Seed- 15% unlock @TGE, quarter release for next 12 months.↵Private- 25% unlock @TGE, quarter release for next 12 months.↵Community Contributor- 1month after TGE, unlock daily for 12 months.↵Marketing&Partnership- 1month after TGE, unlock daily for 12 months.↵Tech Dev- 6months after TGE, release semi",
+        tokenticketer: "STN",
+        totalsupply: "100,000,000",
+        twitter: "https://twitter.com/DefiStone?s=20",
+        updated_at: "2021-03-16T03:37:43Z",
+        whitepaperlink: "https://www.stonedefi.io/file/stone_litepaper.pdf",
+      }
     }
-  }]
+    ]
   const [list, setList] = useState()
+
+  let pools = upItem
 
   const [activePool, setActivePool] = useState([])
   const [upcomingPools, setUpcomingPools] = useState()
   const [passPools, setPassPools] = useState([])
-  const { active, library, chainId, account } = useActiveWeb3React();
 
 
-  const fetchList = () => {
-    const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
-    const lotteryNFTContract = getContract(library, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(chainId));
+  const fetchList = async (curLibrary, curChainId) => {
 
-    let pools = upItem
+    if (curChainId === 1) {
+      curLibrary = library
+    }
+
+    const bounceContract = getContract(curLibrary, BouncePro.abi, BOUNCE_PRO(curChainId))
+    const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
+    // console.log('curLibrary', curLibrary)
+
     try {
       bounceContract.methods.getPoolCount().call().then(res => {
-        console.log('getPoolCount', res)
+        console.log('getPoolCount--->', curChainId, res)
+        if (res === '0') {
+          setList(upItem)
+        }
         for (let i = 1; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)
             const pool = poolRes
+            pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
+
+            // poolRes.openAt = poolRes.openAt - (10*60*60+33*60)
+            // poolRes.closeAt = poolRes.closeAt - (4 * 60 * 60 + 15  * 60)
+
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
               pool.status = 'Upcoming'
@@ -227,12 +302,22 @@ export const usePoolList = () => {
 
             // console.log('pool', pool)
             pool.proInfo = await getProjectInfo(pool.projectId)
-            // console.log('pool',pool)
+            if (curChainId === 56) {
+              pool.proInfo.auctiontype = 'Fixed Swap Auction on Binance Smart Chain'
+            }
+
+            if (pool.projectId === '52') {
+              pool.botHolder = true
+            }
             pools = pools.concat(pool)
+            console.log('pools---->', pools)
             setList(pools)
           })
         }
         //setList(pools)
+      }).then(() => {
+        console.log('L_console', pools)
+
       })
     } catch (e) {
       console.log('fetchList error', e)
@@ -272,40 +357,48 @@ export const usePoolList = () => {
             pool.proInfo = await getProjectInfo(pool.projectId)
             // console.log('pool',pool)
             pools = pools.concat(pool)
+            console.log('L_console', pools)
             setList(pools)
           })
         }
-        //setList(pools)
+
       })
     } catch (e) {
       console.log('fetchList error', e)
     }
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     if (active) {
-      fetchList()
+      // await fetchList(getETHDefaultLibrary(), 1, pools)
+      // await fetchList(getBNBDefaultLibrary(), 56, pools)
+      await fetchList(getETHDefaultLibrary(), 1)
+      await fetchList(getBNBDefaultLibrary(), 56)
     }
   }, [active])
 
   useEffect(() => {
+
     console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
         return item.status === 'Active'
       }))
       setUpcomingPools(list.filter(item => {
+        // console.log('K_console',item)
         return item.status === 'Upcoming'
       }))
       setPassPools(list.filter(item => {
         return item.status === 'Failed'
       }))
+
+
+
     }
   }, [list])
 
   return { list, activePool, upcomingPools, passPools }
 }
-
 
 
 export const useStatus = (id) => {
@@ -378,20 +471,19 @@ export const useVoteListByPoolId = (poolId) => {
   return poolInfo
 }
 
-export const useInKYC = () =>{
+export const useInKYC = () => {
 
   const [KYCed, setKYCed] = useState(false)
   const { active, library, chainId, account } = useActiveWeb3React();
 
-  useEffect(()=>{
-    if(active && account){
+  useEffect(() => {
+    if (active && account) {
       const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
-      bounceContract.methods.kyclist(account).call().then(res =>{
+      bounceContract.methods.kyclist(account).call().then(res => {
         setKYCed(res)
       })
     }
-
-  },[active, account])
+  }, [active, account])
 
   return KYCed
 }
