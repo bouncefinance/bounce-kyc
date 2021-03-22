@@ -32,7 +32,7 @@ export default function SalesCard({ status, isVote, pool = {} }) {
 
   let timer
   useEffect(() => {
-    console.log('pool left', pool)
+    // console.log('pool left', pool)
     if (pool) {
       timer = setInterval(() => {
         const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt) 

@@ -413,7 +413,7 @@ export const FSPoolDetail = () => {
 
             <Pool.Block style={{ width: isXSDown ? '100%' : '200px' }}>
               <span>Maximum Allocation per wallet</span>
-              <span>{limit && (limit == 0 ? 'No limit' : `${weiToNumber(limit)} ${toSymbol}`)}</span>
+              <span>{limit && (limit == 0 ? 'No limit' : `${weiToNumber(limit, toDecimals)} ${toSymbol}`)}</span>
             </Pool.Block>
 
             <OText5 style={{

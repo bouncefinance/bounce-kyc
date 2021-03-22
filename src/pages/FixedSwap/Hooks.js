@@ -115,7 +115,8 @@ export const usePoolDetail = (id = 0) => {
                     setToDecimals('18')
                 }
 
-
+                // res.openAt = res.openAt - (3*60*60)
+                // res.closeAt = res.closeAt
 
                 const date = new Date(res.closeAt * 1000);
                 const now = new Date();

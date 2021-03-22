@@ -104,53 +104,6 @@ export const usePoolList = () => {
     [{
       notReady: true,
       time: 'March 22',
-      "botHolder": false,
-      "inKYC": true,
-      "joined": false,
-      "enableKycList": true,
-      "enableWhiteList": true,
-      status: 'Upcoming',
-      "proInfo": {
-        accountaddress: "0x65e48050f924ce5b6b4d4a8d4e4240048b38d057",
-        additionalinfo: "",
-        allocationperwallet: "50 USDT",
-        amountoftoken: "3000",
-        architecture: "DAO-as-a-Service Infrastructure for on-chain governance.",
-        attachmenturl: "",
-        auctiontime: "86400",
-        auctiontype: "Fixed swap auction",
-        circulatingsupply: "1500000",
-        contactemail: "steve@dorafactory.org",
-        created_at: "2021-03-17T17:34:36Z",
-        fackbook: "",
-        githublink: "https://github.com/w3f/Open-Grants-Program/pull/227",
-        id: 98,
-        ifkyc: 1,
-        ifwhitelist: 1,
-        medium: "https://dorafactory.medium.com/",
-        pricepertoken: "10",
-        prologourl: "0b8c4c54d75101a50ecf16223848e370.png",
-        proname: "Dora Factory",
-        prosummary: "Dora Factory is a programmable DAO-as-a-Service open infrastructure on Substrate.",
-        protheme: "Polkadot, DAO, infrastructure",
-        prowebsite: "https://dorafactory.org",
-        teambio: "Eric Nobita, Architect of Dora Factory ↵Steve Ngok, Oracle of Dora Factory↵Penny Wang, Operation Head↵↵↵The three are the founding team of Dora Factory. ↵Besides this, they're also partners at DoraHacks and DoraHacks Ventures.↵DoraHacks is a global hacker community and DV is the venture arm. ↵DoraHacks Ventures is a seed money startup accelerator that nurtures exciting post hackathon hacker projects.↵",
-        teamwallet: "0x65E48050f924cE5B6B4D4a8D4e4240048b38D057",
-        techhighlight: "Crucial schemes like quadratic voting, bonding curve fundraising, all cool features regrading on-chain governance can be built on this infrastructure as pallets by the developers, and they can be rewarded in a SaaS model when DAOs launched on Dora Factory deploy them. ",
-        telegram: "https://t.me/dorafactory",
-        tokencontractaddress: "0x65E48050f924cE5B6B4D4a8D4e4240048b38D057",
-        tokendistribution: "Total Dorayaki supply↵10,000,000↵↵Private Placement↵2,000,000↵↵Dorayaki Public Sale↵600,000↵↵Initial Liquidity↵700,000↵↵Dora Factory Team↵1,000,000↵↵DoraHacks↵1,000,000↵↵DORA Foundation Reserve↵2,500,000↵↵Dora Factory Open Grant↵1,500,000↵↵Dora Factory Community Grant ↵700,000",
-        tokenlookupschedule: "Private Placement: 20-30% unlock at TGE, the rest will linearly unlock in 1 year. ↵Public Sale & Initial Liquidity: 100% unlock at TGE.↵Team & DoraHacks : 0% unlock at TGE, the rest will linearly unlock in 2 years. ↵Others: reserved for future use.",
-        tokenticketer: "DORA",
-        totalsupply: "10000000",
-        twitter: "https://twitter.com/DoraFactory",
-        updated_at: "2021-03-17T17:34:36Z",
-        whitepaperlink: "https://bit.ly/2Q8OlTb",
-      }
-    },
-    {
-      notReady: true,
-      time: 'March 22',
       "botHolder": true,
       "inKYC": true,
       "joined": false,
@@ -170,7 +123,7 @@ export const usePoolList = () => {
         created_at: "2021-03-13T11:18:57Z",
         fackbook: "",
         githublink: "https://na.com",
-        id: 88,
+        id: 1088,
         ifkyc: 0,
         ifwhitelist: 1,
         medium: "https://medium.com/fm-gallery",
@@ -217,7 +170,7 @@ export const usePoolList = () => {
         created_at: "2021-03-16T03:37:43Z",
         fackbook: "",
         githublink: "https://github.com/stonedefi",
-        id: 90,
+        id: 1090,
         ifkyc: 1,
         ifwhitelist: 1,
         medium: "https://stonedefi.medium.com",
@@ -275,8 +228,8 @@ export const usePoolList = () => {
             pool.type = 'FIXED_SWAP'
             pool.id = i
 
-            // poolRes.openAt = poolRes.openAt - (10*60*60+33*60)
-            // poolRes.closeAt = poolRes.closeAt - (4 * 60 * 60 + 15  * 60)
+            // poolRes.openAt = poolRes.openAt - (3*60*60)
+            // poolRes.closeAt = poolRes.closeAt
 
             const isOpen = new Date() - poolRes.openAt * 1000 > 0
             if (!isOpen) {
@@ -384,10 +337,15 @@ export const usePoolList = () => {
         return item.status === 'Active'
       }))
 
-      setUpcomingPools(list.filter(item => {
+      const upcominglist = list.filter(item => {
         // console.log('K_console',item)
         return item.status === 'Upcoming'
-      }))
+      }).sort((a1, a2) => {
+        return a1.proInfo.id - a2.proInfo.id
+      })
+
+
+      setUpcomingPools(upcominglist)
       setPassPools(list.filter(item => {
         return item.status === 'Failed'
       }))
