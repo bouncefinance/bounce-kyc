@@ -118,7 +118,7 @@ export const usePoolList = () => {
         architecture: "DAO-as-a-Service Infrastructure for on-chain governance.",
         attachmenturl: "",
         auctiontime: "86400",
-        auctiontype: "ERC20 Lottery",
+        auctiontype: "Fixed swap auction",
         circulatingsupply: "1500000",
         contactemail: "steve@dorafactory.org",
         created_at: "2021-03-17T17:34:36Z",
@@ -383,6 +383,7 @@ export const usePoolList = () => {
       setActivePool(list.filter(item => {
         return item.status === 'Active'
       }))
+
       setUpcomingPools(list.filter(item => {
         // console.log('K_console',item)
         return item.status === 'Upcoming'
