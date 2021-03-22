@@ -137,10 +137,10 @@ export const FSPoolDetail = () => {
 
   useEffect(() => {
     // console.log('J_console',onlyBOT, AuctionAmount, bidAmount, account)
-    if (onlyBOT  && isGreaterThan(toWei('0'), AuctionAmount.balance) && !bidAmount) {
+    if (onlyBOT && isGreaterThan(toWei('0'), AuctionAmount.balance) && !bidAmount) {
       errors.amount = 'Sorry! You are not qualified as Auction holder.'
       setErrors(errors)
-    }else{
+    } else {
       setErrors({ amount: '' })
     }
   }, [onlyBOT, bidAmount, account])
@@ -210,13 +210,35 @@ export const FSPoolDetail = () => {
 
     setBidStatus(confirmStatus);
     try {
+
+
       if (toAddress) {
-        await tokenContract.methods.approve(
-          BOUNCE_PRO(chainId),
-          weiAmount,
-        )
-          .send({ from: account });
-        setBidStatus(confirmStatus);
+        const allowanceBalance = await tokenContract.methods.allowance(account, BOUNCE_PRO(chainId)).call()
+
+        if (allowanceBalance === 0) {
+          await tokenContract.methods.approve(
+            BOUNCE_PRO(chainId),
+            weiAmount,
+          )
+            .send({ from: account });
+          setBidStatus(confirmStatus);
+        } else if (parseInt(allowanceBalance) > 0 && parseInt(allowanceBalance) < parseInt(weiAmount)) {
+          await tokenContract.methods.approve(
+            BOUNCE_PRO(chainId),
+            0,
+          )
+            .send({ from: account });
+          setBidStatus(confirmStatus);
+
+          await tokenContract.methods.approve(
+            BOUNCE_PRO(chainId),
+            weiAmount,
+          )
+            .send({ from: account });
+          setBidStatus(confirmStatus);
+        }
+
+        console.log('allowanceBalance', allowanceBalance)
       }
       bounceContract.methods.swap(
         poolId,
@@ -477,61 +499,61 @@ export const FSPoolDetail = () => {
                   <Button black onClick={onCreatorClaim}>Claim your tokens</Button> : null}
               </>
             ) : (
-                <form id="bid-fs-form" onSubmit={handleSubmit}>
-                  {status !== 'Filled' && renderTime(leftTime)}
-                  <LineDivider style={{ marginTop: 0 }} />
-                  <Pool.topInfo>
-                    <span>You have successfully bid</span>
-                    <span>{`${(myBidFromAmount && decimals) ? weiToNumber(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
-                  </Pool.topInfo>
+              <form id="bid-fs-form" onSubmit={handleSubmit}>
+                {status !== 'Filled' && renderTime(leftTime)}
+                <LineDivider style={{ marginTop: 0 }} />
+                <Pool.topInfo>
+                  <span>You have successfully bid</span>
+                  <span>{`${(myBidFromAmount && decimals) ? weiToNumber(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
+                </Pool.topInfo>
 
-                  {status === 'Live' && (
-                    <>
-                      <Pool.topInfo>
-                        <span>Your Bid Amount</span>
-                        <span>{`Balance: ${ethBalance ? weiToNumber(ethBalance, toDecimals) : '--'}`} {toSymbol}</span>
-                      </Pool.topInfo>
-                      <Form
-                        error={errors.amount}
-                        top={'0px'} width={'100%'}
-                        input={<Input
-                          style={{
-                            padding: '8px 0',
-                            color: '#1F191B',
-                            fontSize: 16,
-                            lineHeight: '20px',
-                            fontFamily: 'Helvetica Neue',
-                            fontWeight: "bold"
-                          }}
-                          name={'amount'}
-                          placeholder={'Bid Amount'}
-                          disabled={(onlyBOT && isGreaterThan(toWei('0'), AuctionAmount.balance)) ||
-                            (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
-                          value={bidAmount}
-                          onChange={handleChange}
-                        />} name={' '} addonAfter={(<img onClick={() => {
-                          console.log('set max amount', ethBalance)
-                          setBidAmount(fromWei(ethBalance, toDecimals))
-                        }} src={icon_max} />)}
-                      />
+                {status === 'Live' && (
+                  <>
+                    <Pool.topInfo>
+                      <span>Your Bid Amount</span>
+                      <span>{`Balance: ${ethBalance ? weiToNumber(ethBalance, toDecimals) : '--'}`} {toSymbol}</span>
+                    </Pool.topInfo>
+                    <Form
+                      error={errors.amount}
+                      top={'0px'} width={'100%'}
+                      input={<Input
+                        style={{
+                          padding: '8px 0',
+                          color: '#1F191B',
+                          fontSize: 16,
+                          lineHeight: '20px',
+                          fontFamily: 'Helvetica Neue',
+                          fontWeight: "bold"
+                        }}
+                        name={'amount'}
+                        placeholder={'Bid Amount'}
+                        disabled={(onlyBOT && isGreaterThan(toWei('0'), AuctionAmount.balance)) ||
+                          (limit && biddenAmount && isGreaterThan(limit, '0') && isEqualTo(limit, biddenAmount))}
+                        value={bidAmount}
+                        onChange={handleChange}
+                      />} name={' '} addonAfter={(<img onClick={() => {
+                        console.log('set max amount', ethBalance)
+                        setBidAmount(fromWei(ethBalance, toDecimals))
+                      }} src={icon_max} />)}
+                    />
 
-                      <Button
-                        style={{ marginTop: 50 }}
-                        disabled={status !== 'Live' || !validateForm(errors) || !bidAmount || (!inWhiteList && pool.enableWhiteList)}
-                        black
-                      >{(!inWhiteList && pool.enableWhiteList) ? 'You are not in the whitelist' : 'GO'}
-                      </Button>
-                    </>
-                  )}
+                    <Button
+                      style={{ marginTop: 50 }}
+                      disabled={status !== 'Live' || !validateForm(errors) || !bidAmount || (!inWhiteList && pool.enableWhiteList)}
+                      black
+                    >{(!inWhiteList && pool.enableWhiteList) ? 'You are not in the whitelist' : 'GO'}
+                    </Button>
+                  </>
+                )}
 
-                  {((status === 'Closed' || status === 'Filled') && joinStatus) ?
-                    <Button disabled={!claimAble || claimed} type='button' style={{ marginTop: 24 }} black onClick={onClaim}>
-                      {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
-                      {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
-                    </Button> : null}
-                  <TipLink />
-                </form>
-              )}
+                {((status === 'Closed' || status === 'Filled') && joinStatus) ?
+                  <Button disabled={!claimAble || claimed} type='button' style={{ marginTop: 24 }} black onClick={onClaim}>
+                    {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
+                    {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                  </Button> : null}
+                <TipLink />
+              </form>
+            )}
 
           </Pool.Content>
 
