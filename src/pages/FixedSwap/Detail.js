@@ -174,20 +174,20 @@ export const FSPoolDetail = () => {
 
   let claimTimer = null
   useEffect(() => {
+    if(!claimAt) return
     claimTimer = setInterval(() => {
-      console.log('claimTime', claimAt)
       const date = new Date(claimAt * 1000);
-      const now = new Date();
+      const now = new Date().getTime()
       const lefttime = date - now;
+      // console.log('claimTimeclaimTime', claimAt,now,lefttime)
       if (lefttime >= 1000) {
+        // console.log('claimTimeclaimTime', lefttime)
         setClaimTime(lefttime)
       } else if (0 < lefttime && lefttime < 1000) {
         //window.location.reload()
         setClaimAble(true)
-        console.log('setClaimTime')
       } else {
         //setClaimAble(true)
-        console.log('setClaimTime1')
         clearInterval(timer)
       }
     }, (1000));
@@ -549,7 +549,7 @@ export const FSPoolDetail = () => {
                 {((status === 'Closed' || status === 'Filled') && joinStatus) ?
                   <Button disabled={!claimAble || claimed} type='button' style={{ marginTop: 24 }} black onClick={onClaim}>
                     {claimed ? 'You already claimed your tokens' : 'Claim your tokens'}
-                    {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
+                    {(claimLeftTime && !claimAble) && ` ( ${claimLeftTime.days}d: ${claimLeftTime.hours}h : ${claimLeftTime.minutes}m : ${claimLeftTime.seconds}s )`}
                   </Button> : null}
                 <TipLink />
               </form>

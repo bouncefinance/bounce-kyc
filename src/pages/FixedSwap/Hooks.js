@@ -147,6 +147,15 @@ export const usePoolDetail = (id = 0) => {
                 // }
 
                 setToAmount(res.amountTotal1)
+                console.log('AA_console', res)
+
+                const claimTime = (new BigNumber(res.closeAt).plus(res.claimDelaySec).toString())
+                if(new Date() - claimTime * 1000 > 0){
+                    setClaimAble(true)
+                }else {
+                    setClaimAt(claimTime)
+                    setClaimAble(false)
+                }
 
                 const isOpen = new Date() - res.openAt * 1000 > 0
                 if (!isOpen) {
@@ -160,19 +169,10 @@ export const usePoolDetail = (id = 0) => {
                     fsContract.methods.amountSwap1P(id).call().then((bidAmount) => {
                         setToBidAmount(bidAmount)
                         if(leftTime < 0){
-                            setClaimAble(true)
+                            // setClaimAble(true)
                         }else {
                             if (bidAmount === res.amountTotal1) {
                                 setStatus('Filled')
-                                fsContract.methods.filledAtP(id).call().then((filledAt) => {
-                                    const claimTime = (new BigNumber(filledAt).plus(res.claimDelaySec).toString())
-                                    if(new Date() - claimTime * 1000 > 0){
-                                        setClaimAble(true)
-                                    }else {
-                                        setClaimAt(claimTime)
-                                        setClaimAble(false)
-                                    }
-                                })
                             }
                         }
 
