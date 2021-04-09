@@ -30,7 +30,7 @@ import API_HOST, { HOST } from "../../config/request_api";
 import { useIsSMDown } from '../../utils/themeHooks';
 
 export default function Card({ status, poolId = 0, progress, claimFun, isVote, pool }) {
-    console.log('P_console', pool)
+    // console.log('P_console', pool)
     const [isSupport, setIsSupport] = useState(false)
     const [supporting, setSupporting] = useState(false)
     const { balance } = useTokenBalance()

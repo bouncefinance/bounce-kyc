@@ -39,7 +39,7 @@ export const getProjectInfo = async (proId) => {
 export const useVoteList = () => {
   const [list, setList] = useState()
   const { active, library, chainId, account } = useActiveWeb3React();
-  console.log('library', library)
+  // console.log('library', library)
 
   const fetchList = () => {
     let pools = []
@@ -60,17 +60,18 @@ export const useVoteList = () => {
               const closed = closeAt - new Date()
               pool.status = closed > 0 ? 'Active' : 'Failed'
             }
-            console.log('pool', pool)
+            // console.log('pool', pool)
             const proInfo = await getProjectInfo(pool.projectId)
-            pool.botHolder = true
+            pool.botHolder = false
+            // if(pool.)
             pool.proInfo = proInfo
             try {
               const tokenContract = getContract(library, bounceERC20.abi, proInfo.tokencontractaddress)
               const decimals = await tokenContract.methods.decimals().call()
               const allowance = await tokenContract.methods.allowance(account, BOUNCE_PRO(chainId)).call()
               pool.approved = isGreaterThan(weiToNum(allowance, parseInt(decimals)), proInfo.amountoftoken)
-              console.log('approved allowance', allowance)
-              console.log('approved', pool.approved)
+              // console.log('approved allowance', allowance)
+              // console.log('approved', pool.approved)
 
             } catch (e) {
               console.log('allowance error', e)
