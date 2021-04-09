@@ -100,7 +100,9 @@ export const useVoteList = () => {
 export const usePoolList = () => {
   const { active, library, chainId, account } = useActiveWeb3React();
 
-  const upItem = []
+  const upItem = [{
+    
+  }]
   const [list, setList] = useState()
 
   let pools = upItem
