@@ -103,54 +103,54 @@ export const usePoolList = () => {
 
   const upItem =
     [
-      {
-        notReady: true,
-        time: 'April 21',
-        chainId: 56,
-        "botHolder": false,
-        "inKYC": false,
-        "joined": false,
-        "enableKycList": true,
-        "enableWhiteList": true,
-        status: 'Upcoming',
-        "proInfo": {
-          accountaddress: "0xe3497bd45906a2edf5f75e1318f96218e2fe3e4a",
-          additionalinfo: "jscofield@bscstation.org",
-          allocationperwallet: "50 USDT",
-          amountoftoken: "3,000,000",
-          architecture: "AMM, BSC SDK, Auction, BSC Smart Security",
-          attachmenturl: "",
-          auctiontime: "86400",
-          auctiontype: "Fixed Swap Auction on Binance Smart Chain",
-          circulatingsupply: "48,000,000",
-          contactemail: "brucelee.hcmut@gmail.com",
-          created_at: "2021-04-13T09:43:28Z",
-          fackbook: "",
-          githublink: "https://github.com/BSCStationSwap/bscsswap-exchange.git",
-          id: 107,
-          ifkyc: 1,
-          ifwhitelist: 1,
-          medium: "",
-          pricepertoken: "0.01",
-          prologourl: "eb09a7345daf569937e2889fcfa04e77.jpg",
-          proname: "BSC Station",
-          prosummary: "BSC Station (BSCS) aims to build a Full-Stack DEFI with NFT Auction on the Binance Smart Chain.",
-          protheme: "DEFI, NFT, SWAP, FARMING,",
-          prowebsite: "https://bscstation.org/",
-          teambio: "The 12 person of team and advisor consist of marketing, technical, market research, financial talent from blockchain project, university including Ruhr University, J.P.Morgan, Money Gram, Liquid, MXC...",
-          teamwallet: "0x89535fCB4Da3F3c7a15599a155ad5309Efb26d47",
-          techhighlight: "BSC NFT Station SDK↵The SDK will standardize all NFT assets related to the use of the Auction feature, providing a clear set of tools, documentation, and rules to help fair and efficient auction buyers and sellers.↵BSC Smart Security (BSCSS)↵BSCSS is a smart security contract of BSC Protocol based marketplace payment platform designed to make the NFT buying and selling of any good or service easy and protected.",
-          telegram: "",
-          tokencontractaddress: "0x62B547B27354d31fCde029504e1c2dCD3f05a6cA",
-          tokendistribution: "pls see the Pitch Deck",
-          tokenlookupschedule: "Pls see the deck",
-          tokenticketer: "BSCS ",
-          totalsupply: "500,000,000",
-          twitter: "",
-          updated_at: "2021-04-13T09:43:28Z",
-          whitepaperlink: "https://docs.google.com/presentation/d/1AeS4HmaDx3sCv7x0GonJ-cVJwmQp29JY-9beAuEu3MQ/edit"
-        }
-      }
+      // {
+      //   notReady: true,
+      //   time: 'April 21',
+      //   chainId: 56,
+      //   "botHolder": false,
+      //   "inKYC": false,
+      //   "joined": false,
+      //   "enableKycList": true,
+      //   "enableWhiteList": true,
+      //   status: 'Upcoming',
+      //   "proInfo": {
+      //     accountaddress: "0xe3497bd45906a2edf5f75e1318f96218e2fe3e4a",
+      //     additionalinfo: "jscofield@bscstation.org",
+      //     allocationperwallet: "50 USDT",
+      //     amountoftoken: "3,000,000",
+      //     architecture: "AMM, BSC SDK, Auction, BSC Smart Security",
+      //     attachmenturl: "",
+      //     auctiontime: "86400",
+      //     auctiontype: "Fixed Swap Auction on Binance Smart Chain",
+      //     circulatingsupply: "48,000,000",
+      //     contactemail: "brucelee.hcmut@gmail.com",
+      //     created_at: "2021-04-13T09:43:28Z",
+      //     fackbook: "",
+      //     githublink: "https://github.com/BSCStationSwap/bscsswap-exchange.git",
+      //     id: 107,
+      //     ifkyc: 1,
+      //     ifwhitelist: 1,
+      //     medium: "",
+      //     pricepertoken: "0.01",
+      //     prologourl: "eb09a7345daf569937e2889fcfa04e77.jpg",
+      //     proname: "BSC Station",
+      //     prosummary: "BSC Station (BSCS) aims to build a Full-Stack DEFI with NFT Auction on the Binance Smart Chain.",
+      //     protheme: "DEFI, NFT, SWAP, FARMING,",
+      //     prowebsite: "https://bscstation.org/",
+      //     teambio: "The 12 person of team and advisor consist of marketing, technical, market research, financial talent from blockchain project, university including Ruhr University, J.P.Morgan, Money Gram, Liquid, MXC...",
+      //     teamwallet: "0x89535fCB4Da3F3c7a15599a155ad5309Efb26d47",
+      //     techhighlight: "BSC NFT Station SDK↵The SDK will standardize all NFT assets related to the use of the Auction feature, providing a clear set of tools, documentation, and rules to help fair and efficient auction buyers and sellers.↵BSC Smart Security (BSCSS)↵BSCSS is a smart security contract of BSC Protocol based marketplace payment platform designed to make the NFT buying and selling of any good or service easy and protected.",
+      //     telegram: "",
+      //     tokencontractaddress: "0x62B547B27354d31fCde029504e1c2dCD3f05a6cA",
+      //     tokendistribution: "pls see the Pitch Deck",
+      //     tokenlookupschedule: "Pls see the deck",
+      //     tokenticketer: "BSCS ",
+      //     totalsupply: "500,000,000",
+      //     twitter: "",
+      //     updated_at: "2021-04-13T09:43:28Z",
+      //     whitepaperlink: "https://docs.google.com/presentation/d/1AeS4HmaDx3sCv7x0GonJ-cVJwmQp29JY-9beAuEu3MQ/edit"
+      //   }
+      // }
     ]
   const [list, setList] = useState()
 
@@ -185,8 +185,6 @@ export const usePoolList = () => {
             pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
-
-
 
             // poolRes.openAt = poolRes.openAt - (3*60*60)
             // poolRes.closeAt = poolRes.closeAt

@@ -174,7 +174,7 @@ export const FSPoolDetail = () => {
 
   let claimTimer = null
   useEffect(() => {
-    if(!claimAt) return
+    if (!claimAt) return
     claimTimer = setInterval(() => {
       const date = new Date(claimAt * 1000);
       const now = new Date().getTime()
@@ -242,7 +242,8 @@ export const FSPoolDetail = () => {
       }
       bounceContract.methods.swap(
         poolId,
-        weiAmount)
+        weiAmount
+      )
         .send({ from: account, value: toAddress ? 0 : weiAmount })
         .on('transactionHash', hash => {
           setBidStatus(pendingStatus)
