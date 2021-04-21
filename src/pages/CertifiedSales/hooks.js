@@ -179,11 +179,14 @@ export const usePoolList = () => {
         }
         for (let i = 1; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
+
             console.log('pool--->', poolRes)
             const pool = poolRes
             pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
+
+
 
             // poolRes.openAt = poolRes.openAt - (3*60*60)
             // poolRes.closeAt = poolRes.closeAt
@@ -218,9 +221,14 @@ export const usePoolList = () => {
             if (pool.projectId === '52') {
               pool.botHolder = true
             }
-            pools = pools.concat(pool)
-            console.log('pools---->', pools)
-            setList(pools)
+
+            if (pool.chainId === 56 && pool.id === 2) {
+              return
+            } else {
+              pools = pools.concat(pool)
+              console.log('pools---->', pools)
+              setList(pools)
+            }
           })
         }
         //setList(pools)
