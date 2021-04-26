@@ -103,54 +103,54 @@ export const usePoolList = () => {
 
   const upItem =
     [
-      // {
-      //   notReady: true,
-      //   time: 'April 21',
-      //   chainId: 56,
-      //   "botHolder": false,
-      //   "inKYC": false,
-      //   "joined": false,
-      //   "enableKycList": true,
-      //   "enableWhiteList": true,
-      //   status: 'Upcoming',
-      //   "proInfo": {
-      //     accountaddress: "0xe3497bd45906a2edf5f75e1318f96218e2fe3e4a",
-      //     additionalinfo: "jscofield@bscstation.org",
-      //     allocationperwallet: "50 USDT",
-      //     amountoftoken: "3,000,000",
-      //     architecture: "AMM, BSC SDK, Auction, BSC Smart Security",
-      //     attachmenturl: "",
-      //     auctiontime: "86400",
-      //     auctiontype: "Fixed Swap Auction on Binance Smart Chain",
-      //     circulatingsupply: "48,000,000",
-      //     contactemail: "brucelee.hcmut@gmail.com",
-      //     created_at: "2021-04-13T09:43:28Z",
-      //     fackbook: "",
-      //     githublink: "https://github.com/BSCStationSwap/bscsswap-exchange.git",
-      //     id: 107,
-      //     ifkyc: 1,
-      //     ifwhitelist: 1,
-      //     medium: "",
-      //     pricepertoken: "0.01",
-      //     prologourl: "eb09a7345daf569937e2889fcfa04e77.jpg",
-      //     proname: "BSC Station",
-      //     prosummary: "BSC Station (BSCS) aims to build a Full-Stack DEFI with NFT Auction on the Binance Smart Chain.",
-      //     protheme: "DEFI, NFT, SWAP, FARMING,",
-      //     prowebsite: "https://bscstation.org/",
-      //     teambio: "The 12 person of team and advisor consist of marketing, technical, market research, financial talent from blockchain project, university including Ruhr University, J.P.Morgan, Money Gram, Liquid, MXC...",
-      //     teamwallet: "0x89535fCB4Da3F3c7a15599a155ad5309Efb26d47",
-      //     techhighlight: "BSC NFT Station SDK↵The SDK will standardize all NFT assets related to the use of the Auction feature, providing a clear set of tools, documentation, and rules to help fair and efficient auction buyers and sellers.↵BSC Smart Security (BSCSS)↵BSCSS is a smart security contract of BSC Protocol based marketplace payment platform designed to make the NFT buying and selling of any good or service easy and protected.",
-      //     telegram: "",
-      //     tokencontractaddress: "0x62B547B27354d31fCde029504e1c2dCD3f05a6cA",
-      //     tokendistribution: "pls see the Pitch Deck",
-      //     tokenlookupschedule: "Pls see the deck",
-      //     tokenticketer: "BSCS ",
-      //     totalsupply: "500,000,000",
-      //     twitter: "",
-      //     updated_at: "2021-04-13T09:43:28Z",
-      //     whitepaperlink: "https://docs.google.com/presentation/d/1AeS4HmaDx3sCv7x0GonJ-cVJwmQp29JY-9beAuEu3MQ/edit"
-      //   }
-      // }
+      {
+        notReady: true,
+        time: 'April 28',
+        chainId: 1,
+        "botHolder": false,
+        "inKYC": false,
+        "joined": false,
+        "enableKycList": false,
+        "enableWhiteList": true,
+        status: 'Upcoming',
+        "proInfo": {
+          "id": 131,
+          "accountaddress": "0xfe75483521f4a8193204be69810009040bafa685",
+          "proname": "BlackHole Protocol",
+          "prowebsite": "https://blackhole.black",
+          "protheme": "An approval-free decentralized & cross-chain burning protocol, innovator of perpetual deflationary blockchain ecosysterm.",
+          "whitepaperlink": "https://docsend.com/view/5sagkb87dt96mccm",
+          "githublink": "https://github.com/black-hole-finance",
+          "twitter": "",
+          "medium": "",
+          "fackbook": "",
+          "telegram": "",
+          "prosummary": "BlackHole Protocol is an approval-free cross-chain burning platform based on Ethereum network. ",
+          "techhighlight": "Product Innovation — Openness and Compatibility of Black Hole Protocol Ecology\n\nThe Blackhole protocol acts as an approval-free burning protocol. Anyone in the protocol could create a burning pool with an approval-free invocation contract that can be directly infiltrated into any Defi project which needs burning incentive. In addition, Blackhole could achieve seamless connection with any project’s user interface by the user-friendly features of open-source SDK and special smart contract.\n\n",
+          "architecture": "Product Innovation — Openness and Compatibility of Black Hole Protocol Ecology\n\nThe Blackhole protocol acts as an approval-free burning protocol. Anyone in the protocol could create a burning pool with an approval-free invocation contract that can be directly infiltrated into any Defi project which needs burning incentive. In addition, Blackhole could achieve seamless connection with any project’s user interface by the user-friendly features of open-source SDK and special smart contract.",
+          "attachmenturl": "",
+          "teambio": " brief introduction to Team\n\nHARDEEP SINGH\n\nFounder and CEO of the BlackHole Protocol. He had more than 5 years of experience in the marketing industry. He has developed a strong global finance experience from nearly a decade of international assignments across 4 continents, and boasts a broad & diverse finance background before joining the blockchain space full-time in 2017. After earning his degree in Business Management at Singapore Institute of Management Global Education, He is an avid inve",
+          "totalsupply": "100000000",
+          "circulatingsupply": "20000000",
+          "tokenticketer": "1",
+          "tokencontractaddress": "0xd714d91A169127e11D8FAb3665d72E8b7ef9Dbe2",
+          "tokendistribution": "Farming 50%\n\nEco Fund 10%\n\nDevelopment Team Fund 10%\n\nMarketing 5%\n\nInitial Liquidity 5%\n\nSeed round 5%\n\nAmbassador round 10%\n\nIDO R1 1%\n\nIDO R2 1%\n\nLBP 3%",
+          "tokenlookupschedule": "Farming 50%\n\nEco Fund 10% (release in 12 months)\n\nDevelopment Team Fund 10% (release in 12 months)\n\nMarketing 5%\n\nInitial Liquidity 5%\n\nSeed round 5% (release 25% when the LBP finishes. After 90 days, release as each block.)\n\nAmbassador round 10%(release 25% when the LBP finishes. After 90 days, rel",
+          "auctiontype": "Fixed swap auction",
+          "amountoftoken": "200000",
+          "pricepertoken": "0.05",
+          "allocationperwallet": "50 USDT",
+          "auctiontime": "2700",
+          "teamwallet": "0x5b312bd94c8616fd2e5d6f8f8aaeb5cfcef1e16e",
+          "ifkyc": 0,
+          "ifwhitelist": 1,
+          "contactemail": "blackholeprotocol@gmail.com",
+          "additionalinfo": "",
+          "prologourl": "f830f289b0e972c8f44f17d5d2c9fc41.jpg",
+          "created_at": "2021-04-25T08:35:07Z",
+          "updated_at": "2021-04-25T08:35:07Z"
+        }
+      }
     ]
   const [list, setList] = useState()
 
@@ -185,6 +185,7 @@ export const usePoolList = () => {
             pool.chainId = curChainId
             pool.type = 'FIXED_SWAP'
             pool.id = i
+            if (pool.chainId === 56 && pool.id === 2) return
 
             // poolRes.openAt = poolRes.openAt - (3*60*60)
             // poolRes.closeAt = poolRes.closeAt
@@ -199,6 +200,7 @@ export const usePoolList = () => {
             }
 
             const toAmount = await bounceContract.methods.amountSwap1P(i).call()
+            console.log('toAmount',toAmount)
             if (poolRes.amountTotal1 === toAmount) {
               pool.status = 'Failed'
             }
@@ -215,18 +217,9 @@ export const usePoolList = () => {
             if (curChainId === 56) {
               pool.proInfo.auctiontype = 'Fixed Swap Auction on Binance Smart Chain'
             }
-
-            if (pool.projectId === '52') {
-              pool.botHolder = true
-            }
-
-            if (pool.chainId === 56 && pool.id === 2) {
-              return
-            } else {
-              pools = pools.concat(pool)
-              console.log('pools---->', pools)
-              setList(pools)
-            }
+            pools = pools.concat(pool)
+            console.log('pools---->', pools)
+            setList(pools)
           })
         }
         //setList(pools)
