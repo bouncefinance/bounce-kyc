@@ -80,19 +80,19 @@ export default function Index() {
                 })
             }}
         /> : <Button
-                type='black'
-                width='130px'
-                height='36px'
-                value='Connect Wallet'
-                style={{ fontSize: 14, marginLeft: '32px' }}
-                onClick={() => {
-                    // if (active === undefined || (chainId !== 1 && chainId !== 4)) return
-                    dispatch({
-                        type: 'CONNECT_WALLET',
-                        value: true
-                    })
-                }}
-            />
+            type='black'
+            width='130px'
+            height='36px'
+            value='Connect Wallet'
+            style={{ fontSize: 14, marginLeft: '32px' }}
+            onClick={() => {
+                // if (active === undefined || (chainId !== 1 && chainId !== 4)) return
+                dispatch({
+                    type: 'CONNECT_WALLET',
+                    value: true
+                })
+            }}
+        />
     }
 
     const checkKYC = async (account) => {
@@ -121,7 +121,9 @@ export default function Index() {
         try {
             const BouncePro_CT = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
             BouncePro_CT.methods.kyclist(account).call().then(res => {
-                console.log('isKYC', res)
+                // BouncePro_CT.methods.kyclist('0xFCE50eC01725d9Bc975ce358B266dFDBE7Cc26c5').call().then(res => {
+                // console.log('isKYC', res)
+                // alert(res)
                 setIsKYC(res)
             })
         } catch (error) {
