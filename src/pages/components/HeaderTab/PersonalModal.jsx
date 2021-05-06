@@ -108,6 +108,7 @@ export default function PersonalModal({ show = false, userName, isKYC: CT_KYC })
     if (!account || !active) return
     const isKYC = await queryIsKyc(account)
     const balance = await queryBotBalance(library, account, chainId)
+    // alert(isKYC)
     setIsKYC(isKYC)
     setBalance(balance)
   }, [account, active])
