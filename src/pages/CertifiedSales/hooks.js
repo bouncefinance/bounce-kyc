@@ -103,54 +103,54 @@ export const usePoolList = () => {
 
   const upItem =
     [
-      // {
-      //   notReady: true,
-      //   time: 'April 28',
-      //   chainId: 1,
-      //   "botHolder": false,
-      //   "inKYC": false,
-      //   "joined": false,
-      //   "enableKycList": false,
-      //   "enableWhiteList": true,
-      //   status: 'Upcoming',
-      //   "proInfo": {
-      //     "id": 131,
-      //     "accountaddress": "0xfe75483521f4a8193204be69810009040bafa685",
-      //     "proname": "BlackHole Protocol",
-      //     "prowebsite": "https://blackhole.black",
-      //     "protheme": "An approval-free decentralized & cross-chain burning protocol, innovator of perpetual deflationary blockchain ecosysterm.",
-      //     "whitepaperlink": "https://docsend.com/view/5sagkb87dt96mccm",
-      //     "githublink": "https://github.com/black-hole-finance",
-      //     "twitter": "",
-      //     "medium": "",
-      //     "fackbook": "",
-      //     "telegram": "",
-      //     "prosummary": "BlackHole Protocol is an approval-free cross-chain burning platform based on Ethereum network. ",
-      //     "techhighlight": "Product Innovation — Openness and Compatibility of Black Hole Protocol Ecology\n\nThe Blackhole protocol acts as an approval-free burning protocol. Anyone in the protocol could create a burning pool with an approval-free invocation contract that can be directly infiltrated into any Defi project which needs burning incentive. In addition, Blackhole could achieve seamless connection with any project’s user interface by the user-friendly features of open-source SDK and special smart contract.\n\n",
-      //     "architecture": "Product Innovation — Openness and Compatibility of Black Hole Protocol Ecology\n\nThe Blackhole protocol acts as an approval-free burning protocol. Anyone in the protocol could create a burning pool with an approval-free invocation contract that can be directly infiltrated into any Defi project which needs burning incentive. In addition, Blackhole could achieve seamless connection with any project’s user interface by the user-friendly features of open-source SDK and special smart contract.",
-      //     "attachmenturl": "",
-      //     "teambio": " brief introduction to Team\n\nHARDEEP SINGH\n\nFounder and CEO of the BlackHole Protocol. He had more than 5 years of experience in the marketing industry. He has developed a strong global finance experience from nearly a decade of international assignments across 4 continents, and boasts a broad & diverse finance background before joining the blockchain space full-time in 2017. After earning his degree in Business Management at Singapore Institute of Management Global Education, He is an avid inve",
-      //     "totalsupply": "100000000",
-      //     "circulatingsupply": "20000000",
-      //     "tokenticketer": "1",
-      //     "tokencontractaddress": "0xd714d91A169127e11D8FAb3665d72E8b7ef9Dbe2",
-      //     "tokendistribution": "Farming 50%\n\nEco Fund 10%\n\nDevelopment Team Fund 10%\n\nMarketing 5%\n\nInitial Liquidity 5%\n\nSeed round 5%\n\nAmbassador round 10%\n\nIDO R1 1%\n\nIDO R2 1%\n\nLBP 3%",
-      //     "tokenlookupschedule": "Farming 50%\n\nEco Fund 10% (release in 12 months)\n\nDevelopment Team Fund 10% (release in 12 months)\n\nMarketing 5%\n\nInitial Liquidity 5%\n\nSeed round 5% (release 25% when the LBP finishes. After 90 days, release as each block.)\n\nAmbassador round 10%(release 25% when the LBP finishes. After 90 days, rel",
-      //     "auctiontype": "Fixed swap auction",
-      //     "amountoftoken": "200000",
-      //     "pricepertoken": "0.05",
-      //     "allocationperwallet": "50 USDT",
-      //     "auctiontime": "2700",
-      //     "teamwallet": "0x5b312bd94c8616fd2e5d6f8f8aaeb5cfcef1e16e",
-      //     "ifkyc": 0,
-      //     "ifwhitelist": 1,
-      //     "contactemail": "blackholeprotocol@gmail.com",
-      //     "additionalinfo": "",
-      //     "prologourl": "f830f289b0e972c8f44f17d5d2c9fc41.jpg",
-      //     "created_at": "2021-04-25T08:35:07Z",
-      //     "updated_at": "2021-04-25T08:35:07Z"
-      //   }
-      // }
+      {
+        notReady: true,
+        time: 'May 6',
+        chainId: 1,
+        status: 'Upcoming',
+        "botHolder": false,
+        "inKYC": false,
+        "joined": false,
+        "enableKycList": true,
+        "enableWhiteList": false,
+        "proInfo": {
+          accountaddress: "0xe9cfb6afc6f029d0131e44905000a8fb526dbbcd",
+          additionalinfo: "",
+          allocationperwallet: "400 USDT",
+          amountoftoken: "125000",
+          architecture: "",
+          attachmenturl: "",
+          auctiontime: "86400",
+          auctiontype: "Fixed swap auction",
+          circulatingsupply: "15000000",
+          contactemail: "contact@yfx.com",
+          created_at: "2021-05-04T15:15:58Z",
+          fackbook: "",
+          githublink: "https://github.com/yfxcom/",
+          id: 133,
+          ifkyc: 1,
+          ifwhitelist: 0,
+          medium: "",
+          pricepertoken: "0.8",
+          prologourl: "7095851338c7d307f2116a7bde8fec30.png",
+          proname: "YFX Protocol",
+          prosummary: "YFX -- Decentralized Future Exchange on ETH, BSC, Heco, OKChain and Polkadot.",
+          protheme: "Defi",
+          prowebsite: "https://www.yfx.com",
+          teambio: `YFX.com is an protocol cluster of "open finance connector". Powered by blockchain technology,YFX is designed to help users boost their investment diversity, convenience, and value discovery. It focuses on the financial derivatives markets and embarks as a decentralized futures protocol. YFX will constant evolve and bring more trading services for users.`,
+          teamwallet: "0x08aB156D1F2df3066576e62DB70298Bd05154608",
+          techhighlight: "YFX is a trading platform provide up to 100x leverage to trade on BTC, ETH and other crypto assets support by ETH, Tron, BSC , Heco,OKEx Chain,Polkadot .By invent QIC-AMM, YFX provide high liquidity and low slippage.",
+          telegram: "",
+          tokencontractaddress: "0xf55a93b613d172b86c2ba3981a849dae2aecde2f",
+          tokendistribution: "Community Users (50%)↵Strategic Investors (15%)↵YFX Team + Early Equity Investors (25%)↵Foundation Reserve (10%)",
+          tokenlookupschedule: "Strategic Investors (15%): 30% of this part will be released upon TGE, and the remaining part ↵will be released linearly in one year.↵↵YFX Team + Early Equity Investors (25%): According to the equity distribution upon TGE, the ↵team and early investors will get initially 20% released. The remaining↵",
+          tokenticketer: "YFX",
+          totalsupply: "100000000",
+          twitter: "",
+          updated_at: "2021-05-04T15:15:58Z",
+          whitepaperlink: "https://help.yfx.com/portal/en/kb/articles/about-yfx"
+        }
+      }
     ]
   const [list, setList] = useState()
 
@@ -200,7 +200,7 @@ export const usePoolList = () => {
             }
 
             const toAmount = await bounceContract.methods.amountSwap1P(i).call()
-            console.log('toAmount',toAmount)
+            console.log('toAmount', toAmount)
             if (poolRes.amountTotal1 === toAmount) {
               pool.status = 'Failed'
             }
@@ -218,7 +218,7 @@ export const usePoolList = () => {
               pool.proInfo.auctiontype = 'Fixed Swap Auction on Binance Smart Chain'
             }
             pools = pools.concat(pool)
-            console.log('pools---->', pools)
+            // console.log('pools---->', pools)
             setList(pools)
           })
         }
@@ -265,7 +265,7 @@ export const usePoolList = () => {
             pool.proInfo = await getProjectInfo(pool.projectId)
             // console.log('pool',pool)
             pools = pools.concat(pool)
-            console.log('L_console', pools)
+            // console.log('L_console', pools)
             setList(pools)
           })
         }
@@ -287,7 +287,7 @@ export const usePoolList = () => {
 
   useEffect(() => {
 
-    console.log('list---》', list)
+    // console.log('list---》', list)
     if (list && list.length !== 0) {
       setActivePool(list.filter(item => {
         return item.status === 'Active'
