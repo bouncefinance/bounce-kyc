@@ -321,14 +321,6 @@
   
     },
     {
-      "short": "CS",
-      "chinese": "捷克",
-      "name": "Czech",
-      "tel": "420",
-      "pinyin": "jk"
-  
-    },
-    {
       "short": "CU",
       "chinese": "古巴",
       "name": "Cuba",
@@ -574,6 +566,13 @@
       "name": "Honduras",
       "tel": "504",
       "pinyin": "hdls"
+  
+    },{
+      "short": "HR",
+      "chinese": "克罗地亚",
+      "name": "Croatia",
+      "tel": "385",
+      "pinyin": "cldy"
   
     },
     {
