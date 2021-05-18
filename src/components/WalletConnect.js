@@ -13,7 +13,7 @@ import icon_walletconnect from '../assets/icons/walletconnect.svg'
 
 
 const injected = new InjectedConnector({
-    supportedChainIds: [1, 3, 4, 5, 42, 56, 31337]
+    supportedChainIds: [1, 3, 4, 5, 42, 56, 128, 31337]
 });
 
 const POLLING_INTERVAL = 12000;
@@ -58,6 +58,8 @@ export const WalletConnect = () => {
     } = useWeb3React()
 
     useEffect(() => {
+
+        console.log('activatingConnector', activatingConnector, connector)
         if (activatingConnector && activatingConnector === connector) {
             setActivatingConnector(undefined);
         }
@@ -72,6 +74,7 @@ export const WalletConnect = () => {
     }, [account]);
 
     function onConnect(currentConnector, name) {
+        console.log(currentConnector, wallets[name])
         setActivatingConnector(currentConnector);
         window && window.localStorage.setItem(BOUNCE_SELECT_WEB3_CONTEXT, name)
         activate(wallets[name]);

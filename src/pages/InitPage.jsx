@@ -8,7 +8,7 @@ import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { LedgerConnector } from "@web3-react/ledger-connector";
 
 const injected = new InjectedConnector({
-    supportedChainIds: [1, 3, 4, 5, 42, 56, 31337]
+    supportedChainIds: [1, 3, 4, 5, 42, 56,128, 31337]
 });
 
 const POLLING_INTERVAL = 12000;

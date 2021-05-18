@@ -35,7 +35,7 @@ export default function SalesCard({ status, isVote, pool = {} }) {
     // console.log('pool left', pool)
     if (pool) {
       timer = setInterval(() => {
-        const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt) 
+        const left = getPoolLeftTime(!isVote && status === 'Upcoming' ? pool.openAt : pool.closeAt)
         setLeft(left)
       }, 1000)
       return () => {
@@ -99,21 +99,26 @@ export default function SalesCard({ status, isVote, pool = {} }) {
               }} />
 
               {pool.status === 'Active' && (
-              // {pool.status === 'Upcoming' && (
+                // {pool.status === 'Upcoming' && (
                 <Button disabled={pool.enableKycList && !pool.inKYC} type='black'
-                  value={pool.chainId !== chainId ? pool.chainId === 56 ? 'Switch to BSC' : 'Switch to ETH' : pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction'}
+                  value={pool.chainId !== chainId ?
+                    (pool.chainId === 56 ? 'Switch to BSC' : pool.chainId === 128 ? 'Switch to HECO' : 'Switch to ETH') :
+                    (pool.enableKycList && !pool.inKYC ? 'KYC is missing' : 'Join Auction')
+                  }
                   width={isXSDown ? '100%' : '180px'}
                   onClick={() => {
                     if (pool.type === 'FIXED_SWAP') {
-                      if(pool.chainId===56){
+                      if (pool.chainId === 56) {
                         history.push(`/bsc/fixed-swap/${pool.id}`)
-                      }else{
+                      } else if (pool.chainId === 128) {
+                        history.push(`/heco/fixed-swap/${pool.id}`)
+                      } else {
                         history.push(`/fixed-swap/${pool.id}`)
                       }
                     } else if (pool.type === 'LOTTERY_NFT') {
-                      if(pool.chainId===56){
+                      if (pool.chainId === 56) {
                         history.push(`/bsc/lottery-nft/${pool.id}`)
-                      }else{
+                      } else {
                         history.push(`/lottery-nft/${pool.id}`)
                       }
                     }
@@ -123,15 +128,15 @@ export default function SalesCard({ status, isVote, pool = {} }) {
               {pool.status === 'Failed' && (
                 <Button type='black' value='Show Result' width={isXSDown ? '100%' : '180px'} onClick={() => {
                   if (pool.type === 'FIXED_SWAP') {
-                    if(pool.chainId===56){
+                    if (pool.chainId === 56) {
                       history.push(`/bsc/fixed-swap/${pool.id}`)
-                    }else{
+                    } else {
                       history.push(`/fixed-swap/${pool.id}`)
                     }
                   } else if (pool.type === 'LOTTERY_NFT') {
-                    if(pool.chainId===56){
+                    if (pool.chainId === 56) {
                       history.push(`/bsc/lottery-nft/${pool.id}`)
-                    }else{
+                    } else {
                       history.push(`/lottery-nft/${pool.id}`)
                     }
                   }
@@ -150,7 +155,7 @@ export default function SalesCard({ status, isVote, pool = {} }) {
             <Passage
               title='Participant'
               desc={`
-                    ${(pool.botHolder && !pool.enableWhiteList) ? 'AUCTION holder': ''}
+                    ${(pool.botHolder && !pool.enableWhiteList) ? 'AUCTION holder' : ''}
                     ${(!pool.botHolder && pool.enableWhiteList) ? 'Whitelisting' : ''}
                     ${(pool.botHolder && pool.enableWhiteList) ? 'AUCTION holder , Whitelisting' : ''}
                     ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public' : ''}

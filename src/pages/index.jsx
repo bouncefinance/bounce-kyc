@@ -48,6 +48,7 @@ export default function Index() {
                     <Route path='/learn-more/:poolId' exact component={LearnMore} />
                     <Route path='/fixed-swap/:poolId' exact component={FSPoolDetail} />
                     <Route path='/bsc/fixed-swap/:poolId' exact component={FSPoolDetail} />
+                    <Route path='/heco/fixed-swap/:poolId' exact component={FSPoolDetail} />
                     <Route path='/lottery-nft/:id' exact component={LotteryNFTDetail} />
                     <Route path='/bsc/lottery-nft/:id' exact component={LotteryNFTDetail} />
                     <Route path='/project-voting-board' exact render={() => { return <Redirect to='/project-voting-board/active' /> }} />

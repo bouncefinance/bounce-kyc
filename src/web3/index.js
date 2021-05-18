@@ -27,11 +27,21 @@ export const getBNBDefaultLibrary = () => {
     return library
 }
 
+export const getHECODefaultLibrary = () => {
+    const provider = new Web3(new Web3.providers.HttpProvider('https://http-mainnet.hecochain.com')).currentProvider
+    const library = {}
+    library.provider = provider
+    return library
+}
+
 export const useActivePlatform = () => {
     const context = useWeb3ReactCore()
     let symbol = 'ETH'
     if (context.chainId === 97 || context.chainId === 56) {
         symbol = 'BNB'
+    }
+    if (context.chainId === 128 ) {
+        symbol = 'HT'
     }
     // let symbol = {}
     return { Psymbol: symbol }

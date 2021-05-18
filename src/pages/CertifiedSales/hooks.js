@@ -1,7 +1,7 @@
 import axios from 'axios';
 import API from '../../config/request_api'
 import { useEffect, useState } from 'react';
-import { getBNBDefaultLibrary, getContract, getETHDefaultLibrary, useActiveWeb3React } from "../../web3";
+import { getBNBDefaultLibrary, getContract, getETHDefaultLibrary, useActiveWeb3React, getHECODefaultLibrary } from "../../web3";
 import BounceProVoting from "../../web3/abi/BounceProVoting.json";
 import BouncePro from "../../web3/abi/BouncePro.json";
 import { BOUNCE_PRO_VOTING, BOUNCE_PRO, BOUNCE_PRO_LOTTERY_NFT_PRO } from "../../web3/address";
@@ -263,7 +263,7 @@ export const usePoolList = () => {
 
     const bounceContract = getContract(curLibrary, BouncePro.abi, BOUNCE_PRO(curChainId))
     const lotteryNFTContract = getContract(curLibrary, BounceLotteryNFTPro.abi, BOUNCE_PRO_LOTTERY_NFT_PRO(curChainId));
-    // console.log('curLibrary', curLibrary)
+    console.log('curLibrary', curLibrary)
 
     try {
       bounceContract.methods.getPoolCount().call().then(res => {
@@ -271,7 +271,7 @@ export const usePoolList = () => {
         if (res === '0') {
           setList(upItem)
         }
-        for (let i = 1; i < res; i++) {
+        for (let i = 0; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
 
             console.log('pool--->', poolRes)
@@ -302,6 +302,7 @@ export const usePoolList = () => {
             pool.botHolder = await bounceContract.methods.onlyBotHolderP(i).call()
 
             pool.inKYC = await bounceContract.methods.kyclist(account).call()
+            // pool.inKYC = true
 
             const bidAmount = await bounceContract.methods.myAmountSwapped0(account, i).call()
             pool.joined = isGreaterThan(bidAmount, '0')
@@ -310,7 +311,10 @@ export const usePoolList = () => {
             pool.proInfo = await getProjectInfo(pool.projectId)
             if (curChainId === 56) {
               pool.proInfo.auctiontype = 'Fixed Swap Auction on Binance Smart Chain'
+            } else if (curChainId === 128) {
+              pool.proInfo.auctiontype = 'Fixed Swap Auction on Heco Chain'
             }
+
             pools = pools.concat(pool)
             // console.log('pools---->', pools)
             setList(pools)
@@ -376,6 +380,7 @@ export const usePoolList = () => {
       // await fetchList(getBNBDefaultLibrary(), 56, pools)
       await fetchList(getETHDefaultLibrary(), 1)
       await fetchList(getBNBDefaultLibrary(), 56)
+      await fetchList(getHECODefaultLibrary(), 128)
     }
   }, [active])
 
@@ -399,9 +404,6 @@ export const usePoolList = () => {
       setPassPools(list.filter(item => {
         return item.status === 'Failed'
       }))
-
-
-
     }
   }, [list])
 
@@ -486,8 +488,10 @@ export const useInKYC = () => {
 
   useEffect(() => {
     if (active && account) {
-      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+      // const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(chainId))
+      const bounceContract = getContract(library, BouncePro.abi, BOUNCE_PRO(1))
       bounceContract.methods.kyclist(account).call().then(res => {
+        alert(res)
         setKYCed(res)
       })
     }

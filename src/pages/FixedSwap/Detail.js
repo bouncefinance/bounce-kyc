@@ -83,8 +83,8 @@ export const FSPoolDetail = () => {
   useEffect(() => {
     if (!chainId) return
     const pathname = window.location.pathname
-    const index = pathname.indexOf('/bsc')
-    if (index !== -1 && chainId !== 56) {
+    const route = pathname.includes('/bsc') ? 'BSC' : pathname.includes('/heco') ? 'HECO' : 'ETH'
+    if (route === 'BSC' && chainId !== 56) {
       dispatch({
         type: 'MODAL',
         value: {
@@ -104,7 +104,27 @@ export const FSPoolDetail = () => {
           }
         }
       })
-    } else if (index === -1 && chainId === 56) {
+    } else if (route === 'HECO' && chainId !== 128) {
+      dispatch({
+        type: 'MODAL',
+        value: {
+          name: 'CONFIRM',
+          title: 'Bounce Certified Warning',
+          deputy: `The current pool exists on the HECO chain, please switch network to HECO operation.`,
+          confirm: {
+            text: 'Confirm',
+            callback: () => {
+
+              dispatch({
+                type: 'MODAL',
+                value: null
+              })
+              history.goBack(-1)
+            }
+          }
+        }
+      })
+    } else if (route === 'ETH' && chainId !== 1) {
       dispatch({
         type: 'MODAL',
         value: {
