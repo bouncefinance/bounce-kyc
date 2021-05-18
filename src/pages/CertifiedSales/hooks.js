@@ -150,7 +150,7 @@ export const usePoolList = () => {
           updated_at: "2021-05-14T06:31:01Z",
           whitepaperlink: "https://trello-attachments.s3.amazonaws.com/6020068ec535373bb9d0fba4/60535ee38f30ac55fef2b672/476795"
         }
-      },{
+      }, {
         notReady: true,
         time: 'May 24',
         chainId: 1,
@@ -196,6 +196,53 @@ export const usePoolList = () => {
           twitter: "https://twitter.com/NFTmartio",
           updated_at: "2021-05-14T06:31:01Z",
           whitepaperlink: "https://trello-attachments.s3.amazonaws.com/6020068ec535373bb9d0fba4/60535ee38f30ac55fef2b672/476795"
+        }
+      }, {
+        notReady: true,
+        time: 'Coming Soon...',
+        chainId: 56,
+        status: 'Upcoming',
+        "botHolder": false,
+        "inKYC": false,
+        "joined": false,
+        "enableKycList": false,
+        "enableWhiteList": true,
+        "proInfo": {
+          accountaddress: "0xe139ab520c71c6dd7df0af0015c2773002742c0c",
+          additionalinfo: "",
+          allocationperwallet: "No limits",
+          amountoftoken: "20000000",
+          architecture: "",
+          attachmenturl: "",
+          auctiontime: "86400",
+          auctiontype: "Fixed Swap Auction on Binance Smart Chain",
+          circulatingsupply: "151,250,000",
+          contactemail: "team@nftb.io",
+          created_at: "2021-05-17T09:18:35Z",
+          fackbook: "",
+          githublink: "https://github.com/nftbmarket",
+          id: 138,
+          ifkyc: 0,
+          ifwhitelist: 1,
+          medium: "https://blog.nftb.io",
+          pricepertoken: "0.006",
+          prologourl: "4a91af517dc26bde04fc31374adbc3ce.png",
+          proname: "NFTb",
+          prosummary: "NFT Marketplace and digital goods built for speed and affordability on the Binance Smart Chain (BSC)",
+          protheme: "NFT, Marketplace, DeFi",
+          prowebsite: "https://nftb.io",
+          teambio: "The NFTb founding team is fully crypto native, having worked and built in the industry since 2016. They include a lead blockchain developer, two front-end engineers, a backend engineer, and several marketing veterans who have overseen and advised several unicorn projects. The team has experience building web frameworks and Web 3.0 applications and has worked together for more than 15 years collectively.",
+          teamwallet: "0x1a3dC1957Aa29409310A1f8295e8f2eeaACB2d2f",
+          techhighlight: "NFTb is a premium NFT marketplace built on BSC. The first curated platform for artists and digital collectors to purchase high-quality digital goods. NFTb will be the first BSC platform to offer NFT yield farming and index funds.",
+          telegram: "https://t.me/nftbmarket",
+          tokencontractaddress: "0xde3dbbe30cfa9f437b293294d1fd64b26045c71a",
+          tokendistribution: "Strategic Contributors: 20.5% / 205Mln↵Team: 12.0% / 120Mln↵Foundation: 12.5% / 125Mln↵Protocol rewards: 45.0% / 450Mln↵IDO sale and liquidity mining: 10.0% / 100Mln↵↵Total supply: 100% / 1Bln",
+          tokenlookupschedule: "Strategic Contributors: 25% initial, 7.5% per month↵↵Team: Locked for 1 year, then 25% unlocked every 3 months↵↵Protocol rewards: Released over 7 years↵↵IDO sale and liquidity mining: 100% unlocked on IDO ↵",
+          tokenticketer: "NFTB",
+          totalsupply: "1,000,000,000",
+          twitter: "https://twitter.com/nftbmarket",
+          updated_at: "2021-05-17T09:18:35Z",
+          whitepaperlink: "https://nftb.io/about"
         }
       }
     ]
