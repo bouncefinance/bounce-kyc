@@ -271,7 +271,7 @@ export const usePoolList = () => {
         if (res === '0') {
           setList(upItem)
         }
-        for (let i = 0; i < res; i++) {
+        for (let i = 1; i < res; i++) {
           bounceContract.methods.pools(i).call().then(async poolRes => {
 
             console.log('pool--->', poolRes)
