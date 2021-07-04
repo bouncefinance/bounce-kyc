@@ -113,6 +113,7 @@ export const usePoolList = () => {
         "joined": false,
         "enableKycList": false,
         "enableWhiteList": true,
+        "whiteLink": 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce',
         "proInfo": {
           "id": 164,
           "accountaddress": "0xc26a8b2c739cd1ff19a3fe2209ddbbbba2459bbb",

@@ -15,7 +15,7 @@ import BigNumber from "bignumber.js";
 import { useIsSMDown } from '../../utils/themeHooks';
 import { useActiveWeb3React } from "../../web3";
 
-export default function SalesCard({ status, isVote, pool = {} }) {
+export default function SalesCard ({ status, isVote, pool = {} }) {
   const [bidStatus, setBidStatus] = useState(initStatus)
   const { chainId } = useActiveWeb3React()
   // const { dispatch } = useContext(myContext)
@@ -160,7 +160,9 @@ export default function SalesCard({ status, isVote, pool = {} }) {
                     ${(pool.botHolder && pool.enableWhiteList) ? 'AUCTION holder , Whitelisting' : ''}
                     ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public' : ''}
                     `
-              } />
+              }
+              whiteLink={pool.whiteLink}
+            />
 
             <Passage
               title='Requirement'
