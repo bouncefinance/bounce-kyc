@@ -221,8 +221,12 @@ export const usePoolList = () => {
             } else if (curChainId === 128) {
               pool.proInfo.auctiontype = 'Fixed Swap Auction on Heco Chain'
             }
+            if (pool.projectId === '164') {
+              pool.whiteLink = 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce'
+            }
 
             pools = pools.concat(pool)
+            
             // console.log('pools---->', pools)
             setList(pools)
           })
@@ -295,6 +299,7 @@ export const usePoolList = () => {
 
     // console.log('list---》', list)
     if (list && list.length !== 0) {
+      console.log(list)
       setActivePool(list.filter(item => {
         return item.status === 'Active'
       }))
