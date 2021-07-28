@@ -187,6 +187,7 @@ export const usePoolList = () => {
             pool.type = 'FIXED_SWAP'
             pool.id = i
             if (pool.chainId === 56 && pool.id === 2) return
+            // if (pool.chainId === 128 && pool.id === 1) return
 
             // poolRes.openAt = poolRes.openAt - (3*60*60)
             // poolRes.closeAt = poolRes.closeAt
