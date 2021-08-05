@@ -103,55 +103,55 @@ export const usePoolList = () => {
 
   const upItem =
     [
-      // {
-      //   notReady: true,
-      //   time: 'July 6th',
-      //   chainId: 1,
-      //   status: 'Upcoming',
-      //   "botHolder": false,
-      //   "inKYC": false,
-      //   "joined": false,
-      //   "enableKycList": false,
-      //   "enableWhiteList": true,
-      //   "whiteLink": 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce',
-      //   "proInfo": {
-      //     "id": 164,
-      //     "accountaddress": "0xc26a8b2c739cd1ff19a3fe2209ddbbbba2459bbb",
-      //     "proname": "Moma Protocol",
-      //     "prowebsite": "https://moma.finance/",
-      //     "protheme": "DeFi",
-      //     "whitepaperlink": "https://docsend.com/view/dzyu756wkd2n4izq",
-      //     "githublink": "https://github.com/moma-finance/moma-protocol",
-      //     "twitter": "https://twitter.com/Moma_Finance",
-      //     "medium": "https://momafinance.medium.com/",
-      //     "fackbook": "",
-      //     "telegram": "https://t.me/Moma_Official",
-      //     "prosummary": "Factory, Launcher and Aggregator for Decentralized Money Markets.",
-      //     "techhighlight": "The Moma Protocol uses a proprietary smart contract factory to produce, manage, accelerate and aggregate the lending markets, creating an ecosystem that can expand infinitely on lending liquidity and market diversity.\nMoma Protocol provides a unique oracle system that combines the mechanisms of Committee Price Feed and Decentralized Price Feed.",
-      //     "architecture": "Factory, Launcher ，Aggregator",
-      //     "attachmenturl": "",
-      //     "teambio": "CEO Ocean：Master Degree at Fudan University; an entrepreneur in blockchain industry; initiated projects including Gravity, Lichang, and TokenUp Wallet; a respected peer in the Chinese community.\nCTO V.C：Master Degree at Fudan University; senior blockchain developer; leader of 2 Ethereum-based DeFi projects; deeply involved in the launch of the mainnet and application development of blockchain projects such as EOS, PlatON, and Worbli.",
-      //     "totalsupply": "100,000,000",
-      //     "circulatingsupply": "5,150,000",
-      //     "tokenticketer": "MOMAT",
-      //     "tokencontractaddress": "0x865bB9A28041259b4baDAFD37799A288aAbbfC8c",
-      //     "tokendistribution": "Community Incentives: 50%; Team and Advisor: 13%; Fundraising: 20%; Eco-development Fund: 8%; DAO Reserve: 9%.",
-      //     "tokenlookupschedule": "pls see the moma.finance",
-      //     "auctiontype": "Fixed swap auction",
-      //     "amountoftoken": "138,888",
-      //     "pricepertoken": "0.36",
-      //     "allocationperwallet": "250 USDT",
-      //     "auctiontime": "3600",
-      //     "teamwallet": "0xC26A8b2c739Cd1ff19a3fE2209dDBBBBa2459Bbb",
-      //     "ifkyc": 0,
-      //     "ifwhitelist": 1,
-      //     "contactemail": "contact@moma.finance",
-      //     "additionalinfo": "",
-      //     "prologourl": "8c1c5dca2837df36a21ae10105d70c99.png",
-      //     "created_at": "2021-07-03T08:00:56Z",
-      //     "updated_at": "2021-07-03T08:00:56Z"
-      //   }
-      // }
+      {
+        notReady: true,
+        time: 'Mid-August',
+        chainId: 1,
+        status: 'Upcoming',
+        "botHolder": false,
+        "inKYC": false,
+        "joined": false,
+        "enableKycList": false,
+        "enableWhiteList": true,
+        "whiteLink": 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce',
+        "proInfo": {
+          accountaddress: "0xcbf19050a398ebbbff0692a8ace263834d382ab1",
+          additionalinfo: "",
+          allocationperwallet: "250 USDT",
+          amountoftoken: "71,429",
+          architecture: "Substrate",
+          attachmenturl: "",
+          auctiontime: "306000",
+          auctiontype: "Fixed swap auction",
+          circulatingsupply: "4,792,700",
+          contactemail: "mora@parami.io",
+          created_at: "2021-08-04T10:04:06Z",
+          fackbook: "",
+          githublink: "https://github.com/parami-protocol",
+          id: 179,
+          ifkyc: 1,
+          ifwhitelist: 1,
+          medium: "",
+          pricepertoken: "0.7",
+          prologourl: "d1787e111c68621aacaeaea556b8f312.jpg",
+          proname: "Parami Protocol",
+          prosummary: "Parami proposed an AD 3.0 paradigm for Web 3.0 to build a user-centric tokenized advertising economy",
+          protheme: "Engage-to-Earn",
+          prowebsite: "https://parami.io/",
+          teambio: "Dorian, Tech Lead, senior architect of Digital Currency Electronic Payment Centre, core architect & technical leader of TRON with rich practical experience in consensus mechanism, privacy computation, cross-chain mechanism.↵↵Mono Wang, Core Dev, Full-stack engineer; senior rust engineer with 6 years‘ experience; Core Rust Chinese community evangelist.↵↵Edison, Core Dev, core architect of TRON's TRONZ team, and is the core developer of the zero-knowledge proof, MPC, and homomorphic encryption.",
+          teamwallet: "0x8C0159b05D346a97dFa789c42d46F4b87188eF32",
+          techhighlight: "Decentralized Identifier (DID): Parami Protocol provides a complete set of DID solutions compatible with W3C DID standard on Parami Node, and expands its business for user-centric advertising. ↵Zero-Knowledge Proof (ZKP): ZKP algorithm is adopted to determine distribution mechanism.The proof is generated from PCAP (Personal Crypto Advertising Preference) which is tailored for smart advertising while protecting privacy. ",
+          telegram: "",
+          tokencontractaddress: "0x7866bffcd9408bf75542d7c4e13d1bdd0983b31d",
+          tokendistribution: "https://docs.google.com/spreadsheets/d/1XsNniENg02TSTpV-9z3d24G7g5rB5gRbrc-UhY9gl_k/edit#gid=1299745438",
+          tokenlookupschedule: "https://docs.google.com/spreadsheets/d/1XsNniENg02TSTpV-9z3d24G7g5rB5gRbrc-UhY9gl_k/edit#gid=1299745438",
+          tokenticketer: "AD3",
+          totalsupply: "100,000,000",
+          twitter: "",
+          updated_at: "2021-08-04T10:04:06Z",
+          whitepaperlink: "https://parami.io/img/Parami_Protocol_Light_Paper.pdf"
+        }
+      }
     ]
   const [list, setList] = useState()
 
@@ -222,12 +222,12 @@ export const usePoolList = () => {
             } else if (curChainId === 128) {
               pool.proInfo.auctiontype = 'Fixed Swap Auction on Heco Chain'
             }
-            if (pool.projectId === '164') {
-              pool.whiteLink = 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce'
-            }
+            // if (pool.projectId === '164') {
+            //   pool.whiteLink = 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce'
+            // }
 
             pools = pools.concat(pool)
-            
+
             // console.log('pools---->', pools)
             setList(pools)
           })

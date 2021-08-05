@@ -161,7 +161,7 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
                     ${(!pool.botHolder && !pool.enableWhiteList) ? 'Public' : ''}
                     `
               }
-              whiteLink={pool.whiteLink}
+              // whiteLink={pool.whiteLink}
             />
 
             <Passage
