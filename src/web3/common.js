@@ -10,7 +10,7 @@ import bounce_token from '../assets/icons/bounce_token.png'
 import wbtc_icon from '../assets/icons/wbtc_icon.png'
 import yfi_icon from '../assets/icons/yfi_icon.png'
 import icon_eth from '../assets/icons/icon_eth.svg'
-import {useActivePlatform} from "../hooks";
+import { useActivePlatform } from "../hooks";
 
 export const useTokenList = () => {
   const { chainId } = useActiveWeb3React();
@@ -26,7 +26,7 @@ export const useTokenList = () => {
     key: getUSDTAddress(chainId),
     value: <TokenFrame><img alt="" src={icon_usdt} /><span>USDT</span></TokenFrame>,
     symbol: 'USDT',
-    decimals: '6'
+    decimals: chainId === 56 ? '18' : '6'
   }, {
     key: getBotAddress(chainId),
     value: <TokenFrame><img alt="" src={bounce_token} /><span>BOT</span></TokenFrame>,
@@ -42,7 +42,7 @@ export const useTokenList = () => {
     value: <TokenFrame><img alt="" src={yfi_icon} /><span>YFI</span></TokenFrame>,
     symbol: 'YFI',
     decimals: '18'
-  },{
+  }, {
     key: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     value: <TokenFrame><img alt="" src={icon_eth} /><span>{Psymbol}</span></TokenFrame>,
     symbol: Psymbol,

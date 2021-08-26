@@ -230,12 +230,10 @@ export const FSPoolDetail = () => {
 
     setBidStatus(confirmStatus);
     try {
-
-
+      console.log('toAddress',toAddress)
       if (toAddress) {
         const allowanceBalance = await tokenContract.methods.allowance(account, BOUNCE_PRO(chainId)).call()
-
-        if (allowanceBalance === 0) {
+        if (allowanceBalance === '0') {
           await tokenContract.methods.approve(
             BOUNCE_PRO(chainId),
             weiAmount,
