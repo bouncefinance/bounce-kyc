@@ -273,7 +273,7 @@ export const usePoolList = () => {
             // if (pool.projectId === '164') {
             //   pool.whiteLink = 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce'
             // }
-
+            if (pool.projectId === '53') return
             pools = pools.concat(pool)
 
             // console.log('pools---->', pools)
