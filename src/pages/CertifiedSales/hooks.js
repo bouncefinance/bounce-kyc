@@ -105,7 +105,7 @@ export const usePoolList = () => {
     [
       {
         notReady: true,
-        time: 'August 28 ',
+        time: '12PM, Aug. 30th, UTC',
         chainId: 56,
         status: 'Upcoming',
         "botHolder": false,
@@ -128,12 +128,12 @@ export const usePoolList = () => {
           telegram: "https://twitter.com/busta_gamefi",
           prosummary: "BUSTA is a next generation GameFi platform and DEX built on Binance Smart Chain. \nIt is an enormous ",
           techhighlight: "An innovative iGaming platform and DEX built on BSC smart chain\n",
-          architecture: "-",
+          architecture: "IDO duration: 24 hours, Limit per address: 500 USDT (BEP20)",
           attachmenturl: "",
           teambio: "The BUSTA founders looked at all that was available in both iGaming and DeFi and set out to create a perfect ecosystem that would best benefit our players, investors, stakers, traders, affiliates, and partners.  As we mapped out the architecture, it became more and more obvious that it was entirely feasible to create a circular business model where everyone benefits.  Lastly, the decision was made to bundle the entire platform up so it could be controlled by the community via a DAO, with minimal",
           totalsupply: "10,000,000,000",
           circulatingsupply: "0",
-          tokenticketer: "0X7F1B0D196C65BB586C79FE1D3009",
+          tokenticketer: "BUSTA",
           tokencontractaddress: "0xfd0507fac1152faf870c778ff6beb1ca3b9f7a1f",
           tokendistribution: "Bounce will announce $BUST IDO on Twitter (Bounce Twitter has 45K followers) and Telegram group (35K followers) at 11am, Aug. 27th, UTC. ",
           tokenlookupschedule: "12PM UTC on August 29th to 12PM UTC,Aug. 31st\nClaim time is 8pm UTC on August 31st\n",
