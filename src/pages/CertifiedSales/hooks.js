@@ -103,58 +103,58 @@ export const usePoolList = () => {
 
   const upItem =
     [
-      // {
-      //   notReady: true,
-      //   time: '12PM, Aug. 30th, UTC',
-      //   chainId: 56,
-      //   status: 'Upcoming',
-      //   "botHolder": false,
-      //   "inKYC": false,
-      //   "joined": false,
-      //   "enableKycList": false,
-      //   "enableWhiteList": false,
-      //   "whiteLink": 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce',
-      //   "proInfo": {
-      //     id: 188,
-      //     accountaddress: "0xe141ce69125af9d0b0964147e2e269ad8e7f812a",
-      //     proname: "BUSTA",
-      //     prowebsite: "https://www.busta.gg/",
-      //     protheme: "Defi",
-      //     whitepaperlink: "https://docs.busta.gg/",
-      //     githublink: "https://docs.busta.gg/",
-      //     twitter: "https://twitter.com/busta_gamefi",
-      //     medium: "http://bustaofficial.medium.com/",
-      //     fackbook: "",
-      //     telegram: "https://twitter.com/busta_gamefi",
-      //     prosummary: "BUSTA is a next generation GameFi platform and DEX built on Binance Smart Chain. \nIt is an enormous ",
-      //     techhighlight: "An innovative iGaming platform and DEX built on BSC smart chain\n",
-      //     architecture: "IDO duration: 24 hours, Limit per address: 500 USDT (BEP20)",
-      //     attachmenturl: "",
-      //     teambio: "The BUSTA founders looked at all that was available in both iGaming and DeFi and set out to create a perfect ecosystem that would best benefit our players, investors, stakers, traders, affiliates, and partners.  As we mapped out the architecture, it became more and more obvious that it was entirely feasible to create a circular business model where everyone benefits.  Lastly, the decision was made to bundle the entire platform up so it could be controlled by the community via a DAO, with minimal",
-      //     totalsupply: "10,000,000,000",
-      //     circulatingsupply: "0",
-      //     tokenticketer: "BUSTA",
-      //     tokencontractaddress: "0xfd0507fac1152faf870c778ff6beb1ca3b9f7a1f",
-      //     tokendistribution: "Bounce will announce $BUST IDO on Twitter (Bounce Twitter has 45K followers) and Telegram group (35K followers) at 11am, Aug. 27th, UTC. ",
-      //     tokenlookupschedule: "12PM UTC on August 29th to 12PM UTC,Aug. 31st\nClaim time is 8pm UTC on August 31st\n",
-      //     auctiontype: "Fixed Swap Auction on Binance Smart Chain",
-      //     amountoftoken: "4,672,897.2",
-      //     pricepertoken: "0.0107",
-      //     allocationperwallet: "500 USDT",
-      //     auctiontime: "3600",
-      //     teamwallet: "0xc6fD2D340E75bDE45B3DA8091Be677a027135C08",
-      //     ifkyc: 0,
-      //     ifwhitelist: 0,
-      //     contactemail: "no@no.no",
-      //     additionalinfo: "",
-      //     prologourl: "48dee4701457adf5a1cf994c0fba2b67.png",
-      //     created_at: "2021-08-28T03:22:27Z",
-      //     updated_at: "2021-08-28T03:22:27Z"
-      //   }
-      // },
       {
         notReady: true,
-        time: 'Mid-August',
+        time: 'September 6th at UTC 2:00 PM',
+        chainId: 1,
+        status: 'Upcoming',
+        "botHolder": false,
+        "inKYC": false,
+        "joined": false,
+        "enableKycList": false,
+        "enableWhiteList": true,
+        "whiteLink": '',
+        "proInfo": {
+          "id": 190,
+          "accountaddress": "0xc4d9610f5f7fe441c7c58321b6a9a08d837fa0ef",
+          "proname": "Phantom Protocol",
+          "prowebsite": "https://phm.finance/",
+          "protheme": "DeFi-synthetic asset",
+          "whitepaperlink": "https://phantom-defi.s3.us-east-2.amazonaws.com/PhantomIntroduction.pdf",
+          "githublink": "https://github.com/BestPhantom/collateral",
+          "twitter": "",
+          "medium": "",
+          "fackbook": "",
+          "telegram": "",
+          "prosummary": "Cross-chain synthetic asset generation and issuance protocol\nfor crypto, NFT, and a lot more.",
+          "techhighlight": "1. Smart contract-based synthetic asset function\n2. Cross-chain functionality that covers popular chains (ETH/BSC/Conflux), allowing assets contracts to be deployed on multiple chains\n3. AMM liquidation mechanism that allows quick and fair liquidation",
+          "architecture": "",
+          "attachmenturl": "",
+          "teambio": "Phantom's core team consists of members from US, Singapore, Vietnam & Hong Kong with backgrounds in internet startups and traditional finance. They are all technical and market experts with more than five years of experience each in the blockchain industry, members' past experiences cover Project incubation, DeFi project development, Blockchain investment, and Financial trading.",
+          "totalsupply": "10,000,000,000",
+          "circulatingsupply": "460,000,000",
+          "tokenticketer": "PHM",
+          "tokencontractaddress": "0x3F9BEC82c776c47405BcB38070d2395Fd18F89d3",
+          "tokendistribution": "50% Community farming\n1% IDO\n15% Founding team\n18% Investors\n8% Foundation\n8% Product development, operation, and promotion",
+          "tokenlookupschedule": "Investor tokens have 20% released at TGE, rest vested over 12 months\nTeam tokens have 12 month lock-up period, then vested over 24 month",
+          "auctiontype": "NFT Lottery",
+          "amountoftoken": "10,000,000",
+          "pricepertoken": "0.005",
+          "allocationperwallet": "250 USDT",
+          "auctiontime": "3600",
+          "teamwallet": "0x5A76763A440e7A681e6Ec9e515E33F3E6CaDf970",
+          "ifkyc": 0,
+          "ifwhitelist": 0,
+          "contactemail": "orange6u@gmail.com",
+          "additionalinfo": "",
+          "prologourl": "8672776f5e0471d491bec53fcef7ebf9.jpg",
+          "created_at": "2021-09-01T09:54:05Z",
+          "updated_at": "2021-09-01T09:54:05Z"
+        }
+      },
+      {
+        notReady: true,
+        time: 'To be determined',
         chainId: 1,
         status: 'Upcoming',
         "botHolder": false,
@@ -177,7 +177,7 @@ export const usePoolList = () => {
           created_at: "2021-08-04T10:04:06Z",
           fackbook: "",
           githublink: "https://github.com/parami-protocol",
-          id: 179,
+          id: 179000,
           ifkyc: 1,
           ifwhitelist: 1,
           medium: "",
@@ -200,9 +200,10 @@ export const usePoolList = () => {
           updated_at: "2021-08-04T10:04:06Z",
           whitepaperlink: "https://parami.io/img/Parami_Protocol_Light_Paper.pdf"
         }
-      }, {
+      }, 
+      {
         notReady: true,
-        time: 'End of August',
+        time: 'To be determined',
         chainId: 1,
         status: 'Upcoming',
         "botHolder": false,
@@ -225,7 +226,7 @@ export const usePoolList = () => {
           created_at: "2021-08-17T07:10:03Z",
           fackbook: "",
           githublink: "https://github.com/MatrixETF",
-          id: 184,
+          id: 184000,
           ifkyc: 1,
           ifwhitelist: 1,
           medium: "https://medium.com/@MatrixETF",
@@ -322,7 +323,7 @@ export const usePoolList = () => {
             // if (pool.projectId === '164') {
             //   pool.whiteLink = 'https://gleam.io/competitions/6QLO1-win-whitelist-for-moma-protocol-on-bounce'
             // }
-            if (pool.projectId === '53') return
+            if (pool.projectId === '54') return
             pools = pools.concat(pool)
 
             // console.log('pools---->', pools)
