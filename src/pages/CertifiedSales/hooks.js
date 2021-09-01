@@ -112,7 +112,7 @@ export const usePoolList = () => {
         "inKYC": false,
         "joined": false,
         "enableKycList": false,
-        "enableWhiteList": true,
+        "enableWhiteList": false,
         "whiteLink": '',
         "proInfo": {
           "id": 190,
@@ -341,7 +341,7 @@ export const usePoolList = () => {
 
     try {
       lotteryNFTContract.methods.getPoolCount().call().then(res => {
-        console.log('get lottery PoolCount', res)
+        // console.log('get lottery PoolCount', res)
         for (let i = 1; i < res; i++) {
           lotteryNFTContract.methods.pools(i).call().then(async poolRes => {
             console.log('pool--->', poolRes)

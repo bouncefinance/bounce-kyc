@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { InfoBoxStyle } from './styled'
 import { Passage } from '../../components/Exhibition'
-import {useIsSMDown} from '../../../utils/themeHooks';
+import { useIsSMDown } from '../../../utils/themeHooks';
 export default function InfoBox({ proInfo }) {
 
     const [curTab, setCurTab] = useState(0)
@@ -15,7 +15,16 @@ export default function InfoBox({ proInfo }) {
                     <Passage
                         width={isXSDown ? '100%' : '480px'}
                         title='Technical highlight'
-                        desc={proInfo && proInfo.techhighlight} />
+                    // desc={proInfo && proInfo.techhighlight}
+                    >
+                        <div>
+                            {
+                                proInfo && proInfo.techhighlight.split('\n').map(item => {
+                                    return <p style={{ marginBottom: 8 }}>{item}</p>
+                                })
+                            }
+                        </div>
+                    </Passage>
 
                     <Passage
                         width={isXSDown ? '100%' : '480px'}
