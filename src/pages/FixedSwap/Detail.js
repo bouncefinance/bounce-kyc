@@ -10,7 +10,7 @@ import {
 } from "../../components/common/Layout";
 import icon_return from '../../assets/images/icon-return.svg'
 import { usePoolDetail } from "./Hooks";
-import { fromWei, getProgress, numToWei, weiDiv, weiToNum, weiToNumber } from "../../utils/numberTransform";
+import { fromWei, getProgress, numToWei, weiDiv, weiToNum } from "../../utils/numberTransform";
 import classNames from "classnames";
 import { useParams } from 'react-router-dom';
 import { Form, Input } from "../../components/common/Form";
@@ -454,7 +454,7 @@ export const FSPoolDetail = () => {
 
             <Pool.Block style={{ width: isXSDown ? '100%' : '200px' }}>
               <span>Maximum Allocation per wallet</span>
-              <span>{limit && (limit == 0 ? 'No limit' : `${weiToNumber(limit, toDecimals)} ${toSymbol}`)}</span>
+              <span>{limit && (limit == 0 ? 'No limit' : `${weiToNum(limit, toDecimals)} ${toSymbol}`)}</span>
             </Pool.Block>
 
             <OText5 style={{
@@ -463,9 +463,9 @@ export const FSPoolDetail = () => {
               fontSize: 12,
               fontFamily: 'IBM Plex Mono',
               fontWeight: 500
-            }}>Auction progress: {toBidAmount && weiToNumber(toBidAmount, toDecimals)} {toSymbol}
+            }}>Auction progress: {toBidAmount && weiToNum(toBidAmount, toDecimals)} {toSymbol}
               <span
-                style={{ opacity: .3 }}> / {toAmount && weiToNumber(toAmount, toDecimals)} {toSymbol}</span>
+                style={{ opacity: .3 }}> / {toAmount && weiToNum(toAmount, toDecimals)} {toSymbol}</span>
             </OText5>
             {toBidAmount && toAmount && (
               <Progress style={{ marginTop: 16 }} height={'5px'}
@@ -506,12 +506,12 @@ export const FSPoolDetail = () => {
                 {renderTime(leftTime)}
                 <Pool.Meta>
                   <div>Total amount:</div>
-                  <div>{`${toAmount && weiToNumber(toAmount, toDecimals)} ${toSymbol}`}</div>
+                  <div>{`${toAmount && weiToNum(toAmount, toDecimals)} ${toSymbol}`}</div>
                 </Pool.Meta>
 
                 <Pool.Meta>
                   <div>Successful bid amount:</div>
-                  <div>{toBidAmount && `${weiToNumber(toBidAmount, toDecimals)} ${toSymbol}`}</div>
+                  <div>{toBidAmount && `${weiToNum(toBidAmount, toDecimals)} ${toSymbol}`}</div>
                 </Pool.Meta>
 
                 {(status === 'Closed' && !claimed) ?
@@ -523,14 +523,14 @@ export const FSPoolDetail = () => {
                 <LineDivider style={{ marginTop: 0 }} />
                 <Pool.topInfo>
                   <span>You have successfully bid</span>
-                  <span>{`${(myBidFromAmount && decimals) ? weiToNumber(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
+                  <span>{`${(myBidFromAmount && decimals) ? weiToNum(myBidFromAmount, decimals) : '--'}`} {symbol}</span>
                 </Pool.topInfo>
 
                 {status === 'Live' && (
                   <>
                     <Pool.topInfo>
                       <span>Your Bid Amount</span>
-                      <span>{`Balance: ${ethBalance ? weiToNumber(ethBalance, toDecimals) : '--'}`} {toSymbol}</span>
+                      <span>{`Balance: ${ethBalance ? weiToNum(ethBalance, toDecimals) : '--'}`} {toSymbol}</span>
                     </Pool.topInfo>
                     <Form
                       error={errors.amount}

@@ -19,7 +19,7 @@ import {
 import { AUCTION, BOT, BOUNCE_PRO_VOTING } from "../../web3/address";
 import bounceERC20 from '../../web3/abi/bounceERC20.json'
 import BounceProVoting from '../../web3/abi/BounceProVoting.json'
-import { numToWei, weiToNum } from "../../utils/numberTransform";
+import { numToWei,weiToNum } from "../../utils/numberTransform";
 import { ModalLayout } from "../components/Modal/styled";
 import Support from "../components/Modal/Support";
 import BigNumber from "bignumber.js";
