@@ -153,7 +153,7 @@ export const usePoolList = () => {
         }
       },{
         notReady: true,
-        time: 'September 6th at UTC 4:00 PM',
+        time: 'September 6th at UTC 12:00 PM',
         chainId: 56,
         status: 'Upcoming',
         "botHolder": false,
