@@ -211,7 +211,6 @@ export const usePoolList = () => {
 
 
   const fetchList = async (curLibrary, curChainId) => {
-
     if (curChainId === 1) {
       curLibrary = library
     }
