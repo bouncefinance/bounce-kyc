@@ -164,20 +164,20 @@ export default function Index() {
                                                 }
                                             })
                                         } else if (item.route) {
-
-                                            // if (item.route === '/certified-sales') {
-                                            //     return dispatch({
-                                            //         type: 'MODAL',
-                                            //         value: {
-                                            //             name: 'CONFIRM',
-                                            //             title: 'Bounce Decentralized',
-                                            //             deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
-                                            //             cancel: {
-                                            //                 text: 'I Know'
-                                            //             }
-                                            //         }
-                                            //     })
-                                            // }
+                                            // 维护入口
+                                            if (item.route === '/certified-sales') {
+                                                return dispatch({
+                                                    type: 'MODAL',
+                                                    value: {
+                                                        name: 'CONFIRM',
+                                                        title: 'Bounce Decentralized',
+                                                        deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
+                                                        cancel: {
+                                                            text: 'I Know'
+                                                        }
+                                                    }
+                                                })
+                                            }
                                             history.push(item.route)
                                         }
                                         setCurTab(item.route)

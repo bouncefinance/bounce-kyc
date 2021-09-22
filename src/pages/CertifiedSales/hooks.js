@@ -337,9 +337,10 @@ export const usePoolList = () => {
     if (active) {
       // await fetchList(getETHDefaultLibrary(), 1, pools)
       // await fetchList(getBNBDefaultLibrary(), 56, pools)
-      await fetchList(getETHDefaultLibrary(), 1)
-      await fetchList(getBNBDefaultLibrary(), 56)
-      await fetchList(getHECODefaultLibrary(), 128)
+      // 维护入口
+      // await fetchList(getETHDefaultLibrary(), 1)
+      // await fetchList(getBNBDefaultLibrary(), 56)
+      // await fetchList(getHECODefaultLibrary(), 128)
     }
   }, [active])
 
