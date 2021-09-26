@@ -52,6 +52,7 @@ export default function Index() {
         }
     }, [])
 
+    
     useEffect(() => {
         if (!account || !active) return
         checkKYC(account)

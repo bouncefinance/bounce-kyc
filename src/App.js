@@ -26,7 +26,7 @@ function App() {
             <InitPage />
             <BrowserRouter>
               {/* <Test /> */}
-              <Page />
+                <Page />
             </BrowserRouter>
           </Web3ReactProvider>
         </Reducer>

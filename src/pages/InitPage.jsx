@@ -56,6 +56,8 @@ export const InitPage = () => {
         }
     }, [])
 
+    
+
     return <></>
 
     // return (

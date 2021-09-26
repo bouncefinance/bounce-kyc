@@ -14,7 +14,9 @@ import { myContext } from '../redux'
 import { Apply } from "./CertifiedSales/Apply";
 import ApplySale from './ApplySale'
 import { FSPoolDetail } from "./FixedSwap/Detail";
-import {LotteryNFTDetail} from "./LotteryNFT1155/Detail";
+import { LotteryNFTDetail } from "./LotteryNFT1155/Detail";
+
+import RestrictedIpProvider from '../RestrictedIpProvider.jsx'
 
 
 export default function Index() {
@@ -37,24 +39,27 @@ export default function Index() {
         >
             <div className="mainView">
                 <HeaderTab />
-                <Switch>
-                    <Route path='/' exact render={() => { return <Redirect to='/home' /> }} />
-                    <Route path='/home' exact component={Home} />
-                    <Route path='/kyc' exact component={Kyc} />
-                    <Route path='/applySale' exact component={ApplySale} />
-                    <Route path='/PersonalInfo' exact component={PersonalInfo} />
-                    <Route path='/certified-sales' exact component={CertifiedSales} />
-                    <Route path='/certified-sales/:poolId' exact component={Detail} />
-                    <Route path='/learn-more/:poolId' exact component={LearnMore} />
-                    <Route path='/fixed-swap/:poolId' exact component={FSPoolDetail} />
-                    <Route path='/bsc/fixed-swap/:poolId' exact component={FSPoolDetail} />
-                    <Route path='/heco/fixed-swap/:poolId' exact component={FSPoolDetail} />
-                    <Route path='/lottery-nft/:id' exact component={LotteryNFTDetail} />
-                    <Route path='/bsc/lottery-nft/:id' exact component={LotteryNFTDetail} />
-                    <Route path='/project-voting-board' exact render={() => { return <Redirect to='/project-voting-board/active' /> }} />
-                    <Route path='/project-voting-board/:type' exact component={ProjectList} />
-                    <Route path='/project-apply' exact component={Apply} />
-                </Switch>
+
+                <RestrictedIpProvider>
+                    <Switch>
+                        <Route path='/' exact render={() => { return <Redirect to='/home' /> }} />
+                        <Route path='/home' exact component={Home} />
+                        <Route path='/kyc' exact component={Kyc} />
+                        <Route path='/applySale' exact component={ApplySale} />
+                        <Route path='/PersonalInfo' exact component={PersonalInfo} />
+                        <Route path='/certified-sales' exact component={CertifiedSales} />
+                        <Route path='/certified-sales/:poolId' exact component={Detail} />
+                        <Route path='/learn-more/:poolId' exact component={LearnMore} />
+                        <Route path='/fixed-swap/:poolId' exact component={FSPoolDetail} />
+                        <Route path='/bsc/fixed-swap/:poolId' exact component={FSPoolDetail} />
+                        <Route path='/heco/fixed-swap/:poolId' exact component={FSPoolDetail} />
+                        <Route path='/lottery-nft/:id' exact component={LotteryNFTDetail} />
+                        <Route path='/bsc/lottery-nft/:id' exact component={LotteryNFTDetail} />
+                        <Route path='/project-voting-board' exact render={() => { return <Redirect to='/project-voting-board/active' /> }} />
+                        <Route path='/project-voting-board/:type' exact component={ProjectList} />
+                        <Route path='/project-apply' exact component={Apply} />
+                    </Switch>
+                </RestrictedIpProvider>
             </div>
             <ModalGroup />
         </LayoutStyled>
