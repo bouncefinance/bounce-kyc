@@ -14,8 +14,8 @@ export default function RestrictedIpProvider({ children }) {
             // 排错
             if (!res || !res.data) return
             const { country_code } = res.data
-            // 屏蔽中国和美国的 IP
-            if (!country_code || country_code ==='Not found' || country_code === 'CN' || country_code === 'HK'|| country_code === 'MO'  || country_code === 'TW' || country_code ==='US') {
+            // 屏蔽中国大陆和美国的 IP
+            if (!country_code || country_code ==='Not found' || country_code === 'CN' || country_code ==='US') {
                 setIsPassIp(false)
             }
         })()
