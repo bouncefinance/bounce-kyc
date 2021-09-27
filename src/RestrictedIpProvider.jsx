@@ -13,6 +13,7 @@ export default function RestrictedIpProvider({ children }) {
             // 获取 IP 网络信息
             // 排错
             if (!res || !res.data) return
+            console.log('IP',res.data)
             const { country_code } = res.data
             // 屏蔽中国大陆和美国的 IP
             if (!country_code || country_code ==='Not found' || country_code === 'CN' || country_code ==='US') {
