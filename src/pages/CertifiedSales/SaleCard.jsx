@@ -50,7 +50,7 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
       <div className="main">
         {pool.proInfo && pool.proInfo &&
           <CardHeader title={pool && pool.proInfo && pool.proInfo && pool.proInfo && pool.proInfo.proname}
-            logo={pool.proInfo && pool.proInfo.prologourl.startsWith('https://') ? pool.proInfo.prologourl : HOST + '/' + pool.proInfo.prologourl}
+            logo={pool.proInfo &&pool.proInfo.prologourl&& pool.proInfo.prologourl.startsWith('https://') ? pool.proInfo.prologourl : HOST + '/' + pool.proInfo.prologourl}
             socialLink={[
               { name: 'facebook', link: pool.proInfo && pool.proInfo.fackbook },
               { name: 'telegram', link: pool.proInfo && pool.proInfo.telegram },

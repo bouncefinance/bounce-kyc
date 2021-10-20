@@ -104,7 +104,7 @@ export const usePoolList = () => {
   const upItem =
     [{
       notReady: true,
-      time: 'October 20th 8:00 am UTC',
+      time: 'To be determined',
       chainId: 1,
       status: 'Upcoming',
       "botHolder": false,
@@ -275,7 +275,7 @@ export const usePoolList = () => {
             if (pool.projectId === '54') return
             pools = pools.concat(pool)
 
-            // console.log('pools---->', pools)
+            console.log('pools---->', pools)
             setList(pools)
           })
         }
@@ -338,9 +338,9 @@ export const usePoolList = () => {
       // await fetchList(getETHDefaultLibrary(), 1, pools)
       // await fetchList(getBNBDefaultLibrary(), 56, pools)
       // 维护入口
-      // await fetchList(getETHDefaultLibrary(), 1)
-      // await fetchList(getBNBDefaultLibrary(), 56)
-      // await fetchList(getHECODefaultLibrary(), 128)
+      await fetchList(getETHDefaultLibrary(), 1)
+      await fetchList(getBNBDefaultLibrary(), 56)
+      await fetchList(getHECODefaultLibrary(), 128)
     }
   }, [active])
 

@@ -30,7 +30,7 @@ export default function Index() {
 
   const renderProList = () => {
     // 维护入口
-    return <></>
+    // return <></>
     switch (type) {
       case 'active':
         const activePools = list ? list.filter(item => {
@@ -106,20 +106,20 @@ export default function Index() {
             return <li
               key={index}
               onClick={() => {
-                if (item.status === 'Close') {
-                  // 维护入口
-                  return dispatch({
-                      type: 'MODAL',
-                      value: {
-                          name: 'CONFIRM',
-                          title: 'Bounce Decentralized',
-                          deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
-                          cancel: {
-                              text: 'I Know'
-                          }
-                      }
-                  })
-              }
+                // if (item.status === 'Close') {
+                //   // 维护入口
+                //   return dispatch({
+                //     type: 'MODAL',
+                //     value: {
+                //       name: 'CONFIRM',
+                //       title: 'Bounce Decentralized',
+                //       deputy: 'This function is being maintained and upgraded, so stay tuned！comming soon...',
+                //       cancel: {
+                //         text: 'I Know'
+                //       }
+                //     }
+                //   })
+                // }
                 history.push(item.route)
                 setCurPro(index)
               }}
