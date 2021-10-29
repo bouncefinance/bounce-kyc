@@ -165,8 +165,8 @@ export default function SalesCard ({ status, isVote, pool = {} }) {
             />
 
             <Passage
-              title='Requirement'
-              desc={`${(pool.enableKycList) ? 'KYC' : 'No requirement'}`} />
+              title='KYC required'
+              desc={`${(pool.enableKycList) ? 'Yes' : 'No'}`} />
           </div>
         </div>
 

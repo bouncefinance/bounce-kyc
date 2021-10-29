@@ -439,7 +439,7 @@ export const FSPoolDetail = () => {
               <ITextR style={{
                 marginTop: 8,
                 textAlign: 'left'
-              }}>{`Requirement: ${(pool.enableKycList) ? 'KYC' : 'No requirement'}`}</ITextR>
+              }}>{`KYC required: ${(pool.enableKycList) ? 'Yes' : 'No'}`}</ITextR>
             </Pool.Content>
 
             <Pool.Block style={{ width: '100%' }}>
