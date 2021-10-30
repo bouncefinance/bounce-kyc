@@ -117,7 +117,7 @@ export const usePoolList = () => {
         "id": 197,
         "accountaddress": "0x388651742c4e61e2f16999cb92dd8bf36bd360f9",
         "proname": "SubDAO",
-        "prowebsite": "https://app.subdao.network/#/home",
+        "prowebsite": "https://www.subdao.network/",
         "protheme": "DAO",
         "whitepaperlink": "https://www.subdao.network/#light-paper",
         "githublink": "https://github.com/SubDAO-Network",
@@ -126,16 +126,16 @@ export const usePoolList = () => {
         "fackbook": "",
         "telegram": "",
         "prosummary": "SubDAO allows any decentralized organization to swiftly create and manage DAOs. We are committed to ",
-        "techhighlight": "Initially, SubDAO Network will provide some of the features commonly used in various DAO governance and standardize them into DAO templates so that people can easily and quickly create and participate in DAOs later. We will gradually provide DAO-based company templates, non-profit-organization templates, government templates, educational-organization templates, club templates, venture capital fund templates, voting templates, fund management templates, and basic templates.",
+        "techhighlight": "We are committed to serving as a Web3.0 entry by providing blockchain-based digital agreement signing, DAO social networking, asset management, and other tools and services.\r\n\r\nSubDAO has completed multi-million dollars financing from dozens of institutions including Huobi Ventures, OKEx Blockdream Fund, CMS, Hypersphere as well as investment by Messari founder Ryan Selkis. \r\n",
         "architecture": "The SubDAO Network consists of four parts: SubDAO Node, SubDAO Airfone SDK, SubDAO Smart Contract, and SubDAO App front-end. And there are several components in SubDAO smart contract, namely Template Library, Asset Vault, and SubDAO Guard.",
         "attachmenturl": "",
-        "teambio": "-",
+        "teambio": "The founding team of SubDAO is composed of the former Technical Team leader of the IBM Group and many early well-known developers from Polkadot.",
         "totalsupply": "1,000,000,000",
         "circulatingsupply": "88,500,000",
         "tokenticketer": "GOV",
         "tokencontractaddress": "0x274e7eb07b485cfde53d02270555213447570ac6",
         "tokendistribution": "1.Parachain Slot Auction 30%\n2.Airdrop 3%  \n3.Governance Mining 27% \n4.Team 10%\n5.Foundation 15% \n6.Sale 15%",
-        "tokenlookupschedule": "1.Parachain Slot Auction 30%\nLocked for Parachain Slot Auction\n\n2.Airdrop 3%  \nLocked for Airdrop\n\n3.Governance Mining 27% \nLocked for Governance Mining\n\n4.Team 10%\nTGE 0%，3 months after TGE token for team will be unlocked quarterly within 2 years\n\n5.Foundation 15% \nUnlocked quarterly within a year ",
+        "tokenlookupschedule": "https://wiki.subdao.network/",
         "auctiontype": "Fixed swap auction",
         "amountoftoken": "600,000",
         "pricepertoken": "0.15",
@@ -148,7 +148,7 @@ export const usePoolList = () => {
         "additionalinfo": "",
         "prologourl": "0aeecea33a694416aef4436c6fa04bf8.png",
         "created_at": "2021-10-29T14:26:39Z",
-        "updated_at": "2021-10-29T14:26:39Z"
+        "updated_at": "2021-10-30T14:21:54Z"
       }
     }, {
       notReady: true,
@@ -165,7 +165,7 @@ export const usePoolList = () => {
         "id": 197,
         "accountaddress": "0x388651742c4e61e2f16999cb92dd8bf36bd360f9",
         "proname": "SubDAO",
-        "prowebsite": "https://app.subdao.network/#/home",
+        "prowebsite": "https://www.subdao.network/",
         "protheme": "DAO",
         "whitepaperlink": "https://www.subdao.network/#light-paper",
         "githublink": "https://github.com/SubDAO-Network",
@@ -174,16 +174,16 @@ export const usePoolList = () => {
         "fackbook": "",
         "telegram": "",
         "prosummary": "SubDAO allows any decentralized organization to swiftly create and manage DAOs. We are committed to ",
-        "techhighlight": "Initially, SubDAO Network will provide some of the features commonly used in various DAO governance and standardize them into DAO templates so that people can easily and quickly create and participate in DAOs later. We will gradually provide DAO-based company templates, non-profit-organization templates, government templates, educational-organization templates, club templates, venture capital fund templates, voting templates, fund management templates, and basic templates.",
+        "techhighlight": "We are committed to serving as a Web3.0 entry by providing blockchain-based digital agreement signing, DAO social networking, asset management, and other tools and services.\r\n\r\nSubDAO has completed multi-million dollars financing from dozens of institutions including Huobi Ventures, OKEx Blockdream Fund, CMS, Hypersphere as well as investment by Messari founder Ryan Selkis. \r\n",
         "architecture": "The SubDAO Network consists of four parts: SubDAO Node, SubDAO Airfone SDK, SubDAO Smart Contract, and SubDAO App front-end. And there are several components in SubDAO smart contract, namely Template Library, Asset Vault, and SubDAO Guard.",
         "attachmenturl": "",
-        "teambio": "-",
+        "teambio": "The founding team of SubDAO is composed of the former Technical Team leader of the IBM Group and many early well-known developers from Polkadot.",
         "totalsupply": "1,000,000,000",
         "circulatingsupply": "88,500,000",
         "tokenticketer": "GOV",
         "tokencontractaddress": "0x274e7eb07b485cfde53d02270555213447570ac6",
         "tokendistribution": "1.Parachain Slot Auction 30%\n2.Airdrop 3%  \n3.Governance Mining 27% \n4.Team 10%\n5.Foundation 15% \n6.Sale 15%",
-        "tokenlookupschedule": "1.Parachain Slot Auction 30%\nLocked for Parachain Slot Auction\n\n2.Airdrop 3%  \nLocked for Airdrop\n\n3.Governance Mining 27% \nLocked for Governance Mining\n\n4.Team 10%\nTGE 0%，3 months after TGE token for team will be unlocked quarterly within 2 years\n\n5.Foundation 15% \nUnlocked quarterly within a year ",
+        "tokenlookupschedule": "https://wiki.subdao.network/",
         "auctiontype": "Fixed swap auction",
         "amountoftoken": "600,000",
         "pricepertoken": "0.15",
@@ -196,7 +196,7 @@ export const usePoolList = () => {
         "additionalinfo": "",
         "prologourl": "0aeecea33a694416aef4436c6fa04bf8.png",
         "created_at": "2021-10-29T14:26:39Z",
-        "updated_at": "2021-10-29T14:26:39Z"
+        "updated_at": "2021-10-30T14:21:54Z"
       }
     }
     ]

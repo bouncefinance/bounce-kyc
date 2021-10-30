@@ -63,7 +63,7 @@ export default function Step1({ setCurStep, setTitle, step1Data, setStep1Data })
 
     return (
         <Step1Styled>
-            <p className='tip'><span>Please note.</span> The submission fee to apply certified sales is 60 Auction tokens</p>
+            <p className='tip'><span>Please note.</span> The submission fee to apply certified sales is 30 Auction tokens</p>
 
             <TextInput
                 label='Project name'
