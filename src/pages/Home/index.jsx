@@ -117,13 +117,13 @@ export default function Index() {
                                         }
                                     }
                                 })
-                            } else if (balance < 60) {
+                            } else if (balance < 30) {
                                 return dispatch({
                                     type: 'MODAL',
                                     value: {
                                         name: 'CONFIRM',
                                         title: 'Bounce Certified Fee',
-                                        deputy: `If you want to add a project vote, you must have more than 60 AUCTION. Your current balance is ${Number(balance)}, so you cannot create it`,
+                                        deputy: `If you want to add a project vote, you must have more than 30 AUCTION. Your current balance is ${Number(balance)}, so you cannot create it`,
                                         cancel: {
                                             text: 'I Know'
                                         }
