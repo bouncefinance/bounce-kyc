@@ -230,7 +230,7 @@ export const FSPoolDetail = () => {
 
     setBidStatus(confirmStatus);
     try {
-      console.log('toAddress',toAddress)
+      console.log('toAddress', toAddress)
       if (toAddress) {
         const allowanceBalance = await tokenContract.methods.allowance(account, BOUNCE_PRO(chainId)).call()
         if (allowanceBalance === '0') {
@@ -444,12 +444,13 @@ export const FSPoolDetail = () => {
 
             <Pool.Block style={{ width: '100%' }}>
               <span>Fixed Swap Ratio</span>
-              <span>{fromAmount && toAmount && `1 ${toSymbol} = ${(weiDiv(fromWei(fromAmount, decimals), fromWei(toAmount, toDecimals)))} ${symbol && symbol}`}</span>
+              <span>{fromAmount && toAmount && `1 ${toSymbol} = ${(weiDiv(symbol === 'GOV' ? fromWei(fromAmount, decimals) * 2 : fromWei(fromAmount, decimals), fromWei(toAmount, toDecimals)))} ${symbol && symbol} `}</span>
+              <span>{symbol === 'GOV' ? '(Claim: 3.333 + Airdrop: 3.333)' : ''}</span>
             </Pool.Block>
 
             <Pool.Block style={{ width: isXSDown ? '100%' : '200px' }}>
               <span>Total Allocation</span>
-              <span>{fromAmount && weiToNum(fromAmount, decimals, 6)} {symbol}</span>
+              <span>{fromAmount && symbol === 'GOV' ? weiToNum(fromAmount, decimals, 6) * 2 : weiToNum(fromAmount, decimals, 6)} {symbol}</span>
             </Pool.Block>
 
             <Pool.Block style={{ width: isXSDown ? '100%' : '200px' }}>

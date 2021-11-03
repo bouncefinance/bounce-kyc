@@ -226,7 +226,6 @@ export const usePoolList = () => {
             // }
             if (pool.projectId === '54') return
             pools = pools.concat(pool)
-
             console.log('pools---->', pools)
             setList(pools)
           })
