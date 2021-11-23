@@ -150,7 +150,7 @@ export const usePoolList = () => {
           "prologourl": "777d98fdd7414f2cccbb438bb034092d.png",
           "created_at": "2021-11-23T05:33:56Z",
           "updated_at": "2021-11-23T08:15:16Z"
-        },
+        }
       }
     ]
   const [list, setList] = useState()
