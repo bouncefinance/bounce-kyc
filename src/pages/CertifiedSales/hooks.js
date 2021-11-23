@@ -130,13 +130,13 @@ export const usePoolList = () => {
           "techhighlight": "JokerWar has a unique ecosystem and economic model, which combines the current popular mining, NFT, Collecting, Play-to-earn, GameFi, the Metaverse and other popular concepts, and innovates on this basis.",
           "architecture": "",
           "attachmenturl": "",
-          "teambio": "Bartholomew: Blockchain CTO & Cryptocurrency Enthusiast: from the top game development team, focus on developing excellent game products. Focusing on public chain, game, DeFi development since 2017.\n\nDexter: Product Manager & NFT Artist, started to get in touch with blockchain applications in 2014, and has been involved in blockchain product research on exchanges, DEX, wallets, apps, etc., such as Binance, Uniswap, Pancakeswap, MOBOX, etc.",
-          "totalsupply": "1,000,000,000",
-          "circulatingsupply": "25,000,000",
+          "teambio": "Edmund: Blockchain CTO & Cryptocurrency Enthusiast: from the top game development team, focus on developing excellent game products. Focusing on public chain, game, DeFi development since 2017.\r\n Harold: Product Manager & NFT Artist, started to get in touch with blockchain applications in 2014, and has been involved in blockchain product research on exchanges, DEX, wallets,\r\n  apps, etc., such as Binance, Uniswap, Pancakeswap, etc.\r\n ",
+          "totalsupply": "100,000,000",
+          "circulatingsupply": "2,500,000",
           "tokenticketer": "JOK",
           "tokencontractaddress": "0x3337DD3319866250A769966C95a009dC971e44a3",
           "tokendistribution": "Private Sale: 15%\nAirdrop & Marketing: 5%\nSystem Pool: 60%\nIDO: 1%\nLiquidity: 19%",
-          "tokenlookupschedule": "Private sale: 10% unlocked after game launch, 10% unlocked each month remaining\nLiquidity: Locked for 10 years",
+          "tokenlookupschedule": "Private sale: 10% unlocked after game launch, 10% unlocked each month remaining\r\nLiquidity: Locked for 1 years",
           "auctiontype": "Fixed swap auction on BSC",
           "amountoftoken": "600,000",
           "pricepertoken": "0.03",
@@ -149,7 +149,7 @@ export const usePoolList = () => {
           "additionalinfo": "",
           "prologourl": "777d98fdd7414f2cccbb438bb034092d.png",
           "created_at": "2021-11-23T05:33:56Z",
-          "updated_at": "2021-11-23T05:33:56Z"
+          "updated_at": "2021-11-23T08:15:16Z"
         },
       }
     ]
